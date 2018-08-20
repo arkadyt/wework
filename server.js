@@ -1,26 +1,30 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const app = express();
-const port = process.env.port || 5000;
-const db = require('./config/keys').mongoURI;
+const app = require('express')()
+const bodyParser = require('body-parser')
+const passport = require('passport')
+const postsRouter = require('./routes/api/posts')
+const usersRouter = require('./routes/api/users')
+const profileRouter = require('./routes/api/profile')
 
-const postsRouter = require('./routes/api/posts');
-const usersRouter = require('./routes/api/users');
-const profileRouter = require('./routes/api/profile');
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(passport.initialize())
 
-// API
-app.get('/', (req, res) => {
-    res.send('Hello from root!');
-});
-app.use('/posts', postsRouter);
-app.use('/users', usersRouter);
-app.use('/profile', profileRouter);
+require('./config/passport')(passport)
 
-// DB
+app.use('/api/posts', postsRouter)
+app.use('/api/users', usersRouter)
+app.use('/api/profile', profileRouter)
+
+
+
+const mongoose = require('mongoose')
+const db = require('./config/keys').mongoURI
 mongoose
-    .connect(db)
-    .then(() => {
-        console.log('Connected to database.');
-        app.listen(port, () => console.log('Application listening on port: ' + port));
-    })
-    .catch((err) => console.log('Could not connect to database.\n' + err));
+    .connect(db, { useNewUrlParser: true })
+    .then(() => console.log('Connected to database.'))
+    .catch((err) => console.log('Could not connect to database.\n' + err))
+
+
+
+const port = process.env.port || 5000
+app.listen(port, () => console.log('Application listening on port: ' + port))
