@@ -22,27 +22,55 @@ Yup.addMethod(Yup.mixed, 'unoccupied', function (user, message) {
     })
 })
 
-module.exports = profile => new Promise((resolve, reject) => {
-    const errors = {}
+module.exports = (profile, { onlyExperience }) => new Promise((resolve, reject) => {
+    let schema = {}
 
-    const validationSchema = Yup.object().shape({
-        handle: Yup.string()
-            .required('Please enter your profile handle')
-            .min(2, 'A minimum of 2 characters is required')
-            .max(40, 'Maximum allowed characters is 40')
-            .unoccupied(profile.user, 'Handle is already taken'),
-        social: Yup.object().shape({
-            youtube: Yup.string().url('Please enter a link'),
-            twitter: Yup.string().url('Please enter a link'),
-            facebook: Yup.string().url('Please enter a link'),
-            linkedin: Yup.string().url('Please enter a link'),
-            instagram: Yup.string().url('Please enter a link'),
-        }),
-    })
+    if (onlyExperience) {
+        schema = Yup.array().of(Yup.object().shape({
+            title: Yup.string().required("Are you really trying to leave this out??"),
+            company: Yup.string().required("Come on! It's not a shame to work for the Revature"),
+            location: Yup.string(),
+            from: Yup.string().required("I think you may be sleepy"),
+            to: Yup.string(),
+            current: Yup.bool().when('to', {
+                is: undefined,
+                then: Yup.bool().required("Do you work here presently?"),
+                other: Yup.bool().notRequired()
+            }),
+            description: Yup.string().min(300, "Please enter at least 300 characters")
+        })).typeError("Please enter your experience" /* in case of empty json {} */)
+            .min(1, "Please include at least one position")
+            .required("Please include at least one position")
+    } else {
+        schema = Yup.object().shape({
+            handle: Yup.string()
+                .required('Please enter your profile handle')
+                .min(2, 'A minimum of 2 characters is required')
+                .max(40, 'Maximum allowed characters is 40')
+                .unoccupied(profile.user, 'Handle is already taken'),
+            status: Yup.string()
+                .required('Please specify your status (Jr. Mid. Sr.)'),
+            skills: Yup.array().of(Yup.string().typeError('Elements must be strings'))
+                .min(3, 'Please enter at least ${min} skills')
+                .max(40, 'Skills limit of ${max} has been reached')
+                .required('Please specify your skills'),
+            social: Yup.object().shape({
+                youtube: Yup.string().url('Please enter a link'),
+                twitter: Yup.string().url('Please enter a link'),
+                facebook: Yup.string().url('Please enter a link'),
+                linkedin: Yup.string().url('Please enter a link'),
+                instagram: Yup.string().url('Please enter a link'),
+            }),
+        })
+    }
+    // objects submitted to the route are not saved
 
-    validationSchema.validate(profile, { abortEarly: false, strict: true })
+    // strict flag ensures that value coercion and object transformation would not happen
+    // this way db stays clean of empty fields 
+    schema.validate(profile, { abortEarly: false, strict: true })
         .then(profile => resolve(profile))
         .catch(err => {
+            const errors = {}
             for (let i of err.inner)
                 errors[i.path] = i.message
             reject(errors)
