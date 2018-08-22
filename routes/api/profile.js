@@ -138,7 +138,7 @@ router.delete('/experience/:expId', passport.authenticate('jwt', { session: fals
 router.delete('/education/:edId', passport.authenticate('jwt', { session: false }), (req, res) => {
     Profile.findOneAndUpdate(
         { user: req.user.id },
-        { $pull: { experience: { _id: req.params.edId } } },
+        { $pull: { education: { _id: req.params.edId } } },
         { new: true })
         .then(profile => res.json(profile))
         .catch(err => res.status(400).json(err))
