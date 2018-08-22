@@ -86,7 +86,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 })
 
 
-// @route   POST /api/experience
+// @route   POST /api/profile/experience
 // @desc    Post users experience to profile
 // @access  Protected
 router.post('/experience', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -97,10 +97,51 @@ router.post('/experience', passport.authenticate('jwt', { session: false }), (re
                 { user: req.user.id },
                 { $set: { experience: experienceData } },
                 { new: true })
-                .then(profile => res.json(profile))
+                .then(savedData => res.json(savedData))
                 .catch(err => res.status(404).json(err))
         })
         .catch(err => res.json(err))
+})
+
+// @route   POST api/profile/education
+// @desc    Post users education to profile
+// @access  Protected
+router.post('/education', passport.authenticate('jwt', { session: false }), (req, res) => {
+    require('../../validation/profile')(req.body, { onlyEducation: true })
+        .then(educationData => {
+            Profile.findOneAndUpdate(
+                { user: req.user.id },
+                { $set: { education: educationData } },
+                { new: true })
+                .then(savedData => res.json(savedData))
+                .catch(err => res.status(400).json(err))
+        })
+})
+
+
+// @route   DELETE api/profile/experience/:expId
+// @desc    Delete experience entry(ies) on profile
+// @access  Protected
+router.delete('/experience/:expId', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Profile.findOneAndUpdate(
+        { user: req.user.id },
+        { $pull: { experience: { _id: req.params.expId } } },
+        { new: true })
+        .then(profile => res.json(profile))
+        .catch(err => res.status(400).json(err))
+})
+
+
+// @route   DELETE api/profile/education/:edId
+// @desc    Delete education entry(ies) on profile
+// @access  Protected
+router.delete('/education/:edId', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Profile.findOneAndUpdate(
+        { user: req.user.id },
+        { $pull: { experience: { _id: req.params.edId } } },
+        { new: true })
+        .then(profile => res.json(profile))
+        .catch(err => res.status(400).json(err))
 })
 
 

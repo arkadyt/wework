@@ -22,10 +22,13 @@ Yup.addMethod(Yup.mixed, 'unoccupied', function (user, message) {
     })
 })
 
-module.exports = (profile, { onlyExperience }) => new Promise((resolve, reject) => {
+module.exports = (profile, options = {
+    onlyEducation: false,
+    onlyExperience: false
+}) => new Promise((resolve, reject) => {
     let schema = {}
 
-    if (onlyExperience) {
+    if (options.onlyExperience) {
         schema = Yup.array().of(Yup.object().shape({
             title: Yup.string().required("Are you really trying to leave this out??"),
             company: Yup.string().required("Come on! It's not a shame to work for the Revature"),
@@ -41,7 +44,23 @@ module.exports = (profile, { onlyExperience }) => new Promise((resolve, reject) 
         })).typeError("Please enter your experience" /* in case of empty json {} */)
             .min(1, "Please include at least one position")
             .required("Please include at least one position")
-    } else {
+    } else if (options.onlyEducation) {
+        schema = Yup.array().of(Yup.object().shape({
+            school: Yup.string().required("Oh, please!"),
+            degree: Yup.string().required("Come on!"),
+            fieldOfStudy: Yup.string().required("Something unusual? Fill this out!"),
+            from: Yup.string().required("Hey, fill this in!"),
+            to: Yup.string(),
+            current: Yup.bool().when('to', {
+                is: !undefined,
+                then: Yup.bool().required("Do you still study at your last school?"),
+                otherwise: Yup.bool().notRequired()
+            }),
+            description: Yup.string().min(300, "Minimum of 300 characters is required!")
+        })).typeError("Please enter your education")
+            .min(1, "At least one position is required")
+            .required("We do not believe in self-taught devs!")
+    } else { /* For whole profile with the exclusion of above described fields */
         schema = Yup.object().shape({
             handle: Yup.string()
                 .required('Please enter your profile handle')
@@ -63,7 +82,6 @@ module.exports = (profile, { onlyExperience }) => new Promise((resolve, reject) 
             }),
         })
     }
-    // objects submitted to the route are not saved
 
     // strict flag ensures that value coercion and object transformation would not happen
     // this way db stays clean of empty fields 
