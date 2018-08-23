@@ -14,12 +14,12 @@ const loginPage = () => {
 
             <Field type="submit" name="submit" value="Log In" />
         </Form>
-        <span>Already have an account? <Link to="/login">Log In</Link></span>
+        <span>Don't have an account? <Link to="/signup">Sign Up</Link></span>
     </div>
 }
 
 export default withFormik({
     handleSubmit({ email, password }) {
-        
+
     }
 })(loginPage)
