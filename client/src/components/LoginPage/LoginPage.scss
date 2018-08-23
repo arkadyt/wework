@@ -1,0 +1,15 @@
+@mixin flexList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+.LoginPage-container {
+    width: 100vw;
+    height: 100vh;
+    @include flexList();
+    form {
+        @include flexList();
+    }
+}
