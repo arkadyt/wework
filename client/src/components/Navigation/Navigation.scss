@@ -1,0 +1,23 @@
+@import '_variables.scss';
+.Navigation-container {
+    width: 100vw;
+    height: $navigation_height;
+    background-color: #212121;
+    nav {
+        float: right;
+        display: flex;
+        height: 100%;
+        margin-right: 1rem;
+        a {
+            color: white;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            &:hover {
+                background-color: #414141;
+            }
+            padding: 0 1rem;
+        }
+    }
+}

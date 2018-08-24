@@ -3,7 +3,7 @@ import LoginPage from './LoginPage/LoginPage'
 import SignupPage from './SignupPage/SignupPage'
 import ProfilePage from './ProfilePage/ProfilePage'
 import { Route } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default () => {
     const mockProfileObject = {
