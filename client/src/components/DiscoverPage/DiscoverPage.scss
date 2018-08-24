@@ -8,34 +8,50 @@
         width: 60%;
     }
     .content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        .node {
-            display: flex;
-            align-items: center;
-            img {
-                margin: 0 .5rem;
-                width: 4rem;
-                height: 4rem;
-                border-radius: 8rem;
-                overflow: hidden;
+        display: flex;
+        .posts {
+            width: 30rem;
+            margin-left: 1rem;
+            .node {
+                border: 1px solid black;
+                p {
+                    &:first-child {
+                        background: #212121;
+                        color: white;
+                    }
+                }
+                margin-bottom: 1rem;
             }
-            a {
+        }
+        .people {
+            .node {
                 display: flex;
                 align-items: center;
-                margin: 0 .5rem;
-                padding: 0.7rem;
-                background-color: gray;
-                color: white;
-                text-decoration: none;
-                border-radius: .3rem;
-                &:hover {
-                    background-color: green;
+                margin-bottom: .5rem;
+                img {
+                    margin: 0 .5rem;
+                    width: 4rem;
+                    height: 4rem;
+                    border-radius: 8rem;
+                    overflow: hidden;
                 }
-            }
-            .text {
-                width: 20rem;
-                margin: 0 .5rem;
+                a {
+                    display: flex;
+                    align-items: center;
+                    margin: 0 .5rem;
+                    padding: 0.7rem;
+                    background-color: gray;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: .3rem;
+                    &:hover {
+                        background-color: green;
+                    }
+                }
+                .text {
+                    width: 15rem;
+                    margin: 0 .5rem;
+                }
             }
         }
     }
