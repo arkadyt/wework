@@ -2,36 +2,39 @@ import React from 'react'
 import './ProfilePage.css'
 import ava_placeholder from '../../images/avatar_placeholder.png'
 
-const profilePage = props => {
+const profilePage = ({
+    image, name, title, status, location, social, company, bio, skills, experience, education
+}) => {
     return <div className="ProfilePage-container">
         <div className="content">
             <section className="intro">
-                <img src={props.image || ava_placeholder} alt="" />
-                <h2>{props.name}</h2>
-                <p>{props.status} at {props.company}</p>
-                <p>{props.location}</p>
-                {props.social ? Object.keys(props.social).map((key, idx) => {
-                    return <a href={props.social[key]}
+                <img src={image || ava_placeholder} alt="" />
+                <h2>{name}</h2>
+                <p>{title} at {company}</p>
+                <p>Job seeker status: {status}</p>
+                <p>{location}</p>
+                {social ? Object.keys(social).map((key, idx) => {
+                    return <a href={social[key]}
                         key={`soc-med-link-${idx}`}>[ICO]</a>
                 }) : null}
             </section>
             <section className="bio">
                 <h3>Bio</h3>
-                <p>{props.bio}</p>
+                <p>{bio}</p>
             </section>
             <section className="skills">
                 <h3>Skill Set</h3>
-                {props.skills.map((skill, idx) => {
+                {skills.map((skill, idx) => {
                     return <span key={`skill-${idx}`}>{skill}</span>
                 })}
             </section>
             <section className="exp-edu">
                 <div>
                     <h3>Experience</h3>
-                    {Object.keys(props.experience).map((key, idx) => {
+                    {Object.keys(experience).map((key, idx) => {
                         const {
                             title, company, location, from, to, current, description
-                        } = props.experience[key]
+                        } = experience[key]
                         return <div key={`exp-entry-${idx}`}>
                             <h3>{company}</h3>
                             <p>{from} -- {current ? 'Current' : to}</p>
@@ -43,10 +46,10 @@ const profilePage = props => {
                 </div>
                 <div>
                     <h3>Education</h3>
-                    {Object.keys(props.education).map((key, idx) => {
+                    {Object.keys(education).map((key, idx) => {
                         const {
                             school, degree, fieldOfStudy, from, to, current, description
-                        } = props.education[key]
+                        } = education[key]
                         return <div key={`edu-entry-${idx}`}>
                             <h3>{school}</h3>
                             <p>{from} -- {current ? 'Current' : to}</p>
