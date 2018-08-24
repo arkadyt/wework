@@ -11,6 +11,8 @@ const discoverPage = () => {
     return <div className="DiscoverPage-container">
         <input type="text" placeholder="Search people or posts, by name, text, skills, etc..." className="search" />
         <div className="content">
+            <h2>People</h2>
+            <h2>Posts</h2>
             <div className="people">
                 {profiles.map(({ image, user, title, status, location, company, handle }, idx) => {
                     return <div className="node" key={`discover-node-profile-${idx}`}>
