@@ -5,6 +5,7 @@ import Profile from './_Pages/Profile/Profile'
 import Discover from './_Pages/Discover/Discover'
 import Feed from './_Pages/Feed/Feed'
 import AddExp from './_Forms/AddExp/AddExp'
+import AddEdu from './_Forms/AddEdu/AddEdu'
 import mockProfileObject from '../mocks/profile'
 import { Route } from 'react-router-dom'
 // import axios from 'axios'
@@ -17,5 +18,6 @@ export default () => {
         <Route path='/discover' component={Discover} />
         <Route path='/feed' component={Feed} />
         <Route path='/addExp' component={AddExp} />
+        <Route path='/addEdu' component={AddEdu} />
     </div>
 }
