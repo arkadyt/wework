@@ -1,17 +1,17 @@
 import React from 'react'
-import './FeedPage.css'
-import mockPosts from '../../mocks/posts'
-import { withFormik, Form, Field } from 'formik'
+import './Feed.css'
+import mockPosts from '../../../mocks/posts'
+import { withFormik, Form } from 'formik'
 
-const feedPage = ({
+const feed = ({
     values,
     handleChange
 }) => {
-    return <div className="FeedPage-container">
+    return <div className="Feed-container">
         <Form className="input">
             <textarea rows="4" name="message" placeholder="Say something..." 
                 value={values.message} onChange={handleChange} />
-            <Field type="submit" value="Submit" />
+            <input type="submit" value="Submit" />
         </Form>
         <div className="feed">
             {mockPosts.map(({ user, text, likes, comments }, idx) => {
@@ -30,4 +30,4 @@ export default withFormik({
     handleSubmit({ message }) { 
         console.log(message)
     }
-})(feedPage)
+})(feed)

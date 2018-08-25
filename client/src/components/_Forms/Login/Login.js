@@ -1,10 +1,10 @@
 import React from 'react'
 import { withFormik, Form, Field } from 'formik'
 import { Link } from 'react-router-dom'
-import './LoginPage.css'
+import './Login.css'
 
-const loginPage = () => {
-    return <div className="LoginPage-container">
+const login = () => {
+    return <div className="Login-container">
         <Form>
             <label htmlFor="email">Your email</label>
             <Field type="email" name="email" id="email" placeholder="your.name@mail.com" />
@@ -22,4 +22,4 @@ export default withFormik({
     handleSubmit({ email, password }) {
 
     }
-})(loginPage)
+})(login)

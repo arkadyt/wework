@@ -1,9 +1,9 @@
 import React from 'react'
-import LoginPage from './LoginPage/LoginPage'
-import SignupPage from './SignupPage/SignupPage'
-import ProfilePage from './ProfilePage/ProfilePage'
-import DiscoverPage from './DiscoverPage/DiscoverPage'
-import FeedPage from './FeedPage/FeedPage'
+import LoginPage from './_Forms/Login/Login'
+import SignupPage from './_Forms/Signup/Signup'
+import Profile from './_Pages/Profile/Profile'
+import Discover from './_Pages/Discover/Discover'
+import Feed from './_Pages/Feed/Feed'
 import mockProfileObject from '../mocks/profile'
 import { Route } from 'react-router-dom'
 // import axios from 'axios'
@@ -12,8 +12,8 @@ export default () => {
     return <div>
         <Route path='/login' component={LoginPage} />
         <Route path='/signup' component={SignupPage} />
-        <Route path='/profile' render={() => <ProfilePage {...mockProfileObject} />} />
-        <Route path='/discover' component={DiscoverPage} />
-        <Route path='/feed' component={FeedPage} />
+        <Route path='/profile' render={() => <Profile {...mockProfileObject} />} />
+        <Route path='/discover' component={Discover} />
+        <Route path='/feed' component={Feed} />
     </div>
 }

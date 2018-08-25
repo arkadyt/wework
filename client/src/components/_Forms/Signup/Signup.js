@@ -1,10 +1,10 @@
 import React from 'react'
 import { withFormik, Form, Field } from 'formik'
 import { Link } from 'react-router-dom'
-import './SignupPage.css'
+import './Signup.css'
 
-const signupPage = () => {
-    return <div className="SignupPage-container">
+const signup = () => {
+    return <div className="Signup-container">
         <Form>
             <label htmlFor="name">Your name</label>
             <Field type="text" name="name" id="name" placeholder="John Doe" />
@@ -29,4 +29,4 @@ export default withFormik({
     handleSubmit({ name, email, password }) {
 
     }
-})(signupPage)
+})(signup)

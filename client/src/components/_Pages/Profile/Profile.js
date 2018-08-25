@@ -1,11 +1,11 @@
 import React from 'react'
-import './ProfilePage.css'
-import ava_placeholder from '../../images/avatar_placeholder.png'
+import './Profile.css'
+import ava_placeholder from '../../../images/avatar_placeholder.png'
 
-const profilePage = ({
+const profile = ({
     image, name, title, status, location, social, company, bio, skills, experience, education
 }) => {
-    return <div className="ProfilePage-container">
+    return <div className="Profile-container">
         <div className="content">
             <section className="intro">
                 <img src={image || ava_placeholder} alt="" />
@@ -64,4 +64,4 @@ const profilePage = ({
     </div>
 }
 
-export default profilePage
+export default profile

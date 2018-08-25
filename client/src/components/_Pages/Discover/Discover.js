@@ -1,14 +1,14 @@
 import React from 'react'
-import './DiscoverPage.css'
-import mockProfileObject from '../../mocks/profile'
-import mockPosts from '../../mocks/posts'
-import ava_placeholder from '../../images/avatar_placeholder.png'
+import './Discover.css'
+import mockProfileObject from '../../../mocks/profile'
+import mockPosts from '../../../mocks/posts'
+import ava_placeholder from '../../../images/avatar_placeholder.png'
 import { Link } from 'react-router-dom'
 
-const discoverPage = () => {
+const discover = () => {
     let profiles = new Array(10).fill(mockProfileObject, 0, 10)
 
-    return <div className="DiscoverPage-container">
+    return <div className="Discover-container">
         <input type="text" placeholder="Search people or posts, by name, text, skills, etc..." className="search" />
         <div className="content">
             <h2>People</h2>
@@ -42,4 +42,4 @@ const discoverPage = () => {
     </div>
 }
 
-export default discoverPage
+export default discover
