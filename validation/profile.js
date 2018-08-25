@@ -18,7 +18,7 @@ Yup.addMethod(Yup.mixed, 'unoccupied', function (user, message) {
                 // else value is free, or it belongs to the current user
                 else resolve(true)
             })
-        }).then(result => result).catch(error => error)
+        })
     })
 })
 
