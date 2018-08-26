@@ -1,25 +1,15 @@
 import React from 'react'
 import Post from '../../Post/Post'
 import Comment from '../../Comment/Comment'
+import Reply from '../../Reply/Reply'
 import { mockPost } from '../../../mocks/posts'
-import { withFormik, Form } from 'formik'
 
-const comments = ({
-    values,
-    handleChange
-}) => {
+const comments = () => {
     return <div className="Comments-container">
         <Post {...mockPost} />
-        <Form>
-            <textarea rows="5" name="message" placeholder="Say something..."
-                value={values.message} onChange={handleChange} />
-            <button type="submit">Submit</button>
-        </Form>
+        <Reply />
         {mockPost.comments.map(item => <Comment {...item} />)}
     </div>
 }
 
-export default withFormik({
-    mapPropsToValues() { },
-    handleSubmit() { }
-})(comments)
+export default comments

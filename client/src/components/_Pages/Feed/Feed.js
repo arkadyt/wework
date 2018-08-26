@@ -2,27 +2,19 @@ import React from 'react'
 import './Feed.css'
 import mockPosts from '../../../mocks/posts'
 import Post from '../../Post/Post'
-import { withFormik, Form } from 'formik'
+import Reply from '../../Reply/Reply'
 
-const feed = ({
-    values,
-    handleChange
-}) => {
+const feed = () => {
+    const myCallback = (values) => {
+        console.log(values)
+    }
+
     return <div className="Feed-container">
-        <Form className="input">
-            <textarea rows="4" name="message" placeholder="Say something..." 
-                value={values.message} onChange={handleChange} />
-            <input type="submit" value="Submit" />
-        </Form>
+        <Reply callback={myCallback} />
         <div className="feed">
             {mockPosts.map(item => <Post {...item} />)}
         </div>
     </div>
 }
 
-export default withFormik({
-    mapPropsToValues() { },
-    handleSubmit({ message }) { 
-        console.log(message)
-    }
-})(feed)
+export default feed
