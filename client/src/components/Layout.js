@@ -9,10 +9,10 @@ import AddEdu from './_Forms/AddEdu/AddEdu'
 import Comments from './_Pages/Comments/Comments'
 import mockProfileObject from '../mocks/profile'
 import { Route } from 'react-router-dom'
-// import axios from 'axios'
+import './Layout.css'
 
 export default () => {
-    return <div>
+    return <div className="Layout-container">
         <Route path='/login' component={LoginPage} />
         <Route path='/signup' component={SignupPage} />
         <Route path='/profile' render={() => <Profile {...mockProfileObject} />} />

@@ -1,8 +1,11 @@
 @import '_variables.scss';
 .Navigation-container {
-    width: 100vw;
+    width: 100%;
     height: $navigation_height;
     background-color: #212121;
+    position: fixed;
+    top: 0;
+    left: 0;
     nav {
         float: right;
         display: flex;
