@@ -1,6 +1,7 @@
 import React from 'react'
 import './Feed.css'
 import mockPosts from '../../../mocks/posts'
+import Post from '../../Post/Post'
 import { withFormik, Form } from 'formik'
 
 const feed = ({
@@ -14,13 +15,7 @@ const feed = ({
             <input type="submit" value="Submit" />
         </Form>
         <div className="feed">
-            {mockPosts.map(({ user, text, likes, comments }, idx) => {
-                return <div className="node" key={`feed-node-${idx}`}>
-                    <p className="header">{user.name} said:</p>
-                    <p className="text">{text}</p>
-                    <p className="buttons">{comments.length} comments | {likes.length} [like post!]</p>
-                </div>
-            })}
+            {mockPosts.map(item => <Post {...item} />)}
         </div>
     </div>
 }

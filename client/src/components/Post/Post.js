@@ -2,7 +2,7 @@ import React from 'react'
 import './Post.css'
 
 const post = ({ user, text, comments, likes, date }) => {
-    return <div className="Post-container" key={`feed-node-${idx}`}>
+    return <div className="Post-container">
         <p className="header">
             <span>{user.name} said:</span>
             <span>{date}</span>
