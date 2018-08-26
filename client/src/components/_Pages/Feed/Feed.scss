@@ -2,21 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    .input {
-        width: 40rem;
-        margin-top: 1rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        textarea {
-            font-size: 1.2rem;
-            width: 100%;
-        }
-        input[type=submit] {
-            font-size: 1.2rem;
-            align-self: flex-end;
-        }
-    }
     .feed {
         width: 40rem;
     }
