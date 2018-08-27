@@ -1,0 +1,23 @@
+.Field-container {
+    width: 100%;
+    margin: 1rem 0 0 0;
+    input[type=checkbox] {
+        transform: scale(1.5);
+    }
+    button[type=submit] {
+        float: right;
+        width: 6rem;
+        height: 2rem;
+        font-size: 1rem;
+        border-radius: .3rem;
+    }
+    label {
+        display: inline-block;
+        padding: .2rem;
+    }
+    .error {
+        display: inline-block;
+        color: red;
+        padding: .2rem;
+    }
+}
