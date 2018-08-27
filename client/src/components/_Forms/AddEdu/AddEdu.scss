@@ -5,5 +5,11 @@
     @include flexList();
     form {
         @include flexList();
+        width: 30rem;
+        input[type=text] {
+            font-size: 1rem;
+            padding: .6rem;
+            width: 100%;
+        }
     }
 }

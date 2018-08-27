@@ -1,41 +1,99 @@
 import React from 'react'
-import { withFormik, Form, Field } from 'formik'
+import Field from '../../Field/Field'
+import 'react-widgets/dist/css/react-widgets.css'
 import './AddEdu.css'
 
-const addEdu = () => {
-    return <div className="AddEdu-container">
-        <Form>
-            <label htmlFor="school">School:</label>
-            <Field type="text" name="school" id="school" placeholder="UCLA" />
+class AddEdu extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            school: '',
+            fos: '',
+            degree: '',
+            from: null,
+            to: null,
+            current: false,
+            desc: ''
+        }
+    }
 
-            <label htmlFor="degree">Degree:</label>
-            <Field type="text" name="degree" id="degree" placeholder="Bachelor of Science" />
+    render() {
+        const list = [
+            "Professional Certificate",
+            "Undergraduate Degrees",
+            "Transfer Degree",
+            "Associate Degree",
+            "Bachelor Degree",
+            "Graduate Degrees",
+            "Master Degree",
+            "Doctoral Degree",
+            "Professional Degree",
+            "Specialist Degree"
+        ]
 
-            <label htmlFor="fos">Field of Study:</label>
-            <Field type="text" name="fos" id="fos" placeholder="Bioeconomics" />
+        const errors = this.props.errors || {}
 
-            <label htmlFor="from">From:</label>
-            <Field type="text" name="from" id="from" />
-
-            <label htmlFor="to">To:</label>
-            <Field type="text" name="to" id="to" />
-
-            <label>
-                <Field type="checkbox"
+        return <div className="AddEdu-container">
+            <form onSubmit={e => {
+                e.preventDefault()
+                this.props.onSubmit(this.state)
+            }}>
+                <Field type="text"
+                    name="school"
+                    placeholder="UCLA"
+                    value={this.state.school}
+                    onChange={e => this.setState({ school: e.target.value })}
+                    label="School:"
+                    error={errors.school} />
+                <Field type="text"
+                    name="fos"
+                    placeholder="Bioeconomics"
+                    value={this.state.fos}
+                    onChange={e => this.setState({ fos: e.target.value })}
+                    label="Field of Study:"
+                    error={errors.fos} />
+                <Field type="list"
+                    name="degree"
+                    value={this.state.degree}
+                    onChange={value => this.setState({ degree: value })}
+                    label="Degree:"
+                    list={list}
+                    error={errors.degree} />
+                <Field type="date"
+                    name="from"
+                    value={this.state.from}
+                    onChange={value => this.setState({ from: new Date(value).toISOString() })}
+                    label="From:" 
+                    error={errors.from} />
+                <Field
+                    type="date"
+                    name="to"
+                    value={this.state.to}
+                    onChange={value => this.setState({ to: new Date(value).toISOString() })}
+                    disabled={this.state.current}
+                    label="To:" 
+                    error={errors.to} />
+                <Field
+                    type="checkbox"
                     name="current"
-                    id="current" /> Current?
-            </label>
-
-            <label htmlFor="description">Description:</label>
-            <textarea name="description" id="description" rows="5" />
-
-            <button type="submit">Add</button>
-        </Form>
-    </div>
+                    value={this.state.current}
+                    onChange={e => this.setState({ current: e.target.checked })}
+                    label="Current?" />
+                <Field
+                    type="textarea"
+                    name="desc"
+                    value={this.state.desc}
+                    onChange={e => this.setState({ desc: e.target.value })}
+                    label="Description"
+                    rows="5"
+                    error={errors.desc} />
+                <Field
+                    type="submit"
+                    name="submit"
+                    label="Submit" />
+            </form>
+        </div>
+    }
 }
 
-export default withFormik({
-    handleSubmit() {
-
-    }
-})(addEdu)
+export default AddEdu
