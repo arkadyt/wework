@@ -1,25 +1,60 @@
 import React from 'react'
-import { withFormik, Form, Field } from 'formik'
+import axios from 'axios'
+import { connect } from 'react-redux'
+import Field from '../../Field/Field'
 import { Link } from 'react-router-dom'
 import './Login.css'
 
-const login = () => {
-    return <div className="Login-container">
-        <Form>
-            <label htmlFor="email">Your email</label>
-            <Field type="email" name="email" id="email" placeholder="your.name@mail.com" />
+class Login extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            errors: {},
+            email: '',
+            password: ''
+        }
+    }
 
-            <label htmlFor="password">Password</label>
-            <Field type="password" name="password" id="password" placeholder="123456" />
-
-            <Field type="submit" name="submit" value="Log In" />
-        </Form>
-        <span>Don't have an account? <Link to="/signup">Sign Up</Link></span>
-    </div>
+    render() {
+        return <div className="Login-container">
+            <form onSubmit={e => {
+                e.preventDefault()
+                axios.post('/api/users/login', {
+                    email: this.state.email,
+                    password: this.state.password
+                 })
+                    .then(res => res.data.token && alert('Success!'))
+                    .catch(err => this.setState({ errors: err.response.data }))
+            }}>
+                <Field
+                    type="text"
+                    name="email"
+                    value={this.state.email}
+                    onChange={e => this.setState({ email: e.target.value })}
+                    label="Email:"
+                    error={this.state.errors.email} />
+                <Field
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={e => this.setState({ password: e.target.value })}
+                    label="Password:"
+                    error={this.state.errors.password} />
+                <Field
+                    type="submit"
+                    label="Log In" />
+            </form>
+            <span>Don't have an account? <Link to="/signup">Sign Up</Link></span>
+        </div>
+    }
 }
 
-export default withFormik({
-    handleSubmit({ email, password }) {
+const mapStateToProps = () => {
 
-    }
-})(login)
+}
+
+const mapDispatchToProps = () => {
+
+}
+
+export default connect()(Login)
