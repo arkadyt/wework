@@ -14,7 +14,7 @@ module.exports = data => {
     data.name = isEmpty(data.name) ? '' : data.name
     data.email = isEmpty(data.email) ? '' : data.email
     data.password = isEmpty(data.password) ? '' : data.password
-    data.password2 = isEmpty(data.password2) ? '' : data.password2
+    data.passwordConfirm = isEmpty(data.passwordConfirm) ? '' : data.passwordConfirm
 
     if (!validator.isLength(data.name, { min: 2, max: 30 }))
         errors.name = 'Name must be between 2 and 30 characters'
@@ -31,10 +31,10 @@ module.exports = data => {
     if (validator.isEmpty(data.password))
         errors.password = 'Password is required'
 
-    if (!validator.equals(data.password2, data.password))
-        errors.password2 = 'Passwords don\'t match'
-    if (validator.isEmpty(data.password2))
-        errors.password2 = 'Please re-enter your password'
+    if (!validator.equals(data.passwordConfirm, data.password))
+        errors.passwordConfirm = 'Passwords don\'t match'
+    if (validator.isEmpty(data.passwordConfirm))
+        errors.passwordConfirm = 'Please re-enter your password'
 
     return {
         errors,

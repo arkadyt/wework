@@ -16,6 +16,8 @@ export default function (state = initialState, action) {
                     token: action['payload']
                 }
             }
+        case types.REGISTER_USER:
+            return state
         default:
             return state
     }

@@ -8,23 +8,16 @@ import { loginUser } from '../../../state/actions/authActions'
 // import * as types from '../../../state/actions/types'
 
 class Login extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            errors: {},
-            email: '',
-            password: ''
-        }
+    state = {
+        email: '',
+        password: ''
     }
 
     render() {
         return <div className="Login-container">
             <form onSubmit={e => {
                 e.preventDefault()
-                this.props.loginUser({
-                    email: this.state.email,
-                    password: this.state.password
-                })
+                this.props.loginUser(this.state)
             }}>
                 <Field
                     type="text"
