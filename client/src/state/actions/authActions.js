@@ -7,7 +7,7 @@ export const loginUser = credentials => dispatch => {
             dispatch({ type: types.LOGIN_USER, payload: res.data.token })
         })
         .catch(err => {
-            alert('Failed :c', err.response.data) /* Dispatch SET_ERRORS action  */
+            dispatch({ type: types.POST_ERRORS, payload: err.response.data })
         })
 }
 

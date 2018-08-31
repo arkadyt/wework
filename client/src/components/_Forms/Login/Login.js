@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import Field from '../../Field/Field'
 import { Link } from 'react-router-dom'
 import './Login.css'
+import { loginUser } from '../../../state/actions/authActions'
+// import * as types from '../../../state/actions/types'
 
 class Login extends React.Component {
     constructor() {
@@ -19,12 +21,10 @@ class Login extends React.Component {
         return <div className="Login-container">
             <form onSubmit={e => {
                 e.preventDefault()
-                axios.post('/api/users/login', {
+                this.props.loginUser({
                     email: this.state.email,
                     password: this.state.password
-                 })
-                    .then(res => res.data.token && alert('Success!'))
-                    .catch(err => this.setState({ errors: err.response.data }))
+                })
             }}>
                 <Field
                     type="text"
@@ -32,14 +32,14 @@ class Login extends React.Component {
                     value={this.state.email}
                     onChange={e => this.setState({ email: e.target.value })}
                     label="Email:"
-                    error={this.state.errors.email} />
+                    error={this.props.errors.email} />
                 <Field
                     type="password"
                     name="password"
                     value={this.state.password}
                     onChange={e => this.setState({ password: e.target.value })}
                     label="Password:"
-                    error={this.state.errors.password} />
+                    error={this.props.errors.password} />
                 <Field
                     type="submit"
                     label="Log In" />
@@ -49,12 +49,8 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = state => ({
+    errors: state.err
+})
 
-}
-
-const mapDispatchToProps = () => {
-
-}
-
-export default connect()(Login)
+export default connect(mapStateToProps, { loginUser })(Login)

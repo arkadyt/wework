@@ -12,7 +12,9 @@ export default function (state = initialState, action) {
         case types.LOGIN_USER:
             return {
                 ...state,
-                user: action['payload']
+                user: {
+                    token: action['payload']
+                }
             }
         default:
             return state
