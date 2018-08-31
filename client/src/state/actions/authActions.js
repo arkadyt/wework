@@ -14,7 +14,7 @@ export const loginUser = credentials => dispatch => {
 export const registerUser = info => dispatch => {
     axios.post('/api/users/register', info)
         .then(res => dispatch({
-            type: types.REGISTER_USER, payload: {}
+            type: types.REGISTER_USER, payload: res.data.token
         }))
         .catch(err => dispatch({
             type: types.POST_ERRORS, payload: err.response.data

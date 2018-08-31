@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import Field from '../../Field/Field'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './Login.css'
 import { loginUser } from '../../../state/actions/authActions'
 // import * as types from '../../../state/actions/types'
@@ -14,6 +14,10 @@ class Login extends React.Component {
     }
 
     render() {
+        if (this.props.auth.user.token) {
+            return <Redirect to='/profile' />
+        }
+
         return <div className="Login-container">
             <form onSubmit={e => {
                 e.preventDefault()
@@ -43,7 +47,8 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    errors: state.err
+    errors: state.err,
+    auth: state.auth
 })
 
 export default connect(mapStateToProps, { loginUser })(Login)

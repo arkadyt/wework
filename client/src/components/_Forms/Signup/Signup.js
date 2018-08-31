@@ -1,6 +1,6 @@
 import React from 'react'
 import Field from '../../Field/Field'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { registerUser } from '../../../state/actions/authActions'
 import { connect } from 'react-redux'
 import './Signup.css'
@@ -14,6 +14,10 @@ class Signup extends React.Component {
     }
 
     render() {
+        if (this.props.auth.user.token) {
+            return <Redirect to='/profile' />
+        }
+
         return <div className="Signup-container">
             <form onSubmit={e => {
                 e.preventDefault()
@@ -61,7 +65,8 @@ class Signup extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    errors: state.err
+    errors: state.err,
+    auth: state.auth
 })
 
 export default connect(mapStateToProps, { registerUser })(Signup)

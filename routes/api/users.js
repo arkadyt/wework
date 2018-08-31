@@ -53,7 +53,27 @@ router.post('/register', (req, res) => {
                         // console.log('CMD: save user')
                         newUser
                             .save()
-                            .then(user => res.json(user))
+                            .then(user => {
+                                const payload = {
+                                    id: user.id,
+                                    name: user.name,
+                                    avatar: user.avatar
+                                }
+        
+                                // Sign Token
+                                jwt.sign(
+                                    payload,
+                                    keys.secretOrKey,
+                                    { expiresIn: 3600 * 24 * 7 },
+                                    (err, token) => {
+                                        if (err) throw err
+                                        res.json({
+                                            success: true,
+                                            token: 'Bearer ' + token
+                                        })
+                                    }
+                                )
+                            })
                             .catch(err => console.log(err))
                         // console.log('USER SAVED')
                     })
