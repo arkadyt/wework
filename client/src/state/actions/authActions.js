@@ -3,22 +3,18 @@ import axios from 'axios'
 
 export const loginUser = credentials => dispatch => {
     axios.post('/api/users/login', credentials)
-        .then(res => {
-            dispatch({ type: types.LOGIN_USER, payload: res.data.token })
-        })
-        .catch(err => {
-            dispatch({ type: types.POST_ERRORS, payload: err.response.data })
-        })
+        .then(res => dispatch({ type: types.LOGIN_USER, payload: { token: res.data.token } }))
+        .catch(err => dispatch({ type: types.POST_ERRORS, payload: err.response.data }))
+}
+
+export const logoutUser = () => dispatch => {
+    dispatch({ type: types.LOGOUT_USER })
 }
 
 export const registerUser = info => dispatch => {
     axios.post('/api/users/register', info)
-        .then(res => dispatch({
-            type: types.REGISTER_USER, payload: res.data.token
-        }))
-        .catch(err => dispatch({
-            type: types.POST_ERRORS, payload: err.response.data
-        }))
+        .then(res => dispatch({ type: types.LOGIN_USER, payload: { token: res.data.token } }))
+        .catch(err => dispatch({ type: types.POST_ERRORS, payload: err.response.data }))
 }
 
 export const testDispatch = info => dispatch => {
