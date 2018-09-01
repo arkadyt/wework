@@ -20,13 +20,6 @@ const field = ({
     const commonProps = { name, id: name, value, onChange }
 
     switch (type) {
-        case "text":
-            field = <input
-                {...commonProps}
-                placeholder={placeholder || "Enter text..."}
-                className="rw-widget-container rw-widget-input"
-                type="text" />
-            break
         case "textarea":
             field = <textarea
                 {...commonProps}
@@ -64,6 +57,12 @@ const field = ({
         case "submit":
             field = <button type="submit">{label}</button>
             break
+        default:
+            field = <input
+                {...commonProps}
+                placeholder={placeholder}
+                className="rw-widget-container rw-widget-input"
+                type={type} />
     }
 
     return <div className="Field-container">

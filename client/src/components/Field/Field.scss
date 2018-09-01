@@ -11,6 +11,12 @@
         font-size: 1rem;
         border-radius: .3rem;
     }
+    input[type=text],
+    input[type=password] {
+        font-size: 1rem;
+        padding: .6rem;
+        width: 100%;
+    }
     label {
         display: inline-block;
         padding: .2rem;
