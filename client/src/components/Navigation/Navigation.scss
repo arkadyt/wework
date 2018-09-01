@@ -22,5 +22,28 @@
             }
             padding: 0 1rem;
         }
+        .account-menu {
+            position: fixed;
+            top: calc(#{$navigation_height} + .5rem);
+            right: .5rem;
+            width: 10rem;
+            list-style: none;
+            background-color: #212121;
+            overflow: hidden;
+            border-radius: .3rem;
+            z-index: 10;
+            li>a {
+                height: 3rem;
+                text-transform: uppercase;
+                font-weight: bolder;
+            }
+        }
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
     }
 }

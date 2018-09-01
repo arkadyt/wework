@@ -1,19 +1,61 @@
 import React from 'react'
 import './Navigation.css'
+import { connect } from 'react-redux'
+import { logoutUser } from '../../state/actions/authActions'
 import { Link } from 'react-router-dom'
 
-const navigation = () => {
-    return <div className="Navigation-container">
-        <nav>
-            <Link to="/addExp"><span>AddExp</span></Link>
-            <Link to="/addEdu"><span>AddEdu</span></Link>
-            <Link to="/comments"><span>Comments</span></Link>
-            <Link to="/feed"><span>Feed</span></Link>
-            <Link to="/discover"><span>Discover</span></Link>
-            <Link to="/profile"><span>Profile</span></Link>
-            <Link to="/login"><span>Log In / Sign Up</span></Link>
-        </nav>
-    </div>
+class Navigation extends React.Component {
+    state = {
+        showDropdown: false
+    }
+
+    toggleDropdown = (e, state) => {
+        this.setState(prevState => {
+            return { showDropdown: state || !prevState.showDropdown }
+        })
+    }
+
+    render() {
+        const profileButton = this.props.auth.isAuthenticated ?
+            <a href="#" onClick={this.toggleDropdown}>
+                <span>Account</span>
+            </a> :
+            <Link to="/login">
+                <span>Log In / Sign Up</span>
+            </Link>
+
+        const protectedLinks = this.props.auth.isAuthenticated ?
+            <React.Fragment>
+                <Link to="/feed"><span>Feed</span></Link>
+                <Link to="/discover"><span>Discover</span></Link>
+            </React.Fragment> : null
+
+        const dropdown = this.state.showDropdown ?
+            <React.Fragment>
+                <ul onClick={() => this.toggleDropdown(false)}
+                    className={'account-menu'}>
+                    <li><Link to="/profile"><span>My Profile</span></Link></li>
+                    <li>
+                        <a href="#" onClick={this.props.logoutUser}>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+                <div className="backdrop" onClick={() => this.toggleDropdown(false)} />
+            </React.Fragment> : null
+
+        return <div className="Navigation-container">
+            <nav>
+                {protectedLinks}
+                {profileButton}
+                {dropdown}
+            </nav>
+        </div>
+    }
 }
 
-export default navigation
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps, { logoutUser })(Navigation)

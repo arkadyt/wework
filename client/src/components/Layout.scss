@@ -1,5 +1,6 @@
 @import 'variables.scss';
 
 .Layout-container {
+    height: calc(100vh - #{$navigation_height});
     margin-top: $navigation_height;
 }
