@@ -12,66 +12,74 @@
 
 import React from 'react'
 import { Route, Link, Redirect, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { loginUser, logoutUser } from '../state/actions/authActions'
 import './Layout.css'
 
-function fakeAuth() {
-    this.authed = false
-}
 
-fakeAuth.prototype.logout = function (history) {
-    this.authed = false
-    history.push('/login')
-}
+const Login = connect(
+    state => ({ auth: state.auth }),
+    { loginUser, logoutUser }
+)(props => {
+    const { history, auth, loginUser, logoutUser } = props
 
-fakeAuth.prototype.login = function (history) {
-    this.authed = true
-    history.push('/protected')
-}
-
-const Auth = new fakeAuth();
-
-class Login extends React.Component {
-    render() {
-        const { history } = this.props
-
-        return <React.Fragment>
-            {!Auth.authed
-                ? <h3>LOGIN PLEASE:</h3>
-                : <h3>WELCOME!</h3>}
-            {!Auth.authed
-                ? <button onClick={() => Auth.login(history)}>Log In</button>
-                : <button onClick={() => Auth.logout(history)}>Sign out</button>}
-        </React.Fragment>
-    }
-}
+    return <React.Fragment>
+        {!auth.isAuthenticated
+            ? <h3>LOGIN PLEASE:</h3>
+            : <h3>WELCOME!</h3>}
+        {!auth.isAuthenticated
+            ? <button onClick={() => loginUser()}>Log In</button>
+            : <button onClick={() => logoutUser()}>Sign out</button>}
+    </React.Fragment>
+})
 
 
 const Public = () => <h3>PUBLIC ROUTE! CHECK OUT OUR HIPPIE MERCH!</h3>
 const Protected = () => <h3>PROTECTED! THIS IS AREA 50!</h3>
 
-function PrivateRoute({ component: Component, ...rest }) {
-    return (
-        <Route {...rest} render={props =>
-            Auth.authed
-                ? <Component {...props} />
-                : <Redirect to='/login' />} />
-    )
+const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+    return <Route {...rest} render={props => {
+        return authed
+            ? <Component {...props} />
+            : <Redirect to='/login' />
+    }} />
 }
 
-function Layout() {
-    return (
-        <div className="Layout-container">
-            <ul>
-                <li><Link to='/login'>Log In</Link></li>
-                <li><Link to='/public'>Go to public</Link></li>
-                <li><Link to='/protected'>Go to protected</Link></li>
-            </ul>
-            <br /><hr /><br /><hr /><br />
-            <Route path='/login' component={Login} />
-            <Route path='/public' component={Public} />
-            <PrivateRoute path='/protected' component={Protected} />
-        </div>
-    )
+
+// Connecting component to redux seems to fuck everything up.
+// Having a simple PrivateRoute dependant on prop input doesn't matter
+// It's when the PrivateRoute is connected to the redux things stop working
+
+// Ok, I think I figured this out, you need to wrap connect()() with withRouter
+// to use <Route /> inside. Going to do more tests, shit's crazy.
+// Redux and react-router have a complicated relationship...
+
+class Layout extends React.Component {
+    // console.log('Layout props:', props)
+    // let authed = props.auth.isAuthenticated
+    // console.log(authed, typeof authed, authed === true, authed === false)
+    render() {
+
+        return (
+            <div className="Layout-container">
+                <ul>
+                    <li><Link to='/login'>Log In</Link></li>
+                    <li><Link to='/public'>Go to public</Link></li>
+                    <li><Link to='/protected'>Go to protected</Link></li>
+                </ul>
+                <br /><hr /><br /><hr /><br />
+                <Route path='/login' component={Login} />
+                <Route path='/public' component={Public} />
+                <Route path='/protected' component={Protected} />
+            </div>
+        )
+    }
 }
 
-export default withRouter(Layout)
+const mapStateToProps = state => {
+    return {
+        isAuthed: state.auth.isAuthenticated
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(Layout))
