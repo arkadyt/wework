@@ -4,7 +4,7 @@ import * as types from '../actions/types'
 /** 
  * Fetch current user's profile 
  */
-export const fetchUsersProfile = (userId, callback) => dispatch => {
+export const fetchUsersProfile = callback => dispatch => {
     dispatch({ type: types.FETCH_USERS_PROFILE })
     axios.get(`/api/profile`)
         .then(res => {

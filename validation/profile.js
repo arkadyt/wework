@@ -68,7 +68,9 @@ module.exports = (profile, options = {
                 .max(40, 'Maximum allowed characters is 40')
                 .unoccupied(profile.user, 'Handle is already taken'),
             status: Yup.string()
-                .required('Please specify your status (Jr. Mid. Sr.)'),
+                .required('Please specify your job seeker status'),
+            title: Yup.string()
+                .required('Please specify your job title'),
             skills: Yup.array().of(Yup.string().typeError('Elements must be strings'))
                 .min(3, 'Please enter at least ${min} skills')
                 .max(40, 'Skills limit of ${max} has been reached')

@@ -1,4 +1,10 @@
-use IDs as list keys;
+DB:
 always populate user prop;
-parse date;
-status > title;
+? parse date;
+
+Front-end:
+use IDs as list keys;
+wipe whole redux state onLogout
+
+[DONE] status > title;
+[DONE] grab user's profile and store it in the redux store 

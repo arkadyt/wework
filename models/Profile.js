@@ -7,6 +7,7 @@ const ProfileSchema = new Schema({
     company: { type: String },
     website: { type: String },
     location: { type: String },
+    title: { type: String, required: true },
     status: { type: String, required: true },
     skills: { type: [String], required: true },
     bio: { type: String },
