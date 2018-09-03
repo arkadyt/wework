@@ -1,8 +1,7 @@
 import React from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import Field from '../../Field/Field'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import './Login.css'
 import { loginUser } from '../../../state/actions/authActions'
 // import * as types from '../../../state/actions/types'
@@ -14,14 +13,12 @@ class Login extends React.Component {
     }
 
     render() {
-        if (this.props.auth.user.token) {
-            return <Redirect to='/profile' />
-        }
-
         return <div className="Login-container">
             <form onSubmit={e => {
                 e.preventDefault()
-                this.props.loginUser(this.state)
+                this.props.loginUser(this.state, () => {
+                    this.props.history.push('/feed')
+                })
             }}>
                 <Field
                     type="text"
@@ -51,4 +48,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps, { loginUser })(Login)
+export default withRouter(connect(mapStateToProps, { loginUser })(Login))

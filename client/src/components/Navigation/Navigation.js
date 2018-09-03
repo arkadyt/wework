@@ -2,7 +2,7 @@ import React from 'react'
 import './Navigation.css'
 import { connect } from 'react-redux'
 import { logoutUser } from '../../state/actions/authActions'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class Navigation extends React.Component {
     state = {
@@ -36,7 +36,10 @@ class Navigation extends React.Component {
                     className={'account-menu'}>
                     <li><Link to="/profile"><span>My Profile</span></Link></li>
                     <li>
-                        <a href="#" onClick={this.props.logoutUser}>
+                        <a href="javascript:void"
+                            onClick={() => this.props.logoutUser(() => {
+                                this.props.history.push('/login')
+                            })}>
                             <span>Logout</span>
                         </a>
                     </li>
@@ -58,4 +61,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps, { logoutUser })(Navigation)
+export default withRouter(connect(mapStateToProps, { logoutUser })(Navigation))
