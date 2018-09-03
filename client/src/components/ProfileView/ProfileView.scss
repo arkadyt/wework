@@ -1,0 +1,27 @@
+.ProfileView-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    section {
+        &:not(:last-child) {
+            margin: 0 0 1.5rem 0;
+        }
+        padding: 1rem;
+        &:not(:first-child) {
+            border: .05rem solid gray;
+            border-radius: .3rem;
+        }
+    }
+    .intro {
+        img {
+            width: 10rem;
+        }
+        background-color: gray;
+        color: white;
+    }
+    .bio {}
+    .skills {}
+    .exp-edu {
+        display: flex;
+    }
+}

@@ -10,8 +10,8 @@ class App extends React.Component {
     return <Provider store={store}>
       <Router>
         <React.Fragment>
-          <Navigation />
           <Layout />
+          <Navigation />
         </React.Fragment>
       </Router>
     </Provider>
