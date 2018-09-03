@@ -9,8 +9,6 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case types.TEST_DISPATCH:
-            return {}
         case types.LOGIN_USER:
             localStorage.setItem('jwt', action.payload.token)
             axios.defaults.headers.common['Authorization'] = action.payload.token
@@ -19,6 +17,7 @@ export default function (state = initialState, action) {
                 user: jwtDecode(action.payload.token)
             }
         case types.LOGOUT_USER:
+            localStorage.removeItem('jwt')
             delete axios.defaults.headers.common['Authorization']
             return initialState
         default:

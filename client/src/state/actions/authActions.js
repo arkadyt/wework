@@ -45,7 +45,3 @@ export const registerUser = (formData, callback) => dispatch => {
             payload: err.response.data
         }))
 }
-
-export const testDispatch = info => dispatch => {
-    dispatch({ type: types.TEST_DISPATCH })
-}
