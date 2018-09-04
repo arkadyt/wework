@@ -2,29 +2,32 @@ import React from 'react';
 import Field from '../../Field/Field'
 import { dismissOverlay } from '../../../state/actions/overlayActions'
 import * as overlayTypes from '../../../helpers/overlayTypes'
+import { updateUsersProfile } from '../../../state/actions/profileActions'
 import { connect } from 'react-redux'
 
 class CreateProfile extends React.Component {
     state = {
-        handle: undefined,
-        company: '',
-        website: '',
-        location: '',
-        title: '',
-        status: '',
-        skills: [],
-        bio: '',
-        githubusername: '',
-        social: []
+        handle: 'techguy',
+        company: 'Facebook',
+        website: 'http://mywebsite.com',
+        location: 'Seattle, WA',
+        title: 'Marketing Analyst',
+        status: 'Actively Applying',
+        skills: ['Java', 'C++'],
+        bio: 'Bragging... Bragging... Bragging... Bragging...',
+        githubusername: 'coder123',
+        social: undefined
     }
 
     render() {
-        const { dismissOverlay } = this.props
+        const { dismissOverlay, updateUsersProfile } = this.props
 
         return (
             <form onSubmit={e => {
                 e.preventDefault()
-                dismissOverlay(overlayTypes.CREATING_PROFILE)
+                updateUsersProfile(this.state, () => {
+                    dismissOverlay(overlayTypes.CREATING_PROFILE)
+                })
             }}>
                 <h1>Create profile</h1>
                 <Field
@@ -41,7 +44,7 @@ class CreateProfile extends React.Component {
                     label="Company:"
                     value={this.state.company}
                     onChange={e => this.setState({ company: e.target.value })}
-                    error={this.props.errors.handle}
+                    error={this.props.errors.company}
                     placeholder="Facebook" />
                 <Field
                     type="text"
@@ -49,7 +52,7 @@ class CreateProfile extends React.Component {
                     label="Personal Website:"
                     value={this.state.website}
                     onChange={e => this.setState({ website: e.target.value })}
-                    error={this.props.errors.handle}
+                    error={this.props.errors.website}
                     placeholder="http://mywebsite.com" />
                 <Field
                     type="text"
@@ -114,4 +117,7 @@ class CreateProfile extends React.Component {
 export default connect(state => ({
     errors: state.err,
     overlay: state.overlay
-}), { dismissOverlay })(CreateProfile)
+}), { 
+    dismissOverlay, 
+    updateUsersProfile 
+})(CreateProfile)
