@@ -29,7 +29,7 @@ export default function (state = initialState, action) {
                     data: action.payload
                 }
             }
-        case types.RESET_USERS_PROFILE:
+        case types.FORGET_USERS_PROFILE:
             return {
                 ...state,
                 usersProfile: initialState.usersProfile
