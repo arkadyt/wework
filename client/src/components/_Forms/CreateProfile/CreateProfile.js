@@ -1,5 +1,7 @@
 import React from 'react';
 import Field from '../../Field/Field'
+import { dismissOverlay } from '../../../state/actions/overlayActions'
+import * as overlayTypes from '../../../helpers/overlayTypes'
 import { connect } from 'react-redux'
 
 class CreateProfile extends React.Component {
@@ -17,9 +19,12 @@ class CreateProfile extends React.Component {
     }
 
     render() {
+        const { dismissOverlay } = this.props
+
         return (
-            <form onSubmit={() => {
-                
+            <form onSubmit={e => {
+                e.preventDefault()
+                dismissOverlay(overlayTypes.CREATING_PROFILE)
             }}>
                 <h1>Create profile</h1>
                 <Field
@@ -94,12 +99,19 @@ class CreateProfile extends React.Component {
                     onChange={e => this.setState({ githubusername: e.target.value })}
                     error={this.props.errors.githubusername}
                     placeholder="coder123" />
-                <Field type="submit" label="Create" />
+                <Field
+                    type="submit"
+                    label="Create" />
+                <Field
+                    type="button"
+                    label="Cancel"
+                    onClick={() => dismissOverlay(overlayTypes.CREATING_PROFILE)} />
             </form>
         )
     }
 }
 
 export default connect(state => ({
-    errors: state.err
-}))(CreateProfile)
+    errors: state.err,
+    overlay: state.overlay
+}), { dismissOverlay })(CreateProfile)

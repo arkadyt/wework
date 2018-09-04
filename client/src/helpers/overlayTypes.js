@@ -1,0 +1,1 @@
+export const CREATING_PROFILE = 'CREATING_PROFILE'

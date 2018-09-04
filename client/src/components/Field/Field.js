@@ -1,6 +1,7 @@
 import React from 'react'
 import DropdownList from 'react-widgets/lib/DropdownList'
 import DateTimePicker from 'react-widgets/lib/DateTimePicker'
+import Multiselect from 'react-widgets/lib/Multiselect'
 import 'react-widgets/dist/css/react-widgets.css'
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets-moment'
@@ -13,7 +14,7 @@ const field = ({
     type, name, placeholder,
     label, error,
     list, rows,
-    value, onChange,
+    value, onChange, onClick,
     disabled
 }) => {
     let field = null
@@ -48,6 +49,12 @@ const field = ({
                 placeholder={placeholder || "Choose one..."}
                 data={list} />
             break
+        case "multiselect":
+            field = <Multiselect
+                {...commonProps}
+                placeholder={placeholder || "Enter a few items..."}
+                data={list} />
+            break
         case "checkbox":
             field = <label htmlFor={name}>
                 <input type="checkbox" {...commonProps} />
@@ -56,6 +63,9 @@ const field = ({
             break
         case "submit":
             field = <button type="submit">{label}</button>
+            break
+        case "button":
+            field = <button onClick={onClick}>{label}</button>
             break
         default:
             field = <input
@@ -69,6 +79,7 @@ const field = ({
         {label
             && type !== "checkbox"
             && type !== "submit"
+            && type !== "button"
             && <label htmlFor={name}>{label}</label>}
         {field}
         {error
