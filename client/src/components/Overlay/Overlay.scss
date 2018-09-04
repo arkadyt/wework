@@ -9,11 +9,12 @@
     background-color: rgba(0, 0, 0, .3);
     display: flex;
     justify-content: center;
-    padding: calc(#{$navigation_height} + 2rem) 0 2rem 0;
+    padding: calc(#{$navigation_height} + 1rem) 0 2rem 0;
     .content {
         width: 50rem;
         background: white;
         padding: 2rem;
-        box-shadow: 0px 3px 23px 0px rgba(0,0,0,0.75);
+        border-radius: .3rem;
+        box-shadow: 0px 3px 23px 0px rgba(0,0,0,0.5);
     }
 }

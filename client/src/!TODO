@@ -5,6 +5,7 @@ always populate user prop;
 Front-end:
 use IDs as list keys;
 wipe whole redux state onLogout
+set default form fields values to undefined (for Yup to pass at the backend)
 
 [DONE] status > title;
 [DONE] grab user's profile and store it in the redux store 
