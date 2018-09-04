@@ -13,7 +13,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case types.FETCH_USERS_PROFILE:
+        case types.LOADING_USERS_PROFILE:
             return {
                 ...state,
                 usersProfile: {
@@ -29,7 +29,12 @@ export default function (state = initialState, action) {
                     data: action.payload
                 }
             }
-        case types.FETCH_PROFILES:
+        case types.RESET_USERS_PROFILE:
+            return {
+                ...state,
+                usersProfile: initialState.usersProfile
+            }
+        case types.LOADING_PROFILES:
             return state
         default:
             return state
