@@ -11,6 +11,10 @@ export const fetchUsersProfile = callback => dispatch => {
             dispatch({ type: types.POST_USERS_PROFILE, payload: res.data })
             if (callback) callback()
         })
+        .catch(err => {
+            // dispatch({ type: types.POST_USERS_PROFILE, payload: null })
+            dispatch({ type: types.POST_ERRORS, payload: err.response.data })
+        })
 }
 
 // fetch_profiles
