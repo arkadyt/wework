@@ -13,14 +13,6 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case types.LOADING_USERS_PROFILE:
-            return {
-                ...state,
-                usersProfile: {
-                    ...state.usersProfile,
-                    loading: true
-                }
-            }
         case types.POST_USERS_PROFILE:
             return {
                 ...state,
@@ -29,13 +21,6 @@ export default function (state = initialState, action) {
                     data: action.payload
                 }
             }
-        case types.FORGET_USERS_PROFILE:
-            return {
-                ...state,
-                usersProfile: initialState.usersProfile
-            }
-        case types.LOADING_PROFILES:
-            return state
         default:
             return state
     }

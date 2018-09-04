@@ -11,11 +11,11 @@ import './Profile.css'
 
 const Profile = ({
     fetchUsersProfile, addOverlay,
-    profile: { loading, data: profileData },
+    profile: { data: profileData },
     errors: { noprofile },
     overlay: { CREATING_PROFILE }
 }) => {
-    let content = null
+    let content = <h2>Please wait, loading...</h2>
     if (noprofile) {
         content = (
             <div className="content">
@@ -28,8 +28,6 @@ const Profile = ({
                     : null}
             </div>
         )
-    } else if (loading) {
-        content = <h3>Loading...</h3>
     } else if (profileData) {
         content = <ProfileView {...profileData} />
     } else {
