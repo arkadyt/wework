@@ -5,8 +5,11 @@ const initialState = {}
 export default function (state = initialState, action) {
     switch (action.type) {
         case types.POST_ERRORS:
-            return action.payload
+            return {
+                ...state,
+                ...action.payload
+            }
         default:
-            return {}
+            return state
     }
 }
