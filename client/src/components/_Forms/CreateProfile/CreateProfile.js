@@ -20,7 +20,7 @@ class CreateProfile extends React.Component {
     }
 
     render() {
-        const { dismissOverlay, updateUsersProfile } = this.props
+        const { dismissOverlay, updateUsersProfile, errors } = this.props
 
         return (
             <form onSubmit={e => {
@@ -36,7 +36,7 @@ class CreateProfile extends React.Component {
                     label="Profile handle:"
                     value={this.state.handle}
                     onChange={e => this.setState({ handle: e.target.value })}
-                    error={this.props.errors.handle}
+                    error={errors.handle}
                     placeholder="someperson123" />
                 <Field
                     type="text"
@@ -44,7 +44,7 @@ class CreateProfile extends React.Component {
                     label="Company:"
                     value={this.state.company}
                     onChange={e => this.setState({ company: e.target.value })}
-                    error={this.props.errors.company}
+                    error={errors.company}
                     placeholder="Facebook" />
                 <Field
                     type="text"
@@ -52,7 +52,7 @@ class CreateProfile extends React.Component {
                     label="Personal Website:"
                     value={this.state.website}
                     onChange={e => this.setState({ website: e.target.value })}
-                    error={this.props.errors.website}
+                    error={errors.website}
                     placeholder="http://mywebsite.com" />
                 <Field
                     type="text"
@@ -60,7 +60,7 @@ class CreateProfile extends React.Component {
                     label="Location:"
                     value={this.state.location}
                     onChange={e => this.setState({ location: e.target.value })}
-                    error={this.props.errors.location}
+                    error={errors.location}
                     placeholder="Seattle, WA" />
                 <Field
                     type="text"
@@ -68,7 +68,7 @@ class CreateProfile extends React.Component {
                     label="Job title:"
                     value={this.state.title}
                     onChange={e => this.setState({ title: e.target.value })}
-                    error={this.props.errors.title}
+                    error={errors.title}
                     placeholder="Marketing Analyst" />
                 <Field
                     type="list"
@@ -77,7 +77,7 @@ class CreateProfile extends React.Component {
                     list={['Not open', 'Available for Employment', 'Actively Seeking']}
                     value={this.state.value}
                     onChange={value => this.setState({ status: value })}
-                    error={this.props.errors.status} />
+                    error={errors.status} />
                 <Field
                     type="multiselect"
                     name="skills"
@@ -85,14 +85,14 @@ class CreateProfile extends React.Component {
                     list={['Python', 'Java', 'C++', 'Hospitality', 'Whatnot else']}
                     value={this.state.skills}
                     onChange={value => this.setState({ skills: value })}
-                    error={this.props.errors.skills} />
+                    error={errors.skills} />
                 <Field
                     type="textarea"
                     name="bio"
                     label="Bio:"
                     value={this.state.bio}
                     onChange={e => this.setState({ bio: e.target.value })}
-                    error={this.props.errors.bio}
+                    error={errors.bio}
                     placeholder="It's okay to brag here.." />
                 <Field
                     type="text"
@@ -100,7 +100,7 @@ class CreateProfile extends React.Component {
                     label="Github username:"
                     value={this.githubusername}
                     onChange={e => this.setState({ githubusername: e.target.value })}
-                    error={this.props.errors.githubusername}
+                    error={errors.githubusername}
                     placeholder="coder123" />
                 <Field
                     type="submit"
@@ -115,7 +115,7 @@ class CreateProfile extends React.Component {
 }
 
 export default connect(state => ({
-    errors: state.err,
+    errors: state.err.formErrors,
     overlay: state.overlay
 }), { 
     dismissOverlay, 

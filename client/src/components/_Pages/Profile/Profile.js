@@ -11,7 +11,7 @@ import './Profile.css'
 
 const Profile = ({
     fetchUsersProfile, addOverlay,
-    profile: { data: profileData },
+    profile: profileData,
     errors: { noprofile },
     overlay: { CREATING_PROFILE }
 }) => {
