@@ -4,12 +4,21 @@
     input[type=checkbox] {
         transform: scale(1.5);
     }
-    button {
-        float: right;
+    .button,
+    button[type=submit] {
         width: 6rem;
         height: 2rem;
         font-size: 1rem;
         border-radius: .3rem;
+    }
+    button[type=submit] {
+        float: right;
+    }
+    .button-action {
+        background-color: #090;
+        border-color: #090;
+        color: white;
+        font-weight: bold;
     }
     input[type=text],
     input[type=password] {

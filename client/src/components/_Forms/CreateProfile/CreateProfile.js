@@ -7,16 +7,16 @@ import { connect } from 'react-redux'
 
 class CreateProfile extends React.Component {
     state = {
-        handle: 'techguy',
-        company: 'Facebook',
-        website: 'http://mywebsite.com',
-        location: 'Seattle, WA',
-        title: 'Marketing Analyst',
-        status: 'Actively Applying',
-        skills: ['Java', 'C++'],
-        bio: 'Bragging... Bragging... Bragging... Bragging...',
-        githubusername: 'coder123',
-        social: undefined
+        // handle: 'techguy',
+        // company: 'Facebook',
+        // website: 'http://mywebsite.com',
+        // location: 'Seattle, WA',
+        // title: 'Marketing Analyst',
+        // status: 'Actively Applying',
+        // skills: ['Java', 'C++'],
+        // bio: 'Bragging... Bragging... Bragging... Bragging...',
+        // githubusername: 'coder123',
+        // social: undefined
     }
 
     render() {
@@ -108,6 +108,7 @@ class CreateProfile extends React.Component {
                 <Field
                     type="button"
                     label="Cancel"
+                    style={{ float: 'right', margin: '0 .5rem' }}
                     onClick={() => dismissOverlay(overlayTypes.CREATING_PROFILE)} />
             </form>
         )

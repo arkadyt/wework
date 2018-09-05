@@ -15,7 +15,8 @@ const field = ({
     label, error,
     list, rows,
     value, onChange, onClick,
-    disabled
+    disabled,
+    style
 }) => {
     let field = null
     const commonProps = { name, id: name, value, onChange }
@@ -62,10 +63,19 @@ const field = ({
             </label>
             break
         case "submit":
-            field = <button type="submit">{label}</button>
+            field = <button
+                type="submit"
+                className="button-action">
+                {label}
+            </button>
             break
         case "button":
-            field = <button onClick={onClick}>{label}</button>
+            field = <button
+                className="button"
+                style={style}
+                onClick={onClick}>
+                {label}
+            </button>
             break
         default:
             field = <input
@@ -85,6 +95,7 @@ const field = ({
         {error
             && type !== "checkbox"
             && type !== "submit"
+            && type !== "button"
             && <span className="error">{error}</span>}
     </div>
 }
