@@ -95,14 +95,6 @@ class CreateProfile extends React.Component {
                     error={errors.bio}
                     placeholder="It's okay to brag here.." />
                 <Field
-                    type="text"
-                    name="githubusername"
-                    label="Github username:"
-                    value={this.githubusername}
-                    onChange={e => this.setState({ githubusername: e.target.value })}
-                    error={errors.githubusername}
-                    placeholder="coder123" />
-                <Field
                     type="submit"
                     label="Create" />
                 <Field
