@@ -11,12 +11,15 @@ Moment.locale('en')
 momentLocalizer()
 
 const field = ({
-    type, name, placeholder,
-    label, error,
-    list, rows,
-    value, onChange, onClick,
-    disabled,
-    style
+    // different fields require different props
+    type,
+    name, value, onChange, // all except submit and button
+    placeholder, label, error, // all except checkbox, submit and button
+    list, // list, multiselect
+    rows, // textarea
+    disabled, // date
+    onClick, style, // button
+    inline // container
 }) => {
     let field = null
     const commonProps = { name, id: name, value, onChange }
@@ -85,7 +88,7 @@ const field = ({
                 type={type} />
     }
 
-    return <div className="Field-container">
+    return <div className={['Field-container', inline ? 'inline' : ''].join(' ')}>
         {label
             && type !== "checkbox"
             && type !== "submit"
