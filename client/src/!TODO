@@ -2,10 +2,42 @@ DB:
 always populate user prop;
 ? parse date;
 
+{/* <Field
+                    type="text"
+                    name="githubusername"
+                    label="Github username:"
+                    value={this.githubusername}
+                    onChange={e => this.setState({ githubusername: e.target.value })}
+                    error={errors.githubusername}
+                    placeholder="coder123" /> */}
+                
+
 Front-end:
 use IDs as list keys;
-wipe whole redux state onLogout
-set default form fields values to undefined (for Yup to pass at the backend)
+don't define form field variables in state to keep them undefined if unfilled
+fix profile styling
+add exp form
+add social form
+add modal (confirmation to delete)
+dismissOverlay OnBackdropClick
+reconstruct profileReducer: bring the profiles section to its own reducer, open usersProfile
+add undefinize() method that would replace '' with undefined for all object properties.
+scroll only overlay: https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
 
+
+[DONE] finish create profile form
+[DONE] add edu form
+[DONE] make Overlay component wrap whatever content it's being passed so that it's
+    either centered to the screen or spread out like a long reddit-thread-style overlay.
+[DONE] fix react-widgets styling
+[DONE] wipe whole redux state onLogout
 [DONE] status > title;
-[DONE] grab user's profile and store it in the redux store 
+[DONE] grab user's profile and store it in the redux store
+[DONE] error overwriting
+[DONE] clean up error object:
+    - completely, when profile is successfully fetched
+    - only form errors otherwise
+    NOTE: errors object is supposed to contain any errors that may occur 
+        while interacting with current page. So wiping it out is fine in all cases. 
+[DONE] delete redundant actions: + delete LOADING_* actions
+[DONE] remove clgs

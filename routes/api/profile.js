@@ -95,7 +95,7 @@ router.post('/experience', passport.authenticate('jwt', { session: false }), (re
             console.log('AFTER VALIDATION:', experienceData)
             Profile.findOneAndUpdate(
                 { user: req.user.id },
-                { $set: { experience: experienceData } },
+                { $push: { experience: experienceData } },
                 { new: true })
                 .then(savedData => res.json(savedData))
                 .catch(err => res.status(404).json(err))
@@ -111,7 +111,7 @@ router.post('/education', passport.authenticate('jwt', { session: false }), (req
         .then(educationData => {
             Profile.findOneAndUpdate(
                 { user: req.user.id },
-                { $set: { education: educationData } },
+                { $push: { education: educationData } },
                 { new: true })
                 .then(savedData => res.json(savedData))
                 .catch(err => res.status(400).json(err))
