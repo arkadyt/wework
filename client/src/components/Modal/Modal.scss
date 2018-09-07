@@ -1,0 +1,13 @@
+.Modal-container {
+    width: 15rem;
+    .question {
+        font-size: 1.5rem;
+        padding: .5rem;
+        padding-bottom: unset;
+    }
+    .buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: .3rem;
+    }
+}
