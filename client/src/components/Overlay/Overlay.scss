@@ -1,20 +1,27 @@
 @import 'variables.scss';
-
 .Overlay-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     min-height: 100vh;
-    background-color: rgba(0, 0, 0, .3);
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: calc(#{$navigation_height} + 1rem) 0 2rem 0;
     .content {
-        width: 50rem;
+        z-index: 1;
         background: white;
-        padding: 2rem;
+        padding: 0.3rem;
         border-radius: .3rem;
-        box-shadow: 0px 3px 23px 0px rgba(0,0,0,0.5);
+        box-shadow: 0px 3px 23px 0px rgba(0, 0, 0, 0.5);
+    }
+    .backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
     }
 }

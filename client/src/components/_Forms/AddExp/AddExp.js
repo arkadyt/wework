@@ -76,7 +76,6 @@ class AddExp extends React.Component {
                 <Field
                     type="button"
                     label="Cancel"
-                    style={{ float: 'right', margin: '0 .5rem' }}
                     onClick={() => dismissOverlay(overlayTypes.ADDING_EXPERIENCE)} />
             </form>
         )
