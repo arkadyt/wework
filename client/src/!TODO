@@ -16,15 +16,15 @@ Front-end:
 use IDs as list keys;
 don't define form field variables in state to keep them undefined if unfilled
 fix profile styling
-add exp form
 add social form
 add modal (confirmation to delete)
 dismissOverlay OnBackdropClick
-reconstruct profileReducer: bring the profiles section to its own reducer, open usersProfile
 add undefinize() method that would replace '' with undefined for all object properties.
 scroll only overlay: https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
 
 
+[DONE] add exp form
+[DONE] restructure profileReducer: bring the profiles section to its own reducer, open usersProfile
 [DONE] finish create profile form
 [DONE] add edu form
 [DONE] make Overlay component wrap whatever content it's being passed so that it's
