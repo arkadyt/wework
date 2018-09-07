@@ -4,9 +4,12 @@ import { dismissOverlay } from '../../../state/actions/overlayActions'
 import * as overlayTypes from '../../../helpers/overlayTypes'
 import { updateUsersProfile } from '../../../state/actions/profileActions'
 import { connect } from 'react-redux'
+import './CreateProfile.css'
 
 class CreateProfile extends React.Component {
     state = {
+        showSocial: false,
+        social: {}
         // handle: 'techguy',
         // company: 'Facebook',
         // website: 'http://mywebsite.com',
@@ -23,9 +26,10 @@ class CreateProfile extends React.Component {
         const { dismissOverlay, updateUsersProfile, errors } = this.props
 
         return (
-            <form onSubmit={e => {
+            <form className="CreateProfile-container" onSubmit={e => {
                 e.preventDefault()
-                updateUsersProfile(this.state, () => {
+                const { showSocial, ...data } = this.state
+                updateUsersProfile(data, () => {
                     dismissOverlay(overlayTypes.CREATING_PROFILE)
                 })
             }}>
@@ -95,12 +99,69 @@ class CreateProfile extends React.Component {
                     error={errors.bio}
                     placeholder="It's okay to brag here.." />
                 <Field
+                    type="button"
+                    label="Toggle social media section"
+                    onClick={e => {
+                        e.preventDefault()
+                        this.setState(prevState => ({ showSocial: !prevState.showSocial }))
+                    }} />
+                <div style={{ display: this.state.showSocial ? 'block' : 'none' }}>
+                    <Field
+                        type="text"
+                        name="youtube"
+                        label="Youtube:"
+                        value={this.state.social.youtube}
+                        onChange={e => this.setState({ social: { youtube: e.target.value } })}
+                        error={errors.youtube}
+                        placeholder="Please enter full channel URL" />
+                    <Field
+                        type="text"
+                        name="twitter"
+                        label="Twitter:"
+                        value={this.state.social.twitter}
+                        onChange={e => this.setState({ social: { twitter: e.target.value } })}
+                        error={errors.twitter}
+                        placeholder="Twitter profile URL" />
+                    <Field
+                        type="text"
+                        name="instagram"
+                        label="Instagram:"
+                        value={this.state.social.instagram}
+                        onChange={e => this.setState({ social: { instagram: e.target.value } })}
+                        error={errors.instagram}
+                        placeholder="Instagram URL" />
+                    <Field
+                        type="text"
+                        name="facebook"
+                        label="Facebook:"
+                        value={this.state.social.facebook}
+                        onChange={e => this.setState({ social: { facebook: e.target.value } })}
+                        error={errors.facebook}
+                        placeholder="Facebook profile URL" />
+                    <Field
+                        type="text"
+                        name="linkedin"
+                        label="LinkedIn:"
+                        value={this.state.social.linkedin}
+                        onChange={e => this.setState({ social: { linkedin: e.target.value } })}
+                        error={errors.linkedin}
+                        placeholder="LinkedIn URL" />
+                    <Field
+                        type="text"
+                        name="github"
+                        label="Github:"
+                        value={this.state.social.github}
+                        onChange={e => this.setState({ social: { github: e.target.value } })}
+                        error={errors.github}
+                        placeholder="Github username only" />
+
+                </div>
+                <Field
                     type="submit"
                     label="Create" />
                 <Field
                     type="button"
                     label="Cancel"
-                    style={{ float: 'right', margin: '0 .5rem' }}
                     onClick={() => dismissOverlay(overlayTypes.CREATING_PROFILE)} />
             </form>
         )
@@ -108,9 +169,5 @@ class CreateProfile extends React.Component {
 }
 
 export default connect(state => ({
-    errors: state.err.formErrors,
-    overlay: state.overlay
-}), { 
-    dismissOverlay, 
-    updateUsersProfile 
-})(CreateProfile)
+    errors: state.err.formErrors
+}), { dismissOverlay, updateUsersProfile })(CreateProfile)
