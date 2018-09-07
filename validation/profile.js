@@ -30,13 +30,13 @@ module.exports = (profile, options = {
 
     if (options.onlyExperience) {
         schema = Yup.object().shape({
-            title: Yup.string().required("Are you really trying to leave this out??"),
-            company: Yup.string().required("Come on! It's not a shame to work for the Revature"),
+            title: Yup.string().required("Please specify your title"),
+            company: Yup.string().required("Please enter the company name"),
             location: Yup.string(),
-            from: Yup.string().required("I think you may be sleepy"),
+            from: Yup.string().required("Please specify the start date"),
             to: Yup.string().when('current', {
                 is: undefined,
-                then: Yup.string().required("Do you work here presently?"),
+                then: Yup.string().required("Do you still work here?"),
                 otherwise: Yup.string().notRequired()
             }),
             current: Yup.bool(),
@@ -44,13 +44,13 @@ module.exports = (profile, options = {
         })
     } else if (options.onlyEducation) {
         schema = Yup.object().shape({
-            school: Yup.string().required("Oh, please!"),
-            degree: Yup.string().required("Come on!"),
-            fieldOfStudy: Yup.string().required("Something unusual? Fill this out!"),
-            from: Yup.string().required("Hey, fill this in!"),
+            school: Yup.string().required("Please enter a school name"),
+            degree: Yup.string().required("Please specify the degree type"),
+            fieldOfStudy: Yup.string().required("Please specify your field of study"),
+            from: Yup.string().required("Please enter the start date"),
             to: Yup.string().when('current', {
                 is: undefined,
-                then: Yup.string().required("Are you still studying at the last school specified?"),
+                then: Yup.string().required("Do you still study here?"),
                 otherwise: Yup.string().notRequired()
             }),
             current: Yup.bool(),
@@ -71,12 +71,14 @@ module.exports = (profile, options = {
                 .min(3, 'Please enter at least ${min} skills')
                 .max(40, 'Skills limit of ${max} has been reached')
                 .required('Please specify your skills'),
-            youtube: Yup.string().url('Please enter a link'),
-            twitter: Yup.string().url('Please enter a link'),
-            facebook: Yup.string().url('Please enter a link'),
-            linkedin: Yup.string().url('Please enter a link'),
-            instagram: Yup.string().url('Please enter a link'),
-            githubusername: Yup.string().url('Pls URL')
+            youtube: Yup.string().url('Please enter a valid URL address'),
+            twitter: Yup.string().url('Please enter a valid URL address'),
+            facebook: Yup.string().url('Please enter a valid URL address'),
+            linkedin: Yup.string().url('Please enter a valid URL address'),
+            instagram: Yup.string().url('Please enter a valid URL address'),
+            githubusername: Yup.string()
+                .matches(/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i,
+                    'Please enter a valid github username')
         })
     }
 
