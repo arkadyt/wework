@@ -42,7 +42,7 @@ const Profile = ({
 }
 
 export default connect(state => ({
-    profile: state.profile.usersProfile,
+    profile: state.profile,
     errors: state.err,
     overlay: state.overlay
 }), { fetchUsersProfile, addOverlay })(Profile)
