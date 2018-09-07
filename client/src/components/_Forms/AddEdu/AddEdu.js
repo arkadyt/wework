@@ -1,24 +1,19 @@
 import React from 'react'
 import Field from '../../Field/Field'
+import { connect } from 'react-redux'
+import { addEducation } from '../../../state/actions/profileActions'
+import { dismissOverlay } from '../../../state/actions/overlayActions'
+import * as overlayTypes from '../../../helpers/overlayTypes'
 import 'react-widgets/dist/css/react-widgets.css'
 import './AddEdu.css'
 
 class AddEdu extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            school: '',
-            fos: '',
-            degree: '',
-            from: null,
-            to: null,
-            current: false,
-            desc: ''
-        }
-    }
+    state = {}
 
     render() {
-        const list = [
+        const { addEducation, dismissOverlay, errors } = this.props
+
+        const degreeTypes = [
             "Professional Certificate",
             "Undergraduate Degrees",
             "Transfer Degree",
@@ -31,13 +26,14 @@ class AddEdu extends React.Component {
             "Specialist Degree"
         ]
 
-        const errors = this.props.errors || {}
-
-        return <div className="AddEdu-container">
-            <form onSubmit={e => {
+        return (
+            <form className="AddEdu-container" onSubmit={e => {
                 e.preventDefault()
-                this.props.onSubmit(this.state)
+                addEducation(this.state, () => {
+                    dismissOverlay(overlayTypes.ADDING_EDUCATION)
+                })
             }}>
+                <h1>Add Education</h1>
                 <Field type="text"
                     name="school"
                     placeholder="UCLA"
@@ -46,32 +42,32 @@ class AddEdu extends React.Component {
                     label="School:"
                     error={errors.school} />
                 <Field type="text"
-                    name="fos"
+                    name="fieldOfStudy"
                     placeholder="Bioeconomics"
-                    value={this.state.fos}
-                    onChange={e => this.setState({ fos: e.target.value })}
+                    value={this.state.fieldOfStudy}
+                    onChange={e => this.setState({ fieldOfStudy: e.target.value })}
                     label="Field of Study:"
-                    error={errors.fos} />
+                    error={errors.fieldOfStudy} />
                 <Field type="list"
                     name="degree"
                     value={this.state.degree}
                     onChange={value => this.setState({ degree: value })}
                     label="Degree:"
-                    list={list}
+                    list={degreeTypes}
                     error={errors.degree} />
                 <Field type="date"
                     name="from"
                     value={this.state.from}
-                    onChange={value => this.setState({ from: new Date(value).toISOString() })}
-                    label="From:" 
+                    onChange={value => this.setState({ from: value })}
+                    label="From:"
                     error={errors.from} />
                 <Field
                     type="date"
                     name="to"
                     value={this.state.to}
-                    onChange={value => this.setState({ to: new Date(value).toISOString() })}
+                    onChange={value => this.setState({ to: value })}
                     disabled={this.state.current}
-                    label="To:" 
+                    label="To:"
                     error={errors.to} />
                 <Field
                     type="checkbox"
@@ -81,19 +77,25 @@ class AddEdu extends React.Component {
                     label="Current?" />
                 <Field
                     type="textarea"
-                    name="desc"
-                    value={this.state.desc}
-                    onChange={e => this.setState({ desc: e.target.value })}
+                    name="description"
+                    value={this.state.description}
+                    onChange={e => this.setState({ description: e.target.value })}
                     label="Description"
-                    rows="5"
-                    error={errors.desc} />
+                    rows="2"
+                    error={errors.description} />
                 <Field
                     type="submit"
-                    name="submit"
-                    label="Submit" />
+                    label="Add" />
+                <Field
+                    type="button"
+                    label="Cancel"
+                    style={{ float: 'right', margin: '0 .5rem' }}
+                    onClick={() => dismissOverlay(overlayTypes.ADDING_EDUCATION)} />
             </form>
-        </div>
+        )
     }
 }
 
-export default AddEdu
+export default connect(state => ({
+    errors: state.err.formErrors
+}), { addEducation, dismissOverlay })(AddEdu)
