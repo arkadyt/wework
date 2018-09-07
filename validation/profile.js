@@ -71,13 +71,12 @@ module.exports = (profile, options = {
                 .min(3, 'Please enter at least ${min} skills')
                 .max(40, 'Skills limit of ${max} has been reached')
                 .required('Please specify your skills'),
-            social: Yup.object().shape({
-                youtube: Yup.string().url('Please enter a link'),
-                twitter: Yup.string().url('Please enter a link'),
-                facebook: Yup.string().url('Please enter a link'),
-                linkedin: Yup.string().url('Please enter a link'),
-                instagram: Yup.string().url('Please enter a link'),
-            }),
+            youtube: Yup.string().url('Please enter a link'),
+            twitter: Yup.string().url('Please enter a link'),
+            facebook: Yup.string().url('Please enter a link'),
+            linkedin: Yup.string().url('Please enter a link'),
+            instagram: Yup.string().url('Please enter a link'),
+            githubusername: Yup.string().url('Pls URL')
         })
     }
 

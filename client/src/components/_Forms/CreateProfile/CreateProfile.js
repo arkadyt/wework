@@ -8,8 +8,7 @@ import './CreateProfile.css'
 
 class CreateProfile extends React.Component {
     state = {
-        showSocial: false,
-        social: {}
+        showSocial: false
         // handle: 'techguy',
         // company: 'Facebook',
         // website: 'http://mywebsite.com',
@@ -110,51 +109,50 @@ class CreateProfile extends React.Component {
                         type="text"
                         name="youtube"
                         label="Youtube:"
-                        value={this.state.social.youtube}
-                        onChange={e => this.setState({ social: { youtube: e.target.value } })}
+                        value={this.state.youtube}
+                        onChange={e => this.setState({ youtube: e.target.value })}
                         error={errors.youtube}
                         placeholder="Please enter full channel URL" />
                     <Field
                         type="text"
                         name="twitter"
                         label="Twitter:"
-                        value={this.state.social.twitter}
-                        onChange={e => this.setState({ social: { twitter: e.target.value } })}
+                        value={this.state.twitter}
+                        onChange={e => this.setState({ twitter: e.target.value })}
                         error={errors.twitter}
                         placeholder="Twitter profile URL" />
                     <Field
                         type="text"
                         name="instagram"
                         label="Instagram:"
-                        value={this.state.social.instagram}
-                        onChange={e => this.setState({ social: { instagram: e.target.value } })}
+                        value={this.state.instagram}
+                        onChange={e => this.setState({ instagram: e.target.value })}
                         error={errors.instagram}
                         placeholder="Instagram URL" />
                     <Field
                         type="text"
                         name="facebook"
                         label="Facebook:"
-                        value={this.state.social.facebook}
-                        onChange={e => this.setState({ social: { facebook: e.target.value } })}
+                        value={this.state.facebook}
+                        onChange={e => this.setState({ facebook: e.target.value })}
                         error={errors.facebook}
                         placeholder="Facebook profile URL" />
                     <Field
                         type="text"
                         name="linkedin"
                         label="LinkedIn:"
-                        value={this.state.social.linkedin}
-                        onChange={e => this.setState({ social: { linkedin: e.target.value } })}
+                        value={this.state.linkedin}
+                        onChange={e => this.setState({ linkedin: e.target.value })}
                         error={errors.linkedin}
                         placeholder="LinkedIn URL" />
                     <Field
                         type="text"
-                        name="github"
+                        name="githubusername"
                         label="Github:"
-                        value={this.state.social.github}
-                        onChange={e => this.setState({ social: { github: e.target.value } })}
-                        error={errors.github}
+                        value={this.state.githubusername}
+                        onChange={e => this.setState({ githubusername: e.target.value })}
+                        error={errors.githubusername}
                         placeholder="Github username only" />
-
                 </div>
                 <Field
                     type="submit"
