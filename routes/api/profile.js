@@ -86,13 +86,22 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 })
 
 
+// @route   DELETE /api/profile
+// @desc    Delete current user profile
+// @access  Protected
+router.delete('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Profile.findOneAndRemove({ user: req.user.id })
+        .then(profile => res.json(profile))
+        .catch(errors => res.status(400).json(errors))
+})
+
+
 // @route   POST /api/profile/experience
 // @desc    Post users experience to profile
 // @access  Protected
 router.post('/experience', passport.authenticate('jwt', { session: false }), (req, res) => {
     require('../../validation/profile')(req.body, { onlyExperience: true })
         .then(experienceData => {
-            console.log('AFTER VALIDATION:', experienceData)
             Profile.findOneAndUpdate(
                 { user: req.user.id },
                 { $push: { experience: experienceData } },
