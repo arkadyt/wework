@@ -11,6 +11,11 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
+        case types.DISMISS_OVERLAY:
+            return {
+                ...state,
+                formErrors: {}
+            }
         case types.POST_USERS_PROFILE:
             return initialState
         case types.POST_FORM_ERRORS:
