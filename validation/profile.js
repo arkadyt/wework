@@ -22,10 +22,12 @@ Yup.addMethod(Yup.mixed, 'unoccupied', function (user, message) {
     })
 })
 
-module.exports = (profile, options = {
+module.exports = (obj, options = {
     onlyEducation: false,
     onlyExperience: false
 }) => new Promise((resolve, reject) => {
+    // remove empty string properties
+    const profile = require('./utils').undefinize(obj)
     let schema = {}
 
     if (options.onlyExperience) {

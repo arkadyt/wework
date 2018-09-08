@@ -5,31 +5,28 @@ always populate user prop;
 
 Front-end:
 use IDs as list keys;
-don't define form field variables in state to keep them undefined if unfilled
 fix profile styling
-add social form
-[DONE] add modal (confirmation to delete)
-    /***/
-    <Modal onYes={...} onNo={...} question={...} />
-    /***/
-    Overlay within, OnBackdropClick knows what to do.
-    /***/
-    Should overlay be within other forms too?
+
+[SKIP] scroll only overlay: https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
+[SKIP] Should overlay be within other forms too?
     Certainly should be for the modal window, but with forms the idea is that
     they may be used without one on smaller screens. 
-dismissOverlay OnBackdropClick
-add undefinize() method that would replace '' with undefined for all object properties.
-scroll only overlay: https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
-
-
-
 [SKIP] Yup: output all errors for [social] schema. (mixed.withMutation(...)?)
 [SKIP] Do not pass overlayId to modal? Let it have own one?
 [SKIP] Pass form to generic modal component with buttons?
 [SKIP] Use overlay inside of AddEdu and AddExp? Would be able to dismiss then, access overlayId?
 [SKIP] Buttons together at the AddEdu & AddExp forms!
 
-
+[DONE] add undefinize() method that would replace '' with undefined for all object properties.
+[DONE] don't define form field variables in state to keep them undefined if unfilled
+[DONE] add social form
+[DONE] add modal (confirmation to delete)
+    /***/
+    <Modal onYes={...} onNo={...} question={...} />
+    /***/
+    Overlay within, OnBackdropClick knows what to do.
+    /***/
+[DONE] dismissOverlay OnBackdropClick
 [DONE] add exp form
 [DONE] restructure profileReducer: bring the profiles section to its own reducer, open usersProfile
 [DONE] finish create profile form
