@@ -4,20 +4,21 @@ import { dismissOverlay } from '../../../state/actions/overlayActions'
 import * as overlayTypes from '../../../helpers/overlayTypes'
 import { updateUsersProfile } from '../../../state/actions/profileActions'
 import { connect } from 'react-redux'
-import './CreateProfile.css'
+import './UpdateProfile.css'
 
-class CreateProfile extends React.Component {
+class UpdateProfile extends React.Component {
     state = {
         showSocial: false,
-        updating: false
+        creating: true
     }
 
     constructor(props) {
         super(props)
+        console.log(props)
         if (props.profile) {
             this.state = {
                 showSocial: false,
-                updating: true,
+                creating: false,
                 ...props.profile
             }
         }
@@ -27,17 +28,18 @@ class CreateProfile extends React.Component {
         const { dismissOverlay, updateUsersProfile, errors } = this.props
 
         return (
-            <form className="CreateProfile-container" onSubmit={e => {
+            <form className="UpdateProfile-container" onSubmit={e => {
                 e.preventDefault()
-                const { showSocial, updating, ...data } = this.state
+                const { showSocial, creating, ...data } = this.state
                 updateUsersProfile(data, () => {
-                    const overlayType = updating
-                        ? overlayTypes.UPDATING_PROFILE
-                        : overlayTypes.CREATING_PROFILE
-                    dismissOverlay(overlayType)
+                    dismissOverlay(
+                        creating
+                            ? overlayTypes.CREATING_PROFILE
+                            : overlayTypes.UPDATING_PROFILE
+                    )
                 })
             }}>
-                <h1>{this.state.updating ? 'Update' : 'Create'} profile</h1>
+                <h1>{this.state.creating ? 'Create' : 'Update'} profile</h1>
                 <Field
                     type="text"
                     name="handle"
@@ -83,7 +85,7 @@ class CreateProfile extends React.Component {
                     name="status"
                     label="Job seeker status:"
                     list={['Not open', 'Available for Employment', 'Actively Seeking']}
-                    value={this.state.value}
+                    value={this.state.status}
                     onChange={value => this.setState({ status: value })}
                     error={errors.status} />
                 <Field
@@ -161,14 +163,14 @@ class CreateProfile extends React.Component {
                 </div>
                 <Field
                     type="submit"
-                    label={this.state.updating ? 'Update' : 'Create'} />
+                    label={this.state.creating ? 'Create' : 'Update'} />
                 <Field
                     type="button"
                     label="Cancel"
                     onClick={() => dismissOverlay(
-                        this.state.updating
-                            ? overlayTypes.UPDATING_PROFILE
-                            : overlayTypes.CREATING_PROFILE
+                        this.state.creating
+                            ? overlayTypes.CREATING_PROFILE
+                            : overlayTypes.UPDATING_PROFILE
                     )} />
             </form>
         )
@@ -177,4 +179,4 @@ class CreateProfile extends React.Component {
 
 export default connect(state => ({
     errors: state.err.formErrors
-}), { dismissOverlay, updateUsersProfile })(CreateProfile)
+}), { dismissOverlay, updateUsersProfile })(UpdateProfile)
