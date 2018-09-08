@@ -8,17 +8,19 @@ import './CreateProfile.css'
 
 class CreateProfile extends React.Component {
     state = {
-        showSocial: false
-        // handle: 'techguy',
-        // company: 'Facebook',
-        // website: 'http://mywebsite.com',
-        // location: 'Seattle, WA',
-        // title: 'Marketing Analyst',
-        // status: 'Actively Applying',
-        // skills: ['Java', 'C++'],
-        // bio: 'Bragging... Bragging... Bragging... Bragging...',
-        // githubusername: 'coder123',
-        // social: undefined
+        showSocial: false,
+        updating: false
+    }
+
+    constructor(props) {
+        super(props)
+        if (props.profile) {
+            this.state = {
+                showSocial: false,
+                updating: true,
+                ...props.profile
+            }
+        }
     }
 
     render() {
@@ -27,12 +29,15 @@ class CreateProfile extends React.Component {
         return (
             <form className="CreateProfile-container" onSubmit={e => {
                 e.preventDefault()
-                const { showSocial, ...data } = this.state
+                const { showSocial, updating, ...data } = this.state
                 updateUsersProfile(data, () => {
-                    dismissOverlay(overlayTypes.CREATING_PROFILE)
+                    const overlayType = updating
+                        ? overlayTypes.UPDATING_PROFILE
+                        : overlayTypes.CREATING_PROFILE
+                    dismissOverlay(overlayType)
                 })
             }}>
-                <h1>Create profile</h1>
+                <h1>{this.state.updating ? 'Update' : 'Create'} profile</h1>
                 <Field
                     type="text"
                     name="handle"
@@ -156,11 +161,15 @@ class CreateProfile extends React.Component {
                 </div>
                 <Field
                     type="submit"
-                    label="Create" />
+                    label={this.state.updating ? 'Update' : 'Create'} />
                 <Field
                     type="button"
                     label="Cancel"
-                    onClick={() => dismissOverlay(overlayTypes.CREATING_PROFILE)} />
+                    onClick={() => dismissOverlay(
+                        this.state.updating
+                            ? overlayTypes.UPDATING_PROFILE
+                            : overlayTypes.CREATING_PROFILE
+                    )} />
             </form>
         )
     }
