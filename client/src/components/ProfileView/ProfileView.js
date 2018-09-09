@@ -57,7 +57,7 @@ const profileView = ({
             <p className="header">Skill Set:</p>
             <div className="skills-list">
                 {skills.map((skill, idx) => {
-                    return <span key={`skill-${idx}`}>{skill}</span>
+                    return <span className="tag" key={`skill-${idx}`}>{skill}</span>
                 })}
             </div>
         </section>
