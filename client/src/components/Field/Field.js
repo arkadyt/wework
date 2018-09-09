@@ -20,7 +20,8 @@ const field = ({
     rows, // textarea
     disabled, // date
     onClick, style, // button, linkButton
-    inline // container
+    inline, // container
+    containerStyle // container
 }) => {
     let field = null
     const commonProps = { name, id: name, value, onChange }
@@ -97,21 +98,24 @@ const field = ({
                 type={type} />
     }
 
-    return <div className={['Field-container', inline ? 'inline' : ''].join(' ')}>
-        {label
-            && type !== "checkbox"
-            && type !== "submit"
-            && type !== "button"
-            && type !== "linkButton"
-            && <label htmlFor={name}>{label}</label>}
-        {field}
-        {error
-            && type !== "checkbox"
-            && type !== "submit"
-            && type !== "button"
-            && type !== "linkButton"
-            && <span className="error">{error}</span>}
-    </div>
+    return (
+        <div style={containerStyle}
+            className={['Field-container', inline ? 'inline' : ''].join(' ')}>
+            {label
+                && type !== "checkbox"
+                && type !== "submit"
+                && type !== "button"
+                && type !== "linkButton"
+                && <label htmlFor={name}>{label}</label>}
+            {field}
+            {error
+                && type !== "checkbox"
+                && type !== "submit"
+                && type !== "button"
+                && type !== "linkButton"
+                && <span className="error">{error}</span>}
+        </div>
+    )
 }
 
 export default field
