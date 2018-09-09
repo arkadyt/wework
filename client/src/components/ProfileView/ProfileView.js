@@ -62,7 +62,10 @@ const profileView = ({
                 <h2>{name}</h2>
                 <p>{title} at {company}</p>
                 {location
-                    ? <p><IcoLocation /> {location}</p>
+                    ? <p>
+                        <span style={{ fontSize: '.7rem' }}><IcoLocation /></span>
+                        &nbsp;{location}
+                    </p>
                     : null}
                 <p>{status}</p>
                 <div className="links">
@@ -75,12 +78,16 @@ const profileView = ({
                     </a> : null}
                     {instagram ? <a href={instagram}><IcoInstagram /></a> : null}
                 </div>
-                <Field
-                    type="linkButton"
-                    label="Edit Profile"
-                    containerStyle={{ margin: 0 }}
-                    style={{ color: 'white' }}
-                    onClick={() => addOverlay(overlayTypes.UPDATING_PROFILE)} />
+                <div>
+                    <span style={{ fontSize: '.8rem' }}><IcoEdit /></span>
+                    <Field
+                        type="linkButton"
+                        label="Edit Profile"
+                        containerStyle={{ margin: '0 0 0 .3rem' }}
+                        inline
+                        style={{ color: 'white' }}
+                        onClick={() => addOverlay(overlayTypes.UPDATING_PROFILE)} />
+                </div>
             </div>
         </section>
         {bio
