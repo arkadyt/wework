@@ -1,5 +1,5 @@
 DB:
-always populate user prop;                
+always populate user prop;   NAME disappears at profileView!             
 
 create an endpoint for feed, create (a separate?) db with fake profiles and posts data
 fetch feed
@@ -13,6 +13,19 @@ fix profile styling
 - loading screen (reddit like style: page filled with text shapes)
 - offer to create screen (modal over loading screen)
 - profile screen (vertical rectangle split by color or <hr/>s with rounded corners)
+
+
+ProfileView:
+{education && belongsToAuthenticatedUser
+    ? Render section even if empty, and control buttons
+    : Do not render if empty array, or render but without control buttons}
+{education is empty array
+    ? Remove div.nodes and dummy div so that btns 'Add Experience' and 'Delete Entries' went up }
+Also swap 'Delete entries' button with 'Cancel'
+- Scroll up on ADD_OVERLAY
+- Do not render Delete Profile if profile !belongsToAuthenticatedUser
+- Swap out 'Edit Profile' with '[Send Message |] See Activity' if !belongsToAuthenticatedUser
+- Name disappears!!
 
 
 [SKIP] scroll only overlay: https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
