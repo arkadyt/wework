@@ -1,6 +1,3 @@
-DB:
-always populate user prop;   NAME disappears at profileView!             
-
 create an endpoint for feed, create (a separate?) db with fake profiles and posts data
 fetch feed
 implement live loading (live pagination)
@@ -38,6 +35,7 @@ Also swap 'Delete entries' button with 'Cancel'
 [SKIP] Use overlay inside of AddEdu and AddExp? Would be able to dismiss then, access overlayId?
 [SKIP] Buttons together at the AddEdu & AddExp forms!
 
+[DONE] always populate user prop;   NAME disappears at profileView!
 [DONE] ? parse date;
 [DONE] add undefinize() method that would replace '' with undefined for all object properties.
 [DONE] don't define form field variables in state to keep them undefined if unfilled

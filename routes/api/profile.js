@@ -5,6 +5,7 @@ const passport = require('passport')
 const Profile = require('../../models/Profile')
 const User = require('../../models/User')
 
+
 // @route   GET api/profile/test
 // @desc    Tests profile route.
 // @access  Public
@@ -79,6 +80,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
                 { user: req.user.id },
                 { $set: profile }, // form fields left empty must not be sent (unless they are undefined?)
                 { new: true, upsert: true })
+                .populate('user', ['name', 'email'])
                 .then(profile => res.json(profile))
                 .catch(err => res.status(400).json(err))
         })
@@ -106,6 +108,7 @@ router.post('/experience', passport.authenticate('jwt', { session: false }), (re
                 { user: req.user.id },
                 { $push: { experience: experienceData } },
                 { new: true })
+                .populate('user', ['name', 'email'])
                 .then(savedData => res.json(savedData))
                 .catch(err => res.status(404).json(err))
         })
@@ -122,6 +125,7 @@ router.post('/education', passport.authenticate('jwt', { session: false }), (req
                 { user: req.user.id },
                 { $push: { education: educationData } },
                 { new: true })
+                .populate('user', ['name', 'email'])
                 .then(savedData => res.json(savedData))
                 .catch(err => res.status(400).json(err))
         })
@@ -137,6 +141,7 @@ router.delete('/experience/:expId', passport.authenticate('jwt', { session: fals
         { user: req.user.id },
         { $pull: { experience: { _id: req.params.expId } } },
         { new: true })
+        .populate('user', ['name', 'email'])
         .then(profile => res.json(profile))
         .catch(err => res.status(400).json(err))
 })
@@ -150,6 +155,7 @@ router.delete('/education/:edId', passport.authenticate('jwt', { session: false 
         { user: req.user.id },
         { $pull: { education: { _id: req.params.edId } } },
         { new: true })
+        .populate('user', ['name', 'email'])
         .then(profile => res.json(profile))
         .catch(err => res.status(400).json(err))
 })
