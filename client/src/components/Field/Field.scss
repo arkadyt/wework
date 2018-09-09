@@ -23,6 +23,17 @@
         border-color: #090;
         color: white;
     }
+    .link-button {
+        background: none;
+        border: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: darkblue;
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
     input[type=text],
     input[type=password] {
         font-size: 1rem;

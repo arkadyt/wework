@@ -14,11 +14,12 @@ const field = ({
     // different fields require different props
     type,
     name, value, onChange, // all except submit and button
-    placeholder, label, error, // all except checkbox, submit and button
+    placeholder, error, // all except checkbox, submit and button
+    label, // checkbox, submit, button
     list, // list, multiselect
     rows, // textarea
     disabled, // date
-    onClick, style, // button
+    onClick, style, // button, linkButton
     inline // container
 }) => {
     let field = null
@@ -80,6 +81,14 @@ const field = ({
                 {label}
             </button>
             break
+        case "linkButton":
+            field = <button
+                className="link-button"
+                style={style}
+                onClick={onClick}>
+                {label}
+            </button>
+            break
         default:
             field = <input
                 {...commonProps}
@@ -93,12 +102,14 @@ const field = ({
             && type !== "checkbox"
             && type !== "submit"
             && type !== "button"
+            && type !== "linkButton"
             && <label htmlFor={name}>{label}</label>}
         {field}
         {error
             && type !== "checkbox"
             && type !== "submit"
             && type !== "button"
+            && type !== "linkButton"
             && <span className="error">{error}</span>}
     </div>
 }
