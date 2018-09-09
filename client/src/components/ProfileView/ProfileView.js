@@ -1,6 +1,10 @@
 import React from 'react'
 import './ProfileView.css'
 import ava_placeholder from '../../images/avatar_placeholder.png'
+import Field from '../Field/Field'
+import { connect } from 'react-redux'
+import * as overlayTypes from '../../helpers/overlayTypes'
+import { addOverlay } from '../../state/actions/overlayActions'
 import {
     FaFacebook as IcoFacebook,
     FaInstagram as IcoInstagram,
@@ -8,7 +12,8 @@ import {
     FaGithub as IcoGithub,
     FaTwitter as IcoTwitter,
     FaLinkedin as IcoLinkedin,
-    FaMapMarkerAlt as IcoLocation
+    FaMapMarkerAlt as IcoLocation,
+    FaPencilAlt as IcoEdit
 } from 'react-icons/fa'
 
 const dateFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
@@ -16,10 +21,13 @@ const dateFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
 const NodeHeader = ({
     title,
     from,
-    to
+    to,
+    current
 }) => {
     from = new Date(from).toLocaleDateString('en-US', dateFormatOptions)
-    to = new Date(to).toLocaleDateString('en-US', dateFormatOptions)
+    to = current
+        ? 'Current'
+        : new Date(to).toLocaleDateString('en-US', dateFormatOptions)
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <h3>{title}</h3>
@@ -44,7 +52,8 @@ const profileView = ({
     linkedin,
     githubusername,
     instagram,
-    twitter
+    twitter,
+    addOverlay
 }) => {
     return <div className="ProfileView-container">
         <section className="intro">
@@ -66,6 +75,12 @@ const profileView = ({
                     </a> : null}
                     {instagram ? <a href={instagram}><IcoInstagram /></a> : null}
                 </div>
+                <Field
+                    type="linkButton"
+                    label="Edit Profile"
+                    containerStyle={{ margin: 0 }}
+                    style={{ color: 'white' }}
+                    onClick={() => addOverlay(overlayTypes.UPDATING_PROFILE)} />
             </div>
         </section>
         {bio
@@ -99,7 +114,7 @@ const profileView = ({
                             description
                         } = experience[key]
                         return <div className="node" key={`exp-entry-${idx}`}>
-                            <NodeHeader title={company} from={from} to={to} />
+                            <NodeHeader title={company} from={from} to={to} current={current} />
                             <p><b>Position:</b> {title}</p>
                             <p><b>Location:</b> {location}</p>
                             {description
@@ -108,6 +123,11 @@ const profileView = ({
                         </div>
                     })}
                 </div>
+                <div />
+                <Field
+                    type="linkButton"
+                    label="Add Experience"
+                    onClick={() => addOverlay(overlayTypes.ADDING_EXPERIENCE)} />
             </section>
             : null}
         {education
@@ -125,7 +145,7 @@ const profileView = ({
                             description
                         } = education[key]
                         return <div className="node" key={`edu-entry-${idx}`}>
-                            <NodeHeader title={school} from={from} to={to} />
+                            <NodeHeader title={school} from={from} to={to} current={current} />
                             <p><b>Degree:</b> {degree}</p>
                             <p><b>Field of study:</b> {fieldOfStudy}</p>
                             {description
@@ -134,9 +154,28 @@ const profileView = ({
                         </div>
                     })}
                 </div>
+                <div />
+                <Field
+                    type="linkButton"
+                    label="Add Education"
+                    onClick={() => addOverlay(overlayTypes.ADDING_EDUCATION)} />
             </section>
             : null}
+        <section>
+            <div />
+            <Field
+                type="button"
+                label="Delete Profile"
+                inline
+                style={{
+                    backgroundColor: 'red',
+                    borderColor: 'red',
+                    color: 'white'
+                }}
+                containerStyle={{ margin: 0 }}
+                onClick={() => addOverlay(overlayTypes.DELETING_PROFILE)} />
+        </section>
     </div>
 }
 
-export default profileView
+export default connect(null, { addOverlay })(profileView)

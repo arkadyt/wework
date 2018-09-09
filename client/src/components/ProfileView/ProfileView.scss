@@ -10,7 +10,7 @@
         padding: .5rem 2rem;
         display: grid;
         grid-template-columns: .2fr 1fr;
-        grid-column-gap: .2fr;
+        grid-column-gap: .2rem;
         justify-items: start;
         .header {
             font-weight: bolder;
@@ -20,6 +20,7 @@
     .intro {
         padding: 1.5rem 2rem;
         grid-column-gap: 1rem;
+        grid-template-columns: .46fr 1fr .1fr;
         .info {
             .links {
                 margin-top: .4rem;
