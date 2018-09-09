@@ -3,9 +3,19 @@ always populate user prop;
 ? parse date;
                 
 
-Front-end:
+create an endpoint for feed, create (a separate?) db with fake profiles and posts data
+fetch feed
+implement live loading (live pagination)
+restyle comment and reply components
 use IDs as list keys;
+
+
+move overlay types to action types
 fix profile styling
+- loading screen (reddit like style: page filled with text shapes)
+- offer to create screen (modal over loading screen)
+- profile screen (vertical rectangle split by color or <hr/>s with rounded corners)
+
 
 [SKIP] scroll only overlay: https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
 [SKIP] Should overlay be within other forms too?

@@ -1,6 +1,15 @@
 import React from 'react'
 import './ProfileView.css'
 import ava_placeholder from '../../images/avatar_placeholder.png'
+import {
+    FaFacebook as IcoFacebook,
+    FaInstagram as IcoInstagram,
+    FaYoutube as IcoYoutube,
+    FaGithub as IcoGithub,
+    FaTwitter as IcoTwitter,
+    FaLinkedin as IcoLinkedin,
+    FaMapMarkerAlt as IcoLocation
+} from 'react-icons/fa'
 
 const profileView = ({
     image,
@@ -8,38 +17,53 @@ const profileView = ({
     title,
     status,
     location,
-    social,
     company,
     bio,
     skills,
     experience,
-    education
+    education,
+    youtube,
+    facebook,
+    linkedin,
+    githubusername,
+    instagram,
+    twitter
 }) => {
     return <div className="ProfileView-container">
         <section className="intro">
             <img src={image || ava_placeholder} alt="" />
-            <h2>{name}</h2>
-            <p>{title} at {company}</p>
-            <p>Job seeker status: {status}</p>
-            <p>{location}</p>
-            {social ? Object.keys(social).map((key, idx) => {
-                return <a href={social[key]}
-                    key={`soc-med-link-${idx}`}>[ICO]</a>
-            }) : null}
+            <div className="info">
+                <h2>{name}</h2>
+                <p>{title} at {company}</p>
+                <p><IcoLocation /> {location}</p>
+                <p>{status}</p>
+                <div className="links">
+                    {facebook ? <a href={facebook}><IcoFacebook /></a> : null}
+                    {linkedin ? <a href={linkedin}><IcoLinkedin /></a> : null}
+                    {twitter ? <a href={twitter}><IcoTwitter /></a> : null}
+                    {youtube ? <a href={youtube}><IcoYoutube /></a> : null}
+                    {githubusername ? <a href={`https://github.com/${githubusername}`}>
+                        <IcoGithub />
+                    </a> : null}
+                    {instagram ? <a href={instagram}><IcoInstagram /></a> : null}
+                </div>
+            </div>
         </section>
         <section className="bio">
-            <h3>Bio</h3>
+            <p className="header">About Me:</p>
             <p>{bio}</p>
         </section>
         <section className="skills">
-            <h3>Skill Set</h3>
-            {skills.map((skill, idx) => {
-                return <span key={`skill-${idx}`}>{skill}</span>
-            })}
+            <p className="header">Skill Set:</p>
+            <div className="skills-list">
+                {skills.map((skill, idx) => {
+                    return <span key={`skill-${idx}`}>{skill}</span>
+                })}
+            </div>
         </section>
-        <section className="exp-edu">
-            <div>
-                <h3>Experience</h3>
+        <section className="exp">
+            <p className="header">Experience:</p>
+            <div className="jobs nodes">
                 {Object.keys(experience).map((key, idx) => {
                     const {
                         title, company, location, from, to, current, description
@@ -53,8 +77,10 @@ const profileView = ({
                     </div>
                 })}
             </div>
-            <div>
-                <h3>Education</h3>
+        </section>
+        <section className="edu">
+            <p className="header">Education:</p>
+            <div className="schools nodes">
                 {Object.keys(education).map((key, idx) => {
                     const {
                         school, degree, fieldOfStudy, from, to, current, description
