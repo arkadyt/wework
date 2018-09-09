@@ -1,7 +1,5 @@
 DB:
-always populate user prop;
-? parse date;
-                
+always populate user prop;                
 
 create an endpoint for feed, create (a separate?) db with fake profiles and posts data
 fetch feed
@@ -9,7 +7,7 @@ implement live loading (live pagination)
 restyle comment and reply components
 use IDs as list keys;
 
-
+mark mandatory fields with asterisks
 move overlay types to action types
 fix profile styling
 - loading screen (reddit like style: page filled with text shapes)
@@ -27,6 +25,7 @@ fix profile styling
 [SKIP] Use overlay inside of AddEdu and AddExp? Would be able to dismiss then, access overlayId?
 [SKIP] Buttons together at the AddEdu & AddExp forms!
 
+[DONE] ? parse date;
 [DONE] add undefinize() method that would replace '' with undefined for all object properties.
 [DONE] don't define form field variables in state to keep them undefined if unfilled
 [DONE] add social form

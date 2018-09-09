@@ -14,6 +14,7 @@
         justify-items: start;
         .header {
             font-weight: bolder;
+            font-size: 1.2rem;
         }
     }
     .intro {
@@ -44,6 +45,16 @@
             border-radius: .1rem;
             margin-right: .2rem;
             padding: .2rem 1rem;
+        }
+    }
+    .experience,
+    .education {
+        .nodes {
+            .node {
+                &:not(:last-child) {
+                    margin-bottom: 1rem;
+                }
+            }
         }
     }
 }

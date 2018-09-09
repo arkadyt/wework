@@ -11,6 +11,23 @@ import {
     FaMapMarkerAlt as IcoLocation
 } from 'react-icons/fa'
 
+const dateFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
+
+const NodeHeader = ({
+    title,
+    from,
+    to
+}) => {
+    from = new Date(from).toLocaleDateString('en-US', dateFormatOptions)
+    to = new Date(to).toLocaleDateString('en-US', dateFormatOptions)
+    return (
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <h3>{title}</h3>
+            <span>{from} — {to}</span>
+        </div>
+    )
+}
+
 const profileView = ({
     image,
     user: { name },
@@ -35,7 +52,9 @@ const profileView = ({
             <div className="info">
                 <h2>{name}</h2>
                 <p>{title} at {company}</p>
-                <p><IcoLocation /> {location}</p>
+                {location
+                    ? <p><IcoLocation /> {location}</p>
+                    : null}
                 <p>{status}</p>
                 <div className="links">
                     {facebook ? <a href={facebook}><IcoFacebook /></a> : null}
@@ -49,52 +68,74 @@ const profileView = ({
                 </div>
             </div>
         </section>
-        <section className="bio">
-            <p className="header">About Me:</p>
-            <p>{bio}</p>
-        </section>
-        <section className="skills">
-            <p className="header">Skill Set:</p>
-            <div className="skills-list">
-                {skills.map((skill, idx) => {
-                    return <span className="tag" key={`skill-${idx}`}>{skill}</span>
-                })}
-            </div>
-        </section>
-        <section className="exp">
-            <p className="header">Experience:</p>
-            <div className="jobs nodes">
-                {Object.keys(experience).map((key, idx) => {
-                    const {
-                        title, company, location, from, to, current, description
-                    } = experience[key]
-                    return <div key={`exp-entry-${idx}`}>
-                        <h3>{company}</h3>
-                        <p>{from} -- {current ? 'Current' : to}</p>
-                        <p>Position: {title}</p>
-                        <p>Location: {location}</p>
-                        <p>Description: {description}</p>
-                    </div>
-                })}
-            </div>
-        </section>
-        <section className="edu">
-            <p className="header">Education:</p>
-            <div className="schools nodes">
-                {Object.keys(education).map((key, idx) => {
-                    const {
-                        school, degree, fieldOfStudy, from, to, current, description
-                    } = education[key]
-                    return <div key={`edu-entry-${idx}`}>
-                        <h3>{school}</h3>
-                        <p>{from} -- {current ? 'Current' : to}</p>
-                        <p>Degree: {degree}</p>
-                        <p>Field of study: {fieldOfStudy}</p>
-                        <p>Description: {description}</p>
-                    </div>
-                })}
-            </div>
-        </section>
+        {bio
+            ? <section className="bio">
+                <p className="header">About Me:</p>
+                <p>{bio}</p>
+            </section>
+            : null}
+        {skills
+            ? <section className="skills">
+                <p className="header">Skill Set:</p>
+                <div className="skills-list">
+                    {skills.map((skill, idx) => {
+                        return <span className="tag" key={`skill-${idx}`}>{skill}</span>
+                    })}
+                </div>
+            </section>
+            : null}
+        {experience
+            ? <section className="experience">
+                <p className="header">Experience:</p>
+                <div className="nodes">
+                    {Object.keys(experience).map((key, idx) => {
+                        const {
+                            title,
+                            company,
+                            location,
+                            from,
+                            to,
+                            current,
+                            description
+                        } = experience[key]
+                        return <div className="node" key={`exp-entry-${idx}`}>
+                            <NodeHeader title={company} from={from} to={to} />
+                            <p><b>Position:</b> {title}</p>
+                            <p><b>Location:</b> {location}</p>
+                            {description
+                                ? <p><b>Description:</b> {description}</p>
+                                : null}
+                        </div>
+                    })}
+                </div>
+            </section>
+            : null}
+        {education
+            ? <section className="education">
+                <p className="header">Education:</p>
+                <div className="nodes">
+                    {Object.keys(education).map((key, idx) => {
+                        const {
+                            school,
+                            degree,
+                            fieldOfStudy,
+                            from,
+                            to,
+                            current,
+                            description
+                        } = education[key]
+                        return <div className="node" key={`edu-entry-${idx}`}>
+                            <NodeHeader title={school} from={from} to={to} />
+                            <p><b>Degree:</b> {degree}</p>
+                            <p><b>Field of study:</b> {fieldOfStudy}</p>
+                            {description
+                                ? <p><b>Description:</b> {description}</p>
+                                : null}
+                        </div>
+                    })}
+                </div>
+            </section>
+            : null}
     </div>
 }
 
