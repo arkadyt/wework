@@ -51,6 +51,7 @@
     .experience,
     .education {
         .nodes {
+            width: 100%;
             .node {
                 &:not(:last-child) {
                     margin-bottom: 1rem;
