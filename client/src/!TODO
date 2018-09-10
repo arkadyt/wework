@@ -5,24 +5,13 @@ restyle comment and reply components
 use IDs as list keys;
 
 mark mandatory fields with asterisks
+display person's website at the place of 'See Activity' button, move buttons to 3rd col.
+Add Follow button.
 move overlay types to action types
 fix profile styling
 - loading screen (reddit like style: page filled with text shapes)
 - offer to create screen (modal over loading screen)
 - profile screen (vertical rectangle split by color or <hr/>s with rounded corners)
-
-
-ProfileView:
-{education && belongsToAuthenticatedUser
-    ? Render section even if empty, and control buttons
-    : Do not render if empty array, or render but without control buttons}
-{education is empty array
-    ? Remove div.nodes and dummy div so that btns 'Add Experience' and 'Delete Entries' went up }
-Also swap 'Delete entries' button with 'Cancel'
-- Scroll up on ADD_OVERLAY
-- Do not render Delete Profile if profile !belongsToAuthenticatedUser
-- Swap out 'Edit Profile' with '[Send Message |] See Activity' if !belongsToAuthenticatedUser
-- Name disappears!!
 
 
 [SKIP] scroll only overlay: https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
@@ -35,6 +24,7 @@ Also swap 'Delete entries' button with 'Cancel'
 [SKIP] Use overlay inside of AddEdu and AddExp? Would be able to dismiss then, access overlayId?
 [SKIP] Buttons together at the AddEdu & AddExp forms!
 
+[DONE] Overhaul ProfileView
 [DONE] always populate user prop;   NAME disappears at profileView!
 [DONE] ? parse date;
 [DONE] add undefinize() method that would replace '' with undefined for all object properties.

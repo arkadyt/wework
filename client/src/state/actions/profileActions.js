@@ -51,6 +51,28 @@ export const addExperience = (data, callback) => dispatch => {
         })
 }
 
+export const deleteExperience = (nodeId, callback) => dispatch => {
+    axios.delete(`/api/profile/experience/${nodeId}`)
+        .then(res => {
+            dispatch({ type: types.POST_USERS_PROFILE, payload: res.data })
+            if (callback) callback()
+        })
+        .catch(err => {
+            dispatch({ type: types.POST_ERRORS, payload: err.response.data })
+        })
+}
+
+export const deleteEducation = (nodeId, callback) => dispatch => {
+    axios.delete(`/api/profile/education/${nodeId}`)
+        .then(res => {
+            dispatch({ type: types.POST_USERS_PROFILE, payload: res.data })
+            if (callback) callback()
+        })
+        .catch(err => {
+            dispatch({ type: types.POST_ERRORS, payload: err.response.data })
+        })
+}
+
 export const deleteProfile = callback => dispatch => {
     axios.delete('/api/profile')
         .then(() => {
