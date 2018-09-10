@@ -1,11 +1,11 @@
 import React from 'react'
 import './Overlay.css'
 
-const Overlay = ({ children, onDismiss }) => {
+const Overlay = ({ children, onBackdropClick }) => {
     return (
         <div className="Overlay-container">
             <div className="backdrop"
-                onClick={onDismiss} />
+                onClick={onBackdropClick} />
             <div className="content">
                 {children}
             </div>
