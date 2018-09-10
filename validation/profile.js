@@ -42,7 +42,7 @@ module.exports = (obj, options = {
                 otherwise: Yup.string().notRequired()
             }),
             current: Yup.bool(),
-            description: Yup.string().min(300, "Please enter at least 300 characters")
+            description: Yup.string().min(100, "Please enter at least 100 characters")
         })
     } else if (options.onlyEducation) {
         schema = Yup.object().shape({
@@ -56,7 +56,7 @@ module.exports = (obj, options = {
                 otherwise: Yup.string().notRequired()
             }),
             current: Yup.bool(),
-            description: Yup.string().min(300, "Minimum of 300 characters is required!")
+            description: Yup.string().min(100, "Minimum of 100 characters is required!")
         })
     } else { /* For whole profile with the exclusion of above described fields */
         schema = Yup.object().shape({
