@@ -1,24 +1,25 @@
 import React from 'react'
 import Field from '../Field/Field'
 import Overlay from '../Overlay/Overlay'
-import { connect } from 'react-redux'
-import { dismissOverlay } from '../../state/actions/overlayActions'
 import './Modal.css'
 
 const Modal = ({
     question,
     onConfirm,
     onDismiss,
-    overlayId,
-    actionColor,
-    dismissOverlay
+    actionColor
 }) => {
     const handleDismiss = () => {
-        (onDismiss || function () { dismissOverlay(overlayId) })()
+        onDismiss()
+    }
+
+    const handleConfirm = () => {
+        onConfirm()
+        onDismiss()
     }
 
     return (
-        <Overlay onDismiss={() => handleDismiss()}>
+        <Overlay onBackdropClick={() => handleDismiss()}>
             <div className="Modal-container">
                 <p className="question">{question}</p>
                 <div className="buttons">
@@ -38,14 +39,11 @@ const Modal = ({
                                 width: '100%'
                             }
                             : null}
-                        onClick={() => {
-                            onConfirm()
-                            dismissOverlay(overlayId)
-                        }} />
+                        onClick={() => handleConfirm()} />
                 </div>
             </div>
         </Overlay>
     )
 }
 
-export default connect(null, { dismissOverlay })(Modal)
+export default Modal
