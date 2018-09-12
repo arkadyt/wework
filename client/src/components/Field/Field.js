@@ -21,7 +21,8 @@ const field = ({
     disabled, // date
     onClick, style, // button, linkButton
     inline, // container
-    containerStyle // container
+    containerStyle, // container
+    children
 }) => {
     let field = null
     const commonProps = { name, id: name, value, onChange }
@@ -71,7 +72,7 @@ const field = ({
             field = <button
                 type="submit"
                 className="button-action">
-                {label}
+                {label || children}
             </button>
             break
         case "button":
@@ -79,7 +80,7 @@ const field = ({
                 className="button"
                 style={style}
                 onClick={onClick}>
-                {label}
+                {label || children}
             </button>
             break
         case "linkButton":
@@ -87,7 +88,7 @@ const field = ({
                 className="link-button"
                 style={style}
                 onClick={onClick}>
-                {label}
+                {label || children}
             </button>
             break
         default:
