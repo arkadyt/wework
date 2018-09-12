@@ -5,7 +5,7 @@ const Overlay = ({ children, onBackdropClick }) => {
     return (
         <div className="Overlay-container">
             <div className="backdrop"
-                onClick={onBackdropClick} />
+                onClick={() => onBackdropClick()} />
             <div className="content">
                 {children}
             </div>

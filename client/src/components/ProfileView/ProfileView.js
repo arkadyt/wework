@@ -4,8 +4,6 @@ import placeholderImage from '../../images/avatar_placeholder.png'
 import Field from '../Field/Field'
 import { connect } from 'react-redux'
 import { deleteExperience, deleteEducation } from '../../state/actions/profileActions'
-import * as overlayTypes from '../../helpers/overlayTypes'
-import { addOverlay } from '../../state/actions/overlayActions'
 import {
     FaFacebook as IcoFacebook,
     FaInstagram as IcoInstagram,
@@ -74,27 +72,32 @@ class ProfileView extends React.Component {
 
     render() {
         const {
-            user: { _id, name },
             authedUserId,
-            image,
-            title,
-            status,
-            location,
-            company,
-            bio,
-            skills,
-            experience,
-            education,
-            youtube,
-            facebook,
-            linkedin,
-            githubusername,
-            instagram,
-            twitter,
-            addOverlay,
+            history,
+            match,
             deleteEducation,
-            deleteExperience
+            deleteExperience,
+            profile: {
+                user: { _id, name },
+                image,
+                title,
+                status,
+                location,
+                company,
+                bio,
+                skills,
+                experience,
+                education,
+                youtube,
+                facebook,
+                linkedin,
+                githubusername,
+                instagram,
+                twitter
+            }
         } = this.props
+
+        const baseUrl = match.url || ''
 
         const profileBelongsToAuthedUser = authedUserId === _id
 
@@ -133,7 +136,7 @@ class ProfileView extends React.Component {
                                     style={{ color: 'white' }}
                                     onClick={() => {
                                         this.quitEntryDeletingMode()
-                                        addOverlay(overlayTypes.UPDATING_PROFILE)
+                                        history.push(`${baseUrl}/update-profile`)
                                     }} />
                             </div>
                             : <div>
@@ -222,7 +225,7 @@ class ProfileView extends React.Component {
                                         containerStyle={{ flexBasis: '9rem', margin: 0 }}
                                         onClick={() => {
                                             this.quitEntryDeletingMode()
-                                            addOverlay(overlayTypes.ADDING_EXPERIENCE)
+                                            history.push(`${baseUrl}/add-experience`)
                                         }} />
                                     {experience.length !== 0
                                         ? this.state.deletingExpEntries
@@ -284,7 +287,7 @@ class ProfileView extends React.Component {
                                         containerStyle={{ flexBasis: '9rem', margin: 0 }}
                                         onClick={() => {
                                             this.quitEntryDeletingMode()
-                                            addOverlay(overlayTypes.ADDING_EDUCATION)
+                                            history.push(`${baseUrl}/add-education`)
                                         }} />
                                     {education.length !== 0
                                         ? this.state.deletingEduEntries
@@ -320,7 +323,7 @@ class ProfileView extends React.Component {
                             containerStyle={{ margin: 0 }}
                             onClick={() => {
                                 this.quitEntryDeletingMode()
-                                addOverlay(overlayTypes.DELETING_PROFILE)
+                                history.push(`${baseUrl}/delete-profile`)
                             }} />
                     </section>
                     : null}
@@ -331,4 +334,4 @@ class ProfileView extends React.Component {
 
 export default connect(state => ({
     authedUserId: state.auth.user.id
-}), { addOverlay, deleteEducation, deleteExperience })(ProfileView)
+}), { deleteEducation, deleteExperience })(ProfileView)
