@@ -7,11 +7,7 @@ use IDs as list keys;
 mark mandatory fields with asterisks
 display person's website at the place of 'See Activity' button, move buttons to 3rd col.
 Add Follow button.
-move overlay types to action types
-fix profile styling
 - loading screen (reddit like style: page filled with text shapes)
-- offer to create screen (modal over loading screen)
-- profile screen (vertical rectangle split by color or <hr/>s with rounded corners)
 
 
 [SKIP] scroll only overlay: https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
@@ -23,35 +19,3 @@ fix profile styling
 [SKIP] Pass form to generic modal component with buttons?
 [SKIP] Use overlay inside of AddEdu and AddExp? Would be able to dismiss then, access overlayId?
 [SKIP] Buttons together at the AddEdu & AddExp forms!
-
-[DONE] Overhaul ProfileView
-[DONE] always populate user prop;   NAME disappears at profileView!
-[DONE] ? parse date;
-[DONE] add undefinize() method that would replace '' with undefined for all object properties.
-[DONE] don't define form field variables in state to keep them undefined if unfilled
-[DONE] add social form
-[DONE] add modal (confirmation to delete)
-    /***/
-    <Modal onYes={...} onNo={...} question={...} />
-    /***/
-    Overlay within, OnBackdropClick knows what to do.
-    /***/
-[DONE] dismissOverlay OnBackdropClick
-[DONE] add exp form
-[DONE] restructure profileReducer: bring the profiles section to its own reducer, open usersProfile
-[DONE] finish create profile form
-[DONE] add edu form
-[DONE] make Overlay component wrap whatever content it's being passed so that it's
-    either centered to the screen or spread out like a long reddit-thread-style overlay.
-[DONE] fix react-widgets styling
-[DONE] wipe whole redux state onLogout
-[DONE] status > title;
-[DONE] grab user's profile and store it in the redux store
-[DONE] error overwriting
-[DONE] clean up error object:
-    - completely, when profile is successfully fetched
-    - only form errors otherwise
-    NOTE: errors object is supposed to contain any errors that may occur 
-        while interacting with current page. So wiping it out is fine in all cases. 
-[DONE] delete redundant actions: + delete LOADING_* actions
-[DONE] remove clgs
