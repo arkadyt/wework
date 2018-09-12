@@ -15,7 +15,6 @@ const Modal = ({
 
     const handleConfirm = () => {
         onConfirm()
-        onDismiss()
     }
 
     return (
