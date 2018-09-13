@@ -12,3 +12,13 @@ export const addPost = (post, callback) => dispatch => {
         })
 }
 
+export const fetchPosts = callback => dispatch => {
+    axios.get('/api/posts')
+        .then(res => {
+            dispatch({ type: types.POST_NEW_POSTS, payload: res.data })
+            if (callback) callback()
+        })
+        .catch(err => {
+            dispatch({ type: types.POST_ERRORS, payload: err.response.data })
+        })
+}
