@@ -1,3 +1,51 @@
+Current task breakdown:
+    POLLING
+        polling endpointS: 
+        /poll/messages
+            - req.user.id
+        /poll/posts
+            - req.user.id
+            - freshestLoadedPostId
+            - send POSITIVE if freshest post id doesn't match to freshest post id in DB
+            - send NEGATIVE otherwise
+        /poll/comments/:postId
+            - postId
+            - freshestLoadedCommentId
+            - same as with posts: send positive if fresher comments were found in DB
+            - send negative otherwise
+
+        upon the receiving of signal 'POSITIVE':
+            - for posts: show popup button 'new posts'
+            - for comments: force em down
+            - for messages: force em ofc
+
+    LIVE LOADING
+        Live loading is totally independent mechanism that relies on:
+            - oldestLoadedPostId
+            - oldestLoadedCommentId
+            - oldestLoadedMessage
+        when scrolling reaches the point where update is required: 
+            - we send the current oldestIds
+            - show spinner
+            - receive another 10-30 items or timeout with error popup
+            - update oldestIds
+            - display content
+
+    START SMALL
+        Actions:
+            - addPost (insert returned POST into feed top, DO NOT CAUSE FEED UPDATE)
+            - likePost (return whole user's likes array on success) 
+            - leaveCommentOnPost (return whole thread on successfull post)
+            - pollForPosts(oldestLoadedPostId)
+                on { gotNew: true }:
+                    * show popup new posts (what TYPE to dispatch? mb lets return posts right away?)
+                    * on click fetchPosts() { dispatch(FEED_UPDATE) }
+        Types:
+            - FEED_UPDATE
+            - COMMENTS_UPDATE (for current thread only, reset after leaving)
+            
+
+add forgetFormErrors action
 create an endpoint for feed, create (a separate?) db with fake profiles and posts data
 fetch feed
 implement live loading (live pagination)
