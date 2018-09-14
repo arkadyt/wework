@@ -19,6 +19,7 @@ router.get('/test', (req, res) => res.send('OK'))
 router.get('/', (req, res) => {
     Post.find()
         .sort({ date: -1 })
+        .populate('user', ['name', 'avatar'])
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })
@@ -40,8 +41,14 @@ router.get('/:postId', (req, res) => {
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
     require('../../validation/posts')({ ...req.body, user: req.user.id })
         .then(post => {
-            new Post({ ...post }).save()
-                .then(post => res.json(post))
+            new Post(post).save()
+                .then(() => {
+                    Post.find()
+                        .sort({ date: -1 })
+                        .populate('user', ['name', 'avatar'])
+                        .then(posts => res.json(posts))
+                        .catch(err => res.status(400).json(err))
+                })
                 .catch(err => res.status(400).json(err))
         })
         .catch(errors => res.status(400).json(errors))
