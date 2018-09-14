@@ -15,15 +15,23 @@ class Reply extends Component {
     }
 
     render() {
-        const { onSubmit, errors } = this.props
+        const { onSubmit, flat, rows, errors } = this.props
+        const flatStyle = {
+            borderRadius: 'unset',
+            boxShadow: 'unset',
+            marginTop: 'unset',
+        }
 
-        return <form className="Reply-container" onSubmit={e => {
-            e.preventDefault()
-            onSubmit(this.state, () => this.clearFields())
-        }}>
+        return <form
+            className="Reply-container"
+            style={flat ? flatStyle : null}
+            onSubmit={e => {
+                e.preventDefault()
+                onSubmit(this.state, () => this.clearFields())
+            }}>
             <Field
                 type="textarea"
-                rows="5"
+                rows={rows || "5"}
                 value={this.state.text}
                 onChange={e => this.setState({ text: e.target.value })}
                 error={errors.text} />
