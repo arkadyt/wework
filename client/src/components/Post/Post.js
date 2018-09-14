@@ -8,7 +8,24 @@ import {
     FaComments as IcoComments,
 } from 'react-icons/fa'
 
-const post = ({ user, text, comments, likes, date }) => {
+const post = ({
+    user: {
+        name,
+        avatar
+    },
+    text,
+    comments,
+    likes,
+    date
+}) => {
+    const dateFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+    }
 
     /**
      * Ava, Name
@@ -24,9 +41,9 @@ const post = ({ user, text, comments, likes, date }) => {
 
     return <div className="Post-container">
         <div className="header">
-            <img src={placeholderImage} alt='' />
-            <p className="name">{user.name}</p>
-            <p className="date">{date}</p>
+            <img src={avatar || placeholderImage} alt='' />
+            <p className="name">{name}</p>
+            <p className="date">{new Date(date).toLocaleDateString('en-US', dateFormatOptions)}</p>
         </div>
         <p className="body">{text}</p>
         <div className="stats">
