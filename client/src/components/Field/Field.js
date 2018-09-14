@@ -19,7 +19,7 @@ const field = ({
     list, // list, multiselect
     rows, // textarea
     disabled, // date
-    onClick, style, // button, linkButton
+    onClick, style, // button, linkButton, textarea
     inline, // container
     containerStyle, // container
     children
@@ -37,7 +37,8 @@ const field = ({
                     padding: '.5rem',
                     fontSize: '1rem',
                     width: '100%',
-                    resize: 'none'
+                    resize: 'none',
+                    ...style
                 }}
                 rows={rows} />
             break
