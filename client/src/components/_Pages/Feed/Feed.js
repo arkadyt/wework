@@ -14,27 +14,21 @@ const noContentPost = {
     date: ''
 }
 
-// mainly 3/4ths of job is Java related, JavaScript goes for the frontend.
-// 60k remote?
-// should I look for more?
-
 const feed = ({
     posts,
     fetchPosts
 }) => {
     let content = 'Please wait, loading...'
 
-    console.log('posts', posts)
-
-    if (!posts) {
+    if (posts.length === 0) {
         fetchPosts()
-    } else if (posts) {
+    } else {
         content = (
             <div className="Feed-container">
                 <Reply />
                 <div className="feed">
-                    {Object.keys(posts).map(key => (
-                        <Post key={posts[key]['_id']} {...posts[key]} />)
+                    {posts.map(item => (
+                        <Post key={item._id} {...item} />)
                     )}
                 </div>
             </div>

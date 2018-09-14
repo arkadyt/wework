@@ -4,7 +4,7 @@ import * as types from './types'
 export const addPost = (post, callback) => dispatch => {
     axios.post('/api/posts', post)
         .then(res => {
-            dispatch({ type: types.POST_NEW_POSTS, payload: res.data })
+            dispatch({ type: types.POST_NEW_POSTS, payload: [res.data] })
             if (callback) callback()
         })
         .catch(err => {
@@ -19,6 +19,6 @@ export const fetchPosts = callback => dispatch => {
             if (callback) callback()
         })
         .catch(err => {
-            dispatch({ type: types.POST_ERRORS, payload: err.response.data })
+            console.log(err)
         })
 }

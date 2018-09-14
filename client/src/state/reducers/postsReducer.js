@@ -1,14 +1,11 @@
 import * as types from '../actions/types'
 
-const initialState = null
+const initialState = []
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case types.POST_NEW_POSTS:
-            return {
-                ...state,
-                ...action.payload
-            }
+            return [...action.payload, ...state]
         default:
             return state
     }
