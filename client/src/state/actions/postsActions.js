@@ -38,3 +38,14 @@ export const deleteLike = (postId, callback) => dispatch => {
         })
         .catch(err => console.log(err))
 }
+
+export const addComment = (postId, data, callback) => dispatch => {
+    axios.post(`/api/posts/${postId}/comment`, data)
+        .then(res => {
+            dispatch({ type: types.UPDATE_POST, payload: res.data })
+            if (callback) callback()
+        })
+        .catch(err => {
+            dispatch({ type: types.POST_FORM_ERRORS, payload: err.response.data })
+        })
+}
