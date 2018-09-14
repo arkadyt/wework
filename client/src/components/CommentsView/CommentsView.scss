@@ -1,7 +1,18 @@
 .CommentsView-container {
     display: flex;
     justify-content: center;
-    .content {
+    .CommentsView-content {
         width: 40rem;
+        .CommentsView-comments {
+            padding: 1rem;
+            margin-top: -4rem;
+        }
     }
+}
+
+.CommentsView-CommentNode-container {
+    .CommentsView-CommentNode-container-Node-body {
+        font-size: 1.3rem;
+    }
+    margin-top: 1rem;
 }
