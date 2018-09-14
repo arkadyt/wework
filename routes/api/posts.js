@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
     Post.find()
         .sort({ date: -1 })
         .populate('user', ['name', 'avatar'])
+        .populate('comments.user', ['name', 'avatar'])
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })
@@ -30,6 +31,8 @@ router.get('/', (req, res) => {
 // @access  Public
 router.get('/:postId', (req, res) => {
     Post.findById(req.params.postId)
+        .populate('user', ['name', 'avatar'])
+        .populate('comments.user', ['name', 'avatar'])
         .then(post => res.json(post))
         .catch(err => res.status(400).json(err))
 })
@@ -45,6 +48,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
                 .then(post => {
                     Post.findById(post._id)
                         .populate('user', ['name', 'avatar'])
+                        .populate('comments.user', ['name', 'avatar'])
                         .then(post => res.json(post))
                         .catch(err => res.status(400).json(err))
                 })
@@ -74,6 +78,7 @@ router.post('/:postId/like', passport.authenticate('jwt', { session: false }), (
         { $push: { likes: { user: mongoose.Types.ObjectId(req.user.id) } } },
         { new: true })
         .populate('user', ['name', 'avatar'])
+        .populate('comments.user', ['name', 'avatar'])
         .then(post => post
             ? res.json(post)
             : res.status(400).json({
@@ -92,6 +97,7 @@ router.delete('/:postId/like', passport.authenticate('jwt', { session: false }),
         { $pull: { likes: { user: mongoose.Types.ObjectId(req.user.id) } } },
         { new: true })
         .populate('user', ['name', 'avatar'])
+        .populate('comments.user', ['name', 'avatar'])
         .then(post => post
             ? res.json(post)
             : res.status(400).json({
@@ -102,7 +108,7 @@ router.delete('/:postId/like', passport.authenticate('jwt', { session: false }),
 
 
 // @route   POST api/posts/:postId/comment
-// @desc    Add a coment to the post
+// @desc    Add a comment to the post
 // @access  Protected
 router.post('/:postId/comment', passport.authenticate('jwt', { session: false }), (req, res) => {
     require('../../validation/posts')({ ...req.body, user: req.user.id }, { onlyComment: true })
@@ -111,6 +117,8 @@ router.post('/:postId/comment', passport.authenticate('jwt', { session: false })
                 { _id: req.params.postId },
                 { $push: { comments: comment } },
                 { new: true })
+                .populate('user', ['name', 'avatar'])
+                .populate('comments.user', ['name', 'avatar'])
                 .then(post => res.json(post))
                 .catch(err => res.status(400).json(err))
         })
@@ -126,6 +134,8 @@ router.delete('/:postId/comment/:commentId', passport.authenticate('jwt', { sess
         { _id: req.params.postId, comments: { $elemMatch: { _id: req.params.commentId, user: req.user.id } } },
         { $pull: { comments: { _id: req.params.commentId, user: req.user.id } } },
         { new: true })
+        .populate('user', ['name', 'avatar'])
+        .populate('comments.user', ['name', 'avatar'])
         .then(post => {
             post ? res.json(post)
                 : res.json({ error: "Comment was not found or ownership was not proven" })
