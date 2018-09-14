@@ -10,6 +10,18 @@
             border-radius: 3rem;
             margin-right: 1rem;
         }
+        .Post-button-more {
+            float: right;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.5);
+            padding: .5rem;
+            cursor: pointer;
+            &:hover {
+                color: rgba(0, 0, 0, 0.8)
+            }
+        }
         padding: 1rem 1rem 0 1rem;
         .name {
             font-weight: bolder;

@@ -2,13 +2,14 @@ import React from 'react'
 import './Post.css'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-
-import Field from '../Field/Field'
-import placeholderImage from '../../images/avatar_placeholder.png'
 import {
     FaThumbsUp as IcoLike,
     FaComments as IcoComments,
+    FaEllipsisV as IcoMore 
 } from 'react-icons/fa'
+
+import Field from '../Field/Field'
+import placeholderImage from '../../images/avatar_placeholder.png'
 import { likePost, deleteLike } from '../../state/actions/postsActions'
 
 const post = ({
@@ -60,12 +61,13 @@ const post = ({
     return <div className="Post-container" style={flat ? flatStyle : null}>
         <div className="header">
             <img src={avatar || placeholderImage} alt='' />
+            <button className="Post-button-more"><IcoMore /></button>
             <p className="name">{name}</p>
             <p className="date">{new Date(date).toLocaleDateString('en-US', dateFormatOptions)}</p>
         </div>
         <p className="body">{text}</p>
         <div className="stats">
-            <span>{likes.length} likes • {comments.length} comments</span>
+            <span>{likes.length} likes &nbsp;•&nbsp; {comments.length} comments</span>
         </div>
         <div className="buttons">
             <Field
