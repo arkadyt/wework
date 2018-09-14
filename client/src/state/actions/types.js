@@ -11,7 +11,7 @@ export const POST_USERS_PROFILE = 'POST_USERS_PROFILE'
 
 // Posts actions
 export const POST_NEW_POSTS = 'POST_NEW_POSTS'
-export const POST_LIKE = 'POST_LIKE'
+export const UPDATE_POST = 'UPDATE_POST'
 
 // Polling actions
 export const POLL_POSTS_POSITIVE = 'POLL_POSTS_POSITIVE'
