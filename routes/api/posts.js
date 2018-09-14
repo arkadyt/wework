@@ -42,11 +42,10 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     require('../../validation/posts')({ ...req.body, user: req.user.id })
         .then(post => {
             new Post(post).save()
-                .then(() => {
-                    Post.find()
-                        .sort({ date: -1 })
+                .then(post => {
+                    Post.findById(post._id)
                         .populate('user', ['name', 'avatar'])
-                        .then(posts => res.json(posts))
+                        .then(post => res.json(post))
                         .catch(err => res.status(400).json(err))
                 })
                 .catch(err => res.status(400).json(err))
@@ -74,8 +73,11 @@ router.post('/:postId/like', passport.authenticate('jwt', { session: false }), (
         { _id: req.params.postId, 'likes.user': { $ne: req.user.id } },
         { $push: { likes: { user: mongoose.Types.ObjectId(req.user.id) } } },
         { new: true })
-        .then(post => post ? res.json(post) :
-            res.json({ error: "Post was not found or was already liked by the user" }))
+        .then(post => post 
+            ? res.json(post) 
+            : res.status(400).json({
+                error: "Post was not found or was already liked by the user"
+            }))
         .catch(err => res.status(400).json(err))
 })
 
