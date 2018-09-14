@@ -26,7 +26,8 @@ const post = ({
     deleteLike,
     history,
     match,
-    flat
+    flat,
+    nocomments
 }) => {
     const likedByAuthedUser = !!likes.find(item => item.user === authedUser.id)
     const baseUrl = match.url || ''
@@ -41,7 +42,7 @@ const post = ({
     const flatStyle = {
         borderRadius: 'unset',
         boxShadow: 'unset',
-        marginTop: 'unset',    
+        marginTop: 'unset',
     }
 
     /**
@@ -79,14 +80,16 @@ const post = ({
                 <span className="icon"><IcoLike /></span>
                 &nbsp;Like
             </Field>
-            <Field
-                type="linkButton"
-                inline
-                style={{ color: 'gray', marginLeft: '1rem' }}
-                onClick={() => history.push(`${baseUrl}/view-comments/${_id}`)}>
-                <span className="icon"><IcoComments /></span>
-                &nbsp;Comment
-            </Field>
+            {nocomments
+                ? null
+                : <Field
+                    type="linkButton"
+                    inline
+                    style={{ color: 'gray', marginLeft: '1rem' }}
+                    onClick={() => history.push(`${baseUrl}/view-comments/${_id}`)}>
+                    <span className="icon"><IcoComments /></span>
+                    &nbsp;Comment
+            </Field>}
         </div>
     </div>
 }
