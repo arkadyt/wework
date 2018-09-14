@@ -18,18 +18,23 @@ export const fetchPosts = callback => dispatch => {
             dispatch({ type: types.POST_NEW_POSTS, payload: res.data })
             if (callback) callback()
         })
-        .catch(err => {
-            console.log(err)
-        })
+        .catch(err => console.log(err))
 }
 
 export const likePost = (postId, callback) => dispatch => {
     axios.post(`/api/posts/${postId}/like`)
         .then(res => {
-            dispatch({ type: types.POST_LIKE, payload: res.data })
+            dispatch({ type: types.UPDATE_POST, payload: res.data })
             if (callback) callback()
         })
-        .catch(err => {
-            console.log(err)
+        .catch(err => console.log(err))
+}
+
+export const deleteLike = (postId, callback) => dispatch => {
+    axios.delete(`/api/posts/${postId}/like`)
+        .then(res => {
+            dispatch({ type: types.UPDATE_POST, payload: res.data })
+            if (callback) callback()
         })
+        .catch(err => console.log(err))
 }

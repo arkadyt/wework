@@ -8,7 +8,7 @@ import {
     FaThumbsUp as IcoLike,
     FaComments as IcoComments,
 } from 'react-icons/fa'
-import { likePost } from '../../state/actions/postsActions'
+import { likePost, deleteLike } from '../../state/actions/postsActions'
 
 const post = ({
     _id,
@@ -20,8 +20,12 @@ const post = ({
     comments,
     likes,
     date,
-    likePost
+    authedUser,
+    likePost,
+    deleteLike
 }) => {
+    const likedByAuthedUser = !!likes.find(item => item.user === authedUser.id)
+
     const dateFormatOptions = {
         year: 'numeric',
         month: 'long',
@@ -54,11 +58,22 @@ const post = ({
             <span>{likes.length} likes • {comments.length} comments</span>
         </div>
         <div className="buttons">
-            <Field type="linkButton" inline onClick={() => likePost(_id)}>
+            <Field
+                type="linkButton"
+                inline
+                style={{ color: likedByAuthedUser ? null : 'gray' }}
+                onClick={() => {
+                    likedByAuthedUser
+                        ? deleteLike(_id)
+                        : likePost(_id)
+                }}>
                 <span className="icon"><IcoLike /></span>
                 &nbsp;Like
             </Field>
-            <Field type="linkButton" inline style={{ marginLeft: '1rem' }}>
+            <Field
+                type="linkButton"
+                inline
+                style={{ color: 'gray', marginLeft: '1rem' }}>
                 <span className="icon"><IcoComments /></span>
                 &nbsp;Comment
             </Field>
@@ -66,4 +81,6 @@ const post = ({
     </div>
 }
 
-export default connect(null, { likePost })(post)
+export default connect(state => ({
+    authedUser: state.auth.user
+}), { likePost, deleteLike })(post)

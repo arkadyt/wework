@@ -92,8 +92,11 @@ router.delete('/:postId/like', passport.authenticate('jwt', { session: false }),
         { $pull: { likes: { user: mongoose.Types.ObjectId(req.user.id) } } },
         { new: true })
         .populate('user', ['name', 'avatar'])
-        .then(post => post ? res.json(post) :
-            res.json({ error: "Post was not found or wasn't liked by the user" }))
+        .then(post => post
+            ? res.json(post)
+            : res.status(400).json({
+                error: "Post was not found or wasn't liked by the user"
+            }))
         .catch(err => res.status(400).json(err))
 })
 
