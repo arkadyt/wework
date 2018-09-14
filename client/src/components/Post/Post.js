@@ -1,6 +1,7 @@
 import React from 'react'
 import './Post.css'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import Field from '../Field/Field'
 import placeholderImage from '../../images/avatar_placeholder.png'
@@ -22,10 +23,13 @@ const post = ({
     date,
     authedUser,
     likePost,
-    deleteLike
+    deleteLike,
+    history,
+    match,
+    flat
 }) => {
     const likedByAuthedUser = !!likes.find(item => item.user === authedUser.id)
-
+    const baseUrl = match.url || ''
     const dateFormatOptions = {
         year: 'numeric',
         month: 'long',
@@ -33,6 +37,11 @@ const post = ({
         hour: 'numeric',
         minute: 'numeric',
         second: 'numeric'
+    }
+    const flatStyle = {
+        borderRadius: 'unset',
+        boxShadow: 'unset',
+        marginTop: 'unset',    
     }
 
     /**
@@ -47,7 +56,7 @@ const post = ({
      * Buttons
      */
 
-    return <div className="Post-container">
+    return <div className="Post-container" style={flat ? flatStyle : null}>
         <div className="header">
             <img src={avatar || placeholderImage} alt='' />
             <p className="name">{name}</p>
@@ -73,7 +82,8 @@ const post = ({
             <Field
                 type="linkButton"
                 inline
-                style={{ color: 'gray', marginLeft: '1rem' }}>
+                style={{ color: 'gray', marginLeft: '1rem' }}
+                onClick={() => history.push(`${baseUrl}/view-comments/${_id}`)}>
                 <span className="icon"><IcoComments /></span>
                 &nbsp;Comment
             </Field>
@@ -81,6 +91,6 @@ const post = ({
     </div>
 }
 
-export default connect(state => ({
+export default withRouter(connect(state => ({
     authedUser: state.auth.user
-}), { likePost, deleteLike })(post)
+}), { likePost, deleteLike })(post))
