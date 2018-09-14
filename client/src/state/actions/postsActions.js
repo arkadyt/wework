@@ -22,3 +22,14 @@ export const fetchPosts = callback => dispatch => {
             console.log(err)
         })
 }
+
+export const likePost = (postId, callback) => dispatch => {
+    axios.post(`/api/posts/${postId}/like`)
+        .then(res => {
+            dispatch({ type: types.POST_LIKE, payload: res.data })
+            if (callback) callback()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
