@@ -57,6 +57,8 @@ display person's website at the place of 'See Activity' button, move buttons to 
 Add Follow button.
 - loading screen (reddit like style: page filled with text shapes)
 
+follow BEM naming model for all stylesheets across the app
+
 
 [SKIP] scroll only overlay: https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
 [SKIP] Should overlay be within other forms too?

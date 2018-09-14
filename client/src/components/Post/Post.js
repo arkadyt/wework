@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import {
     FaThumbsUp as IcoLike,
     FaComments as IcoComments,
-    FaEllipsisV as IcoMore 
+    FaEllipsisV as IcoMore
 } from 'react-icons/fa'
 
 import Field from '../Field/Field'
@@ -58,18 +58,18 @@ const post = ({
      * Buttons
      */
 
-    return <div className="Post-container" style={flat ? flatStyle : null}>
-        <div className="header">
-            <img src={avatar || placeholderImage} alt='' />
-            <button className="Post-button-more"><IcoMore /></button>
-            <p className="name">{name}</p>
-            <p className="date">{new Date(date).toLocaleDateString('en-US', dateFormatOptions)}</p>
+    return <div className="Post__container" style={flat ? flatStyle : null}>
+        <div className="Post__header">
+            <img className="Post__avatar" src={avatar || placeholderImage} alt='' />
+            <button className="Post__button--more"><IcoMore /></button>
+            <p className="Post__name">{name}</p>
+            <p className="Post__date">{new Date(date).toLocaleDateString('en-US', dateFormatOptions)}</p>
         </div>
-        <p className="body">{text}</p>
-        <div className="stats">
+        <p className="Post__body">{text}</p>
+        <div className="Post__stats">
             <span>{likes.length} likes &nbsp;•&nbsp; {comments.length} comments</span>
         </div>
-        <div className="buttons">
+        <div className="Post__buttons">
             <Field
                 type="linkButton"
                 inline
@@ -79,7 +79,7 @@ const post = ({
                         ? deleteLike(_id)
                         : likePost(_id)
                 }}>
-                <span className="icon"><IcoLike /></span>
+                <span className="Post__buttons-icon"><IcoLike /></span>
                 &nbsp;Like
             </Field>
             {nocomments
@@ -89,7 +89,7 @@ const post = ({
                     inline
                     style={{ color: 'gray', marginLeft: '1rem' }}
                     onClick={() => history.push(`${baseUrl}/view-comments/${_id}`)}>
-                    <span className="icon"><IcoComments /></span>
+                    <span className="Post__buttons-icon"><IcoComments /></span>
                     &nbsp;Comment
             </Field>}
         </div>
