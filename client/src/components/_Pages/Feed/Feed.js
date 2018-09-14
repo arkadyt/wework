@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import Post from '../../Post/Post'
 import Reply from '../../Reply/Reply'
-import { fetchPosts } from '../../../state/actions/postsActions'
+import { fetchPosts, addPost } from '../../../state/actions/postsActions'
 
 const noContentPost = {
     text: 'Subscribe to more people to make your feed more interesting!',
@@ -16,7 +16,8 @@ const noContentPost = {
 
 const feed = ({
     posts,
-    fetchPosts
+    fetchPosts,
+    addPost
 }) => {
     let content = 'Please wait, loading...'
 
@@ -25,7 +26,7 @@ const feed = ({
     } else {
         content = (
             <div className="Feed-container">
-                <Reply />
+                <Reply onSubmit={(data, callback) => addPost(data, callback)} />
                 <div className="feed">
                     {posts.map(item => (
                         <Post key={item._id} {...item} />)
@@ -40,4 +41,4 @@ const feed = ({
 
 export default connect(state => ({
     posts: state.posts
-}), { fetchPosts })(feed)
+}), { fetchPosts, addPost })(feed)
