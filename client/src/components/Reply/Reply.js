@@ -31,7 +31,8 @@ class Reply extends Component {
             }}>
             <Field
                 type="textarea"
-                rows={rows || "5"}
+                rows={rows || "3"}
+                style={{ fontSize: '1.3rem' }}
                 value={this.state.text}
                 onChange={e => this.setState({ text: e.target.value })}
                 error={errors.text} />
