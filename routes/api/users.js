@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const keys = require('../../config/keys')
 const passport = require('passport')
+const mongoose = require('mongoose')
 
 // @route   GET api/users/test
 // @desc    Tests users route.
@@ -59,7 +60,7 @@ router.post('/register', (req, res) => {
                                     name: user.name,
                                     avatar: user.avatar
                                 }
-        
+
                                 // Sign Token
                                 jwt.sign(
                                     payload,
@@ -93,7 +94,7 @@ router.post('/login', (req, res) => {
     User.findOne({ email: req.body.email })
         .then(user => {
             if (!user) return res.status(404).json({ email: 'User not found' })
-            
+
             // Check password
             bcrypt.compare(req.body.password, user.password)
                 .then(isMatch => {
@@ -132,5 +133,33 @@ router.get('/current',
     passport.authenticate('jwt', { session: false }), (req, res) => {
         res.json({ ...req.user._doc, password: 'null' })
     })
+
+
+// @route   POST api/users/:userId/follow
+// @desc    Follow a user by :userId
+// @access  Protected
+router.post('/:userId/follow',
+    passport.authenticate('jwt', { session: false }), (req, res) => {
+        User.findOneAndUpdate(
+            { _id: req.params.userId, 'followed.user': { $ne: req.user.id } },
+            { $push: { followed: { user: mongoose.Types.ObjectId(req.user.id) } } },
+            { new: true })
+            .then(user =>
+                user
+                    ? User.findOneAndUpdate(
+                        { _id: req.user.id, 'following.user': { $ne: req.params.userId } },
+                        { $push: { following: { user: mongoose.Types.ObjectId(req.params.userId) } } },
+                        { new: true })
+                        .then(user =>
+                            user
+                                ? res.json(user)
+                                : res.status(400).json({ error: "Already following or user does not exist" }))
+                        .catch(err => res.status(400).json(err))
+                    : res.status(400).json({
+                        error: "Already following or user does not exist"
+                    }))
+            .catch(err => res.status(400).json(err))
+    })
+
 
 module.exports = router
