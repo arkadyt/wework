@@ -1,45 +1,92 @@
 @import 'variables.scss';
 .Post__container {
+    position: relative;
     border-radius: .3rem;
     overflow: hidden;
     box-shadow: $box_shadow_main;
     margin-top: 1rem;
-    .Post__header {
-        .Post__avatar {
-            float: left;
-            width: 3rem;
-            border-radius: 3rem;
-            margin-right: 1rem;
-        }
-        .Post__button--more {
-            float: right;
-            background: none;
-            border: none;
-            font-size: 1rem;
-            color: rgba(0, 0, 0, 0.5);
-            padding: .5rem;
-            cursor: pointer;
-            &:hover {
-                color: rgba(0, 0, 0, 0.8)
-            }
-        }
-        padding: 1rem 1rem 0 1rem;
-        .Post__name {
-            font-weight: bolder;
-            font-size: 1.2rem;
-        }
+}
+
+.Post__header {
+    padding: 1rem 1rem 0 1rem;
+}
+
+.Post__avatar {
+    float: left;
+    width: 3rem;
+    border-radius: 3rem;
+    margin-right: 1rem;
+}
+
+.Post__name {
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+.Post__body {
+    padding: 1rem;
+    font-size: 1.3rem;
+}
+
+.Post__stats {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.Post__buttons {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.Post__buttons-icon {
+    font-size: .8rem;
+}
+
+.Post__button--menu {
+    float: right;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.5);
+    padding: .5rem;
+    cursor: pointer;
+    &:hover {
+        color: rgba(0, 0, 0, 0.8)
     }
-    .Post__body {
-        padding: 1rem;
-        font-size: 1.3rem;
+    &:hover .Post__menu {
+        position: relative;
     }
-    .Post__stats {
-        padding: 0 1rem 1rem 1rem;
+    svg {
+        pointer-events: none;
     }
-    .Post__buttons {
-        .Post__buttons-icon {
-            font-size: .8rem;
-        }
-        padding: 0 1rem 1rem 1rem;
+}
+
+.Post__menu {
+    opacity: 0;
+    pointer-events: none;
+    transition: .1s all ease-out;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background-color: white;
+    border-radius: .3rem;
+    overflow: hidden;
+    box-shadow: $box_shadow_main;
+}
+
+.Post__menu--shown {
+    opacity: 1;
+    pointer-events: unset;
+}
+
+.Post__menu-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    padding: .5rem 1rem;
+    &:hover {
+        background-color: darken(white, 10%);
     }
 }
