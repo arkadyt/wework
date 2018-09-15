@@ -28,6 +28,7 @@ class Post extends Component {
         const {
             _id,
             user: {
+                _id: authorId,
                 name,
                 avatar
             },
@@ -44,7 +45,10 @@ class Post extends Component {
             flat,
             nocomments
         } = this.props
+        // likes.user field does not get populated 
         const likedByAuthedUser = !!likes.find(item => item.user === authedUser.id)
+
+        const belongsToAuthedUser = authorId === authedUser.id
         const baseUrl = match.url || ''
         const dateFormatOptions = {
             year: 'numeric',
@@ -67,21 +71,15 @@ class Post extends Component {
                     ? "Post__menu--shown"
                     : ""
             ].join(' ')}>
-                <button
-                    className="Post__menu-item"
-                    onClick={() => deletePost(_id)}>
-                    Delete
-            </button>
-                <button
-                    className="Post__menu-item"
-                    onClick={() => alert('deleted')}>
-                    Unfollow user
-            </button>
-                <button
-                    className="Post__menu-item"
-                    onClick={() => alert('deleted')}>
-                    Report
-            </button>
+                {belongsToAuthedUser
+                    ? <button
+                        className="Post__menu-item"
+                        onClick={() => deletePost(_id)}>
+                        Delete</button>
+                    : <button
+                        className="Post__menu-item"
+                        onClick={() => alert('deleted')}>
+                        Unfollow user</button>}
             </div>
             <div className="Post__header">
                 <img className="Post__avatar" src={avatar || placeholderImage} alt='' />
