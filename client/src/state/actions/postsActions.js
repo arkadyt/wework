@@ -12,6 +12,17 @@ export const addPost = (post, callback) => dispatch => {
         })
 }
 
+export const deletePost = (postId, callback) => dispatch => {
+    axios.delete(`/api/posts/${postId}`)
+        .then(res => {
+            dispatch({ type: types.DELETE_POST, payload: res.data })
+            if (callback) callback()
+        })
+        .catch(err => {
+            dispatch({ type: types.POST_ERRORS, payload: err.response.data })
+        })
+}
+
 export const fetchPosts = callback => dispatch => {
     axios.get('/api/posts')
         .then(res => {
