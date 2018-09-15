@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 
 import Post from '../Post/Post'
 import Reply from '../Reply/Reply'
+import Field from '../Field/Field'
 import Overlay from '../Overlay/Overlay'
-import { addComment } from '../../state/actions/postsActions'
+import { addComment, deleteComment } from '../../state/actions/postsActions'
 
 const dateFormatOptions = {
     year: 'numeric',
@@ -16,19 +17,39 @@ const dateFormatOptions = {
     second: 'numeric'
 }
 
-const CommentNode = ({
+const CommentNode = connect(state => ({
+    authedUserId: state.auth.user.id
+}), { deleteComment })(({
+    _id,
     text,
     date,
     user: {
+        _id: authorId,
         name
-    }
-}) => (
+    },
+    postId,
+    authedUserId,
+    deleteComment
+}) => {
+    const belongsToAuthedUser = authorId === authedUserId
+    return (
         <div className="CommentsView-CommentNode-container">
             <p><b>{name}</b> said at {new Date(date)
                 .toLocaleDateString('en-US', dateFormatOptions)}:</p>
             <p className="CommentsView-CommentNode-container-Node-body">{text}</p>
+            {belongsToAuthedUser
+                ? <div>
+                    <Field
+                        type="linkButton"
+                        label="Delete"
+                        style={{ color: 'gray' }}
+                        inline
+                        onClick={() => deleteComment(postId, _id)} />
+                </div>
+                : null}
         </div>
     )
+})
 
 class CommentsView extends Component {
     handleDismiss = () => {
@@ -66,7 +87,7 @@ class CommentsView extends Component {
                         <div className="CommentsView-comments">
                             <h2>Comments:</h2><br />
                             {comments.length > 0
-                                ? comments.map(item => <CommentNode {...item} />)
+                                ? comments.map(item => <CommentNode postId={_id} {...item} />)
                                 : <p>Be the first one to leave a comment!</p>}
                         </div>
                     </div>
