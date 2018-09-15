@@ -10,7 +10,7 @@ import {
 
 import Field from '../Field/Field'
 import placeholderImage from '../../images/avatar_placeholder.png'
-import { likePost, deleteLike } from '../../state/actions/postsActions'
+import { likePost, deleteLike, deletePost } from '../../state/actions/postsActions'
 
 class Post extends Component {
     state = {
@@ -38,6 +38,7 @@ class Post extends Component {
             authedUser,
             likePost,
             deleteLike,
+            deletePost,
             history,
             match,
             flat,
@@ -68,7 +69,7 @@ class Post extends Component {
             ].join(' ')}>
                 <button
                     className="Post__menu-item"
-                    onClick={() => alert('deleted')}>
+                    onClick={() => deletePost(_id)}>
                     Delete
             </button>
                 <button
@@ -128,4 +129,4 @@ class Post extends Component {
 
 export default withRouter(connect(state => ({
     authedUser: state.auth.user
-}), { likePost, deleteLike })(Post))
+}), { likePost, deleteLike, deletePost })(Post))
