@@ -12,6 +12,8 @@ export default function (state = initialState, action) {
                     ? action.payload
                     : item
             })
+        case types.DELETE_POST:
+            return state.filter(item => item._id !== action.payload._id)
         default:
             return state
     }

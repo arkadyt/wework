@@ -63,8 +63,10 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 // @access  Protected
 router.delete('/:postId', passport.authenticate('jwt', { session: false }), (req, res) => {
     Post.findOneAndRemove({ user: req.user.id, _id: req.params.postId })
-        .then(post => post ? res.json(post) :
-            res.json({ error: "Post was not found or ownership was not proven" }))
+        .then(post =>
+            post
+                ? res.json(post)
+                : res.json({ error: "Post was not found or ownership was not proven" }))
         .catch(err => res.status(400).json(err))
 })
 
@@ -137,7 +139,8 @@ router.delete('/:postId/comment/:commentId', passport.authenticate('jwt', { sess
         .populate('user', ['name', 'avatar'])
         .populate('comments.user', ['name', 'avatar'])
         .then(post => {
-            post ? res.json(post)
+            post
+                ? res.json(post)
                 : res.json({ error: "Comment was not found or ownership was not proven" })
         })
         .catch(err => res.status(400).json(err))
