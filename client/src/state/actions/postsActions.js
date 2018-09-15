@@ -60,3 +60,12 @@ export const addComment = (postId, data, callback) => dispatch => {
             dispatch({ type: types.POST_FORM_ERRORS, payload: err.response.data })
         })
 }
+
+export const deleteComment = (postId, commentId, callback) => dispatch => {
+    axios.delete(`/api/posts/${postId}/comment/${commentId}`)
+        .then(res => {
+            dispatch({ type: types.UPDATE_POST, payload: res.data })
+            if (callback) callback()
+        })
+        .catch(err => console.log(err))
+}
