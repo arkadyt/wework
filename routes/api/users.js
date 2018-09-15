@@ -126,9 +126,9 @@ router.post('/login', (req, res) => {
         })
 })
 
-// @route   POST api/users/current
+// @route   GET api/users/current
 // @desc    Return current user
-// @access  Public
+// @access  Protected
 router.get('/current',
     passport.authenticate('jwt', { session: false }), (req, res) => {
         res.json({ ...req.user._doc, password: 'null' })
@@ -142,10 +142,10 @@ router.get('/:userId', (req, res) => {
     User.findOne({ _id: req.params.userId })
         .then(user =>
             user
-            ? res.json(user)
-            : res.status(400).json({
-                error: "User not found"
-            }))
+                ? res.json(user)
+                : res.status(400).json({
+                    error: "User not found"
+                }))
 })
 
 
@@ -158,19 +158,48 @@ router.post('/:userId/follow',
             { _id: req.params.userId, 'followed.user': { $ne: req.user.id } },
             { $push: { followed: { user: mongoose.Types.ObjectId(req.user.id) } } },
             { new: true })
-            .then(user =>
+            .then(user => 
                 user
                     ? User.findOneAndUpdate(
                         { _id: req.user.id, 'following.user': { $ne: req.params.userId } },
                         { $push: { following: { user: mongoose.Types.ObjectId(req.params.userId) } } },
                         { new: true })
-                        .then(user =>
+                        .then(user => 
                             user
                                 ? res.json(user)
                                 : res.status(400).json({ error: "Already following or user does not exist" }))
                         .catch(err => res.status(400).json(err))
                     : res.status(400).json({
                         error: "Already following or user does not exist"
+                    }))
+            .catch(err => res.status(400).json(err))
+    })
+
+
+// @route   DELETE api/users/:userId/follow
+// @desc    Unfollow a user by id
+// @access  Protected
+router.delete('/:userId/follow',
+    passport.authenticate('jwt', { session: false }), (req, res) => {
+        User.findOneAndUpdate(
+            { _id: req.params.userId, 'followed.user': req.user.id },
+            { $pull: { followed: { user: mongoose.Types.ObjectId(req.user.id) } } },
+            { new: true })
+            .then(user =>
+                user
+                    ? User.findOneAndUpdate(
+                        { _id: req.user.id, 'following.user': req.params.userId },
+                        { $pull: { following: { user: mongoose.Types.ObjectId(req.params.userId) } } },
+                        { new: true })
+                        .then(user =>
+                            user
+                                ? res.json(user)
+                                : res.status(400).json({
+                                    error: "Not following or user does not exist"
+                                }))
+                        .catch(err => res.status(400).json(err))
+                    : res.status(400).json({
+                        error: "Not following or user does not exist"
                     }))
             .catch(err => res.status(400).json(err))
     })
