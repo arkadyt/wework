@@ -135,6 +135,20 @@ router.get('/current',
     })
 
 
+// @route   GET api/users/:userId
+// @desc    Get user by id
+// @access  Public
+router.get('/:userId', (req, res) => {
+    User.findOne({ _id: req.params.userId })
+        .then(user =>
+            user
+            ? res.json(user)
+            : res.status(400).json({
+                error: "User not found"
+            }))
+})
+
+
 // @route   POST api/users/:userId/follow
 // @desc    Follow a user by :userId
 // @access  Protected
