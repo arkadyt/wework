@@ -187,8 +187,8 @@ router.get('/:userId/followers', (req, res) => {
 router.post('/:userId/follow',
     passport.authenticate('jwt', { session: false }), (req, res) => {
         User.findOneAndUpdate(
-            { _id: req.params.userId, 'followed.user': { $ne: req.user.id } },
-            { $push: { followed: { user: mongoose.Types.ObjectId(req.user.id) } } },
+            { _id: req.params.userId, 'followers.user': { $ne: req.user.id } },
+            { $push: { followers: { user: mongoose.Types.ObjectId(req.user.id) } } },
             { new: true })
             .then(user => 
                 user
@@ -214,8 +214,8 @@ router.post('/:userId/follow',
 router.delete('/:userId/follow',
     passport.authenticate('jwt', { session: false }), (req, res) => {
         User.findOneAndUpdate(
-            { _id: req.params.userId, 'followed.user': req.user.id },
-            { $pull: { followed: { user: mongoose.Types.ObjectId(req.user.id) } } },
+            { _id: req.params.userId, 'followers.user': req.user.id },
+            { $pull: { followers: { user: mongoose.Types.ObjectId(req.user.id) } } },
             { new: true })
             .then(user =>
                 user
