@@ -45,8 +45,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    errors: state.err,
-    auth: state.user
+    errors: state.err
 })
 
 export default withRouter(connect(mapStateToProps, { loginUser })(Login))

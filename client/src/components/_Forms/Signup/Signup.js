@@ -14,7 +14,7 @@ class Signup extends React.Component {
     }
 
     render() {
-        if (this.props.auth.user.token) {
+        if (this.props.authedUser.isAuthenticated) {
             return <Redirect to='/profile' />
         }
 
@@ -66,7 +66,7 @@ class Signup extends React.Component {
 
 const mapStateToProps = state => ({
     errors: state.err,
-    auth: state.user
+    authedUser: state.user
 })
 
 export default connect(mapStateToProps, { registerUser })(Signup)

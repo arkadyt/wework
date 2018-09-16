@@ -16,7 +16,7 @@ class Navigation extends React.Component {
     }
 
     render() {
-        const profileButton = this.props.auth.isAuthenticated ?
+        const profileButton = this.props.authedUser.isAuthenticated ?
             <a href="#" onClick={this.toggleDropdown}>
                 <span>Account</span>
             </a> :
@@ -24,7 +24,7 @@ class Navigation extends React.Component {
                 <span>Log In / Sign Up</span>
             </Link>
 
-        const protectedLinks = this.props.auth.isAuthenticated ?
+        const protectedLinks = this.props.authedUser.isAuthenticated ?
             <React.Fragment>
                 <Link to="/feed"><span>Feed</span></Link>
                 <Link to="/discover"><span>Discover</span></Link>
@@ -58,7 +58,7 @@ class Navigation extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    auth: state.user
+    authedUser: state.user
 })
 
 export default withRouter(connect(mapStateToProps, { logoutUser })(Navigation))

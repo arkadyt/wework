@@ -3,8 +3,7 @@ import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 
 const initialState = {
-    isAuthenticated: false,
-    user: {}
+    isAuthenticated: false
 }
 
 export default function (state = initialState, action) {
@@ -14,7 +13,7 @@ export default function (state = initialState, action) {
             axios.defaults.headers.common['Authorization'] = action.payload.token
             return {
                 isAuthenticated: true,
-                user: jwtDecode(action.payload.token)
+                ...jwtDecode(action.payload.token)
             }
         case types.LOGOUT_USER:
             localStorage.removeItem('jwt')
