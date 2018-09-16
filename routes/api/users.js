@@ -156,9 +156,7 @@ router.get('/:userId/following', (req, res) => {
     User.findOne({ _id: req.params.userId })
         .then(user =>
             user
-            ? res.json({
-                following: user.following
-            })
+            ? res.json(user.following)
             : res.status(400).json({
                 error: "User not found"
             }))
@@ -172,9 +170,7 @@ router.get('/:userId/followers', (req, res) => {
     User.findOne({ _id: req.params.userId })
         .then(user =>
             user
-            ? res.json({
-                followers: user.followers
-            })
+            ? res.json(user.followers)
             : res.status(400).json({
                 error: "User not found"
             }))
@@ -198,7 +194,7 @@ router.post('/:userId/follow',
                         { new: true })
                         .then(user => 
                             user
-                                ? res.json(user)
+                                ? res.json(user.following)
                                 : res.status(400).json({ error: "Already following or user does not exist" }))
                         .catch(err => res.status(400).json(err))
                     : res.status(400).json({
@@ -225,7 +221,7 @@ router.delete('/:userId/follow',
                         { new: true })
                         .then(user =>
                             user
-                                ? res.json(user)
+                                ? res.json(user.following)
                                 : res.status(400).json({
                                     error: "Not following or user does not exist"
                                 }))
