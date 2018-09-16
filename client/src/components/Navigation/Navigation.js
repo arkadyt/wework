@@ -1,7 +1,7 @@
 import React from 'react'
 import './Navigation.css'
 import { connect } from 'react-redux'
-import { logoutUser } from '../../state/actions/authActions'
+import { logoutUser } from '../../state/actions/userActions'
 import { Link, withRouter } from 'react-router-dom'
 
 class Navigation extends React.Component {
@@ -58,7 +58,7 @@ class Navigation extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.user
 })
 
 export default withRouter(connect(mapStateToProps, { logoutUser })(Navigation))

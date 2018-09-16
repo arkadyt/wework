@@ -333,5 +333,5 @@ class ProfileView extends React.Component {
 }
 
 export default connect(state => ({
-    authedUserId: state.auth.user.id
+    authedUserId: state.user.user.id
 }), { deleteEducation, deleteExperience })(ProfileView)

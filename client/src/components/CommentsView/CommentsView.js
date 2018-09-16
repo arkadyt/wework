@@ -18,7 +18,7 @@ const dateFormatOptions = {
 }
 
 const CommentNode = connect(state => ({
-    authedUserId: state.auth.user.id
+    authedUserId: state.user.user.id
 }), { deleteComment })(({
     _id,
     text,

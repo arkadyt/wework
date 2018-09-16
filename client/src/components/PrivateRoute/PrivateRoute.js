@@ -12,7 +12,7 @@ function PrivateRoute({ component: Component, auth: { isAuthenticated }, ...rest
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.user
 })
 
 export default withRouter(connect(mapStateToProps)(PrivateRoute))

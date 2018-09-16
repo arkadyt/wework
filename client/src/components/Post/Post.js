@@ -126,5 +126,5 @@ class Post extends Component {
 }
 
 export default withRouter(connect(state => ({
-    authedUser: state.auth.user
+    authedUser: state.user.user
 }), { likePost, deleteLike, deletePost })(Post))

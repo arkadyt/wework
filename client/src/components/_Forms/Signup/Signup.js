@@ -1,7 +1,7 @@
 import React from 'react'
 import Field from '../../Field/Field'
 import { Link, Redirect } from 'react-router-dom'
-import { registerUser } from '../../../state/actions/authActions'
+import { registerUser } from '../../../state/actions/userActions'
 import { connect } from 'react-redux'
 import './Signup.css'
 
@@ -66,7 +66,7 @@ class Signup extends React.Component {
 
 const mapStateToProps = state => ({
     errors: state.err,
-    auth: state.auth
+    auth: state.user
 })
 
 export default connect(mapStateToProps, { registerUser })(Signup)

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Field from '../../Field/Field'
 import { Link, withRouter } from 'react-router-dom'
 import './Login.css'
-import { loginUser } from '../../../state/actions/authActions'
+import { loginUser } from '../../../state/actions/userActions'
 // import * as types from '../../../state/actions/types'
 
 class Login extends React.Component {
@@ -46,7 +46,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => ({
     errors: state.err,
-    auth: state.auth
+    auth: state.user
 })
 
 export default withRouter(connect(mapStateToProps, { loginUser })(Login))
