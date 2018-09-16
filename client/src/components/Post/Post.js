@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Post.css'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import {
     FaThumbsUp as IcoLike,
     FaComments as IcoComments,
@@ -45,7 +45,7 @@ class Post extends Component {
             flat,
             nocomments
         } = this.props
-        // likes.user field does not get populated 
+        // likes.user field does not get populated and directly contains the _id
         const likedByAuthedUser = !!likes.find(item => item.user === authedUser.id)
 
         const belongsToAuthedUser = authorId === authedUser.id
@@ -65,12 +65,10 @@ class Post extends Component {
         }
 
         return <div className="Post__container" style={flat ? flatStyle : null}>
-            <div className={[
-                "Post__menu",
+            <div className={["Post__menu",
                 this.state.showMenu
                     ? "Post__menu--shown"
-                    : ""
-            ].join(' ')}>
+                    : ""].join(' ')}>
                 {belongsToAuthedUser
                     ? <button
                         className="Post__menu-item"
@@ -90,7 +88,11 @@ class Post extends Component {
                     )}>
                     <IcoMore />
                 </button>
-                <p className="Post__name">{name}</p>
+                <p className="Post__name">
+                    <Link to={`/profile/${authorId}`}>
+                        {name}
+                    </Link>
+                </p>
                 <p className="Post__date">{new Date(date).toLocaleDateString('en-US', dateFormatOptions)}</p>
             </div>
             <p className="Post__body">{text}</p>
