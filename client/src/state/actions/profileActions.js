@@ -83,3 +83,12 @@ export const deleteProfile = callback => dispatch => {
             dispatch({ type: types.POST_ERRORS, payload: err.response.data })
         })
 }
+
+export const fetchSubscriptions = (userId, callback) => dispatch => {
+    axios.get(`/api/users/${userId}/following`)
+        .then(res => {
+            dispatch({ type: types.POST_USERS_SUBSCRIPTIONS, payload: res.data })
+            if (callback) callback()
+        })
+        .catch(err => console.log(err))
+}
