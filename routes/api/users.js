@@ -136,7 +136,7 @@ router.get('/current',
 
 
 // @route   GET api/users/:userId
-// @desc    Get user by id
+// @desc    Get user by id (TESTING PURPOSES)
 // @access  Public
 router.get('/:userId', (req, res) => {
     User.findOne({ _id: req.params.userId })
@@ -146,6 +146,38 @@ router.get('/:userId', (req, res) => {
                 : res.status(400).json({
                     error: "User not found"
                 }))
+})
+
+
+// @route   GET api/users/:userId/following
+// @desc    Get user's subscription list
+// @access  Public
+router.get('/:userId/following', (req, res) => {
+    User.findOne({ _id: req.params.userId })
+        .then(user =>
+            user
+            ? res.json({
+                following: user.following
+            })
+            : res.status(400).json({
+                error: "User not found"
+            }))
+})
+
+
+// @route   GET api/users/:userId/followers
+// @desc    Get user's subscription list
+// @access  Public
+router.get('/:userId/followers', (req, res) => {
+    User.findOne({ _id: req.params.userId })
+        .then(user =>
+            user
+            ? res.json({
+                followers: user.followers
+            })
+            : res.status(400).json({
+                error: "User not found"
+            }))
 })
 
 
