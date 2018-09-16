@@ -72,7 +72,16 @@ export const fetchFollowers = (userId, callback) => dispatch => {
 export const followAPerson = (userId, callback) => dispatch => {
     axios.post(`/api/users/${userId}/follow`)
         .then(res => {
-            dispatch({ type: types.POST_USERS_FOLLOWERS, payload: res.data })
+            dispatch({ type: types.POST_USERS_SUBSCRIPTIONS, payload: res.data })
+            if (callback) callback()
+        })
+        .catch(err => console.log(err))
+}
+
+export const unfollowAPerson = (userId, callback) => dispatch => {
+    axios.delete(`/api/users/${userId}/follow`)
+        .then(res => {
+            dispatch({ type: types.POST_USERS_SUBSCRIPTIONS, payload: res.data })
             if (callback) callback()
         })
         .catch(err => console.log(err))
