@@ -3,8 +3,11 @@ import { connect } from 'react-redux'
 import Field from '../../Field/Field'
 import { Link, withRouter } from 'react-router-dom'
 import './Login.css'
-import { loginUser } from '../../../state/actions/userActions'
-// import * as types from '../../../state/actions/types'
+import {
+    loginUser, 
+    fetchFollowers, 
+    fetchSubscriptions
+} from '../../../state/actions/userActions'
 
 class Login extends React.Component {
     state = {
@@ -17,7 +20,9 @@ class Login extends React.Component {
         return <div className="Login-container">
             <form onSubmit={e => {
                 e.preventDefault()
-                this.props.loginUser(this.state, () => {
+                this.props.loginUser(this.state, userId => {
+                    this.props.fetchSubscriptions(userId)
+                    this.props.fetchFollowers(userId)        
                     this.props.history.push('/feed')
                 })
             }}>
@@ -44,8 +49,6 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    errors: state.err
-})
-
-export default withRouter(connect(mapStateToProps, { loginUser })(Login))
+export default withRouter(connect(state => ({
+    errors: state.err.formErrors
+}), { loginUser, fetchFollowers, fetchSubscriptions })(Login))
