@@ -13,7 +13,7 @@ export const loginUser = (credentials, callback) => dispatch => {
             const decodedToken = jwtDecode(res.data.token)
             dispatch({
                 type: types.LOGIN_USER,
-                payload: { 
+                payload: {
                     token: res.data.token,
                     decodedToken
                 }
@@ -38,7 +38,7 @@ export const registerUser = (formData, callback) => dispatch => {
             const decodedToken = jwtDecode(res.data.token)
             dispatch({
                 type: types.LOGIN_USER,
-                payload: { 
+                payload: {
                     token: res.data.token,
                     decodedToken
                 }
@@ -62,6 +62,15 @@ export const fetchSubscriptions = (userId, callback) => dispatch => {
 
 export const fetchFollowers = (userId, callback) => dispatch => {
     axios.get(`/api/users/${userId}/followers`)
+        .then(res => {
+            dispatch({ type: types.POST_USERS_FOLLOWERS, payload: res.data })
+            if (callback) callback()
+        })
+        .catch(err => console.log(err))
+}
+
+export const followAPerson = (userId, callback) => dispatch => {
+    axios.post(`/api/users/${userId}/follow`)
         .then(res => {
             dispatch({ type: types.POST_USERS_FOLLOWERS, payload: res.data })
             if (callback) callback()
