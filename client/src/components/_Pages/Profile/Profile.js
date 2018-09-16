@@ -9,7 +9,7 @@ import AddEdu from '../../_Forms/AddEdu/AddEdu'
 import AddExp from '../../_Forms/AddExp/AddExp'
 import Modal from '../../Modal/Modal'
 import { fetchUsersProfile, deleteProfile } from '../../../state/actions/profileActions'
-import { fetchAProfile } from '../../../state/actions/viewedProfileActions'
+import { fetchAProfile, forgetNotFoundError } from '../../../state/actions/viewedProfileActions'
 
 class Profile extends React.Component {
     render() {
@@ -28,13 +28,14 @@ class Profile extends React.Component {
 
         const baseUrl = match.url || ''
 
-        let content = <div>
-            <h2>Please wait, loading...</h2>
-        </div>
+        let content = <h2>Please wait, loading...</h2>
+
         if (baseUrl.includes('/id/')) {
-            if (!viewedProfile) {
-                fetchAProfile(match.params.userId)
-            } else {
+            if (noProfile) {
+                content = (
+                    <h1>User does not appear to have a profile.</h1>
+                )
+            } else if (viewedProfile) {
                 content = (
                     <div className="Profile-content">
                         <Route render={props => (
@@ -42,6 +43,8 @@ class Profile extends React.Component {
                         )} />
                     </div>
                 )
+            } else {
+                fetchAProfile(match.params.userId)
             }
         } else {
             if (noProfile) {
@@ -94,10 +97,15 @@ class Profile extends React.Component {
             </div>
         )
     }
+
+    componentWillUnmount() {
+        const { forgetNotFoundError } = this.props
+        forgetNotFoundError()
+    }
 }
 
 export default connect(state => ({
     profile: state.profile,
     errors: state.err,
     viewedProfile: state.viewedProfile
-}), { fetchUsersProfile, deleteProfile, fetchAProfile })(Profile)
+}), { fetchUsersProfile, deleteProfile, fetchAProfile, forgetNotFoundError })(Profile)
