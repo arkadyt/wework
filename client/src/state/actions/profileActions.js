@@ -92,3 +92,12 @@ export const fetchSubscriptions = (userId, callback) => dispatch => {
         })
         .catch(err => console.log(err))
 }
+
+export const fetchFollowers = (userId, callback) => dispatch => {
+    axios.get(`/api/users/${userId}/followers`)
+        .then(res => {
+            dispatch({ type: types.POST_USERS_FOLLOWERS, payload: res.data })
+            if (callback) callback()
+        })
+        .catch(err => console.log(err))
+}
