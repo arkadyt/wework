@@ -83,6 +83,8 @@ class ProfileView extends Component {
             match,
             deleteEducation,
             deleteExperience,
+            followAPerson,
+            unfollowAPerson,
             profile: {
                 user: { _id, name },
                 image,
@@ -108,6 +110,8 @@ class ProfileView extends Component {
         const profileBelongsToAuthedUser = authedUserId === _id
 
         const isFollowingProfileOwner = !!following.find(item => item.user === _id)
+
+        console.log(isFollowingProfileOwner)
 
         return (
             <div className="ProfileView-container">
@@ -152,19 +156,6 @@ class ProfileView extends Component {
                                 ? (
                                     <Fragment>
                                         <span style={{ fontSize: '.8rem' }}>
-                                            <IcoFollow />
-                                        </span>
-                                        <Field
-                                            type="linkButton"
-                                            label="Follow"
-                                            containerStyle={{ margin: '0 0 0 .3rem' }}
-                                            inline
-                                            style={{ color: 'white' }}
-                                            onClick={() => followAPerson(_id)} />
-                                    </Fragment>
-                                ) : (
-                                    <Fragment>
-                                        <span style={{ fontSize: '.8rem' }}>
                                             <IcoUnfollow />
                                         </span>
                                         <Field
@@ -174,6 +165,19 @@ class ProfileView extends Component {
                                             inline
                                             style={{ color: 'white' }}
                                             onClick={() => unfollowAPerson(_id)} />
+                                    </Fragment>
+                                ) : (
+                                    <Fragment>
+                                        <span style={{ fontSize: '.8rem' }}>
+                                            <IcoFollow />
+                                        </span>
+                                        <Field
+                                            type="linkButton"
+                                            label="Follow"
+                                            containerStyle={{ margin: '0 0 0 .3rem' }}
+                                            inline
+                                            style={{ color: 'white' }}
+                                            onClick={() => followAPerson(_id)} />
                                     </Fragment>
                                 )}
                     </div>
