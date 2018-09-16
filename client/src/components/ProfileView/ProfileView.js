@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
 import './ProfileView.css'
 import placeholderImage from '../../images/avatar_placeholder.png'
 import Field from '../Field/Field'
 import { connect } from 'react-redux'
 import { deleteExperience, deleteEducation } from '../../state/actions/profileActions'
+import { followAPerson, unfollowAPerson } from '../../state/actions/userActions'
 import {
     FaFacebook as IcoFacebook,
     FaInstagram as IcoInstagram,
@@ -13,8 +14,10 @@ import {
     FaLinkedin as IcoLinkedin,
     FaMapMarkerAlt as IcoLocation,
     FaPencilAlt as IcoEdit,
-    FaRss as IcoActivity,
-    FaComment as IcoMessage
+    // FaRss as IcoActivity,
+    // FaComment as IcoMessage,
+    FaUserCheck as IcoFollow,
+    FaUserMinus as IcoUnfollow
 } from 'react-icons/fa'
 
 /**
@@ -50,7 +53,7 @@ const NodeHeader = ({
     )
 }
 
-class ProfileView extends React.Component {
+class ProfileView extends Component {
     defaultDeletingState = {
         deletingExpEntries: false,
         deletingEduEntries: false
@@ -72,7 +75,10 @@ class ProfileView extends React.Component {
 
     render() {
         const {
-            authedUserId,
+            authedUser: {
+                id: authedUserId,
+                following
+            },
             history,
             match,
             deleteEducation,
@@ -101,6 +107,8 @@ class ProfileView extends React.Component {
 
         const profileBelongsToAuthedUser = authedUserId === _id
 
+        const isFollowingProfileOwner = !!following.find(item => item.user === _id)
+
         return (
             <div className="ProfileView-container">
                 <section className="intro">
@@ -126,41 +134,48 @@ class ProfileView extends React.Component {
                             {instagram ? <a href={instagram}><IcoInstagram /></a> : null}
                         </div>
                         {profileBelongsToAuthedUser
-                            ? <div>
-                                <span style={{ fontSize: '.8rem' }}><IcoEdit /></span>
-                                <Field
-                                    type="linkButton"
-                                    label="Edit Profile"
-                                    containerStyle={{ margin: '0 0 0 .3rem' }}
-                                    inline
-                                    style={{ color: 'white' }}
-                                    onClick={() => {
-                                        this.quitEntryDeletingMode()
-                                        history.push(`${baseUrl}/update-profile`)
-                                    }} />
-                            </div>
-                            : <div>
-                                <span style={{ fontSize: '.8rem' }}>
-                                    <IcoActivity />
-                                </span>
-                                <Field
-                                    type="linkButton"
-                                    label="See Activity"
-                                    containerStyle={{ margin: '0 0 0 .3rem' }}
-                                    inline
-                                    style={{ color: 'white' }}
-                                    onClick={() => alert('To be completed later.')} />
-                                <span style={{ fontSize: '.8rem', marginLeft: '.8rem' }}>
-                                    <IcoMessage />
-                                </span>
-                                <Field
-                                    type="linkButton"
-                                    label="Send a Message"
-                                    containerStyle={{ margin: '0 0 0 .3rem' }}
-                                    inline
-                                    style={{ color: 'white' }}
-                                    onClick={() => alert('To be completed later.')} />
-                            </div>}
+                            ? (
+                                <Fragment>
+                                    <span style={{ fontSize: '.8rem' }}><IcoEdit /></span>
+                                    <Field
+                                        type="linkButton"
+                                        label="Edit Profile"
+                                        containerStyle={{ margin: '0 0 0 .3rem' }}
+                                        inline
+                                        style={{ color: 'white' }}
+                                        onClick={() => {
+                                            this.quitEntryDeletingMode()
+                                            history.push(`${baseUrl}/update-profile`)
+                                        }} />
+                                </Fragment>
+                            ) : isFollowingProfileOwner
+                                ? (
+                                    <Fragment>
+                                        <span style={{ fontSize: '.8rem' }}>
+                                            <IcoFollow />
+                                        </span>
+                                        <Field
+                                            type="linkButton"
+                                            label="Follow"
+                                            containerStyle={{ margin: '0 0 0 .3rem' }}
+                                            inline
+                                            style={{ color: 'white' }}
+                                            onClick={() => followAPerson(_id)} />
+                                    </Fragment>
+                                ) : (
+                                    <Fragment>
+                                        <span style={{ fontSize: '.8rem' }}>
+                                            <IcoUnfollow />
+                                        </span>
+                                        <Field
+                                            type="linkButton"
+                                            label="Unfollow"
+                                            containerStyle={{ margin: '0 0 0 .3rem' }}
+                                            inline
+                                            style={{ color: 'white' }}
+                                            onClick={() => unfollowAPerson(_id)} />
+                                    </Fragment>
+                                )}
                     </div>
                 </section>
                 {bio
@@ -333,5 +348,5 @@ class ProfileView extends React.Component {
 }
 
 export default connect(state => ({
-    authedUserId: state.user.id
-}), { deleteEducation, deleteExperience })(ProfileView)
+    authedUser: state.user
+}), { deleteEducation, deleteExperience, followAPerson, unfollowAPerson })(ProfileView)
