@@ -8,6 +8,8 @@ export const POST_FORM_ERRORS = 'POST_FORM_ERRORS'
 
 // Profile actions
 export const POST_USERS_PROFILE = 'POST_USERS_PROFILE'
+export const POST_USERS_SUBSCRIPTIONS = 'POST_USERS_SUBSCRIPTIONS'
+export const POST_USERS_FOLLOWERS = 'POST_USERS_FOLLOWERS'
 
 // Posts actions
 export const POST_NEW_POSTS = 'POST_NEW_POSTS'
