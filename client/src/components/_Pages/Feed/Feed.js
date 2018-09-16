@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import './Feed.css'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
@@ -20,16 +20,25 @@ const feed = ({
     posts,
     fetchPosts,
     addPost,
-    match
+    match,
+    errors: { noPosts }
 }) => {
     const baseUrl = match.url || ''
-    let content = 'Please wait, loading...'
 
-    if (posts.length === 0) {
+    let content = <h1>'Please wait, loading...'</h1>
+    if (noPosts) {
+        content = (
+            <Fragment>
+                <Reply onSubmit={(data, callback) => addPost(data, callback)} />
+                <br />
+                <h2>No posts were found. Create one now or subscribe to more people!</h2>
+            </Fragment>
+        )
+    } else if (posts.length === 0) {
         fetchPosts()
     } else {
         content = (
-            <div className="Feed-container">
+            <Fragment>
                 <Reply onSubmit={(data, callback) => addPost(data, callback)} />
                 <div className="feed">
                     {posts.map(item => (
@@ -41,13 +50,18 @@ const feed = ({
                         item => item._id === props.match.params.postId
                     )} />
                 )} />
-            </div>
+            </Fragment>
         )
     }
 
-    return content
+    return (
+        <div className="Feed-container">
+            {content}
+        </div>
+    )
 }
 
 export default connect(state => ({
-    posts: state.posts
+    posts: state.posts,
+    errors: state.err
 }), { fetchPosts, addPost })(feed)

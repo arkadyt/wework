@@ -21,7 +21,13 @@ router.get('/', (req, res) => {
         .sort({ date: -1 })
         .populate('user', ['name', 'avatar'])
         .populate('comments.user', ['name', 'avatar'])
-        .then(data => res.json(data))
+        .then(data => {
+            if (data.length > 0)
+                res.json(data)
+            else throw {
+                noPosts: "No posts were found at all"
+            }
+        })
         .catch(err => res.status(400).json(err))
 })
 

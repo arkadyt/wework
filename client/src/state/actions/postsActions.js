@@ -29,7 +29,9 @@ export const fetchPosts = callback => dispatch => {
             dispatch({ type: types.POST_NEW_POSTS, payload: res.data })
             if (callback) callback()
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            dispatch({ type: types.POST_ERRORS, payload: err.response.data })
+        })
 }
 
 export const likePost = (postId, callback) => dispatch => {

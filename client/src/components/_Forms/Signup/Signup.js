@@ -65,7 +65,7 @@ class Signup extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    errors: state.err,
+    errors: state.err.formErrors,
     authedUser: state.user
 })
 
