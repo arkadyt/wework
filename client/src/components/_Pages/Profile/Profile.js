@@ -22,7 +22,7 @@ class Profile extends React.Component {
             viewedProfile,
             profile: profileData,
             errors: {
-                noprofile
+                noProfile
             }
         } = this.props
 
@@ -31,7 +31,7 @@ class Profile extends React.Component {
         let content = <div>
             <h2>Please wait, loading...</h2>
         </div>
-        if (match.params.userId) {
+        if (baseUrl.includes('/id/')) {
             if (!viewedProfile) {
                 fetchAProfile(match.params.userId)
             } else {
@@ -44,7 +44,7 @@ class Profile extends React.Component {
                 )
             }
         } else {
-            if (noprofile) {
+            if (noProfile) {
                 content = (
                     <div className="Profile-content">
                         <Route path={baseUrl} exact render={() => (

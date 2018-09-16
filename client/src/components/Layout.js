@@ -14,7 +14,7 @@ function Layout() {
             <Switch>
                 <Route path='/login' component={Login} />
                 <Route path='/signup' component={Signup} />
-                <PrivateRoute path='/profile/:userId' component={Profile} />
+                <PrivateRoute path='/profile/id/:userId' component={Profile} />
                 <PrivateRoute path='/profile' component={Profile} />
                 <PrivateRoute path='/discover' component={Discover} />
                 <PrivateRoute path='/feed' component={Feed} />

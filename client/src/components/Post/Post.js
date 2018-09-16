@@ -89,7 +89,10 @@ class Post extends Component {
                     <IcoMore />
                 </button>
                 <p className="Post__name">
-                    <Link to={`/profile/${authorId}`}>
+                    <Link to={
+                        belongsToAuthedUser
+                            ? '/profile'
+                            : `/profile/id/${authorId}`}>
                         {name}
                     </Link>
                 </p>

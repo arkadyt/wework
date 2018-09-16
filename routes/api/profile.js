@@ -24,7 +24,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
         .populate('user', ['name', 'email'])
         .then(profile => {
             if (!profile) {
-                errors.noprofile = 'There is no profile for this user'
+                errors.noProfile = 'There is no profile for this user'
                 res.status(404).json(errors)
             }
 
@@ -41,7 +41,7 @@ router.get('/handle/:handle', (req, res) => {
     Profile.findOne({ handle: req.params.handle })
         .populate('user', ['name', 'email'])
         .then(profile => profile ? res.json(profile)
-            : res.status(404).json({ noprofile: "Profile does not exist" }))
+            : res.status(404).json({ noProfile: "Profile does not exist" }))
         .catch(err => res.status(404).json(err))
 })
 
@@ -53,7 +53,7 @@ router.get('/user/:userId', (req, res) => {
     Profile.findOne({ user: req.params.userId })
         .populate('user', ['name', 'email'])
         .then(profile => profile ? res.json(profile)
-            : res.status(404).json({ noprofile: "Profile does not exist" }))
+            : res.status(404).json({ noProfile: "Profile does not exist" }))
         .catch(err => res.status(404).json(err))
 })
 
@@ -65,7 +65,7 @@ router.get('/all', (req, res) => {
     Profile.find()
         .populate('user', ['name', 'email'])
         .then(profile => profile ? res.json(profile)
-            : res.status(404).json({ noprofile: "There are no profiles" }))
+            : res.status(404).json({ noProfile: "There are no profiles" }))
         .catch(err => res.status(404).json(err))
 })
 
