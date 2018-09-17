@@ -64,6 +64,20 @@ router.post('/feed',
                     ]
                 }
             },
+            // populate 'user' field with some more info about user:
+            {
+                $addFields: {
+                    user: {
+                        _id: "$postAuthor._id",
+                        avatar: "$postAuthor.avatar",
+                        name: "$postAuthor.name"
+                    }
+                }
+            },
+            // unwrap that info from square braces:
+            { $unwind: "$user._id" },
+            { $unwind: "$user.avatar" },
+            { $unwind: "$user.name" },
             // sort in the order of 'fresher go first':
             { $sort: { date: -1 } },
             // limit the amount of returned documents by 10:
@@ -79,13 +93,7 @@ router.post('/feed',
             if (err)
                 return res.status(400).json(err)
 
-            return res.json({
-                oldestPostDate:
-                    data.length > 0
-                        ? data[data.length - 1].date
-                        : new Date().toISOString(),
-                data
-            })
+            return res.json(data)
         })
     })
 
