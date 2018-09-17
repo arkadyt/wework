@@ -44,6 +44,8 @@ Current task breakdown:
             - FEED_UPDATE
             - COMMENTS_UPDATE (for current thread only, reset after leaving)
             
+[BUG] When registering user, feed posts are displayed twice
+
 
 add forgetFormErrors action
 create an endpoint for feed, create (a separate?) db with fake profiles and posts data
