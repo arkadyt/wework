@@ -36,52 +36,58 @@ router.get('/', (req, res) => {
 // @route   GET api/posts/feed/
 // @desc    Get personalized (subscriptions) content only
 // @access  Protected
-router.get('/feed', passport.authenticate('jwt', { session: false }), (req, res) => {
-    Post.aggregate([
-        // attach author's user object to every post:
-        {
-            $lookup: {
-                from: 'users',
-                localField: 'user',
-                foreignField: '_id',
-                as: 'postAuthor'
+router.post('/feed',
+    passport.authenticate('jwt', { session: false }), (req, res) => {
+        Post.aggregate([
+            // weed out already fetched and viewed posts:
+            { $match: { date: { $lt: new Date(req.body.oldestPostDate) } } },
+            // attach author's user object to every post:
+            {
+                $lookup: {
+                    from: 'users',
+                    localField: 'user',
+                    foreignField: '_id',
+                    as: 'postAuthor'
+                }
+            },
+            // extract 'followers' field as 'authorFollowedBy':
+            { $addFields: { authorFollowedBy: "$postAuthor.followers" } },
+            // that comes in wrapped in the array, so extract it:
+            { $unwind: "$authorFollowedBy" },
+            // then pick current user's posts AND those posts whose authors are
+            // followed by the user:
+            {
+                $match: {
+                    $or: [
+                        { 'user': mongoose.Types.ObjectId(req.user.id) },
+                        { 'authorFollowedBy.user': mongoose.Types.ObjectId(req.user.id) }
+                    ]
+                }
+            },
+            // sort in the order of 'fresher go first':
+            { $sort: { date: -1 } },
+            // limit the amount of returned documents by 10:
+            { $limit: 10 },
+            // exclude the pipeline byproduct fields: 
+            {
+                $project: {
+                    postAuthor: false,
+                    authorFollowedBy: false
+                }
             }
-        },
-        // extract 'followers' field as 'authorFollowedBy':
-        { $addFields: { authorFollowedBy: "$postAuthor.followers" } },
-        // that comes in wrapped in the array, so extract it:
-        { $unwind: "$authorFollowedBy" },
-        // then pick current user's posts AND those posts whose authors are
-        // followed by the user:
-        {
-            $match: {
-                $or: [
-                    { 'user': mongoose.Types.ObjectId(req.user.id) },
-                    { 'authorFollowedBy.user': mongoose.Types.ObjectId(req.user.id) }
-                ]
-            }
-        },
-        // sort in the order of 'fresher go first':
-        { $sort: { date: -1 } },
-        // limit the amount of returned documents by 10:
-        { $limit: 10 },
-        // exclude the pipeline byproduct fields: 
-        {
-            $project: {
-                postAuthor: false,
-                authorFollowedBy: false
-            }
-        }
-    ], function (err, data) {
-        if (err)
-            return res.status(400).json(err)
+        ], function (err, data) {
+            if (err)
+                return res.status(400).json(err)
 
-        return res.json({
-            oldestPostId: data[data.length - 1]._id,
-            data
+            return res.json({
+                oldestPostDate:
+                    data.length > 0
+                        ? data[data.length - 1].date
+                        : new Date().toISOString(),
+                data
+            })
         })
     })
-})
 
 
 
