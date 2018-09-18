@@ -11,8 +11,8 @@ import {
 
 class Login extends React.Component {
     state = {
-        // email: 'techguyinfo17@gmail.com',
-        email: 'lika.reus@gmail.com',
+        email: 'techguyinfo17@gmail.com',
+        // email: 'lika.reus@gmail.com',
         password: '12345678'
     }
 
