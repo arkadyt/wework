@@ -93,6 +93,13 @@ router.post('/feed',
             if (err)
                 return res.status(400).json(err)
 
+            if (data.length === 0) {
+                // TODO: send 204 instead
+                return res.status(404).json({
+                    endOfFeed: "You've reached the end of your feed!"
+                })
+            }
+
             return res.json(data)
         })
     })
