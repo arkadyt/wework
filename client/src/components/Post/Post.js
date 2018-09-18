@@ -17,11 +17,17 @@ class Post extends Component {
         showMenu: false
     }
 
+    onMenuButtonClick = e => {
+        if (e.target.className !== "Post__button--menu")
+            this.setState({ showMenu: false })
+    }
+
     componentWillMount() {
-        window.addEventListener('click', e => {
-            if (e.target.className !== "Post__button--menu")
-                this.setState({ showMenu: false })
-        })
+        window.addEventListener('click', this.onMenuButtonClick)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('click', this.onMenuButtonClick)
     }
 
     render() {
