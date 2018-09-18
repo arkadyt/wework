@@ -2,115 +2,83 @@ import React, { Component, Fragment } from 'react'
 import './Feed.css'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
+import { compose } from 'recompose'
 
 import Post from '../../Post/Post'
 import Reply from '../../Reply/Reply'
 import CommentsView from '../../CommentsView/CommentsView'
 import { fetchPosts, addPost } from '../../../state/actions/postsActions'
+import { withEither } from '../../../hocs/withEither'
 
-const noContentPost = {
-    text: 'Subscribe to more people to make your feed more interesting!',
-    user: {
-        name: 'WeWork'
-    },
-    date: ''
+const FeedContent = ({
+    onAddPost: addPost,
+    posts,
+    baseUrl
+}) => {
+    console.log('FeedContent render. Props:', posts, baseUrl, addPost)
+    return (
+        <Fragment>
+            <Reply onSubmit={(data, callback) => addPost(data, callback)} />
+            <div className="feed">
+                {posts.map(item => (
+                    <Post key={item._id} {...item} />)
+                )}
+            </div>
+            <Route path={`${baseUrl}/view-comments/:postId`} render={props => (
+                <CommentsView {...props} post={posts.find(
+                    item => item._id === props.match.params.postId
+                )} />
+            )} />
+        </Fragment>
+    )
 }
+
+const isEmptyFn = props => props.isEmpty
+const NoContent = ({ addPost }) => (
+    <Fragment>
+        <Reply onSubmit={(data, callback) => addPost(data, callback)} />
+        <br />
+        <h2>No posts were found. Create one now or subscribe to more people!</h2>
+    </Fragment>
+)
+
+const isLoadingFn = props => props.isLoading
+const LoadingSpinner = () => <h1>Please wait, loading...</h1>
+
+const withCondRendering = compose(
+    withEither(isLoadingFn, LoadingSpinner),
+    withEither(isEmptyFn, NoContent)
+)
+const FeedContentWithCondRendering = withCondRendering(FeedContent)
 
 class Feed extends Component {
     state = {
-        fetchMore: false,
-        fetching: false
-    }
-
-    content = <h1>'Please wait, loading...'</h1>
-
-    isBottom(el) {
-        return el.getBoundingClientRect().bottom <= window.innerHeight
+        isLoading: true
     }
 
     componentDidMount() {
-        document.addEventListener('scroll', this.trackScrolling)
-
-                
+        const { fetchPosts } = this.props
+        fetchPosts(new Date().toISOString(), () => this.setState({ isLoading: false }))
     }
-
-    componentWillUnmount() {
-        document.removeEventListener('scroll', this.trackScrolling)
-    }
-
-    trackScrolling = () => {
-        const wrappedElement = document.getElementById('Feed-container')
-        if (this.isBottom(wrappedElement)) {
-            // console.log('header bottom reached')
-            // document.removeEventListener('scroll', this.trackScrolling)
-            // flip 'fetchMore' only if not 'fetching'
-            if (!this.state.fetching) {
-                this.setState({ fetchMore: true })
-            }
-        }
-    }
-
-    defineContent = () => {
-        const {
-            posts,
-            fetchPosts,
-            addPost,
-            match,
-            errors: { noPosts }
-        } = this.props
-        const baseUrl = match.url || ''
-
-        if (noPosts) {
-            console.log('noPosts')
-            this.content = (
-                <Fragment>
-                    <Reply onSubmit={(data, callback) => addPost(data, callback)} />
-                    <br />
-                    <h2>No posts were found. Create one now or subscribe to more people!</h2>
-                </Fragment>
-            )
-        } else if (posts.length === 0) {
-            console.log('posts.length === 0')
-            fetchPosts(new Date().toISOString())
-        } else if (this.state.fetchMore && !this.state.fetching) {
-            console.log('fetchMore && !fetching')
-            fetchPosts(posts[posts.length - 1].date)
-            this.setState({
-                fetchMore: false,
-                fetching: true
-            })
-        } else {
-            console.log('else')
-            this.content = (
-                <Fragment>
-                    <Reply onSubmit={(data, callback) => addPost(data, callback)} />
-                    <div className="feed">
-                        {posts.map(item => (
-                            <Post key={item._id} {...item} />)
-                        )}
-                    </div>
-                    <Route path={`${baseUrl}/view-comments/:postId`} render={props => (
-                        <CommentsView {...props} post={posts.find(
-                            item => item._id === props.match.params.postId
-                        )} />
-                    )} />
-                </Fragment>
-            )
-        }
-    }
-
-    // componentWillMount() {
-    //     this.defineContent()
-    // }
-
-    // componentWillUpdate() {
-    //     this.defineContent()
-    // }
 
     render() {
+        const {
+            errors: { noContent },
+            posts,
+            addPost,
+            match
+        } = this.props
+
+        const baseUrl = match.url || ''
+
         return (
-            <div id="Feed-container" className="Feed-container">
-                {this.content}
+            <div className="Feed-container">
+                <FeedContentWithCondRendering
+                    isLoading={this.state.isLoading}
+                    isEmpty={!!noContent}
+                    posts={posts}
+                    onAddPost={addPost}
+                    baseUrl={baseUrl} />
             </div>
         )
     }

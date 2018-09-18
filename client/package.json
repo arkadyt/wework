@@ -15,6 +15,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "react-widgets": "^4.4.4",
+    "recompose": "^0.30.0",
     "yup": "^0.26.2"
   },
   "scripts": {
