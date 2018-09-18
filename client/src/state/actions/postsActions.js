@@ -33,15 +33,15 @@ export const deletePost = (postId, callback) => dispatch => {
  * If it's a first fetch, use [`new Date().toISOString()`]
  * to request the freshest batch.
  */
-export const fetchPosts = (oldestPostDate, callback) => dispatch => {
-    console.log('fetchPosts:', { oldestPostDate })
+export const fetchPosts = (oldestPostDate, successCallback, errCallback) => dispatch => {
     axios.post('/api/posts/feed', { oldestPostDate })
         .then(res => {
             dispatch({ type: types.POST_NEW_POSTS, payload: res.data })
-            if (callback) callback()
+            if (successCallback) successCallback()
         })
         .catch(err => {
             dispatch({ type: types.POST_ERRORS, payload: err.response.data })
+            if (errCallback) errCallback()
         })
 }
 
