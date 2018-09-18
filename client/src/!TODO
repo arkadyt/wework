@@ -45,7 +45,8 @@ Current task breakdown:
             - COMMENTS_UPDATE (for current thread only, reset after leaving)
             
 [BUG] When registering user, feed posts are displayed twice
-
+[CRUCIAL] Every time I enter the /feed again, I should refresh loaded posts, just like any other soc. network does.
+[CRUCIAL] Discovery of other profiles is pretty much imposible right now.
 
 add forgetFormErrors action
 create an endpoint for feed, create (a separate?) db with fake profiles and posts data

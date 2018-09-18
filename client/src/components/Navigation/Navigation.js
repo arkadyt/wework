@@ -49,6 +49,8 @@ class Navigation extends React.Component {
 
         return <div className="Navigation-container">
             <nav>
+                <Link to="/profile/id/5b75f023f1957052e52106f5">Techguy</Link>
+                <Link to="/profile/id/5b9eedd621194c102c5280e8">John Doe</Link>
                 {protectedLinks}
                 {profileButton}
                 {dropdown}
