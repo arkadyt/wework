@@ -35,7 +35,7 @@ class Profile extends React.Component {
                 content = (
                     <h1>User does not appear to have a profile.</h1>
                 )
-            } else if (viewedProfile) {
+            } else if (viewedProfile && match.params.userId === viewedProfile.user._id) {
                 content = (
                     <div className="Profile-content">
                         <Route render={props => (
