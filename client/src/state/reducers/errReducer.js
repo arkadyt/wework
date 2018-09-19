@@ -11,7 +11,19 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case types.POST_NEW_POSTS:
+        case types.POST_OLDER_POSTS:
+            if (action.withReset) {
+                if (action.payload.length >= 10) {
+                    return initialState
+                }
+                
+                return {
+                    ...state,
+                    endOfFeed: "You've reached the end of your feed!"
+                }
+            } else {
+                return state
+            }
         case types.POST_USERS_PROFILE:
             return initialState
         case types.POST_FORM_ERRORS:
