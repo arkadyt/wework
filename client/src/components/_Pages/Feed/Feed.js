@@ -13,13 +13,11 @@ import { withAdded } from '../../../hocs/withAdded'
 import FBSpinner from '../../FBSpinner/FBSpinner'
 
 const FeedContent = ({
-    onAddPost: addPost,
     posts,
     baseUrl
 }) => {
     return (
         <Fragment>
-            <Reply onSubmit={(data, callback) => addPost(data, callback)} />
             <div className="Feed-body">
                 {posts.map(item => (
                     <Post key={item._id} {...item} />)
@@ -35,9 +33,8 @@ const FeedContent = ({
 }
 
 const isEmptyFn = ({ endOfFeed, posts }) => posts.length === 0 && !!endOfFeed
-const NoContent = ({ onAddPost: addPost }) => (
+const NoContent = () => (
     <Fragment>
-        <Reply onSubmit={(data, callback) => addPost(data, callback)} />
         <p className="Feed-message" style={{ marginBottom: 0 }}>
             We've got no posts for you yet!
         </p>
@@ -71,7 +68,7 @@ class Feed extends Component {
 
     isBottom = el => el.getBoundingClientRect().bottom <= window.innerHeight
 
-    onScroll = ev => {
+    onScroll = () => {
         const { errors: { endOfFeed } } = this.props
 
         if (endOfFeed) return
@@ -118,11 +115,11 @@ class Feed extends Component {
 
         return (
             <div id="Feed-container" className="Feed-container">
+                <Reply onSubmit={(data, callback) => addPost(data, callback)} />
                 <FeedContentWithCondRendering
                     isLoading={this.state.isLoading}
                     endOfFeed={endOfFeed}
                     posts={posts}
-                    onAddPost={addPost}
                     baseUrl={baseUrl} />
             </div>
         )
