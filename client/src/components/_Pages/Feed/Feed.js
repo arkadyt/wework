@@ -45,8 +45,24 @@ const NoContent = ({ addPost }) => (
 
 const isLoadingFn = props => props.isLoading
 
+const isEndOfFeedFn = ({ endOfFeed }) => !!endOfFeed
+const EndOfFeedMessage = ({ endOfFeed }) => (
+    <p style={{
+        display: 'block',
+        margin: '2.85rem 0',
+        padding: '.25rem 2rem',
+        fontSize: '1.1rem',
+        background: '#eee',
+        color: '#555',
+        borderRadius: '.2rem'
+    }}>
+        {endOfFeed}
+    </p>
+)
+
 const withCondRendering = compose(
     withAdded(isLoadingFn, FBSpinner),
+    withAdded(isEndOfFeedFn, EndOfFeedMessage),
     withEither(isEmptyFn, NoContent)
 )
 const FeedContentWithCondRendering = withCondRendering(FeedContent)
@@ -96,7 +112,7 @@ class Feed extends Component {
 
     render() {
         const {
-            errors: { noContent },
+            errors: { noContent, endOfFeed },
             posts,
             addPost,
             match
@@ -108,6 +124,7 @@ class Feed extends Component {
             <div id="Feed-container" className="Feed-container">
                 <FeedContentWithCondRendering
                     isLoading={this.state.isLoading}
+                    endOfFeed={endOfFeed}
                     isEmpty={!!noContent}
                     posts={posts}
                     onAddPost={addPost}
