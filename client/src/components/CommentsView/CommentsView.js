@@ -87,7 +87,12 @@ class CommentsView extends Component {
                         <div className="CommentsView-comments">
                             <h2>Comments:</h2><br />
                             {comments.length > 0
-                                ? comments.map(item => <CommentNode postId={_id} {...item} />)
+                                ? comments.map(item => (
+                                    <CommentNode
+                                        key={item._id}
+                                        postId={_id}
+                                        {...item} />
+                                ))
                                 : <p>Be the first one to leave a comment!</p>}
                         </div>
                     </div>
