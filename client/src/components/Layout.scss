@@ -1,6 +1,8 @@
 @import 'variables.scss';
 
 .Layout-container {
+    display: flex;
+    justify-content: center;
     height: calc(100vh - #{$navigation_height});
     margin-top: $navigation_height;
 }
