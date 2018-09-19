@@ -4,7 +4,7 @@ import * as types from './types'
 export const addPost = (post, callback) => dispatch => {
     axios.post('/api/posts', post)
         .then(res => {
-            dispatch({ type: types.POST_NEW_POSTS, payload: [res.data] })
+            dispatch({ type: types.POST_NEWER_POSTS, payload: [res.data] })
             if (callback) callback()
         })
         .catch(err => {
@@ -41,9 +41,9 @@ export const fetchPosts = (oldestPostDate, successCallback, errCallback) => disp
                 ? new Date().toISOString()
                 : oldestPostDate
     })
-        .then(res => {
+        .then(res => { 
             dispatch({
-                type: types.POST_NEW_POSTS,
+                type: types.POST_OLDER_POSTS,
                 payload: res.data,
                 withReset
             })
