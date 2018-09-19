@@ -46,7 +46,7 @@ const NoContent = () => (
 
 const isLoadingFn = props => props.isLoading
 
-const isEndOfFeedFn = ({ endOfFeed }) => !!endOfFeed
+const isEndOfFeedFn = ({ endOfFeed, isLoading }) => !!endOfFeed && !isLoading
 const EndOfFeedMessage = ({ endOfFeed }) => (
     <p className="Feed-message">
         {endOfFeed}
