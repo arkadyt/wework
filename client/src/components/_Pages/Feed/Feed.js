@@ -44,7 +44,6 @@ const NoContent = ({ addPost }) => (
 )
 
 const isLoadingFn = props => props.isLoading
-const LoadingSpinner = () => <h1>Please wait, loading...</h1>
 
 const withCondRendering = compose(
     withLoading(isLoadingFn, FBSpinner),
@@ -63,14 +62,10 @@ class Feed extends Component {
     onScroll = ev => {
         const { errors: { endOfFeed } } = this.props
 
-        if (endOfFeed) {
-            console.log(endOfFeed)
-            document.removeEventListener('scroll', this.onScroll)
-            return
-        }
+        if (endOfFeed) return
 
-        if (this.isBottom(document.getElementById('Feed-container'))) {
-            if (!this.state.isLoading) {
+        if (!this.state.isLoading) {
+            if (this.isBottom(document.getElementById('Feed-container'))) {
                 this.setState({ loadMore: true })
             }
         }
@@ -89,9 +84,10 @@ class Feed extends Component {
 
     componentDidMount() {
         const { fetchPosts } = this.props
-        fetchPosts(new Date().toISOString(), () => this.setState({ isLoading: false }))
-
         document.addEventListener('scroll', this.onScroll)
+        
+        window.scrollTo(0, 0)
+        fetchPosts(false, () => this.setState({ isLoading: false }))
     }
 
     componentWillUnmount() {
