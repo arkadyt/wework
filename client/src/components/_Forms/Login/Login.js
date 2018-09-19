@@ -4,10 +4,11 @@ import Field from '../../Field/Field'
 import { Link, withRouter } from 'react-router-dom'
 import './Login.css'
 import {
-    loginUser, 
-    fetchFollowers, 
-    fetchSubscriptions
+    loginUser,
+    fetchFollowers,
+    fetchSubscriptions,
 } from '../../../state/actions/userActions'
+import { fetchUsersProfile } from '../../../state/actions/profileActions'
 
 class Login extends React.Component {
     state = {
@@ -22,7 +23,8 @@ class Login extends React.Component {
                 e.preventDefault()
                 this.props.loginUser(this.state, userId => {
                     this.props.fetchSubscriptions(userId)
-                    this.props.fetchFollowers(userId)        
+                    this.props.fetchFollowers(userId)
+                    this.props.fetchUsersProfile()
                     this.props.history.push('/feed')
                 })
             }}>
@@ -51,4 +53,4 @@ class Login extends React.Component {
 
 export default withRouter(connect(state => ({
     errors: state.err.formErrors
-}), { loginUser, fetchFollowers, fetchSubscriptions })(Login))
+}), { loginUser, fetchFollowers, fetchSubscriptions, fetchUsersProfile })(Login))
