@@ -24,19 +24,29 @@ export const deletePost = (postId, callback) => dispatch => {
 }
 
 /**
- * Fetch posts starting from the oldest loaded one.
+ * Fetch posts starting from after the oldest loaded one.
  * 10 posts would be sent out, including only those that belong to
- * the user and to followed users.
- * Posts are stored in the 'posts' object of the redux store.
+ * the user and to the followed users.
+ * Posts are then stored in the 'posts' object of the redux store.
  * 
  * @param oldestPostDate Date on the oldest fetched post.
- * If it's a first fetch, use [`new Date().toISOString()`]
- * to request the freshest batch.
+ * If it's a first fetch pass `false` to request the freshest batch.
  */
 export const fetchPosts = (oldestPostDate, successCallback, errCallback) => dispatch => {
-    axios.post('/api/posts/feed', { oldestPostDate })
+    const withReset = !oldestPostDate
+
+    axios.post('/api/posts/feed', {
+        oldestPostDate:
+            withReset
+                ? new Date().toISOString()
+                : oldestPostDate
+    })
         .then(res => {
-            dispatch({ type: types.POST_NEW_POSTS, payload: res.data })
+            dispatch({
+                type: types.POST_NEW_POSTS,
+                payload: res.data,
+                withReset
+            })
             if (successCallback) successCallback()
         })
         .catch(err => {
