@@ -12,6 +12,7 @@ import { withEither } from '../../../hocs/withEither'
 import { withAdded } from '../../../hocs/withAdded'
 import FBSpinner from '../../FBSpinner/FBSpinner'
 import QuickStats from '../../QuickStats/QuickStats'
+import Discover from '../../Discover/Discover'
 
 const FeedContent = ({
     posts,
@@ -128,7 +129,7 @@ class Feed extends Component {
                         baseUrl={baseUrl} />
                 </div>
                 <div className="Feed-rgt-column">
-                    <QuickStats />
+                    <Discover />
                 </div>
             </div>
         )

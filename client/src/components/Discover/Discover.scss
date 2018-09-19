@@ -1,0 +1,20 @@
+@import 'variables.scss';
+.Discover-container {
+    position: sticky;
+    box-shadow: $box_shadow_main;
+    background: white;
+    border-radius: .1rem;
+    padding: 1rem;
+    width: 100%;
+    top: 4rem;
+    .ListNode-container {
+        display: flex;
+        .ListNode-img {
+            width: 3rem;
+            border-radius: 3rem;
+            height: 3rem;
+        }
+        .ListNode-name {
+        }
+    }
+}
