@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import './Feed.css'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import { compose } from 'recompose'
 
 import Post from '../../Post/Post'
@@ -20,7 +20,7 @@ const FeedContent = ({
     return (
         <Fragment>
             <Reply onSubmit={(data, callback) => addPost(data, callback)} />
-            <div className="feed">
+            <div className="Feed-body">
                 {posts.map(item => (
                     <Post key={item._id} {...item} />)
                 )}
@@ -34,12 +34,16 @@ const FeedContent = ({
     )
 }
 
-const isEmptyFn = props => props.isEmpty
-const NoContent = ({ addPost }) => (
+const isEmptyFn = ({ endOfFeed, posts }) => posts.length === 0 && !!endOfFeed
+const NoContent = ({ onAddPost: addPost }) => (
     <Fragment>
         <Reply onSubmit={(data, callback) => addPost(data, callback)} />
-        <br />
-        <h2>No posts were found. Create one now or subscribe to more people!</h2>
+        <p className="Feed-message" style={{ marginBottom: 0 }}>
+            We've got no posts for you yet!
+        </p>
+        <p className="Feed-message" style={{ marginTop: '.7rem' }}>
+            Discover creators <Link to='/discover'>here</Link>!
+        </p>
     </Fragment>
 )
 
@@ -47,23 +51,15 @@ const isLoadingFn = props => props.isLoading
 
 const isEndOfFeedFn = ({ endOfFeed }) => !!endOfFeed
 const EndOfFeedMessage = ({ endOfFeed }) => (
-    <p style={{
-        display: 'block',
-        margin: '2.85rem 0',
-        padding: '.25rem 2rem',
-        fontSize: '1.1rem',
-        background: '#eee',
-        color: '#555',
-        borderRadius: '.2rem'
-    }}>
+    <p className="Feed-message">
         {endOfFeed}
     </p>
 )
 
 const withCondRendering = compose(
+    withEither(isEmptyFn, NoContent),
     withAdded(isLoadingFn, FBSpinner),
-    withAdded(isEndOfFeedFn, EndOfFeedMessage),
-    withEither(isEmptyFn, NoContent)
+    withAdded(isEndOfFeedFn, EndOfFeedMessage)
 )
 const FeedContentWithCondRendering = withCondRendering(FeedContent)
 
@@ -112,7 +108,7 @@ class Feed extends Component {
 
     render() {
         const {
-            errors: { noContent, endOfFeed },
+            errors: { endOfFeed },
             posts,
             addPost,
             match
@@ -125,7 +121,6 @@ class Feed extends Component {
                 <FeedContentWithCondRendering
                     isLoading={this.state.isLoading}
                     endOfFeed={endOfFeed}
-                    isEmpty={!!noContent}
                     posts={posts}
                     onAddPost={addPost}
                     baseUrl={baseUrl} />

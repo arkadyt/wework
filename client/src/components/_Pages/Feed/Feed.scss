@@ -2,8 +2,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    .feed {
+    .Feed-body {
         width: 40rem;
     }
     padding-bottom: 8rem;
+    .Feed-message {
+        display: block;
+        margin: 2.85rem 0;
+        padding: .25rem 2rem;
+        font-size: 1.1rem;
+        background: #eee;
+        color: #555;
+        border-radius: .2rem;
+    }
 }
