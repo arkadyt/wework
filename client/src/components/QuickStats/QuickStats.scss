@@ -1,0 +1,47 @@
+@import 'variables.scss';
+.QuickStats-container {
+    position: sticky;
+    box-shadow: $box_shadow_main;
+    background: white;
+    border-radius: .1rem;
+    padding: 1rem;
+    width: 100%;
+    top: 4rem;
+    .lds-facebook {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    section:not(:first-child) {
+        padding-top: 1rem;
+    }
+    .QuickStats-name {
+        text-align: center;
+        img {
+            width: 5rem;
+            border-radius: 5rem;
+        }
+    }
+    .QuickStats-rows {
+        h3 {
+            margin-bottom: .5rem;
+        }
+        p {
+            font-size: 1.1rem;
+            span:last-child {
+                float: right;
+            }
+        }
+    }
+    .QuickStats-likes-comments {
+        div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-items: center;
+            p {
+                padding: .5rem .5rem 0 .5rem;
+                font-size: 2rem;
+            }
+        }
+    }
+}
