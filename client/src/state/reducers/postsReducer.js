@@ -4,7 +4,9 @@ const initialState = []
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case types.POST_NEW_POSTS:
+        case types.POST_NEWER_POSTS:
+            return [...action.payload, ...state]
+        case types.POST_OLDER_POSTS:
             if (action.withReset) {
                 return action.payload
             } else {
