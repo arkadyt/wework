@@ -115,12 +115,16 @@ class Feed extends Component {
 
         return (
             <div id="Feed-container" className="Feed-container">
-                <Reply onSubmit={(data, callback) => addPost(data, callback)} />
-                <FeedContentWithCondRendering
-                    isLoading={this.state.isLoading}
-                    endOfFeed={endOfFeed}
-                    posts={posts}
-                    baseUrl={baseUrl} />
+                <div className="Feed-lft-column"></div>
+                <div className="Feed-mid-column">
+                    <Reply onSubmit={(data, callback) => addPost(data, callback)} />
+                    <FeedContentWithCondRendering
+                        isLoading={this.state.isLoading}
+                        endOfFeed={endOfFeed}
+                        posts={posts}
+                        baseUrl={baseUrl} />
+                </div>
+                <div className="Feed-rgt-column"></div>
             </div>
         )
     }

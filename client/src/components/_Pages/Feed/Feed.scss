@@ -1,10 +1,11 @@
 .Feed-container {
-    display: flex;
-    flex-direction: column;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: 1fr 2.5fr 1fr;
+    width: 70rem;
     align-items: center;
-    .Feed-body {
-        width: 40rem;
-    }
     padding-bottom: 8rem;
     .Feed-message {
         display: block;
@@ -15,4 +16,7 @@
         color: #555;
         border-radius: .2rem;
     }
+    .Feed-lft-column {}
+    .Feed-mid-column {}
+    .Feed-rgt-column {}
 }
