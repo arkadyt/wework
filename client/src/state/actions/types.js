@@ -12,7 +12,8 @@ export const POST_FORM_ERRORS = 'POST_FORM_ERRORS'
 export const POST_USERS_PROFILE = 'POST_USERS_PROFILE'
 
 // Posts actions
-export const POST_NEW_POSTS = 'POST_NEW_POSTS'
+export const POST_NEWER_POSTS = 'POST_NEWER_POSTS'
+export const POST_OLDER_POSTS = 'POST_OLDER_POSTS'
 export const UPDATE_POST = 'UPDATE_POST'
 export const DELETE_POST = 'DELETE_POST'
 
