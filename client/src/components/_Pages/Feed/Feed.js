@@ -9,7 +9,7 @@ import Reply from '../../Reply/Reply'
 import CommentsView from '../../CommentsView/CommentsView'
 import { fetchPosts, addPost } from '../../../state/actions/postsActions'
 import { withEither } from '../../../hocs/withEither'
-import { withLoading } from '../../../hocs/withLoading'
+import { withAdded } from '../../../hocs/withAdded'
 import FBSpinner from '../../FBSpinner/FBSpinner'
 
 const FeedContent = ({
@@ -46,7 +46,7 @@ const NoContent = ({ addPost }) => (
 const isLoadingFn = props => props.isLoading
 
 const withCondRendering = compose(
-    withLoading(isLoadingFn, FBSpinner),
+    withAdded(isLoadingFn, FBSpinner),
     withEither(isEmptyFn, NoContent)
 )
 const FeedContentWithCondRendering = withCondRendering(FeedContent)
@@ -85,7 +85,7 @@ class Feed extends Component {
     componentDidMount() {
         const { fetchPosts } = this.props
         document.addEventListener('scroll', this.onScroll)
-        
+
         window.scrollTo(0, 0)
         fetchPosts(false, () => this.setState({ isLoading: false }))
     }

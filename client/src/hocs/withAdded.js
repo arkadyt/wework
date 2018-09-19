@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 
-export const withLoading = (conditionFn, LoadingComponent) => Component => props =>
+export const withAdded = (conditionFn, AddedComponent) => Component => props =>
     conditionFn(props)
         ? (
             <Fragment>
                 <Component {...props} />
-                <LoadingComponent />
+                <AddedComponent {...props} />
             </Fragment>
         ) 
         : <Component {...props} />
