@@ -27,7 +27,6 @@ class Navigation extends React.Component {
         const protectedLinks = this.props.authedUser.isAuthenticated ?
             <React.Fragment>
                 <Link to="/feed"><span>Feed</span></Link>
-                <Link to="/discover"><span>Discover</span></Link>
             </React.Fragment> : null
 
         const dropdown = this.state.showDropdown ?

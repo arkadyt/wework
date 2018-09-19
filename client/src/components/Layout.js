@@ -1,7 +1,6 @@
 import React from 'react'
 import Feed from './_Pages/Feed/Feed'
 import Profile from './_Pages/Profile/Profile'
-import Discover from './_Pages/Discover/Discover'
 import Signup from './_Forms/Signup/Signup'
 import Login from './_Forms/Login/Login'
 import { Route, Switch } from 'react-router-dom'
@@ -16,7 +15,6 @@ function Layout() {
                 <Route path='/signup' component={Signup} />
                 <PrivateRoute path='/profile/id/:userId' component={Profile} />
                 <PrivateRoute path='/profile' component={Profile} />
-                <PrivateRoute path='/discover' component={Discover} />
                 <PrivateRoute path='/feed' component={Feed} />
             </Switch>
         </div>

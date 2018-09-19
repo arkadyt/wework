@@ -11,6 +11,7 @@ import { fetchPosts, addPost } from '../../../state/actions/postsActions'
 import { withEither } from '../../../hocs/withEither'
 import { withAdded } from '../../../hocs/withAdded'
 import FBSpinner from '../../FBSpinner/FBSpinner'
+import QuickStats from '../../QuickStats/QuickStats'
 
 const FeedContent = ({
     posts,
@@ -115,7 +116,9 @@ class Feed extends Component {
 
         return (
             <div id="Feed-container" className="Feed-container">
-                <div className="Feed-lft-column"></div>
+                <div className="Feed-lft-column">
+                    <QuickStats />
+                </div>
                 <div className="Feed-mid-column">
                     <Reply onSubmit={(data, callback) => addPost(data, callback)} />
                     <FeedContentWithCondRendering
@@ -124,7 +127,9 @@ class Feed extends Component {
                         posts={posts}
                         baseUrl={baseUrl} />
                 </div>
-                <div className="Feed-rgt-column"></div>
+                <div className="Feed-rgt-column">
+                    <QuickStats />
+                </div>
             </div>
         )
     }
