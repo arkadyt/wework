@@ -15,8 +15,16 @@
         background: #eee;
         color: #555;
         border-radius: .2rem;
+        align-self: center;
+    }
+    .lds-facebook {
+        align-self: center;
     }
     .Feed-lft-column {}
-    .Feed-mid-column {}
+    .Feed-mid-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
     .Feed-rgt-column {}
 }
