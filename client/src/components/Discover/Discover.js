@@ -1,54 +1,17 @@
-import React, { Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { FaUserPlus as IcoAdd } from 'react-icons/fa'
+import axios from 'axios'
 
 import './Discover.css'
 import Field from '../Field/Field'
 import FBSpinner from '../FBSpinner/FBSpinner'
 import { withEither } from '../../hocs/withEither'
-
-// send a request for a sample
-// get a list returned:
-const creatorsList = [
-    {
-        _id: 0,
-        name: "Maha Bergen",
-        avatar: "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
-        title: "Senior JS Developer",
-        company: "Facebook"
-    },
-    {
-        _id: 1,
-        name: "Bozo Sursen",
-        avatar: "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
-        title: "C# Developer",
-        company: "Facebook"
-    },
-    {
-        _id: 0,
-        name: "Maga Bogov",
-        avatar: "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
-        title: "Business Analyst",
-        company: "Infosys"
-    },
-    {
-        _id: 0,
-        name: "Surplus Ivanovich",
-        avatar: "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
-        title: "Cook",
-        company: "Dublin Lazy Dog Restaurants & Bar"
-    },
-    {
-        _id: 0,
-        name: "Ahmet Dzhuma",
-        avatar: "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
-        title: "CEO",
-        company: "Revature"
-    }
-]
+import { followAPerson } from '../../state/actions/userActions'
 
 const ListNode = ({
-    name, avatar, title, company
+    _id, name, avatar, title, company,
+    followAPerson
 }) => (
         <div className="ListNode-container">
             <img className="ListNode-img" src={avatar} alt="" />
@@ -58,27 +21,64 @@ const ListNode = ({
             </div>
             <Field
                 type="linkButton"
-                style={{ color: 'black', fontSize: '1.4rem' }}>
+                style={{ color: 'black', fontSize: '1.4rem' }}
+                onClick={() => followAPerson(_id)}>
                 <IcoAdd />
             </Field>
         </div>
     )
 
-const Discover = () => (
-    <Fragment>
-        <h3>Add these creators to your feed:</h3>
-        <div>
-            {creatorsList.map(item => {
-                return <ListNode key={item._id} {...item} />
-            })}
-        </div>
-    </Fragment>
-)
-
-export default connect()(({
-
+const CreatorsList = ({
+    followAPerson,
+    list
 }) => (
-        <div className="Discover-container">
-            <Discover />
-        </div>
-    ))
+        <Fragment>
+            <h3>Add these creators to your feed:</h3>
+            <div>
+                {list.map(item => {
+                    return (
+                        <ListNode
+                            key={item._id}
+                            {...item}
+                            followAPerson={followAPerson} />
+                    )
+                })}
+            </div>
+        </Fragment>
+    )
+
+const isLoadingFn = ({ list }) => !list
+const CreatorsListWithLoading = withEither(isLoadingFn, FBSpinner)(CreatorsList)
+
+class Discover extends Component {
+    state = {
+        list: null
+    }
+
+    fetchASample = (num, callback) => {
+        axios.get(`/api/users/sample/${num}`)
+            .then(res => {
+                this.setState({ list: res.data })
+                if (callback) callback()
+            })
+            .catch(err => console.log(err))
+    }
+
+    render() {
+        const { followAPerson } = this.props
+
+        return (
+            <div className="Discover-container">
+                <CreatorsListWithLoading
+                    list={this.state.list}
+                    followAPerson={followAPerson} />
+            </div>
+        )
+    }
+
+    componentDidMount() {
+        this.fetchASample(5)
+    }
+}
+
+export default connect(null, { followAPerson })(Discover)
