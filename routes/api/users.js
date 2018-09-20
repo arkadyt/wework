@@ -156,10 +156,10 @@ router.get('/:userId/following', (req, res) => {
     User.findOne({ _id: req.params.userId })
         .then(user =>
             user
-            ? res.json(user.following)
-            : res.status(400).json({
-                error: "User not found"
-            }))
+                ? res.json(user.following)
+                : res.status(400).json({
+                    error: "User not found"
+                }))
 })
 
 
@@ -170,10 +170,10 @@ router.get('/:userId/followers', (req, res) => {
     User.findOne({ _id: req.params.userId })
         .then(user =>
             user
-            ? res.json(user.followers)
-            : res.status(400).json({
-                error: "User not found"
-            }))
+                ? res.json(user.followers)
+                : res.status(400).json({
+                    error: "User not found"
+                }))
 })
 
 
@@ -186,13 +186,13 @@ router.post('/:userId/follow',
             { _id: req.params.userId, 'followers.user': { $ne: req.user.id } },
             { $push: { followers: { user: mongoose.Types.ObjectId(req.user.id) } } },
             { new: true })
-            .then(user => 
+            .then(user =>
                 user
                     ? User.findOneAndUpdate(
                         { _id: req.user.id, 'following.user': { $ne: req.params.userId } },
                         { $push: { following: { user: mongoose.Types.ObjectId(req.params.userId) } } },
                         { new: true })
-                        .then(user => 
+                        .then(user =>
                             user
                                 ? res.json(user.following)
                                 : res.status(400).json({ error: "Already following or user does not exist" }))
@@ -231,6 +231,89 @@ router.delete('/:userId/follow',
                     }))
             .catch(err => res.status(400).json(err))
     })
+
+
+// @route   /api/users/sample
+// @desc    Get a sample of {n} users
+// @access  Protected
+router.get('/sample/:count', passport.authenticate('jwt', { session: false }), (req, res) => {
+    User.find({ _id: req.user.id }, function (err, data) {
+        if (err) return res.status(400).json(err)
+
+        let subscriptions = data[0].following
+        let flattenedSubs = []
+        for (let i of subscriptions)
+            flattenedSubs.push(i.user)
+
+        // Now, what aggregation stages to use to match only followed Users?
+
+        // $match with added field and dot-notation travel does not work...
+        // Tried:
+        // { $addFields: { requestMastersSubs: subscriptions }, },
+        // { $match: { _id: "$requestMastersSubs.user" } },
+        // { $match: { 'requestMastersSubs.user': '$_id' } },
+
+        // Maybe some query operators can help?
+
+        // $elemMatch
+        // Returns when at least one element in some array of the input document
+        // matches the specified object. You should use it only when you have
+        // multiple fields to match.
+        // Plus you can't use it in the aggregation adequately: 
+        // { $match: { requestMastersSubs: { $elemMatch: { 'user': '$_id' } } } }
+
+        // $filter
+        // Not used directly in the aggregation.
+        // ??? did not take the investigation far.
+
+        // $in
+        // YES!!!!
+
+        User.aggregate([
+            // match followed users only:
+            { $match: { _id: { $in: flattenedSubs } } },
+            // copy profile object for the user:
+            {
+                $lookup: {
+                    from: 'profiles',
+                    localField: '_id',
+                    foreignField: 'user',
+                    as: 'personsProfile'
+                }
+            },
+            // try to add fields. If profile doesn't exist, 
+            // [] will be returned:
+            {
+                $addFields: {
+                    title: "$personsProfile.title",
+                    company: "$personsProfile.company",
+                    followers: { $size: "$followers" }
+                }
+            },
+            // $unwind does not pass forward a document if the field
+            // is an empty array or null. Acts like a $match here:
+            { $unwind: "$title" },
+            { $unwind: "$company" },
+            // Finally out of those who are followed and who have profile
+            // sample {req.params.count} number of objects:
+            { $sample: { size: parseInt(req.params.count) } },
+            // throw out all the redundant:
+            {
+                $project: {
+                    name: true,
+                    avatar: true,
+                    title: true,
+                    company: true,
+                    followers: true
+                }
+            }
+        ], function (err, data) {
+            if (err) return res.status(400).json(err)
+
+            return res.json(data)
+        })
+    })
+})
 
 
 module.exports = router
