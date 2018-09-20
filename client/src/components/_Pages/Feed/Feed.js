@@ -76,7 +76,7 @@ class Feed extends Component {
         if (endOfFeed) return
 
         if (!this.state.isLoading) {
-            if (this.isBottom(document.getElementById('Feed-container'))) {
+            if (this.isBottom(document.getElementById('Feed-mid-column'))) {
                 this.setState({ loadMore: true })
             }
         }
@@ -116,11 +116,11 @@ class Feed extends Component {
         const baseUrl = match.url || ''
 
         return (
-            <div id="Feed-container" className="Feed-container">
+            <div className="Feed-container">
                 <div className="Feed-lft-column">
                     <QuickStats />
                 </div>
-                <div className="Feed-mid-column">
+                <div id="Feed-mid-column" className="Feed-mid-column">
                     <Reply onSubmit={(data, callback) => addPost(data, callback)} />
                     <FeedContentWithCondRendering
                         isLoading={this.state.isLoading}
