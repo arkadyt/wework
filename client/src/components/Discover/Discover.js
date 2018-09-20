@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
+import { FaUserPlus as IcoAdd } from 'react-icons/fa'
 
 import './Discover.css'
 import Field from '../Field/Field'
@@ -35,7 +36,7 @@ const creatorsList = [
         name: "Surplus Ivanovich",
         avatar: "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
         title: "Cook",
-        company: "Lazy Dog Restaurants & Bar"
+        company: "Dublin Lazy Dog Restaurants & Bar"
     },
     {
         _id: 0,
@@ -56,9 +57,10 @@ const ListNode = ({
                 <p>{title} at {company}</p>
             </div>
             <Field
-                type="button"
-                label="Add"
-                containerStyle={{ width: 'unset' }} />
+                type="linkButton"
+                style={{ color: 'black', fontSize: '1.4rem' }}>
+                <IcoAdd />
+            </Field>
         </div>
     )
 
