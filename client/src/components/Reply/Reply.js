@@ -15,7 +15,7 @@ class Reply extends Component {
     }
 
     render() {
-        const { onSubmit, flat, rows, errors } = this.props
+        const { onSubmit, flat, rows, errors, authedUser } = this.props
         const flatStyle = {
             borderRadius: 'unset',
             boxShadow: 'unset',
@@ -29,6 +29,7 @@ class Reply extends Component {
                 e.preventDefault()
                 onSubmit(this.state, () => this.clearFields())
             }}>
+            <p className="Reply-header">Post as <b>{authedUser.name}:</b></p>
             <Field
                 type="textarea"
                 rows={rows || "3"}
@@ -38,12 +39,13 @@ class Reply extends Component {
                 error={errors.text} />
             <Field
                 type="submit"
-                inline
+                containerStyle={{ marginTop: '.5rem' }}
                 label="Submit" />
         </form>
     }
 }
 
 export default connect(state => ({
+    authedUser: state.user,
     errors: state.err.formErrors
 }))(Reply)
