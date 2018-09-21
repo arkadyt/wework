@@ -4,22 +4,22 @@ import {
     FaThumbsUp as IcoLike,
     FaComments as IcoComments
 } from 'react-icons/fa'
-import axios from 'axios'
 
 import { withEither } from '../../hocs/conditionalRendering'
 import FBSpinner from '../FBSpinner/FBSpinner'
+import { fetchUsersStats } from '../../state/actions/userActions'
 import './QuickStats.css'
 
 const StatsChart = ({
     authedUser: {
-        name, avatar, followers, following
+        name, avatar
     },
     usersProfile: {
         title, company, status
     },
     stats: {
-        // followers: followersCount,
-        // following: subscriptionsCount,
+        followers: followersCount,
+        following: subscriptionsCount,
         postCount,
         totalLikes,
         totalComments
@@ -36,11 +36,11 @@ const StatsChart = ({
                 <h3>Your stats:</h3>
                 <p>
                     <span>Following:</span>
-                    <span>{following.length}</span>
+                    <span>{subscriptionsCount}</span>
                 </p>
                 <p>
                     <span>Your followers:</span>
-                    <span>{followers.length}</span>
+                    <span>{followersCount}</span>
                 </p>
                 <p>
                     <span>Total posts:</span>
@@ -60,38 +60,21 @@ const StatsChart = ({
 const isLoadingFn = ({
     stats,
     authedUser,
-    authedUser: {
-        followers, following
-    },
     usersProfile,
 }) => {
-    console.log(!!stats, !!usersProfile, !!authedUser, !!followers, !!following)
-    return !stats || !usersProfile || !authedUser || !followers || !following
+    return !stats || !usersProfile || !authedUser
 }
 
 const StatsWithLoading = withEither(isLoadingFn, FBSpinner)(StatsChart)
 
 class QuickStats extends Component {
-    state = {
-        stats: null
-    }
-
-    fetchUsersStats = callback => {
-        axios.get('/api/users/myStats')
-            .then(res => {
-                this.setState({ stats: res.data })
-                if (callback) callback()
-            })
-            .catch(err => console.log(err))
-    }
-
     render() {
-        const { authedUser, usersProfile } = this.props
+        const { authedUser, usersProfile, stats } = this.props
 
         return (
             <div className="QuickStats-container">
                 <StatsWithLoading
-                    stats={this.state.stats}
+                    stats={stats}
                     authedUser={authedUser}
                     usersProfile={usersProfile} />
             </div>
@@ -99,11 +82,13 @@ class QuickStats extends Component {
     }
 
     componentDidMount() {
-        this.fetchUsersStats()
+        const { fetchUsersStats } = this.props
+        fetchUsersStats()
     }
 }
 
 export default connect(state => ({
     authedUser: state.user,
-    usersProfile: state.profile
-}))(QuickStats)
+    usersProfile: state.profile,
+    stats: state.user.stats
+}), { fetchUsersStats })(QuickStats)
