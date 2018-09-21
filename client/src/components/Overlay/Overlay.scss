@@ -10,13 +10,15 @@
     align-items: center;
     padding: calc(#{$navigation_height} + 1rem) 0 2rem 0;
     .content {
-        z-index: 1;
-        background: white;
+        z-index: 11;
+        background: $color-bg-secondary;
+        color: $color-font-main;
         padding: 0.3rem;
         border-radius: .3rem;
         box-shadow: $box_shadow_main;
     }
     .backdrop {
+        z-index: 10;
         position: fixed;
         top: 0;
         left: 0;
