@@ -6,6 +6,8 @@
     flex-direction: column;
     align-items: center;
     box-shadow: $box_shadow_main;
+    background-color: $color-bg-secondary;
+    color: $color-font_main;
     border-radius: .1rem;
     padding: 0 1rem 1rem 1rem;
     textarea {
