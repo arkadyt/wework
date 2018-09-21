@@ -3,6 +3,7 @@ export const LOGIN_USER = 'LOGIN_USER'
 export const LOGOUT_USER = 'LOGOUT_USER'
 export const POST_USERS_SUBSCRIPTIONS = 'POST_USERS_SUBSCRIPTIONS'
 export const POST_USERS_FOLLOWERS = 'POST_USERS_FOLLOWERS'
+export const POST_STATS = 'POST_STATS'
 
 // Error actions
 export const POST_ERRORS = 'POST_ERRORS'
