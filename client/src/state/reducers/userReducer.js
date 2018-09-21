@@ -28,6 +28,11 @@ export default function (state = initialState, action) {
                 ...state,
                 followers: action.payload
             }
+        case types.POST_STATS:
+            return {
+                ...state,
+                stats: action.payload
+            }
         default:
             return state
     }
