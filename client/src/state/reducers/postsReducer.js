@@ -20,6 +20,11 @@ export default function (state = initialState, action) {
             })
         case types.DELETE_POST:
             return state.filter(item => item._id !== action.payload._id)
+        case types.POST_USERS_SUBSCRIPTIONS:
+            if (action.unfollowedUserId) {
+                return state.filter(item => item.user._id !== action.unfollowedUserId)
+            } else
+                return state
         default:
             return state
     }
