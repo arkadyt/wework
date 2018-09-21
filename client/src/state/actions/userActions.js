@@ -22,8 +22,8 @@ export const loginUser = (credentials, callback) => dispatch => {
         })
         .catch(err => dispatch({
             type:
-                types.POST_FORM_ERRORS, 
-                payload: err.response.data
+                types.POST_FORM_ERRORS,
+            payload: err.response.data
         }))
 }
 
@@ -72,7 +72,11 @@ export const fetchFollowers = (userId, callback) => dispatch => {
 export const followAPerson = (userId, callback) => dispatch => {
     axios.post(`/api/users/${userId}/follow`)
         .then(res => {
-            dispatch({ type: types.POST_USERS_SUBSCRIPTIONS, payload: res.data })
+            dispatch({
+                type: types.POST_USERS_SUBSCRIPTIONS,
+                payload: res.data,
+                followedUserId: userId
+            })
             if (callback) callback()
         })
         .catch(err => console.log(err))
@@ -81,7 +85,11 @@ export const followAPerson = (userId, callback) => dispatch => {
 export const unfollowAPerson = (userId, callback) => dispatch => {
     axios.delete(`/api/users/${userId}/follow`)
         .then(res => {
-            dispatch({ type: types.POST_USERS_SUBSCRIPTIONS, payload: res.data })
+            dispatch({
+                type: types.POST_USERS_SUBSCRIPTIONS,
+                payload: res.data,
+                unfollowedUserId: userId
+            })
             if (callback) callback()
         })
         .catch(err => console.log(err))
