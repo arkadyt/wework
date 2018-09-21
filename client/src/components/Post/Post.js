@@ -11,6 +11,7 @@ import {
 import Field from '../Field/Field'
 import placeholderImage from '../../images/avatar_placeholder.png'
 import { likePost, deleteLike, deletePost } from '../../state/actions/postsActions'
+import { unfollowAPerson } from '../../state/actions/userActions'
 
 class Post extends Component {
     state = {
@@ -46,6 +47,7 @@ class Post extends Component {
             likePost,
             deleteLike,
             deletePost,
+            unfollowAPerson,
             history,
             match,
             flat,
@@ -82,7 +84,7 @@ class Post extends Component {
                         Delete</button>
                     : <button
                         className="Post__menu-item"
-                        onClick={() => alert('deleted')}>
+                        onClick={() => unfollowAPerson(authorId)}>
                         Unfollow user</button>}
             </div>
             <div className="Post__header">
@@ -138,4 +140,4 @@ class Post extends Component {
 
 export default withRouter(connect(state => ({
     authedUser: state.user
-}), { likePost, deleteLike, deletePost })(Post))
+}), { likePost, deleteLike, deletePost, unfollowAPerson })(Post))
