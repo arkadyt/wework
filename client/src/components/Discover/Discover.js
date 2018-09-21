@@ -22,7 +22,7 @@ const ListNode = ({
             </div>
             <Field
                 type="linkButton"
-                style={{ color: 'black', fontSize: '1.4rem' }}
+                style={{ fontSize: '1.4rem' }}
                 onClick={() => followAPerson(_id)}>
                 <IcoAdd />
             </Field>

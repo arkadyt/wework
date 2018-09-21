@@ -2,7 +2,8 @@
 .Discover-container {
     position: sticky;
     box-shadow: $box_shadow_main;
-    background: white;
+    background-color: $color-bg-secondary;
+    color: $color-font-main;
     border-radius: .1rem;
     padding: 1rem;
     width: 100%;
@@ -28,7 +29,8 @@
         }
     }
     .Discover-message {
-        background-color: #eee;
+        background-color: $color-bg-main;
+        color: $color-font-secondary;
         padding: .3rem 1rem;
         margin-top: .7rem;
         border-radius: .1rem;
