@@ -2,11 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { FaUserPlus as IcoAdd } from 'react-icons/fa'
 import axios from 'axios'
+import { compose } from 'recompose'
 
 import './Discover.css'
 import Field from '../Field/Field'
 import FBSpinner from '../FBSpinner/FBSpinner'
-import { withEither } from '../../hocs/conditionalRendering'
+import { withEither, withAdded } from '../../hocs/conditionalRendering'
 import { followAPerson } from '../../state/actions/userActions'
 
 const ListNode = ({
@@ -48,7 +49,17 @@ const CreatorsList = ({
     )
 
 const isLoadingFn = ({ list }) => !list
-const CreatorsListWithLoading = withEither(isLoadingFn, FBSpinner)(CreatorsList)
+const isEmptyFn = ({ list }) => list.length === 0
+
+const EmptyList = () => (
+    <p className="Discover-message">Nothing for you right now! Come back later!</p>
+)
+
+const withCondRenderings = compose(
+    withEither(isLoadingFn, FBSpinner),
+    withAdded(isEmptyFn, EmptyList),
+)
+const CreatorsListWithCondRenderings = withCondRenderings(CreatorsList)
 
 class Discover extends Component {
     state = {
@@ -69,7 +80,7 @@ class Discover extends Component {
 
         return (
             <div className="Discover-container">
-                <CreatorsListWithLoading
+                <CreatorsListWithCondRenderings
                     list={this.state.list}
                     followAPerson={followAPerson} />
             </div>
