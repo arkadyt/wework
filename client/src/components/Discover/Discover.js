@@ -66,6 +66,31 @@ class Discover extends Component {
         list: null
     }
 
+    followAPerson = (_id, callback) => {
+        const { followAPerson } = this.props
+
+        // securing myself up against asynchronous .setState()
+        // even though it's very unlikely that the list will get
+        // updated before I have a chance to check its length later down
+        const { list } = this.state
+        const listLength = list.length
+
+        followAPerson(_id, () => {
+            this.setState(prevState => ({
+                list: prevState.list.filter(item => {
+                    item._id !== _id
+                })
+            }))
+
+            // ...later down here
+            if (listLength === 1)
+                // just followed the last person from the list, check for more
+                this.fetchASample(5)
+
+            if (callback) callback()
+        })
+    }
+
     fetchASample = (num, callback) => {
         axios.get(`/api/users/sample/${num}`)
             .then(res => {
@@ -76,13 +101,11 @@ class Discover extends Component {
     }
 
     render() {
-        const { followAPerson } = this.props
-
         return (
             <div className="Discover-container">
                 <CreatorsListWithCondRenderings
                     list={this.state.list}
-                    followAPerson={followAPerson} />
+                    followAPerson={this.followAPerson} />
             </div>
         )
     }
