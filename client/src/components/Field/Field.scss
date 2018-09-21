@@ -1,3 +1,4 @@
+@import 'variables.scss';
 .Field-container {
     &.inline {
         display: inline;
@@ -10,28 +11,47 @@
     .button,
     button[type=submit] {
         min-width: 6rem;
-        padding: 0 1rem;
-        height: 2rem;
-        font-size: 1rem;
-        border-radius: .1rem;
+        border-radius: .2rem;
+        font-size: 1.1rem;
+        padding: .2rem 1rem;
+        border-color: $color-button-border;
+        background: $color-button-backround;
+        color: $color-button-font;
+        &:active {
+            border-color: $color-button-active-border;
+            background: $color-button-active-background;
+            color: $color-button-active-font;
+        }
+        &:hover:not(:active) {
+            border-color: $color-button-hover-border;
+            background: $color-button-hover-backround;
+            color: $color-button-hover-font;
+        }
     }
     button[type=submit] {
         float: right;
     }
     .button-action {
-        background-color: #090;
-        border-color: #090;
+        background-color: darken(cornflowerblue, 10%);
+        border-color: darken(cornflowerblue, 10%);
+        background: linear-gradient(to bottom, darken(cornflowerblue, 10%), darken(cornflowerblue, 20%));
         color: white;
+        &:active {
+            background: linear-gradient(to bottom, darken(cornflowerblue, 25%), darken(cornflowerblue, 15%));
+        }
+        &:hover:not(:active) {
+            background: linear-gradient(to bottom, darken(cornflowerblue, 8%), darken(cornflowerblue, 18%));
+        }
     }
     .link-button {
         background: none;
         border: none;
         font-weight: bold;
         font-size: 1.1rem;
-        color: darkblue;
+        color: $color-font-secondary;
         &:hover {
+            color: $color-font-main;
             cursor: pointer;
-            text-decoration: underline;
         }
     }
     input[type=text],
@@ -44,9 +64,14 @@
         display: inline-block;
         padding: .2rem;
     }
+    textarea {
+        background-color: $color-field-background;
+        border-color: $color-field-border;
+        color: $color-field-font;
+    }
     .error {
         display: inline-block;
-        color: red;
+        color: $color-font-error;
         padding: .2rem;
     }
 }
