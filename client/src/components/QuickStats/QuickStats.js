@@ -34,18 +34,21 @@ const StatsChart = ({
             </section>
             <section className="QuickStats-rows">
                 <h3>Your stats:</h3>
-                <p>
+                <div>
                     <span>Following:</span>
+                    <div />
                     <span>{subscriptionsCount}</span>
-                </p>
-                <p>
+                </div>
+                <div>
                     <span>Your followers:</span>
+                    <div />
                     <span>{followersCount}</span>
-                </p>
-                <p>
+                </div>
+                <div>
                     <span>Total posts:</span>
+                    <div />
                     <span>{postCount}</span>
-                </p>
+                </div>
             </section>
             <section className="QuickStats-likes-comments">
                 <h3>Total likes and comments on your posts:</h3>
