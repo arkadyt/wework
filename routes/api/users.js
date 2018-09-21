@@ -257,8 +257,10 @@ router.get('/sample/:count', passport.authenticate('jwt', { session: false }), (
         // YES!!!!
 
         User.aggregate([
-            // match followed users only:
-            { $match: { _id: { $in: flattenedSubs } } },
+            // match unfollowed users only:
+            { $match: { _id: { $nin: flattenedSubs } } },
+            // exclude self:
+            { $match: { _id: { $ne: mongoose.Types.ObjectId(req.user.id) } } },
             // copy profile object for the user:
             {
                 $lookup: {
