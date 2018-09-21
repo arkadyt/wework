@@ -86,3 +86,15 @@ export const unfollowAPerson = (userId, callback) => dispatch => {
         })
         .catch(err => console.log(err))
 }
+
+export const fetchUsersStats = callback => dispatch => {
+    axios.get('/api/users/myStats')
+        .then(res => {
+            dispatch({
+                type: types.POST_STATS,
+                payload: res.data
+            })
+            if (callback) callback()
+        })
+        .catch(err => console.log(err))
+}
