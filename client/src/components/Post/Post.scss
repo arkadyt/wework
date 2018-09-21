@@ -6,6 +6,8 @@
     box-shadow: $box_shadow_main;
     margin-top: 1rem;
     width: 100%;
+    background-color: $color-bg-secondary;
+    color: $color-font-main;
 }
 
 .Post__header {
@@ -46,11 +48,11 @@
     background: none;
     border: none;
     font-size: 1rem;
-    color: rgba(0, 0, 0, 0.5);
+    color: $color-font-secondary;
     padding: .5rem;
     cursor: pointer;
     &:hover {
-        color: rgba(0, 0, 0, 0.8)
+        color: $color-font-main;
     }
     &:hover .Post__menu {
         position: relative;

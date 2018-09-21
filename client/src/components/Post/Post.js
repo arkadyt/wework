@@ -97,12 +97,16 @@ class Post extends Component {
                     <IcoMore />
                 </button>
                 <p className="Post__name">
-                    <Link to={
-                        belongsToAuthedUser
-                            ? '/profile'
-                            : `/profile/id/${authorId}`}>
-                        {name}
-                    </Link>
+                    <Field
+                        type="linkButton"
+                        label={name}
+                        inline
+                        style={{ fontSize: '1.25rem' }}
+                        onClick={() => history.push(
+                            belongsToAuthedUser
+                                ? '/profile'
+                                : `/profile/id/${authorId}`
+                        )} />
                 </p>
                 <p className="Post__date">{new Date(date).toLocaleDateString('en-US', dateFormatOptions)}</p>
             </div>
@@ -114,7 +118,7 @@ class Post extends Component {
                 <Field
                     type="linkButton"
                     inline
-                    style={{ color: likedByAuthedUser ? null : 'gray' }}
+                    style={{ color: likedByAuthedUser ? 'cyan' : null }}
                     onClick={() => {
                         likedByAuthedUser
                             ? deleteLike(_id)
@@ -128,7 +132,7 @@ class Post extends Component {
                     : <Field
                         type="linkButton"
                         inline
-                        style={{ color: 'gray', marginLeft: '1rem' }}
+                        style={{ marginLeft: '1rem' }}
                         onClick={() => history.push(`${baseUrl}/view-comments/${_id}`)}>
                         <span className="Post__buttons-icon"><IcoComments /></span>
                         &nbsp;Comment
