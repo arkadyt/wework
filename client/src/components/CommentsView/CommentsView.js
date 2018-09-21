@@ -42,7 +42,6 @@ const CommentNode = connect(state => ({
                     <Field
                         type="linkButton"
                         label="Delete"
-                        style={{ color: 'gray' }}
                         inline
                         onClick={() => deleteComment(postId, _id)} />
                 </div>
@@ -85,7 +84,7 @@ class CommentsView extends Component {
                             flat
                             onSubmit={(data, callback) => addComment(_id, data, callback)} />
                         <div className="CommentsView-comments">
-                            <h2>Comments:</h2><br />
+                            <h2>Comments:</h2>
                             {comments.length > 0
                                 ? comments.map(item => (
                                     <CommentNode
