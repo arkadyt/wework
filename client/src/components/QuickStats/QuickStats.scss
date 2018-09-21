@@ -2,7 +2,8 @@
 .QuickStats-container {
     position: sticky;
     box-shadow: $box_shadow_main;
-    background: white;
+    background: $color-bg-secondary;
+    color: $color-font-main;
     border-radius: .1rem;
     padding: 1rem;
     width: 100%;
