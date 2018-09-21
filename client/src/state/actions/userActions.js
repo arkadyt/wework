@@ -22,8 +22,8 @@ export const loginUser = (credentials, callback) => dispatch => {
         })
         .catch(err => dispatch({
             type:
-                types.POST_FORM_ERRORS, payload:
-                err.response.data
+                types.POST_FORM_ERRORS, 
+                payload: err.response.data
         }))
 }
 
