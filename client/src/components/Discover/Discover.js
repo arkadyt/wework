@@ -8,7 +8,7 @@ import './Discover.css'
 import Field from '../Field/Field'
 import FBSpinner from '../FBSpinner/FBSpinner'
 import { withEither, withAdded } from '../../hocs/conditionalRendering'
-import { followAPerson } from '../../state/actions/userActions'
+import { followAPerson, fetchUsersStats } from '../../state/actions/userActions'
 
 const ListNode = ({
     _id, name, avatar, title, company,
@@ -67,7 +67,7 @@ class Discover extends Component {
     }
 
     followAPerson = (_id, callback) => {
-        const { followAPerson } = this.props
+        const { followAPerson, fetchUsersStats } = this.props
 
         // securing myself up against asynchronous .setState()
         // even though it's very unlikely that the list will get
@@ -87,6 +87,7 @@ class Discover extends Component {
                 // just followed the last person from the list, check for more
                 this.fetchASample(5)
 
+            fetchUsersStats()
             if (callback) callback()
         })
     }
@@ -115,4 +116,4 @@ class Discover extends Component {
     }
 }
 
-export default connect(null, { followAPerson })(Discover)
+export default connect(null, { followAPerson, fetchUsersStats })(Discover)
