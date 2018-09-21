@@ -6,20 +6,20 @@ import {
 } from 'react-icons/fa'
 import axios from 'axios'
 
-import { withEither } from '../../hocs/withEither'
+import { withEither } from '../../hocs/conditionalRendering'
 import FBSpinner from '../FBSpinner/FBSpinner'
 import './QuickStats.css'
 
 const StatsChart = ({
     authedUser: {
-        name, avatar
+        name, avatar, followers, following
     },
     usersProfile: {
         title, company, status
     },
     stats: {
-        followers: followersCount,
-        following: subscriptionsCount,
+        // followers: followersCount,
+        // following: subscriptionsCount,
         postCount,
         totalLikes,
         totalComments
@@ -36,11 +36,11 @@ const StatsChart = ({
                 <h3>Your stats:</h3>
                 <p>
                     <span>Following:</span>
-                    <span>{subscriptionsCount}</span>
+                    <span>{following.length}</span>
                 </p>
                 <p>
                     <span>Your followers:</span>
-                    <span>{followersCount}</span>
+                    <span>{followers.length}</span>
                 </p>
                 <p>
                     <span>Total posts:</span>
@@ -57,9 +57,18 @@ const StatsChart = ({
         </Fragment>
     )
 
-const isLoadingFn = ({ stats, authedUser, usersProfile }) => (
-    !stats || !authedUser || !usersProfile
-)
+const isLoadingFn = ({
+    stats,
+    authedUser,
+    authedUser: {
+        followers, following
+    },
+    usersProfile,
+}) => {
+    console.log(!!stats, !!usersProfile, !!authedUser, !!followers, !!following)
+    return !stats || !usersProfile || !authedUser || !followers || !following
+}
+
 const StatsWithLoading = withEither(isLoadingFn, FBSpinner)(StatsChart)
 
 class QuickStats extends Component {

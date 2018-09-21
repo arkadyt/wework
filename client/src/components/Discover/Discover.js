@@ -6,7 +6,7 @@ import axios from 'axios'
 import './Discover.css'
 import Field from '../Field/Field'
 import FBSpinner from '../FBSpinner/FBSpinner'
-import { withEither } from '../../hocs/withEither'
+import { withEither } from '../../hocs/conditionalRendering'
 import { followAPerson } from '../../state/actions/userActions'
 
 const ListNode = ({
