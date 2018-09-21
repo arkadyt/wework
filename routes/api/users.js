@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../../models/User')
+const Post = require('../../models/Post')
 const gravatar = require('gravatar')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -133,20 +134,6 @@ router.get('/current',
     passport.authenticate('jwt', { session: false }), (req, res) => {
         res.json({ ...req.user._doc, password: 'null' })
     })
-
-
-// @route   GET api/users/:userId
-// @desc    Get user by id (TESTING PURPOSES)
-// @access  Public
-router.get('/:userId', (req, res) => {
-    User.findOne({ _id: req.params.userId })
-        .then(user =>
-            user
-                ? res.json(user)
-                : res.status(400).json({
-                    error: "User not found"
-                }))
-})
 
 
 // @route   GET api/users/:userId/following
@@ -311,6 +298,41 @@ router.get('/sample/:count', passport.authenticate('jwt', { session: false }), (
             if (err) return res.status(400).json(err)
 
             return res.json(data)
+        })
+    })
+})
+
+
+// @route   /api/users/mystats
+// @desc    Get total posts, likes & comments on own posts,
+//          followers and subscriptions count for current user
+// @access  Protected
+router.get('/myStats', passport.authenticate('jwt', { session: false }), (req, res) => {
+    User.find({ _id: req.user.id }, function (err, data) {
+        if (err) return res.status(400).json(err)
+
+        const user = data[0]
+        const followers = user.followers.length || 0
+        const following = user.following.length || 0
+
+        Post.find({ user: req.user.id }, function (err, posts) {
+            if (err) return res.status(400).json(err)
+
+            const postCount = posts.length
+            let totalLikes = 0, totalComments = 0
+
+            for (let i of posts) {
+                totalLikes += i.likes.length
+                totalComments += i.comments.length
+            }
+
+            res.json({
+                followers,
+                following,
+                postCount,
+                totalLikes,
+                totalComments
+            })
         })
     })
 })
