@@ -42,11 +42,17 @@ class Login extends React.Component {
                     onChange={e => this.setState({ password: e.target.value })}
                     label="Password:"
                     error={this.props.errors.password} />
-                <Field
-                    type="submit"
-                    label="Log In" />
+                <div className="Login-buttons">
+                    <span className="Login-options-info">
+                        Don't have an account? <Link to="/signup">Sign Up</Link>
+                    </span>
+                    <Field
+                        type="submit"
+                        inline
+                        containerStyle={{ margin: 0 }}
+                        label="Log In" />
+                </div>
             </form>
-            <span>Don't have an account? <Link to="/signup">Sign Up</Link></span>
         </div>
     }
 }
