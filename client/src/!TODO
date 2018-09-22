@@ -21,3 +21,44 @@ QuickStats: say create profile now to see your stats! (+ Add component header)
 [SKIP] Pass form to generic modal component with buttons?
 [SKIP] Use overlay inside of AddEdu and AddExp? Would be able to dismiss then, access overlayId?
 [SKIP] Buttons together at the AddEdu & AddExp forms!
+
+
+// follow conventions
+// what are they??????????
+
+
+// override variables, then import source variables sheet
+// but where?
+// why would it be used? how do overriden variables get connected?
+
+
+// - fork a package, figure out how to build it, learn publishing on npm, and use it
+// - use different package
+// - figure out how to override fucken styles
+
+// @import 'react-widgets/lib/scss/variables.scss';
+// $font-size: 16px;
+// $input-height: 2.5em;
+// $multiselect-tag-bg: red;
+// $input-color:               red;
+// $input-height:              .429em; // 2.5em is good for 16px roots
+// $input-padding-horizontal:  .857em;
+// $input-box-shadow:          inset 0 1px 1px red;
+
+// $input-bg:                  red;
+// $input-color-placeholder:   red;
+
+// $input-border:              5rem;
+// $input-border-width:        10rem;
+// $input-border-radius:       10rem;
+
+// $input-bg-disabled:         red;
+// $input-border-disabled:     red;
+
+// $input-bg-hover:            red;
+// $input-border-hover:        red;
+
+// $input-bg-focus:            red;
+// $input-border-focus:        red;
+
+// @import 'react-widgets/lib/scss/variables.scss';

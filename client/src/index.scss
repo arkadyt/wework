@@ -1,11 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|Josefin+Sans:100,300,400");
+@import 'variables.scss';
 /* @import url("https://fonts.googleapis.com/css?family=Montserrat:400|Open+Sans:300"); */
+
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'PT Sans Narrow', sans-serif; }
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
 
 html {
-  /* font-size: 62.5%; */
+    background-color: $color-bg-main;
+    /* font-size: 62.5%; */
 }
