@@ -15,12 +15,19 @@ $color-field-background: darken($color-bg-main, 3%);
 $color-field-border:     lighten(#35383b, 20%);
 $color-field-font:       $color-font-main;
 
-$color-button-backround:        $color-bg-main;
-$color-button-border:           $color-bg-main;
+$color-nav:         darken($color-bg-main, 5%);
+$color-nav-border:  darken($color-bg-main, 10%);
+
+$color-element-main:        lighten($color-nav, 10%);
+$color-element-border:      $color-nav-border;
+$color-element-secondary:   lighten($color-element-main, 5%);
+
+$color-button-backround:        $color-element-main;
+$color-button-border:           $color-element-secondary;
 $color-button-font:             $color-font-main;
 $color-button-active-background:$color-bg-secondary;
 $color-button-active-border:    $color-bg-secondary;
 $color-button-active-font:      $color-font-secondary;
-$color-button-hover-backround:  $color-bg-main;
-$color-button-hover-border:     $color-bg-main;
+$color-button-hover-backround:  $color-element-secondary;
+$color-button-hover-border:     $color-element-secondary;
 $color-button-hover-font:       $color-font-main;
