@@ -1,4 +1,4 @@
-@import '_variables.scss';
+@import 'variables.scss';
 .Navigation-container {
     width: 100%;
     height: $navigation_height;
@@ -7,11 +7,26 @@
     top: 0;
     left: 0;
     z-index: 100;
+    .Navigation-logo {
+        color: $color-font-main;
+        float: left;
+        font-size: 2rem;
+        font-weight: bold;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 7.5rem;
+        span:last-child {
+            color: $color-accent-main;
+        }
+    }
     nav {
         float: right;
         display: flex;
         height: 100%;
         margin-right: 1rem;
+        font-size: 1.2rem;
         a {
             color: white;
             height: 100%;

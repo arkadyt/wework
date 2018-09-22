@@ -21,7 +21,7 @@ class Navigation extends React.Component {
                 <span>Account</span>
             </a> :
             <Link to="/login">
-                <span>Log In / Sign Up</span>
+                <span>Log In</span>
             </Link>
 
         const protectedLinks = this.props.authedUser.isAuthenticated ?
@@ -47,9 +47,10 @@ class Navigation extends React.Component {
             </React.Fragment> : null
 
         return <div className="Navigation-container">
+            <div className="Navigation-logo">
+                <span>We</span><span>Work</span>
+            </div>
             <nav>
-                <Link to="/profile/id/5b75f023f1957052e52106f5">Techguy</Link>
-                <Link to="/profile/id/5b9eedd621194c102c5280e8">John Doe</Link>
                 {protectedLinks}
                 {profileButton}
                 {dropdown}
