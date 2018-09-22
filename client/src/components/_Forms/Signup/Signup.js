@@ -57,9 +57,17 @@ class Signup extends React.Component {
                     error={this.props.errors.passwordConfirm} />
                 <br />
                 <span>By creating an account, you agree to Conditions of Use and Privacy Notice of this Website</span>
-                <Field type="submit" label="Sign Up" />
+                <div className="Signup-buttons">
+                    <span className="Signup-options-info">
+                        Already have an account? <Link to="/login">Log In</Link>
+                    </span>
+                    <Field
+                        type="submit"
+                        inline
+                        containerStyle={{ margin: 0 }}
+                        label="Sign Up" />
+                </div>
             </form>
-            <span>Already have an account? <Link to="/login">Log In</Link></span>
         </div>
     }
 }
