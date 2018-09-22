@@ -11,11 +11,11 @@ function Layout() {
     return (
         <div className="Layout-container">
             <Switch>
-                <Route path='/login' component={Login} />
-                <Route path='/signup' component={Signup} />
                 <PrivateRoute path='/profile/id/:userId' component={Profile} />
                 <PrivateRoute path='/profile' component={Profile} />
                 <PrivateRoute path='/feed' component={Feed} />
+                <Route path='/signup' component={Signup} />
+                <Route component={Login} />
             </Switch>
         </div>
     )
