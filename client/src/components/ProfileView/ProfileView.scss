@@ -21,7 +21,7 @@
     .intro {
         padding: 1.5rem 2rem;
         grid-column-gap: 1rem;
-        grid-template-columns: .46fr 1fr .1fr;
+        grid-template-columns: .46fr 1fr .65fr;
         .info {
             .links {
                 margin-top: .4rem;
@@ -34,12 +34,39 @@
                     }
                 }
             }
+            .website-link {
+                font-size: 1.1rem;
+                font-weight: bold;
+                color: white;
+                text-decoration: none;
+                &:hover {
+                    color: rgba(0, 0, 0, 0.5);
+                }
+            }
             color: white;
         }
         img {
             width: 10rem;
         }
         background-color: cornflowerblue;
+    }
+    .info-buttons {
+        width: 100%;
+        button {
+            font-size: 1.1rem;
+            padding: .2rem 0;
+            width: 100%;
+            background-color: darken(cornflowerblue, 10%);
+            border-color: darken(cornflowerblue, 10%);
+            background: linear-gradient( to bottom, darken(cornflowerblue, 10%), darken(cornflowerblue, 20%));
+            color: white;
+            &:active {
+                background: linear-gradient(to bottom, darken(cornflowerblue, 25%), darken(cornflowerblue, 15%));
+            }
+            &:hover:not(:active) {
+                background: linear-gradient( to bottom, darken(cornflowerblue, 8%), darken(cornflowerblue, 18%));
+            }
+        }
     }
     .skills {
         .tag {

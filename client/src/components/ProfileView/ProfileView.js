@@ -92,6 +92,7 @@ class ProfileView extends Component {
                 status,
                 location,
                 company,
+                website,
                 bio,
                 skills,
                 experience,
@@ -137,49 +138,33 @@ class ProfileView extends Component {
                             </a> : null}
                             {instagram ? <a href={instagram}><IcoInstagram /></a> : null}
                         </div>
+                        {website && <a href={website} className="website-link">{website}</a>}
+                    </div>
+                    <div className="info-buttons">
                         {profileBelongsToAuthedUser
-                            ? (
-                                <Fragment>
-                                    <span style={{ fontSize: '.8rem' }}><IcoEdit /></span>
-                                    <Field
-                                        type="linkButton"
-                                        label="Edit Profile"
-                                        containerStyle={{ margin: '0 0 0 .3rem' }}
-                                        inline
-                                        style={{ color: 'white' }}
-                                        onClick={() => {
-                                            this.quitEntryDeletingMode()
-                                            history.push(`${baseUrl}/update-profile`)
-                                        }} />
-                                </Fragment>
-                            ) : isFollowingProfileOwner
-                                ? (
-                                    <Fragment>
-                                        <span style={{ fontSize: '.8rem' }}>
-                                            <IcoUnfollow />
-                                        </span>
-                                        <Field
-                                            type="linkButton"
-                                            label="Unfollow"
-                                            containerStyle={{ margin: '0 0 0 .3rem' }}
-                                            inline
-                                            style={{ color: 'white' }}
-                                            onClick={() => unfollowAPerson(_id)} />
-                                    </Fragment>
-                                ) : (
-                                    <Fragment>
-                                        <span style={{ fontSize: '.8rem' }}>
-                                            <IcoFollow />
-                                        </span>
-                                        <Field
-                                            type="linkButton"
-                                            label="Follow"
-                                            containerStyle={{ margin: '0 0 0 .3rem' }}
-                                            inline
-                                            style={{ color: 'white' }}
-                                            onClick={() => followAPerson(_id)} />
-                                    </Fragment>
-                                )}
+                            ? <button onClick={() => {
+                                this.quitEntryDeletingMode()
+                                history.push(`${baseUrl}/update-profile`)
+                            }}>
+                                <span style={{ fontSize: '.8rem' }}><IcoEdit /></span>
+                                &nbsp;
+                                Edit Profile
+                            </button>
+                            : isFollowingProfileOwner
+                                ? <button onClick={() => unfollowAPerson(_id)}>
+                                    <span style={{ fontSize: '.8rem' }}>
+                                        <IcoUnfollow />
+                                    </span>
+                                    &nbsp;
+                                    Unfollow
+                                </button>
+                                : <button onClick={() => followAPerson(_id)}>
+                                    <span style={{ fontSize: '.8rem' }}>
+                                        <IcoFollow />
+                                    </span>
+                                    &nbsp;
+                                    Follow
+                                </button>}
                     </div>
                 </section>
                 {bio
