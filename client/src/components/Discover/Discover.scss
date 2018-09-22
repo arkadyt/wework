@@ -8,6 +8,11 @@
     padding: 1rem;
     width: 100%;
     top: 4rem;
+    .lds-facebook {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
     .ListNode-container {
         margin-top: 1rem;
         display: grid;
