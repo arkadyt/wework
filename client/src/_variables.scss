@@ -2,25 +2,25 @@ $navigation-height: 3rem;
 
 $box-shadow-main: 0px 3px 13px 0px rgba(0, 0, 0, 0.3);
 
-$color-bg-main: #35383b;
+$color-bg-main:      #35383b;
 $color-bg-secondary: #4b4f53;
 
-$color-font-main: white;
+$color-font-main:    white;
 $color-font-secondary: darken(white, 20%);
-$color-font-error: rgb(255, 160, 160);
+$color-font-error:   rgb(255, 160, 160);
 
 $color-accent-main: cyan;
 
 $color-field-background: darken($color-bg-main, 3%);
-$color-field-border: lighten(#35383b, 20%);
-$color-field-font: $color-font-main;
+$color-field-border:     lighten(#35383b, 20%);
+$color-field-font:       $color-font-main;
 
-$color-button-backround: $color-bg-main;
-$color-button-border: $color-bg-main;
-$color-button-font: $color-font-main;
-$color-button-active-background: $color-bg-secondary;
-$color-button-active-border: $color-bg-secondary;
-$color-button-active-font: $color-font-secondary;
-$color-button-hover-backround: $color-bg-main;
-$color-button-hover-border: $color-bg-main;
-$color-button-hover-font: $color-font-main;
+$color-button-backround:        $color-bg-main;
+$color-button-border:           $color-bg-main;
+$color-button-font:             $color-font-main;
+$color-button-active-background:$color-bg-secondary;
+$color-button-active-border:    $color-bg-secondary;
+$color-button-active-font:      $color-font-secondary;
+$color-button-hover-backround:  $color-bg-main;
+$color-button-hover-border:     $color-bg-main;
+$color-button-hover-font:       $color-font-main;
