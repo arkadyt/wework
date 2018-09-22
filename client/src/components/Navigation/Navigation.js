@@ -17,9 +17,9 @@ class Navigation extends React.Component {
 
     render() {
         const profileButton = this.props.authedUser.isAuthenticated ?
-            <a href="#" onClick={this.toggleDropdown}>
+            <button className="Navigation-button" onClick={this.toggleDropdown}>
                 <span>Account</span>
-            </a> :
+            </button> :
             <Link to="/login">
                 <span>Log In</span>
             </Link>
@@ -29,22 +29,25 @@ class Navigation extends React.Component {
                 <Link to="/feed"><span>Feed</span></Link>
             </React.Fragment> : null
 
-        const dropdown = this.state.showDropdown ?
+        const dropdown = (
             <React.Fragment>
                 <ul onClick={() => this.toggleDropdown(false)}
-                    className={'account-menu'}>
+                    className={["account-menu",
+                        this.state.showDropdown && "account-menu-open"].join(' ')}>
                     <li><Link to="/profile"><span>My Profile</span></Link></li>
                     <li>
-                        <a href="javascript:void"
+                        <button className="Navigation-menu-button"
                             onClick={() => this.props.logoutUser(() => {
                                 this.props.history.push('/login')
                             })}>
                             <span>Logout</span>
-                        </a>
+                        </button>
                     </li>
                 </ul>
-                <div className="backdrop" onClick={() => this.toggleDropdown(false)} />
-            </React.Fragment> : null
+                {this.state.showDropdown &&
+                    <div className="backdrop" onClick={() => this.toggleDropdown(false)} />}
+            </React.Fragment>
+        )
 
         return <div className="Navigation-container">
             <div className="Navigation-logo">
