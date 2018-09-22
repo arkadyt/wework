@@ -96,7 +96,7 @@ class Post extends Component {
                     )}>
                     <IcoMore />
                 </button>
-                <p className="Post__name">
+                <div className="Post__name">
                     <Field
                         type="linkButton"
                         label={name}
@@ -107,7 +107,7 @@ class Post extends Component {
                                 ? '/profile'
                                 : `/profile/id/${authorId}`
                         )} />
-                </p>
+                </div>
                 <p className="Post__date">{new Date(date).toLocaleDateString('en-US', dateFormatOptions)}</p>
             </div>
             <p className="Post__body">{text}</p>
