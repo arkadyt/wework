@@ -100,7 +100,13 @@ router.post('/feed',
                 })
             }
 
-            return res.json(data)
+            Post.populate(data, { path: 'comments.user', select: ['name', 'avatar'] },
+                function (err, populated) {
+                    if (err)
+                        return res.status(404).json(err)
+
+                    return res.json(populated)
+                })
         })
     })
 

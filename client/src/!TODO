@@ -1,10 +1,10 @@
-Show new posts TOAST
+[CRUCIAL] Show new posts TOAST
 Update stats on every Feed event
 create (a separate?) db with fake profiles and posts data
-change color scheme to JSONGenerator alike one
 [EASY] show (viewed) user's posts under profile view
-QuickStats: say create profile now to see your stats! (+ Add component header)
+[CRUCIAL] QuickStats: say create profile now to see your stats! (+ Add component header)
 
+[DONE] change color scheme to JSONGenerator alike one
 [DONE] display person's website at the place of 'See Activity' button, move buttons to 3rd col.
 [DONE] don't center profile view
 [DONE] add a header to Reply comp: Post as John Doe
