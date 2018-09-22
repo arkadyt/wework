@@ -1,4 +1,5 @@
 @import 'variables.scss';
+@import 'react-widgets/lib/scss/variables.scss';
 .Field-container {
     &.inline {
         display: inline;
@@ -59,6 +60,11 @@
         font-size: 1rem;
         padding: .6rem;
         width: 100%;
+    }
+    input {
+        background: $color-field-background;
+        color: $color-field-font;
+        border-color: $color-field-border;
     }
     label {
         display: inline-block;
