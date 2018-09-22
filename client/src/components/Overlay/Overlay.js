@@ -3,16 +3,22 @@ import './Overlay.css'
 
 class Overlay extends React.Component {
     componentWillMount() {
-        window.scrollTo({ top: 0 })
+        document.body.style = "overflow: hidden"
+    }
+
+    componentWillUnmount() {
+        document.body.style = null
     }
 
     render() {
         const { children, onBackdropClick } = this.props
 
         return (
-            <div className="Overlay-container">
-                <div className="backdrop"
-                    onClick={() => onBackdropClick()} />
+            <div id="Overlay-container-backdrop"
+                className="Overlay-container" onClick={function (e) {
+                    if (e.target.id === 'Overlay-container-backdrop')
+                        onBackdropClick()
+                }}>
                 <div className="content">
                     {children}
                 </div>
