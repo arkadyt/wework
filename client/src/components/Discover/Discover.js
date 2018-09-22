@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { FaUserPlus as IcoAdd } from 'react-icons/fa'
 import axios from 'axios'
 import { compose } from 'recompose'
+import { withRouter } from 'react-router-dom'
 
 import './Discover.css'
 import Field from '../Field/Field'
@@ -10,14 +11,20 @@ import FBSpinner from '../FBSpinner/FBSpinner'
 import { withEither, withAdded } from '../../hocs/conditionalRendering'
 import { followAPerson, fetchUsersStats } from '../../state/actions/userActions'
 
-const ListNode = ({
+const ListNode = withRouter(({
     _id, name, avatar, title, company,
-    followAPerson
+    followAPerson,
+    history
 }) => (
         <div className="ListNode-container">
             <img className="ListNode-img" src={avatar} alt="" />
             <div className="ListNode-name">
-                <p>{name}</p>
+                <Field
+                    type="linkButton"
+                    label={name}
+                    inline
+                    style={{ fontSize: '1.15em' }}
+                    onClick={() => history.push(`/profile/id/${_id}`)} />
                 <p>{title} at {company}</p>
             </div>
             <Field
@@ -27,7 +34,7 @@ const ListNode = ({
                 <IcoAdd />
             </Field>
         </div>
-    )
+    ))
 
 const CreatorsList = ({
     followAPerson,
@@ -77,9 +84,7 @@ class Discover extends Component {
 
         followAPerson(_id, () => {
             this.setState(prevState => ({
-                list: prevState.list.filter(item => {
-                    item._id !== _id
-                })
+                list: prevState.list.filter(item => item._id !== _id)
             }))
 
             // ...later down here
