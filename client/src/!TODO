@@ -3,10 +3,11 @@ Update stats on every Feed event
 create (a separate?) db with fake profiles and posts data
 [EASY] show (viewed) user's posts under profile view
 [CRUCIAL] QuickStats: say create profile now to see your stats! (+ Add component header)
+[CRUCIAL] Rethink error overwriting
 
-loading indicator at Profile
-smooth transition from loading for QuickStats & Discover
+[DONE] loading indicator at Profile
 
+[SKIP] smooth transition from loading for QuickStats & Discover
 [SKIP] Server Polling for updates on loaded content, for widgets etc.
 [SKIP] mark mandatory fields with asterisks
 [SKIP] loading screen (alike reddit one: page filled with shapes)

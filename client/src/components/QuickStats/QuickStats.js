@@ -4,9 +4,12 @@ import {
     FaThumbsUp as IcoLike,
     FaComments as IcoComments
 } from 'react-icons/fa'
+import { compose } from 'recompose'
+import { withRouter } from 'react-router-dom'
 
 import { withEither } from '../../hocs/conditionalRendering'
 import FBSpinner from '../FBSpinner/FBSpinner'
+import Field from '../Field/Field'
 import { fetchUsersStats } from '../../state/actions/userActions'
 import './QuickStats.css'
 
@@ -29,7 +32,7 @@ const StatsChart = ({
             <section className="QuickStats-name">
                 <img src={avatar} alt=""></img>
                 <h2>{name}</h2>
-                <p>{title} at {company}</p>
+                <p>{title}{company && ` at ${company}`}</p>
                 <p>{status}</p>
             </section>
             <section className="QuickStats-rows">
@@ -64,20 +67,40 @@ const isLoadingFn = ({
     stats,
     authedUser,
     usersProfile,
-}) => {
-    return !stats || !usersProfile || !authedUser
-}
+}) => !stats || !usersProfile || !authedUser
 
-const StatsWithLoading = withEither(isLoadingFn, FBSpinner)(StatsChart)
+const hasNoProfile = ({
+    errors: { noProfile }
+}) => !!noProfile
+
+const NoProfileMessage = withRouter(({ history }) => (
+    <Fragment>
+        <h2>You don't yet have a profile, create one now!</h2>
+        <Field 
+            type="button"
+            label="Create"
+            onClick={() => {
+                history.push('/profile/create-profile')
+            }} />
+    </Fragment>
+))
+
+const withCondRendering = compose(
+    withEither(hasNoProfile, NoProfileMessage),
+    withEither(isLoadingFn, FBSpinner)
+)
+
+const StatsWithCondRendering = withCondRendering(StatsChart)
 
 class QuickStats extends Component {
     render() {
-        const { authedUser, usersProfile, stats } = this.props
+        const { authedUser, usersProfile, stats, errors } = this.props
 
         return (
             <div className="QuickStats-container">
-                <StatsWithLoading
+                <StatsWithCondRendering
                     stats={stats}
+                    errors={errors}
                     authedUser={authedUser}
                     usersProfile={usersProfile} />
             </div>
@@ -93,5 +116,6 @@ class QuickStats extends Component {
 export default connect(state => ({
     authedUser: state.user,
     usersProfile: state.profile,
-    stats: state.user.stats
+    stats: state.user.stats,
+    errors: state.err
 }), { fetchUsersStats })(QuickStats)
