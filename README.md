@@ -1,1 +1,2 @@
-# WIP
+# URL
+http://socnet.arkadyt.com

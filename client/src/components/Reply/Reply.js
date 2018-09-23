@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import './Reply.css'
 
 import Field from '../Field/Field'
+import { fetchUsersStats } from '../../state/actions/userActions'
 
 class Reply extends Component {
     constructor(props) {
@@ -10,8 +11,9 @@ class Reply extends Component {
         this.state = {}
     }
 
-    clearFields = () => {
+    handleSubmit = () => {
         this.setState({ text: '' })
+        this.props.fetchUsersStats()
     }
 
     render() {
@@ -27,7 +29,7 @@ class Reply extends Component {
             style={flat ? flatStyle : null}
             onSubmit={e => {
                 e.preventDefault()
-                onSubmit(this.state, () => this.clearFields())
+                onSubmit(this.state, () => this.handleSubmit())
             }}>
             <p className="Reply-header">Post as <b>{authedUser.name}:</b></p>
             <Field
@@ -48,4 +50,4 @@ class Reply extends Component {
 export default connect(state => ({
     authedUser: state.user,
     errors: state.err.formErrors
-}))(Reply)
+}), { fetchUsersStats })(Reply)

@@ -86,7 +86,10 @@ class Post extends Component {
                 {belongsToAuthedUser
                     ? <button
                         className="Post__menu-item"
-                        onClick={() => deletePost(_id)}>
+                        onClick={() => 
+                            deletePost(_id, () => {
+                                fetchUsersStats()
+                            })}>
                         Delete</button>
                     : <button
                         className="Post__menu-item"
@@ -132,8 +135,8 @@ class Post extends Component {
                     style={{ color: likedByAuthedUser ? 'cornflowerblue' : null }}
                     onClick={() => {
                         likedByAuthedUser
-                            ? deleteLike(_id)
-                            : likePost(_id)
+                            ? deleteLike(_id, fetchUsersStats)
+                            : likePost(_id, fetchUsersStats)
                     }}>
                     <span className="Post__buttons-icon"><IcoLike /></span>
                     &nbsp;Like

@@ -1,13 +1,15 @@
-[CRUCIAL] Show new posts TOAST
 Update stats on every Feed event
 create (a separate?) db with fake profiles and posts data
-[EASY] show (viewed) user's posts under profile view
-[CRUCIAL] QuickStats: say create profile now to see your stats! (+ Add component header)
 [CRUCIAL] Rethink error overwriting
-fix overscrolling at /profile
 
+[DONE] Refetch discover content upon the unfollow event
+[DONE] Show newly followed people's posts
+[DONE] QuickStats: say create profile now to see your stats! (+ Add component header)
+[DONE] fix overscrolling at /profile
+[DONE] add GitHub repo link (-50% gray) (Author, not See on Github. Ppl wanna know WHO IS HE? They know what it is.)
 [DONE] loading indicator at Profile
 
+[SKIP?] show (viewed) user's posts under profile view
 [SKIP] smooth transition from loading for QuickStats & Discover
 [SKIP] Server Polling for updates on loaded content, for widgets etc.
 [SKIP] mark mandatory fields with asterisks

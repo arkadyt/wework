@@ -7,6 +7,7 @@ import Reply from '../Reply/Reply'
 import Field from '../Field/Field'
 import Overlay from '../Overlay/Overlay'
 import { addComment, deleteComment } from '../../state/actions/postsActions'
+import { fetchUsersStats } from '../../state/actions/userActions'
 
 const dateFormatOptions = {
     year: 'numeric',
@@ -19,7 +20,7 @@ const dateFormatOptions = {
 
 const CommentNode = connect(state => ({
     authedUserId: state.user.id
-}), { deleteComment })(({
+}), { deleteComment, fetchUsersStats })(({
     _id,
     text,
     date,
@@ -29,7 +30,8 @@ const CommentNode = connect(state => ({
     },
     postId,
     authedUserId,
-    deleteComment
+    deleteComment,
+    fetchUsersStats
 }) => {
     const belongsToAuthedUser = authorId === authedUserId
     return (
@@ -43,7 +45,9 @@ const CommentNode = connect(state => ({
                         type="linkButton"
                         label="Delete"
                         inline
-                        onClick={() => deleteComment(postId, _id)} />
+                        onClick={() =>
+                            deleteComment(postId, _id, fetchUsersStats)
+                        } />
                 </div>
                 : null}
         </div>
