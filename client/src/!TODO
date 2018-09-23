@@ -4,6 +4,7 @@ create (a separate?) db with fake profiles and posts data
 [EASY] show (viewed) user's posts under profile view
 [CRUCIAL] QuickStats: say create profile now to see your stats! (+ Add component header)
 [CRUCIAL] Rethink error overwriting
+fix overscrolling at /profile
 
 [DONE] loading indicator at Profile
 
