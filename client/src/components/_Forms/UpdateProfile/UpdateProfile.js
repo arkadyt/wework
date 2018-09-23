@@ -87,7 +87,7 @@ class UpdateProfile extends React.Component {
                         type="list"
                         name="status"
                         label="Job seeker status:"
-                        list={['Not open', 'Available for Employment', 'Actively Seeking']}
+                        list={['Not open for Employment', 'Available for Employment', 'Actively Seeking']}
                         value={this.state.status}
                         onChange={value => this.setState({ status: value })}
                         error={errors.status} />
