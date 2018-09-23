@@ -33,21 +33,20 @@ const FeedContent = ({
     )
 }
 
-const isEmptyFn = ({ endOfFeed, posts }) => posts.length === 0 && !!endOfFeed
 const NoContent = () => (
         <p className="Feed-message" style={{ marginBottom: 0 }}>
             We've got no posts for you yet!
         </p>
 )
-
-const isLoadingFn = props => props.isLoading
-
-const isEndOfFeedFn = ({ endOfFeed, isLoading }) => !!endOfFeed && !isLoading
 const EndOfFeedMessage = ({ endOfFeed }) => (
     <p className="Feed-message">
         {endOfFeed}
     </p>
 )
+
+const isEmptyFn = ({ endOfFeed, posts }) => posts.length === 0 && !!endOfFeed
+const isLoadingFn = ({ endOfFeed, posts, isLoading }) => isLoading || !endOfFeed && posts.length === 0
+const isEndOfFeedFn = ({ endOfFeed, isLoading }) => !!endOfFeed && !isLoading
 
 const withCondRendering = compose(
     withEither(isEmptyFn, NoContent),
@@ -59,7 +58,7 @@ const FeedContentWithCondRendering = withCondRendering(FeedContent)
 class Feed extends Component {
     state = {
         loadMore: false,
-        isLoading: true
+        isLoading: false
     }
 
     isBottom = el => el.getBoundingClientRect().bottom <= window.innerHeight
@@ -92,7 +91,7 @@ class Feed extends Component {
         document.addEventListener('scroll', this.onScroll)
 
         window.scrollTo(0, 0)
-        fetchPosts(false, () => this.setState({ isLoading: false }))
+        fetchPosts(false)
     }
 
     componentWillUnmount() {
@@ -101,6 +100,7 @@ class Feed extends Component {
 
     render() {
         const {
+            // endOfFeed is conditionally updated in the state/reducers/errReducer.js
             errors: { endOfFeed },
             posts,
             addPost,
