@@ -1,6 +1,19 @@
-import React, { Component, Fragment } from 'react'
+/**
+ * WARNING:
+ * 
+ * I do realize that this component is just a wall of shitcode,
+ * and I do realize how many mistakes have been made here.
+ * 
+ * Don't judge my skills based on what you see here. 
+ * This code will be refactored in the soon time.
+ * In the meanwhile you can checkout the ../_Pages/Feed.js component!
+ * 
+ * Happy reading!
+ */
+
+
+import React, { Component } from 'react'
 import './ProfileView.css'
-import placeholderImage from '../../images/avatar_placeholder.png'
 import Field from '../Field/Field'
 import { connect } from 'react-redux'
 import { deleteExperience, deleteEducation } from '../../state/actions/profileActions'
@@ -86,7 +99,7 @@ class ProfileView extends Component {
             followAPerson,
             unfollowAPerson,
             profile: {
-                user: { _id, name },
+                user: { _id, name, avatar },
                 image,
                 title,
                 status,
@@ -117,7 +130,7 @@ class ProfileView extends Component {
         return (
             <div className="ProfileView-container">
                 <section className="intro">
-                    <img src={image || placeholderImage} alt="" />
+                    <img src={avatar} alt="" />
                     <div className="info">
                         <h2>{name}</h2>
                         <p>{title}{company ? ` at ${company}` : ''}</p>
@@ -142,29 +155,38 @@ class ProfileView extends Component {
                     </div>
                     <div className="info-buttons">
                         {profileBelongsToAuthedUser
-                            ? <button onClick={() => {
-                                this.quitEntryDeletingMode()
-                                history.push(`${baseUrl}/update-profile`)
-                            }}>
+                            ? <Field
+                                type="button"
+                                containerStyle={{ margin: 0 }}
+                                onClick={() => {
+                                    this.quitEntryDeletingMode()
+                                    history.push(`${baseUrl}/update-profile`)
+                                }}>
                                 <span style={{ fontSize: '.8rem' }}><IcoEdit /></span>
                                 &nbsp;
                                 Edit Profile
-                            </button>
+                            </Field>
                             : isFollowingProfileOwner
-                                ? <button onClick={() => unfollowAPerson(_id)}>
+                                ? <Field
+                                    type="button"
+                                    containerStyle={{ margin: 0 }}
+                                    onClick={() => unfollowAPerson(_id)}>
                                     <span style={{ fontSize: '.8rem' }}>
                                         <IcoUnfollow />
                                     </span>
                                     &nbsp;
                                     Unfollow
-                                </button>
-                                : <button onClick={() => followAPerson(_id)}>
+                                </Field>
+                                : <Field
+                                    type="button"
+                                    containerStyle={{ margin: 0 }}
+                                    onClick={() => followAPerson(_id)}>
                                     <span style={{ fontSize: '.8rem' }}>
                                         <IcoFollow />
                                     </span>
                                     &nbsp;
                                     Follow
-                                </button>}
+                                </Field>}
                     </div>
                 </section>
                 {bio
@@ -236,13 +258,11 @@ class ProfileView extends Component {
                                             ? <Field
                                                 type="linkButton"
                                                 label="Cancel"
-                                                style={{ color: 'darkred' }}
                                                 containerStyle={{ margin: 0 }}
                                                 onClick={() => this.setState({ deletingExpEntries: false })} />
                                             : <Field
                                                 type="linkButton"
                                                 label="Delete an entry"
-                                                style={{ color: 'darkred' }}
                                                 containerStyle={{ margin: 0 }}
                                                 onClick={() => this.setState({ deletingExpEntries: true })} />
                                         : null}
@@ -298,13 +318,11 @@ class ProfileView extends Component {
                                             ? <Field
                                                 type="linkButton"
                                                 label="Cancel"
-                                                style={{ color: 'darkred' }}
                                                 containerStyle={{ margin: 0 }}
                                                 onClick={() => this.setState({ deletingEduEntries: false })} />
                                             : <Field
                                                 type="linkButton"
                                                 label="Delete an entry"
-                                                style={{ color: 'darkred' }}
                                                 containerStyle={{ margin: 0 }}
                                                 onClick={() => this.setState({ deletingEduEntries: true })} />
                                         : null}

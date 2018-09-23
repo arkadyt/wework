@@ -2,7 +2,8 @@
 .ProfileView-container {
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: lighten($color-bg-secondary, 0%);
+    color: $color-font-main;
     border-radius: .3rem;
     overflow: hidden;
     box-shadow: $box_shadow_main;
@@ -48,29 +49,14 @@
         img {
             width: 10rem;
         }
-        background-color: cornflowerblue;
+        background-color: lighten($color-bg-secondary, 10%);
     }
     .info-buttons {
-        width: 100%;
-        button {
-            font-size: 1.1rem;
-            padding: .2rem 0;
-            width: 100%;
-            background-color: darken(cornflowerblue, 10%);
-            border-color: darken(cornflowerblue, 10%);
-            background: linear-gradient( to bottom, darken(cornflowerblue, 10%), darken(cornflowerblue, 20%));
-            color: white;
-            &:active {
-                background: linear-gradient(to bottom, darken(cornflowerblue, 25%), darken(cornflowerblue, 15%));
-            }
-            &:hover:not(:active) {
-                background: linear-gradient( to bottom, darken(cornflowerblue, 8%), darken(cornflowerblue, 18%));
-            }
-        }
+        justify-self: end;
     }
     .skills {
         .tag {
-            background-color: lightgray;
+            background-color: lighten($color-bg-secondary, 15%);
             border-radius: .1rem;
             margin-right: .2rem;
             padding: .2rem 1rem;
