@@ -8,6 +8,7 @@ import UpdateProfile from '../../_Forms/UpdateProfile/UpdateProfile'
 import AddEdu from '../../_Forms/AddEdu/AddEdu'
 import AddExp from '../../_Forms/AddExp/AddExp'
 import Modal from '../../Modal/Modal'
+import FBSpinner from '../../FBSpinner/FBSpinner'
 import { fetchUsersProfile, deleteProfile } from '../../../state/actions/profileActions'
 import { fetchAProfile, forgetNotFoundError } from '../../../state/actions/viewedProfileActions'
 
@@ -28,7 +29,7 @@ class Profile extends React.Component {
 
         const baseUrl = match.url || ''
 
-        let content = <h2>Please wait, loading...</h2>
+        let content = <FBSpinner />
 
         if (baseUrl.includes('/id/')) {
             if (noProfile) {
