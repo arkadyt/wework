@@ -12,7 +12,9 @@ import { fetchUsersProfile } from '../../../state/actions/profileActions'
 
 class Login extends React.Component {
     state = {
-        email: 'techguyinfo17@gmail.com',
+        email: 'frodo@sheer.hobbit',
+        // email: 'john.doe@gmail.com',
+        // email: 'techguyinfo17@gmail.com',
         // email: 'lika.reus@gmail.com',
         password: '12345678'
     }
