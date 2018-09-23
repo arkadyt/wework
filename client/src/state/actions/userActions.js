@@ -106,3 +106,15 @@ export const fetchUsersStats = callback => dispatch => {
         })
         .catch(err => console.log(err))
 }
+
+export const fetchDiscoverContent = (num, callback) => dispatch => {
+    axios.get(`/api/users/sample/${num}`)
+            .then(res => {
+                dispatch({ 
+                    type: types.POST_DISCOVER_CONTENT,
+                    payload: res.data
+                })
+                if (callback) callback()
+            })
+            .catch(err => console.log(err))
+}
