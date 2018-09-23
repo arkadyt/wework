@@ -1,0 +1,50 @@
+@import 'mixins';
+@import 'variables';
+.Greeter__container {
+    .Greeter__white-screen {
+        @include viewportSheet();
+        background-color: white;
+        z-index: 205;
+        &.animate {
+            animation: fadeOut .5s ease-out 0s 1 normal forwards;
+        }
+    }
+    .Greeter__logo-screen {
+        @include viewportSheet();
+        background-color: $color-bg-main;
+        z-index: 204;
+        &.animate {
+            animation: fadeOut .5s ease-out 3.75s 1 normal forwards;
+        }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .Greeter__logo {
+            font-size: 5rem;
+            font-weight: bold;
+            color: $color-font-main;
+            span:last-child {
+                color: $color-accent-main;
+            }
+        }
+        .Greeter__headline {
+            color: $color-font-main;
+            font-size: 1.5rem;
+            opacity: 0;
+            &.animate {
+                animation: fadeOut 1s ease-out 1s 1 reverse forwards;
+            }
+        }
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        pointer-events: none;
+    }
+}

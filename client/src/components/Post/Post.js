@@ -118,7 +118,7 @@ class Post extends Component {
                 <Field
                     type="linkButton"
                     inline
-                    style={{ color: likedByAuthedUser ? 'cyan' : null }}
+                    style={{ color: likedByAuthedUser ? 'cornflowerblue' : null }}
                     onClick={() => {
                         likedByAuthedUser
                             ? deleteLike(_id)
