@@ -10,6 +10,7 @@ import Field from '../Field/Field'
 import FBSpinner from '../FBSpinner/FBSpinner'
 import { withEither, withAdded } from '../../hocs/conditionalRendering'
 import { followAPerson, fetchUsersStats } from '../../state/actions/userActions'
+import { fetchPosts } from '../../state/actions/postsActions'
 
 const ListNode = withRouter(({
     _id, name, avatar, title, company,
@@ -74,7 +75,7 @@ class Discover extends Component {
     }
 
     followAPerson = (_id, callback) => {
-        const { followAPerson, fetchUsersStats } = this.props
+        const { followAPerson, fetchUsersStats, fetchPosts } = this.props
 
         // securing myself up against asynchronous .setState()
         // even though it's very unlikely that the list will get
@@ -93,6 +94,7 @@ class Discover extends Component {
                 this.fetchASample(5)
 
             fetchUsersStats()
+            fetchPosts(false)
             if (callback) callback()
         })
     }
@@ -121,4 +123,4 @@ class Discover extends Component {
     }
 }
 
-export default connect(null, { followAPerson, fetchUsersStats })(Discover)
+export default connect(null, { followAPerson, fetchUsersStats, fetchPosts })(Discover)
