@@ -9,7 +9,7 @@ import './Discover.css'
 import Field from '../Field/Field'
 import FBSpinner from '../FBSpinner/FBSpinner'
 import { withEither, withAdded } from '../../hocs/conditionalRendering'
-import { followAPerson, fetchUsersStats } from '../../state/actions/userActions'
+import { followAPerson, fetchUsersStats, fetchDiscoverContent } from '../../state/actions/userActions'
 import { fetchPosts } from '../../state/actions/postsActions'
 
 const ListNode = withRouter(({
@@ -70,17 +70,18 @@ const withCondRenderings = compose(
 const CreatorsListWithCondRenderings = withCondRenderings(CreatorsList)
 
 class Discover extends Component {
-    state = {
-        list: null
-    }
-
     followAPerson = (_id, callback) => {
-        const { followAPerson, fetchUsersStats, fetchPosts } = this.props
+        const {
+            followAPerson,
+            fetchUsersStats,
+            fetchPosts,
+            fetchDiscoverContent
+        } = this.props
 
         // securing myself up against asynchronous .setState()
         // even though it's very unlikely that the list will get
         // updated before I have a chance to check its length later down
-        const { list } = this.state
+        const { list } = this.props
         const listLength = list.length
 
         followAPerson(_id, () => {
@@ -91,7 +92,7 @@ class Discover extends Component {
             // ...later down here
             if (listLength === 1)
                 // just followed the last person from the list, check for more
-                this.fetchASample(5)
+                fetchDiscoverContent(5)
 
             fetchUsersStats()
             fetchPosts(false)
@@ -99,28 +100,24 @@ class Discover extends Component {
         })
     }
 
-    fetchASample = (num, callback) => {
-        axios.get(`/api/users/sample/${num}`)
-            .then(res => {
-                this.setState({ list: res.data })
-                if (callback) callback()
-            })
-            .catch(err => console.log(err))
-    }
-
     render() {
         return (
             <div className="Discover-container">
                 <CreatorsListWithCondRenderings
-                    list={this.state.list}
+                    list={this.props.list}
                     followAPerson={this.followAPerson} />
             </div>
         )
     }
 
     componentDidMount() {
-        this.fetchASample(5)
+        this.props.fetchDiscoverContent(5)
     }
 }
 
-export default connect(null, { followAPerson, fetchUsersStats, fetchPosts })(Discover)
+export default connect(state => ({ list: state.user.discoverList }), {
+    followAPerson,
+    fetchUsersStats,
+    fetchPosts,
+    fetchDiscoverContent
+})(Discover)
