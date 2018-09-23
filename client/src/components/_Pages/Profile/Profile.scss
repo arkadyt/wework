@@ -1,8 +1,6 @@
 .Profile-container {
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-    margin-bottom: 26rem; // dirty fix! will be fixed in the future!
+    display: table;
+    padding: 1rem 0 2rem 0;
     min-height: 100%;
     .Profile-content {
         width: 40rem;
