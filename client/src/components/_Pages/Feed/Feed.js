@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import './Feed.css'
 import { connect } from 'react-redux'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { compose } from 'recompose'
 
 import Post from '../../Post/Post'
@@ -35,14 +35,9 @@ const FeedContent = ({
 
 const isEmptyFn = ({ endOfFeed, posts }) => posts.length === 0 && !!endOfFeed
 const NoContent = () => (
-    <Fragment>
         <p className="Feed-message" style={{ marginBottom: 0 }}>
             We've got no posts for you yet!
         </p>
-        <p className="Feed-message" style={{ marginTop: '.7rem' }}>
-            Discover creators <Link to='/discover'>here</Link>!
-        </p>
-    </Fragment>
 )
 
 const isLoadingFn = props => props.isLoading
