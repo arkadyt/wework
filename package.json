@@ -8,7 +8,12 @@
     "server": "nodemon server.js",
     "cl-inst": "npm install --prefix client",
     "client": "npm start --prefix client",
-    "dev": "concurrently 'npm run server' 'npm run client'"
+    "dev": "concurrently 'npm run server' 'npm run client'",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && cd ./client && npm install && npm run build"
+  },
+  "engines": {
+    "node": "10.10.x",
+    "npm": "6.2.x"
   },
   "author": "",
   "license": "ISC",
