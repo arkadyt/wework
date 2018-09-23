@@ -33,6 +33,11 @@ export default function (state = initialState, action) {
                 ...state,
                 stats: action.payload
             }
+        case types.POST_DISCOVER_CONTENT:
+            return {
+                ...state,
+                discoverList: action.payload
+            }
         default:
             return state
     }
