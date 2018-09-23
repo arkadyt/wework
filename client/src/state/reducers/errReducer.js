@@ -1,10 +1,5 @@
 import * as types from '../actions/types'
 
-/**
- * NOTE: Wiping out entire errors object is allright!
- * Because it's sole purpose is to only hold errors that 
- * may be spawned by the page that user CURRENTLY interacts with.  
- */
 const initialState = {
     formErrors: {}
 }
@@ -14,7 +9,15 @@ export default function (state = initialState, action) {
         case types.POST_OLDER_POSTS:
             if (action.withReset) {
                 if (action.payload.length >= 10) {
-                    return initialState
+                    // if a batch of at least 10 posts comes in
+                    // then the end of the feed is not yet reached.
+                    //
+                    // but what if number of available posts in even?
+                    // next fetch will run the opposite clause! 
+                    return {
+                        ...state,
+                        endOfFeed: null
+                    }
                 }
                 
                 return {
@@ -25,7 +28,10 @@ export default function (state = initialState, action) {
                 return state
             }
         case types.POST_USERS_PROFILE:
-            return initialState
+            return {
+                ...state,
+                noProfile: null
+            }
         case types.POST_FORM_ERRORS:
             return {
                 ...state,
