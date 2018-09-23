@@ -54,6 +54,11 @@ class Navigation extends React.Component {
                 <span>We</span><span>Work</span>
             </div>
             <nav>
+                <a href="https://arkadyt.com"
+                    className="Navigation-semi-transparent"
+                    target="_blank">
+                    App Author
+                </a>
                 {protectedLinks}
                 {profileButton}
                 {dropdown}
