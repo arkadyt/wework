@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Post.css'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import {
     FaThumbsUp as IcoLike,
     FaComments as IcoComments,
@@ -11,7 +11,11 @@ import {
 import Field from '../Field/Field'
 import placeholderImage from '../../images/avatar_placeholder.png'
 import { likePost, deleteLike, deletePost } from '../../state/actions/postsActions'
-import { unfollowAPerson } from '../../state/actions/userActions'
+import {
+    unfollowAPerson,
+    fetchDiscoverContent,
+    fetchUsersStats
+} from '../../state/actions/userActions'
 
 class Post extends Component {
     state = {
@@ -48,6 +52,8 @@ class Post extends Component {
             deleteLike,
             deletePost,
             unfollowAPerson,
+            fetchDiscoverContent,
+            fetchUsersStats,
             history,
             match,
             flat,
@@ -84,7 +90,12 @@ class Post extends Component {
                         Delete</button>
                     : <button
                         className="Post__menu-item"
-                        onClick={() => unfollowAPerson(authorId)}>
+                        onClick={() =>
+                            unfollowAPerson(authorId, () => {
+                                fetchUsersStats()
+                                fetchDiscoverContent(5)
+                            })
+                        }>
                         Unfollow user</button>}
             </div>
             <div className="Post__header">
@@ -144,4 +155,11 @@ class Post extends Component {
 
 export default withRouter(connect(state => ({
     authedUser: state.user
-}), { likePost, deleteLike, deletePost, unfollowAPerson })(Post))
+}), {
+        likePost,
+        deleteLike,
+        deletePost,
+        unfollowAPerson,
+        fetchDiscoverContent,
+        fetchUsersStats
+    })(Post))

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { FaUserPlus as IcoAdd } from 'react-icons/fa'
-import axios from 'axios'
 import { compose } from 'recompose'
 import { withRouter } from 'react-router-dom'
 
@@ -78,22 +77,8 @@ class Discover extends Component {
             fetchDiscoverContent
         } = this.props
 
-        // securing myself up against asynchronous .setState()
-        // even though it's very unlikely that the list will get
-        // updated before I have a chance to check its length later down
-        const { list } = this.props
-        const listLength = list.length
-
         followAPerson(_id, () => {
-            this.setState(prevState => ({
-                list: prevState.list.filter(item => item._id !== _id)
-            }))
-
-            // ...later down here
-            if (listLength === 1)
-                // just followed the last person from the list, check for more
-                fetchDiscoverContent(5)
-
+            fetchDiscoverContent(5)
             fetchUsersStats()
             fetchPosts(false)
             if (callback) callback()
