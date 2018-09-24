@@ -56,7 +56,7 @@ class Navigation extends React.Component {
             <nav>
                 <a href="https://arkadyt.com"
                     className="Navigation-semi-transparent"
-                    target="_blank">
+                    target="_blank" rel="noopener noreferrer">
                     App Author
                 </a>
                 {protectedLinks}
