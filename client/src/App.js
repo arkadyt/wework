@@ -10,7 +10,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="App-container">
-        <Greeter />
         <Provider store={store}>
           <Router>
             <React.Fragment>
@@ -19,6 +18,7 @@ class App extends React.Component {
             </React.Fragment>
           </Router>
         </Provider>
+        <Greeter />
       </div>
     )
   }
