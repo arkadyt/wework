@@ -285,7 +285,7 @@ router.get('/sample/:count', passport.authenticate('jwt', { session: false }), (
             // but does if preserveNullAndEmptyArrays flag is set to true 
             {
                 $unwind: {
-                    path: $company,
+                    path: '$company',
                     preserveNullAndEmptyArrays: true
                 }
             },

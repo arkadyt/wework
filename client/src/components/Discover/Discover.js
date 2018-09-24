@@ -25,7 +25,7 @@ const ListNode = withRouter(({
                     inline
                     style={{ fontSize: '1.15em' }}
                     onClick={() => history.push(`/profile/id/${_id}`)} />
-                <p>{title} at {company}</p>
+                <p>{title}{company && ` at ${company}`}</p>
             </div>
             <Field
                 type="linkButton"
