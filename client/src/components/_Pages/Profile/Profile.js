@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import './Profile.css'
 
 import ProfileView from '../../ProfileView/ProfileView'
@@ -10,9 +10,9 @@ import AddExp from '../../_Forms/AddExp/AddExp'
 import Modal from '../../Modal/Modal'
 import FBSpinner from '../../FBSpinner/FBSpinner'
 import { fetchUsersProfile, deleteProfile } from '../../../state/actions/profileActions'
-import { fetchAProfile, forgetNotFoundError } from '../../../state/actions/viewedProfileActions'
+import { fetchAProfile } from '../../../state/actions/viewedProfileActions'
 
-class Profile extends React.Component {
+class Profile extends Component {
     render() {
         const {
             history,
@@ -23,7 +23,8 @@ class Profile extends React.Component {
             viewedProfile,
             profile: profileData,
             errors: {
-                noProfile
+                noProfile,
+                noViewedProfile
             }
         } = this.props
 
@@ -32,9 +33,13 @@ class Profile extends React.Component {
         let content = <FBSpinner />
 
         if (baseUrl.includes('/id/')) {
-            if (noProfile) {
+            if (noViewedProfile) {
                 content = (
-                    <h1>User does not appear to have a profile.</h1>
+                    <p className="Profile-message">
+                        User does not appear to have a profile :C
+                        <br />
+                        <Link to="/feed">..:: Go Back ::..</Link>
+                    </p>
                 )
             } else if (viewedProfile && match.params.userId === viewedProfile.user._id) {
                 content = (
@@ -98,15 +103,10 @@ class Profile extends React.Component {
             </div>
         )
     }
-
-    componentWillUnmount() {
-        const { forgetNotFoundError } = this.props
-        forgetNotFoundError()
-    }
 }
 
 export default connect(state => ({
     profile: state.profile,
     errors: state.err,
     viewedProfile: state.viewedProfile
-}), { fetchUsersProfile, deleteProfile, fetchAProfile, forgetNotFoundError })(Profile)
+}), { fetchUsersProfile, deleteProfile, fetchAProfile })(Profile)

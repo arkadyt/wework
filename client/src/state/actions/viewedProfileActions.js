@@ -8,10 +8,11 @@ export const fetchAProfile = (userId, callback) => dispatch => {
             if (callback) callback()
         })
         .catch(err => {
-            dispatch({ type: types.POST_ERRORS, payload: err.response.data })
+            dispatch({ 
+                type: types.POST_ERRORS, 
+                payload: {
+                    noViewedProfile: err.response.data.noProfile
+                } 
+            })
         })
-}
-
-export const forgetNotFoundError = () => dispatch => {
-    dispatch({ type: types.POST_ERRORS, payload: { noProfile: null } })
 }

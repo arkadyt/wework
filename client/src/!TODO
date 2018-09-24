@@ -1,7 +1,8 @@
-Update stats on every Feed event
 create (a separate?) db with fake profiles and posts data
-[CRUCIAL] Rethink error overwriting
+rethink logic of Profile.js regarding overwriting the noProfile error
 
+[DONE] Rethink error overwriting
+[DONE] Update stats on every Feed event
 [DONE] Refetch discover content upon the unfollow event
 [DONE] Show newly followed people's posts
 [DONE] QuickStats: say create profile now to see your stats! (+ Add component header)
