@@ -45,7 +45,7 @@ const EndOfFeedMessage = ({ endOfFeed }) => (
 )
 
 const isEmptyFn = ({ endOfFeed, posts }) => posts.length === 0 && !!endOfFeed
-const isLoadingFn = ({ endOfFeed, posts, isLoading }) => isLoading || !endOfFeed && posts.length === 0
+const isLoadingFn = ({ endOfFeed, posts, isLoading }) => isLoading || (!endOfFeed && posts.length === 0)
 const isEndOfFeedFn = ({ endOfFeed, isLoading }) => !!endOfFeed && !isLoading
 
 const withCondRendering = compose(
