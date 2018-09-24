@@ -282,7 +282,13 @@ router.get('/sample/:count', passport.authenticate('jwt', { session: false }), (
             // $unwind does not pass forward a document if the field
             // is an empty array or null. Acts like a $match here:
             { $unwind: "$title" },
-            { $unwind: "$company" },
+            // but does if preserveNullAndEmptyArrays flag is set to true 
+            {
+                $unwind: {
+                    path: $company,
+                    preserveNullAndEmptyArrays: true
+                }
+            },
             // Finally out of those who are followed and who have profile
             // sample {req.params.count} number of objects:
             { $sample: { size: parseInt(req.params.count) } },
