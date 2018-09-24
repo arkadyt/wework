@@ -45,6 +45,7 @@ class Greeter extends React.Component {
 
     componentDidMount() {
         window.addEventListener('load', this.handleLoad)
+        document.documentElement.className = 'html-dark-background'
     }
 }
 
