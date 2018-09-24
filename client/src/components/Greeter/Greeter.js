@@ -30,7 +30,6 @@ class Greeter extends React.Component {
 
         return (
             <div className="Greeter__container">
-                <div className={whiteScreenClasses} />
                 <div className={logoScreenClasses}>
                     <div className="Greeter__logo">
                         <span>We</span><span>Work</span>
@@ -39,6 +38,7 @@ class Greeter extends React.Component {
                         Social network website for professionals
                     </span>
                 </div>
+                <div className={whiteScreenClasses} />
             </div>
         )
     }
