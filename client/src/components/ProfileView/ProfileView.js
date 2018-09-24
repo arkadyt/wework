@@ -100,7 +100,6 @@ class ProfileView extends Component {
             unfollowAPerson,
             profile: {
                 user: { _id, name, avatar },
-                image,
                 title,
                 status,
                 location,
