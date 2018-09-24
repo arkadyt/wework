@@ -43,7 +43,7 @@ export const registerUser = (formData, callback) => dispatch => {
                     decodedToken
                 }
             })
-            if (callback) callback()
+            if (callback) callback(decodedToken.id)
         })
         .catch(err => dispatch({
             type: types.POST_FORM_ERRORS,

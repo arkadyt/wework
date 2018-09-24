@@ -1,7 +1,12 @@
 import React from 'react'
 import Field from '../../Field/Field'
-import { Link, Redirect } from 'react-router-dom'
-import { registerUser } from '../../../state/actions/userActions'
+import { Link, Redirect, withRouter } from 'react-router-dom'
+import {
+    registerUser,
+    fetchFollowers,
+    fetchSubscriptions,
+} from '../../../state/actions/userActions'
+import { fetchUsersProfile } from '../../../state/actions/profileActions'
 import { connect } from 'react-redux'
 import './Signup.css'
 
@@ -21,7 +26,12 @@ class Signup extends React.Component {
         return <div className="Signup-container">
             <form onSubmit={e => {
                 e.preventDefault()
-                this.props.registerUser(this.state)
+                this.props.registerUser(this.state, userId => {
+                    this.props.fetchSubscriptions(userId)
+                    this.props.fetchFollowers(userId)
+                    this.props.fetchUsersProfile()
+                    this.props.history.push('/feed')
+                })
             }}>
                 <Field
                     type="text"
@@ -77,4 +87,9 @@ const mapStateToProps = state => ({
     authedUser: state.user
 })
 
-export default connect(mapStateToProps, { registerUser })(Signup)
+export default withRouter(connect(mapStateToProps, {
+    registerUser,
+    fetchFollowers,
+    fetchSubscriptions,
+    fetchUsersProfile
+})(Signup))

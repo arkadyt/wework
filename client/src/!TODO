@@ -1,6 +1,6 @@
 create (a separate?) db with fake profiles and posts data
-rethink logic of Profile.js regarding overwriting the noProfile error
 
+[DONE] rethink logic of Profile.js regarding overwriting the noProfile error
 [DONE] Rethink error overwriting
 [DONE] Update stats on every Feed event
 [DONE] Refetch discover content upon the unfollow event
