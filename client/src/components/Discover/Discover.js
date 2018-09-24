@@ -41,7 +41,7 @@ const CreatorsList = ({
     list
 }) => (
         <Fragment>
-            <h3>Add these creators to your feed:</h3>
+            <h3>Add these people to your feed:</h3>
             <div>
                 {list.map(item => {
                     return (
