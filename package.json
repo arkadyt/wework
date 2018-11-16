@@ -1,5 +1,6 @@
 {
-  "name": "mern",
+  "name": "ww.net",
+  "repository": "https://github.com/arkadyt/ww.net",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
