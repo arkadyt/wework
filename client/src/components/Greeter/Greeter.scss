@@ -14,7 +14,9 @@
         @include viewportSheet();
         background-color: $color-bg-main;
         &.animate {
-            animation: fadeOut .5s ease-out 3.75s 1 normal forwards;
+            @media (orientation: landscape) {                
+                animation: fadeOut .5s ease-out 3.75s 1 normal forwards;
+            }
         }
         display: flex;
         flex-direction: column;
@@ -28,12 +30,27 @@
                 color: $color-accent-main;
             }
         }
-        .Greeter__headline {
+        .Greeter__headline,
+        .Greeter__headline_warning {
             color: $color-font-main;
             font-size: 1.5rem;
             opacity: 0;
+            text-align: center;
             &.animate {
                 animation: fadeOut 1s ease-out 1s 1 reverse forwards;
+            }
+        }
+        .Greeter__headline_warning {
+            @media (orientation: landscape) {
+                display: none;
+            }
+            a {
+                color: white;                
+            }
+        }
+        .Greeter__headline {
+            @media (orientation: portrait) {
+                display: none;
             }
         }
     }

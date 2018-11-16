@@ -1,4 +1,5 @@
 [DONE] create (a separate?) db with fake profiles and posts data
+
 [DONE] rethink logic of Profile.js regarding overwriting the noProfile error
 [DONE] Rethink error overwriting
 [DONE] Update stats on every Feed event
