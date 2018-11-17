@@ -1,4 +1,7 @@
 import React from 'react'
+import {
+    FaShippingFast as IcoTruck
+} from 'react-icons/fa'
 import './Greeter.css'
 
 class Greeter extends React.Component {
@@ -43,14 +46,20 @@ class Greeter extends React.Component {
                         Social network website for professionals
                     </span>
                     <span className={headlineWarningClasses}>
-                        Support for the mobiles is on it's way!<br />
-                        In the meanwhile checkout&nbsp;
-                        <a href="https://arkadyt.com" target="_blank">
-                            <b>arkadyt.com</b>
-                        </a>
-                        <br />
-                        where I demonstrate my skills in building<br />
-                        the responsive layouts!
+                        Support for the tall screens is already<br />
+                        on the way!<br /><br />
+
+                        <span style={{fontSize: 80}}><IcoTruck /></span><br /><br />
+
+                        Until then you can visit the website<br />
+                        on desktop or switch your<br />
+                        device into the landscape mode.<br /><br />
+
+                        To checkout my skills of building the<br />
+                        responsive layouts visit&nbsp;
+                        <a href="https://arkadyt.com" target="_blank" rel="noopener noreferrer">
+                            <b>https://arkadyt.com</b>
+                        </a>!<br />
                     </span>
                 </div>
                 <div className={whiteScreenClasses} />
