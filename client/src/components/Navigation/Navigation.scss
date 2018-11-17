@@ -1,5 +1,8 @@
 @import 'variables.scss';
 .Navigation-container {
+    @media (orientation: portrait) {
+        display: none;
+    }
     width: 100%;
     height: $navigation_height;
     background-color: $color-nav;

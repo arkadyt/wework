@@ -55,7 +55,7 @@ class Greeter extends React.Component {
                         on desktop or switch your<br />
                         device into the landscape mode.<br /><br />
 
-                        To checkout my skills of building the<br />
+                        To checkout my skills in building the<br />
                         responsive layouts visit&nbsp;
                         <a href="https://arkadyt.com" target="_blank" rel="noopener noreferrer">
                             <b>https://arkadyt.com</b>

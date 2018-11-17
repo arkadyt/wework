@@ -24,6 +24,9 @@ html {
             font-size: 100%;
         }
     }
+    @media (orientation: portrait) {
+        font-size: 3vw;
+    }
 }
 
 .html-dark-background {
