@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addExperience } from '../../../state/actions/profileActions'
-import 'react-widgets/dist/css/react-widgets.scss'
 import './AddExp.scss'
+import 'react-widgets/lib/scss/react-widgets.scss'
 
 import Field from '../../Field/Field'
 import Overlay from '../../Overlay/Overlay'

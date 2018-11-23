@@ -5,7 +5,6 @@ import store from './state/store'
 import Layout from './components/Layout'
 import Navigation from './components/Navigation/Navigation'
 import Greeter from './components/Greeter/Greeter'
-import './App.scss'
 
 class App extends Component {
   render() {
