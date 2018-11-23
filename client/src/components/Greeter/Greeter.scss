@@ -1,5 +1,5 @@
-@import 'mixins';
-@import 'variables';
+@import '../../_variables.scss';
+@import '../../_mixins.scss';
 .Greeter__container {
     position: relative;
     z-index: 205;
