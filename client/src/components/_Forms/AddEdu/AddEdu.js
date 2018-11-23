@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import 'react-widgets/dist/css/react-widgets.css'
-import './AddEdu.css'
+import 'react-widgets/dist/css/react-widgets.scss'
+import './AddEdu.scss'
 
 import Field from '../../Field/Field'
 import Overlay from '../../Overlay/Overlay'

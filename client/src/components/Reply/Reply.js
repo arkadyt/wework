@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import './Reply.css'
+import './Reply.scss'
 
 import Field from '../Field/Field'
 import { fetchUsersStats } from '../../state/actions/userActions'

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import './Feed.css'
+import './Feed.scss'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
 import { compose } from 'recompose'

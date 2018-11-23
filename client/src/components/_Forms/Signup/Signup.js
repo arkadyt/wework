@@ -8,7 +8,7 @@ import {
 } from '../../../state/actions/userActions'
 import { fetchUsersProfile } from '../../../state/actions/profileActions'
 import { connect } from 'react-redux'
-import './Signup.css'
+import './Signup.scss'
 
 class Signup extends React.Component {
     state = {

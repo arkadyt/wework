@@ -13,7 +13,7 @@
 
 
 import React, { Component } from 'react'
-import './ProfileView.css'
+import './ProfileView.scss'
 import Field from '../Field/Field'
 import { connect } from 'react-redux'
 import { deleteExperience, deleteEducation } from '../../state/actions/profileActions'

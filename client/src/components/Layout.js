@@ -5,7 +5,7 @@ import Signup from './_Forms/Signup/Signup'
 import Login from './_Forms/Login/Login'
 import { Route, Switch } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute/PrivateRoute'
-import './Layout.css'
+import './Layout.scss'
 
 function Layout() {
     return (

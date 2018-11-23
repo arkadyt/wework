@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Link } from 'react-router-dom'
-import './Profile.css'
+import './Profile.scss'
 
 import ProfileView from '../../ProfileView/ProfileView'
 import UpdateProfile from '../../_Forms/UpdateProfile/UpdateProfile'

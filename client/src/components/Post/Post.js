@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Post.css'
+import './Post.scss'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import {

@@ -1,5 +1,5 @@
 import React from 'react'
-import './Navigation.css'
+import './Navigation.scss'
 import { connect } from 'react-redux'
 import { logoutUser } from '../../state/actions/userActions'
 import { Link, withRouter } from 'react-router-dom'

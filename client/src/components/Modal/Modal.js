@@ -1,7 +1,7 @@
 import React from 'react'
 import Field from '../Field/Field'
 import Overlay from '../Overlay/Overlay'
-import './Modal.css'
+import './Modal.scss'
 
 const Modal = ({
     question,

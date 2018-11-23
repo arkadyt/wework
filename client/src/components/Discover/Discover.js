@@ -4,7 +4,7 @@ import { FaUserPlus as IcoAdd } from 'react-icons/fa'
 import { compose } from 'recompose'
 import { withRouter } from 'react-router-dom'
 
-import './Discover.css'
+import './Discover.scss'
 import Field from '../Field/Field'
 import FBSpinner from '../FBSpinner/FBSpinner'
 import { withEither, withAdded } from '../../hocs/conditionalRendering'

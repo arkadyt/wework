@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Field from '../../Field/Field'
 import { Link, withRouter } from 'react-router-dom'
-import './Login.css'
+import './Login.scss'
 import {
     loginUser,
     fetchFollowers,

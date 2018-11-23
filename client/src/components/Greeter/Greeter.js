@@ -2,7 +2,7 @@ import React from 'react'
 import {
     FaShippingFast as IcoTruck
 } from 'react-icons/fa'
-import './Greeter.css'
+import './Greeter.scss'
 
 class Greeter extends React.Component {
     state = {

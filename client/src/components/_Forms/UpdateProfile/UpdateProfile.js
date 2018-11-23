@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import './UpdateProfile.css'
+import './UpdateProfile.scss'
 
 import Field from '../../Field/Field'
 import Overlay from '../../Overlay/Overlay'

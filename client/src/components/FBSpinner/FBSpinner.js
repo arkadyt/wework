@@ -1,5 +1,5 @@
 import React from 'react'
-import './FBSpinner.css'
+import './FBSpinner.scss'
 
 export default () => (
     <div className="lds-facebook">

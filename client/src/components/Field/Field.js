@@ -2,10 +2,9 @@ import React from 'react'
 import DropdownList from 'react-widgets/lib/DropdownList'
 import DateTimePicker from 'react-widgets/lib/DateTimePicker'
 import Multiselect from 'react-widgets/lib/Multiselect'
-import 'react-widgets/dist/css/react-widgets.css'
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets-moment'
-import './Field.css'
+import './Field.scss'
 
 Moment.locale('en')
 momentLocalizer()

@@ -11,7 +11,7 @@ import { withEither } from '../../hocs/conditionalRendering'
 import FBSpinner from '../FBSpinner/FBSpinner'
 import Field from '../Field/Field'
 import { fetchUsersStats } from '../../state/actions/userActions'
-import './QuickStats.css'
+import './QuickStats.scss'
 
 const StatsChart = ({
     authedUser: {

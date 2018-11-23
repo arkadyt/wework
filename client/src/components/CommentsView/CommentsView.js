@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './CommentsView.css'
+import './CommentsView.scss'
 import { connect } from 'react-redux'
 
 import Post from '../Post/Post'
