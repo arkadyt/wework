@@ -1,13 +1,12 @@
 language: 
-  - nodejs
+  - node_js
 node_js: 
   - 11
 before_install: 
+  - CI=true
   - cd ./client
 install:
   - npm install
-before_script:
-  - CI=true
 script:
   - npm run build
   - npm test
