@@ -4,3 +4,10 @@ node_js:
   - 11
 before_install: 
   - cd ./client
+install:
+  - npm install
+before_script:
+  - CI=true
+script:
+  - npm run build
+  - npm test
