@@ -156,6 +156,7 @@ class Post extends Component {
     }
 }
 
+export const _UnconnectedPost = Post;
 export default withRouter(connect(state => ({
     authedUser: state.user
 }), {
