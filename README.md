@@ -1,4 +1,4 @@
-# Description
+# Description [![Build Status](https://travis-ci.org/arkadyt/ww.net.svg?branch=master)](https://travis-ci.org/arkadyt/ww.net) [![Coverage Status](https://coveralls.io/repos/github/arkadyt/ww.net/badge.svg?branch=master)](https://coveralls.io/github/arkadyt/ww.net?branch=master)
 
 This is a fullstack web application built in `JavaScript`, `React` and `NodeJS`.
 
