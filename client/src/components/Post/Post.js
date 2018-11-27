@@ -22,17 +22,17 @@ class Post extends Component {
         showMenu: false
     }
 
-    onMenuButtonClick = e => {
+    dismissMenu = e => {
         if (e.target.className !== "Post__button--menu")
             this.setState({ showMenu: false })
     }
 
     componentWillMount() {
-        window.addEventListener('click', this.onMenuButtonClick)
+        window.addEventListener('click', this.dismissMenu)
     }
 
     componentWillUnmount() {
-        window.removeEventListener('click', this.onMenuButtonClick)
+        window.removeEventListener('click', this.dismissMenu)
     }
 
     render() {
@@ -132,7 +132,7 @@ class Post extends Component {
                 <Field
                     type="linkButton"
                     inline
-                    style={{ color: likedByAuthedUser ? 'cornflowerblue' : null }}
+                    style={ likedByAuthedUser ? { color: 'cornflowerblue' } : null }
                     onClick={() => {
                         likedByAuthedUser
                             ? deleteLike(_id, fetchUsersStats)

@@ -192,6 +192,7 @@ import { mount, shallow } from 'enzyme'
 import { _UnconnectedPost as Post } from './Post.js'
 import { mockPost } from '../../mocks/posts.js'
 import mockUser from '../../mocks/user.js'
+import cloneDeep from 'lodash.clonedeep'
 
 describe('Post', () => {
   const getMockProps = () => {
@@ -214,34 +215,34 @@ describe('Post', () => {
     const nocomments = false
     const flat = false
 
-    return {
+    return cloneDeep({
       ...actions,
+      ...mockPost,
       authedUser: mockUser,
-      // deep cloning this way will mess up the 'date' field, 
-      // but none of the following test suites care about it anyways.
-      ...JSON.parse(JSON.stringify(mockPost)),
       history,
       match,
       nocomments,
       flat
-    }
+    })
   }
 
   describe('global click event listener', () => { 
     const listenersMap = {}
     let comp
 
-    global.addEventListener = jest.fn((event, cb) => {
-      if (listenersMap[event])
-        listenersMap[event].push(cb)
-      else
-        listenersMap[event] = [cb]
-    })
-    global.removeEventListener = jest.fn((event, cb) => {
-      if (listenersMap[event])
-        listenersMap[event] = listenersMap[event].filter(item => item.name !== cb.name)
-      else
-        throw new Error('attempt to remove unregistered event')
+    beforeAll(() => {
+      global.addEventListener = jest.fn((event, cb) => {
+        if (listenersMap[event])
+          listenersMap[event].push(cb)
+        else
+          listenersMap[event] = [cb]
+      })
+      global.removeEventListener = jest.fn((event, cb) => {
+        if (listenersMap[event])
+          listenersMap[event] = listenersMap[event].filter(item => item.name !== cb.name)
+        else
+          throw new Error('attempt to remove unregistered event')
+      })
     })
     
     it('must be registered when component is mounted', () => {
@@ -252,6 +253,11 @@ describe('Post', () => {
     it('must be removed when component is unmounted', () => {
       comp.unmount()
       expect(listenersMap['click'].length).toEqual(0);
+    })
+
+    afterAll(() => {
+      global.addEventListener.mockReset();
+      global.removeEventListener.mockReset();
     })
   })
 
@@ -272,6 +278,200 @@ describe('Post', () => {
       // placeholder image file name
       const avatar = 'avatar_placeholder.png'
       expect(comp.find(".Post__avatar").prop('src')).toEqual(avatar)
+    })
+  })
+
+  describe('flat prop', () => {
+    it('if true, set of specific inline styles must be found on the outermost div', () => {
+      const props = getMockProps()
+      props.flat = true
+      const comp = shallow(<Post {...props} />)
+      const expectedInlineStyles = {
+        borderRadius: 'unset',
+        boxShadow: 'unset',
+        marginTop: 'unset'
+      }
+
+      expect(comp.find(".Post__container").prop('style')).toEqual(expectedInlineStyles)
+    })
+    it('if false/undefined, no inline styles should be set on the outermost div', () => {
+      const props = getMockProps()
+      const comp = shallow(<Post {...props} />)
+
+      expect(comp.find(".Post__container").prop('style')).toEqual(null)
+    })
+  })
+
+  describe('nocomments prop', () => {
+    it('if true, comments button should not be rendered', () => {
+      const props = getMockProps()
+      props.nocomments = true
+      const comp = shallow(<Post {...props} />)
+      expect(comp.find(".Post__buttons").children().length).toBe(1)
+    })
+    it('if false/undefined, comments button should be rendered', () => {
+      const props = getMockProps()
+      const comp = shallow(<Post {...props} />)
+      expect(comp.find(".Post__buttons").children().length).toBe(2)
+    })
+  })
+
+  describe('liked by current user?', () => {
+    it('if true, [Like] button must have cornflowerblue color set through inline styles', () => {
+      const props = getMockProps()
+      props.authedUser.id = 'user123'
+      props.likes.push({
+        _id: 'someLikeId',
+        user: props.authedUser.id
+      })
+      // authedUser.id now must be found in likes array
+      const comp = shallow(<Post {...props} />)
+      const expectedStyles = { 
+        color: 'cornflowerblue' 
+      }
+      expect(comp.find(".Post__buttons").childAt(0).prop('style')).toEqual(expectedStyles)
+    })
+
+    it('if false/undefined, [Like] button must have no inline styles', () => {
+      const props = getMockProps()
+      const comp = shallow(<Post {...props} />)
+      expect(comp.find(".Post__buttons").childAt(0).prop('style')).toEqual(null)
+    }) 
+  })
+
+  describe('interaction', () => {
+    describe('post author name click', () => {
+      it('if post is mine, navigation to /profile should happen', () => {
+        const props = getMockProps()
+        props.authedUser.id = "user123"
+        props.user._id = "user123"
+
+        const comp = shallow(<Post {...props} />)
+        comp.find(".Post__name").childAt(0).simulate('click')
+
+        expect(props.history.push).toHaveBeenCalledWith('/profile')
+        comp.unmount()
+      })
+
+      it('if post is not mine, navigation to athor\'s profile (/profile/id/$id) should happen', () => {
+        const props = getMockProps()
+        props.user._id = "user123"
+
+        const comp = shallow(<Post {...props} />)
+        comp.find(".Post__name").childAt(0).simulate('click')
+
+        expect(props.history.push).toHaveBeenCalledWith('/profile/id/user123')
+        comp.unmount()
+      })
+    })
+
+    describe('[Comments] button click', () => {
+      it('must navigate to /view-comments/', () => {
+        const props = getMockProps()
+        props._id = 'post123'
+        const comp = shallow(<Post {...props} />)
+
+        comp.find(".Post__buttons").childAt(1).simulate('click')
+        expect(props.history.push).toHaveBeenCalledWith('/view-comments/post123')
+      })
+    })
+
+    describe('[Like] button click', () => {
+      it('must call likePost() if post WASN\'T yet liked by the current user', () => {
+        const props = getMockProps()
+        props.authedUser.id = 'some_very_long_id_of_user123'
+
+        const comp = shallow(<Post {...props} />)
+        comp.find(".Post__buttons").childAt(0).simulate('click')
+
+        expect(props.likePost).toHaveBeenCalled()
+      })
+
+      it('must call deleteLike() if post WAS already liked by the current user', () => {
+        const props = getMockProps()
+        props.authedUser.id = 'some_very_long_id_of_user123'
+        props.likes.push({
+          _id: 'likeId_12561928',
+          user: props.authedUser.id
+        })
+
+        const comp = shallow(<Post {...props} />)
+        comp.find(".Post__buttons").childAt(0).simulate('click')
+
+        expect(props.deleteLike).toHaveBeenCalled()
+      })
+
+      it('must call likePost() with correct arguments', () => {
+        const props = getMockProps()
+        props._id = 'some_post123_id'
+        props.authedUser.id = 'some_very_long_id_of_user123'
+
+        const comp = shallow(<Post {...props} />)
+        comp.find(".Post__buttons").childAt(0).simulate('click')
+
+        expect(props.likePost).toHaveBeenCalledWith('some_post123_id', props.fetchUsersStats)
+      })
+
+      it('must call deleteLike() with correct arguments', () => {
+        const props = getMockProps()
+        props._id = 'some_post123_id'
+        props.authedUser.id = 'some_very_long_id_of_user123'
+        props.likes.push({
+          _id: 'likeId_12561928',
+          user: props.authedUser.id
+        })
+
+        const comp = shallow(<Post {...props} />)
+        comp.find(".Post__buttons").childAt(0).simulate('click')
+
+        expect(props.deleteLike).toHaveBeenCalledWith('some_post123_id', props.fetchUsersStats)
+
+      })
+    })
+
+    describe('post menu', () => {
+      describe('menu button click', () => {
+        it('if it\'s not shown, clicking on the button must show it', () => {
+          const props = getMockProps()
+          const comp = shallow(<Post {...props} />)
+
+          comp.setState({ showMenu: false })
+          comp.find(".Post__button--menu").simulate('click')
+          expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(true)
+        })
+
+        it('if it is shown, clicking on the button must hide it', () => {
+          const props = getMockProps()
+          const comp = shallow(<Post {...props} />)
+
+          comp.setState({ showMenu: true })
+          comp.find(".Post__button--menu").simulate('click')
+          expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(false)
+        })
+      })
+      
+      it('if menu is shown clicking anywhere except the menu itself must close it', () => {
+        // in the component this is done through calling dismissMenu() on 'click' events;
+        // here I am testing exactly that.
+        // there is no need to test if an actual mouse button click triggers event listeners. 
+        const props = getMockProps()
+        const comp = shallow(<Post {...props} />)
+
+        comp.setState({ showMenu: true })
+        comp.instance().dismissMenu({ target: { className: 'Some__class' } })
+        expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(false)
+      })
+
+      it('if menu is shown clicking on anything in the menu or menu itself should not close it', () => {
+        // antagonist of the previous individual test.
+        const props = getMockProps()
+        const comp = shallow(<Post {...props} />)
+
+        comp.setState({ showMenu: true })
+        comp.instance().dismissMenu({ target: { className: 'Some__class' } })
+        expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(false)
+
+      })
     })
   })
 
