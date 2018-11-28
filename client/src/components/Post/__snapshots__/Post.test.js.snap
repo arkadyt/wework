@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post must pass a snapshot test 1`] = `
+<div
+  className="Post__container"
+  style={null}
+>
+  <div
+    className="Post__menu "
+  >
+    <button
+      className="Post__menu-item"
+      onClick={[Function]}
+    >
+      Unfollow user
+    </button>
+  </div>
+  <div
+    className="Post__header"
+  >
+    <img
+      alt=""
+      className="Post__avatar"
+      src="avatar_placeholder.png"
+    />
+    <button
+      className="Post__button--menu"
+      onClick={[Function]}
+    >
+      <FaEllipsisV />
+    </button>
+    <div
+      className="Post__name"
+    >
+      <field
+        inline={true}
+        label="Dwayne Johnson"
+        onClick={[Function]}
+        style={
+          Object {
+            "fontSize": "1.25rem",
+          }
+        }
+        type="linkButton"
+      />
+    </div>
+    <p
+      className="Post__date"
+    >
+      Invalid Date
+    </p>
+  </div>
+  <p
+    className="Post__body"
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </p>
+  <div
+    className="Post__stats"
+  >
+    <span>
+      3
+       likes  •  
+      3
+       comments
+    </span>
+  </div>
+  <div
+    className="Post__buttons"
+  >
+    <field
+      inline={true}
+      onClick={[Function]}
+      style={null}
+      type="linkButton"
+    >
+      <span
+        className="Post__buttons-icon"
+      >
+        <FaThumbsUp />
+      </span>
+       Like
+    </field>
+    <field
+      inline={true}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginLeft": "1rem",
+        }
+      }
+      type="linkButton"
+    >
+      <span
+        className="Post__buttons-icon"
+      >
+        <FaComments />
+      </span>
+       Comment
+    </field>
+  </div>
+</div>
+`;

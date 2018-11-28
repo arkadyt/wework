@@ -431,7 +431,18 @@ describe('Post', () => {
 
     describe('post menu', () => {
       describe('menu button click', () => {
-        it('if it\'s not shown, clicking on the button must show it', () => {
+        it('must toggle the state.showMenu boolean', () => {
+          const props = getMockProps()
+          const comp = shallow(<Post {...props} />)
+
+          comp.find(".Post__button--menu").simulate('click')
+          expect(comp.state('showMenu')).toBe(true)
+
+          comp.find(".Post__button--menu").simulate('click')
+          expect(comp.state('showMenu')).toBe(false)
+        })
+
+        it('must show menu if it\'s hidden', () => {
           const props = getMockProps()
           const comp = shallow(<Post {...props} />)
 
@@ -440,7 +451,7 @@ describe('Post', () => {
           expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(true)
         })
 
-        it('if it is shown, clicking on the button must hide it', () => {
+        it('must hide menu if it\'s shown', () => {
           const props = getMockProps()
           const comp = shallow(<Post {...props} />)
 
@@ -448,31 +459,109 @@ describe('Post', () => {
           comp.find(".Post__button--menu").simulate('click')
           expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(false)
         })
+
+        it('must show menu despite the global click listener dismissMenu() effect', () => {
+          // global click listener dismissMenu() has a check on that:
+          // when user clicks on a menu button method doesn't react because
+          // menu has to be shown (handled by the button itself), not hidden!
+          const props = getMockProps()
+          const comp = shallow(<Post {...props} />)
+
+          comp.setState({ showMenu: true })
+          comp.instance().dismissMenu({ target: { className: 'Post__button--menu' } })
+          expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(true)
+        })
       })
       
-      it('if menu is shown clicking anywhere except the menu itself must close it', () => {
+      it('must get hidden if user clicks anywhere (except menu itself)', () => {
         // in the component this is done through calling dismissMenu() on 'click' events;
         // here I am testing exactly that.
-        // there is no need to test if an actual mouse button click triggers event listeners. 
+        // there is no need to test if an actual mouse click triggers an event listener. 
         const props = getMockProps()
         const comp = shallow(<Post {...props} />)
+        const event = { target: { className: 'Some__page__element' } }
 
         comp.setState({ showMenu: true })
-        comp.instance().dismissMenu({ target: { className: 'Some__class' } })
+        comp.instance().dismissMenu(event)
         expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(false)
       })
 
-      it('if menu is shown clicking on anything in the menu or menu itself should not close it', () => {
-        // antagonist of the previous individual test.
-        const props = getMockProps()
-        const comp = shallow(<Post {...props} />)
+      describe('if post belongs', () => {
+        it('to me, then Delete button must be shown', () => {
+          const props = getMockProps()
+          props.authedUser.id = 'some_user_id123'
+          props.user._id = props.authedUser.id
 
-        comp.setState({ showMenu: true })
-        comp.instance().dismissMenu({ target: { className: 'Some__class' } })
-        expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(false)
+          const comp = shallow(<Post {...props} />)
+          comp.find(".Post__button--menu").simulate('click')
 
+          const menuButtons = comp.find(".Post__menu").children()
+          expect(menuButtons.filterWhere(item => item.text() === 'Delete').length).toEqual(1)
+        })
+
+        it('to me, then Unfollow button must not be shown', () => {
+          const props = getMockProps()
+          props.authedUser.id = 'some_user_id123'
+          props.user._id = props.authedUser.id
+
+          const comp = shallow(<Post {...props} />)
+          comp.find(".Post__button--menu").simulate('click')
+
+          const menuButtons = comp.find(".Post__menu").children()
+          expect(menuButtons.filterWhere(item => item.text() === 'Unfollow user').length).toEqual(0)
+        })
+
+        it('NOT to me, then Delete button must not be shown', () => {
+          const props = getMockProps()
+          props.authedUser.id = 'some_user_id123'
+          props.user._id = 'some_different_id987'
+
+          const comp = shallow(<Post {...props} />)
+          comp.find(".Post__button--menu").simulate('click')
+
+          const menuButtons = comp.find(".Post__menu").children()
+          expect(menuButtons.filterWhere(item => item.text() === 'Delete').length).toEqual(0)
+        })
+
+        it('NOT to me, then Unfollow button must be shown', () => {
+          const props = getMockProps()
+          props.authedUser.id = 'some_user_id123'
+          props.user._id = 'some_different_id987'
+
+          const comp = shallow(<Post {...props} />)
+          comp.find(".Post__button--menu").simulate('click')
+
+          const menuButtons = comp.find(".Post__menu").children()
+          expect(menuButtons.filterWhere(item => item.text() === 'Unfollow user').length).toEqual(1)
+        })
       })
     })
+  })
+
+  describe('state', () => {
+    describe('menu', () => {
+      it('state.showMenu boolean must be false by default', () => {
+        const props = getMockProps()
+        const comp = shallow(<Post {...props} />)
+
+        expect(comp.state('showMenu')).toBe(false)
+      })
+
+      it('menu must be hidden by default', () => {
+        const props = getMockProps()
+        const comp = shallow(<Post {...props} />)
+
+        expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(false)
+      })
+    })
+  })
+
+  it('must pass a snapshot test', () => {
+    const props = getMockProps()
+    const comp = shallow(<Post {...props} />)
+
+    // warning: enzyme-to-json package is used
+    expect(comp).toMatchSnapshot()
   })
 
   it('must pass a smoke test', () => {

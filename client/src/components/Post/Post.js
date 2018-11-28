@@ -23,6 +23,8 @@ class Post extends Component {
     }
 
     dismissMenu = e => {
+        // this check ensures that initial click on the menu button
+        // would open the menu instead of trying to hide it
         if (e.target.className !== "Post__button--menu")
             this.setState({ showMenu: false })
     }
