@@ -1,102 +1,5 @@
 /**
- * Component's contract.
- * 
- * From the user's side of things:
- *  * component should show up properly: text, timestamp, images, stats, links, styling
- *  * component's buttons should work.
- *
- *
- * Qs from Medium:
- *
- *  1. What does my component render?
- *  >> Tweet text, timestamp, author image, name link, buttons, menu, stats.
- *
- *  2. Does my component render different things under different circumstances?
- *  >> Yes: - when menu button is clicked menu is shown
- *          - when Delete/Unfollow is clicked, component is destroyed
- *          - when like/coment is added, counter updates
- *          - if post belongs to user [Delete] button is rendered instead of [Unfollow]
- *          - if flat prop is passed, no shading and borders are rendered
- *          - if nocomments flag is set, comments button is not rendered.
- *
- *  3. When I pass a function as a prop what does my component use it for?
- *  >> all 6 functions are used to communicate with backend server.
- *
- *  3.1. Does it call them or just passes them down to other components?
- *  >> all 6 functions are called in place
- *
- *  3.2. What does it call them with?
- *  >> deletePost             >> postId
- *     unfollowAPerson        >> postAuthorId
- *     fetchUsersStats        >> [nil, curr. authed user's id is taken from redux store]
- *     fetchDiscoverContent   >> amount of new users to load
- *     deleteLike, likePost   >> postId, post operation function to execute
- *
- *  4. When user interacts with my component what happens?
- *  >> when like/comment is clicked, respective counters update
- *     when menu btn is clicked, menu is rendered
- *     when Delete/Unfollow is clicked, component instance is destroyed
- *       
- *  Additional Section:
- *  >> Props it receives are objects, functions and primitives.
- *     - Objects are picked apart, used to calc things, displayed
- *     - Funcs are all called w/ respective parameters
- *     - Primitives are used just like objects
- *     - Props influence the output: read Q#2.
- *  >> State:
- *     - showMenu controls if menu is rendered or not
- *  >> Context:
- *     - redux: authedUser object and 6 functions
- *     - react-router: history and match objects
- *  >> What happens when you call methods on it's instance?
- *     - WTF's that? N/A
- *  >> SideEffects, baby:
- *     - menu button onClick listener is registered and dropped upon mounting/unmounting
- *
- *
- *  Additional Batch of Questions:
- *     - What do I do with the props I receive?
- *     - What components do I render? What do I pass them?
- *     - Do I ever keep anything in state? Do I invalidate it when receiving new props? When do I update it?
- *     - If a user interacts with me, or a child component calls a callback that I passed to it, what do I do?
- *     - Does anything happen when I am mounted/unmounted?
- *  
- *  React 16 Context API specific tips:
- *     - It is convenient to have an unconnected export of a Component just for testing.
- *  
- *  Found list of constraints:
- *     + menu button onClick listener is registered and dropped upon mounting/unmounting
- *     + when like/comment is clicked, respective counters update
- *     + when menu btn is clicked, menu is rendered
- *     + when Delete/Unfollow is clicked, component instance is destroyed
- *     + if post belongs to user [Delete] button is rendered instead of [Unfollow]
- *     + if flat prop is passed, no shading and borders are rendered
- *     + if nocomments flag is set, comments button is not rendered.
- *     + Objects are picked apart, used to calc things, displayed
- *     + Funcs are all called w/ respective parameters
- *     + Primitives are used just like objects
- *     + Things that we render, and their order
- *     + Public API, props passing and NOT PASSING on
- *     - prop type checking, and optionality verifying
- *     + Side effects on entire application
- *
- *  Ok, contract is found. Now what's worth testing?
- *  Per every constraint in the contract, ask:
- *   1. Will the test have to duplicate exactly the application code? This will make it brittle.
- *   2. Will the assertion try to test the behavior that is already tested in the library code?
- *   3. From an outsider's perspective, is this detail important? Or is it only an internal concern?
- *      Can the effect of this internal detail be described with only comp's public API? 
- *     
- *  Testing is really mostly about ensuring that INPUT turns >> into the expected OUTPUT.
- *  And how does that happen? Through your code! You test your code behavior and scan for mistakes.
- *
- *
- *
- *  Ok, updated -/+ sign by every found constraint.
- *
- *
- *  
- *  Expanded list of constraints:
+ * Final component's contract:
  *     + onMount
  *            > menu button onClick listener is registered
  *     + onUnmount
@@ -158,33 +61,6 @@
  *                       > fetchUsersStats() is called
  *                       > fetchDiscoverContent() is called with a number 5
  *                       > component instance is destroyed
- *     + Side effects on entire application
- *         In some cases side effects come through state updates and consequent subtree rerenders
- *         In case of Post component, all side effects come through thunk actions
- *             thunk actions testing:
- *             - likePost()
- *                    > axios request is sent to add userId to the post likes list 
- *                    > response updates the affected post in redux store
- *                    > like button becomes colored
- *                    > fetchUsersStats() is called
- *                    > totalLikes counter updates on a user object
- *                    > user stats panel updates with new like counter
- *                ...to be continued somewhere else...
- *
- * 
- *
- * Some Conclusions:
- *    - never test things that some action is not responsible for.
- *        for example:
- *        only assert that clicking on a [like] button has to trigger a thunk action with right args, and only that.
- *        then test the action effects separately.
- *          ? but how do I make sure then that the action effects reflect back correctly? 
- *          ? like [Like] button would get lit up on the caller post and not on some other?
- *            > Updates delivery on the redux side is tested by redux and I may rest assured that that'll work.
- *            > Caller post would be one of the subscribers and I will just have to check that 
- *            > incoming props are distributed and consumed correctly in the Post component.
- *            > That's why...
- *    - testing props consumption and their effects is very important!
  */
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -199,8 +75,8 @@ describe('Post', () => {
     const actions = {
       likePost: jest.fn(),
       deleteLike: jest.fn(),
-      deletePost: jest.fn(),
-      unfollowAPerson: jest.fn(),
+      deletePost: jest.fn((_id, callback) => { callback() }),
+      unfollowAPerson: jest.fn((_id, callback) => { callback() }),
       fetchDiscoverContent: jest.fn(),
       fetchUsersStats: jest.fn()
     }
@@ -534,6 +410,74 @@ describe('Post', () => {
           const menuButtons = comp.find(".Post__menu").children()
           expect(menuButtons.filterWhere(item => item.text() === 'Unfollow user').length).toEqual(1)
         })
+      })
+
+      it('when Delete button is clicked, deletePost() must be called', () => {
+        const props = getMockProps()
+        props.authedUser.id = 'some_user_id123'
+        props.user._id = props.authedUser.id
+
+        const comp = shallow(<Post {...props} />)
+        comp.find(".Post__button--menu").simulate('click')
+
+        const menuButtons = comp.find(".Post__menu").children()
+        menuButtons.filterWhere(item => item.text() === 'Delete').simulate('click')
+
+        expect(props.deletePost).toHaveBeenCalled()
+      })
+
+      it('when [Unfollow user] button is clicked, unfollowAPerson() must be called', () => {
+        const props = getMockProps()
+        props.authedUser.id = 'some_user_id123'
+        props.user._id = 'some_different_id987'
+
+        const comp = shallow(<Post {...props} />)
+        comp.find(".Post__button--menu").simulate('click')
+
+        const menuButtons = comp.find(".Post__menu").children()
+        menuButtons.filterWhere(item => item.text() === 'Unfollow user').simulate('click')
+
+        expect(props.unfollowAPerson).toHaveBeenCalled()
+      })
+
+      it('deletePost() must be called with correct parms', () => {
+        const props = getMockProps()
+        props.authedUser.id = 'some_user_id123'
+        props.user._id = props.authedUser.id
+
+        const postId = 'some_post123_id'
+        props._id = postId
+
+        const comp = shallow(<Post {...props} />)
+        comp.find(".Post__button--menu").simulate('click')
+
+        comp.find(".Post__menu")
+          .children()
+          .filterWhere(item => item.text() === 'Delete')
+          .simulate('click')
+
+        expect(props.deletePost).toHaveBeenCalledWith(postId, expect.any(Function))
+        expect(props.fetchUsersStats).toHaveBeenCalled()
+      })
+
+      it('unfollowAPerson() must be called with correct parms', () => {
+        const props = getMockProps()
+        props.authedUser.id = 'some_user_id123'
+
+        const authorId = 'some_different_id987'
+        props.user._id = authorId
+
+        const comp = shallow(<Post {...props} />)
+        comp.find(".Post__button--menu").simulate('click')
+
+        comp.find(".Post__menu")
+          .children()
+          .filterWhere(item => item.text() === 'Unfollow user')
+          .simulate('click')
+
+        expect(props.unfollowAPerson).toHaveBeenCalledWith(authorId, expect.any(Function))
+        expect(props.fetchUsersStats).toHaveBeenCalled()
+        expect(props.fetchDiscoverContent).toHaveBeenCalledWith(5)
       })
     })
   })
