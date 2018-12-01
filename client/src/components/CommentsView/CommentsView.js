@@ -1,58 +1,49 @@
 import React, { Component } from 'react'
 import './CommentsView.scss'
 import { connect } from 'react-redux'
+import { func, object } from 'prop-types'
 
 import Post from '../Post/Post'
 import Reply from '../Reply/Reply'
-import Field from '../Field/Field'
 import Overlay from '../Overlay/Overlay'
-import { addComment, deleteComment } from '../../state/actions/postsActions'
-import { fetchUsersStats } from '../../state/actions/userActions'
+import { addComment } from '../../state/actions/postsActions'
+import CommentNode from '../CommentNode/CommentNode'
+import { postType } from '../../types/index'
 
-const dateFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric'
-}
-
-const CommentNode = connect(state => ({
-    authedUserId: state.user.id
-}), { deleteComment, fetchUsersStats })(({
-    _id,
-    text,
-    date,
-    user: {
-        _id: authorId,
-        name
-    },
-    postId,
-    authedUserId,
-    deleteComment,
-    fetchUsersStats
-}) => {
-    const belongsToAuthedUser = authorId === authedUserId
-    return (
-        <div className="CommentsView-CommentNode-container">
-            <p><b>{name}</b> said at {new Date(date)
-                .toLocaleDateString('en-US', dateFormatOptions)}:</p>
-            <p className="CommentsView-CommentNode-container-Node-body">{text}</p>
-            {belongsToAuthedUser
-                ? <div>
-                    <Field
-                        type="linkButton"
-                        label="Delete"
-                        inline
-                        onClick={() =>
-                            deleteComment(postId, _id, fetchUsersStats)
-                        } />
-                </div>
-                : null}
-        </div>
-    )
-})
+/**
+ * Component's contract
+ *
+ * What does my component render?
+ * - Post component with flat & nocomments modflags,
+ * - Reply component
+ * - Array of CommentNodes
+ * - All of the above is rendered in Overlay.
+ *
+ * Ok, but what does it render differently in different circumstances? (Props)
+ * > Sure, look:
+ * - If there is no post data upon the update, comment navigates back and returns false at shldCompUpd()
+ * - If there is post data, component proceedes with the regular render
+ * - If there are no post.comments component renders message instead of comments (lol).
+ * - If there are post.comments, component maps the array to CommentNodes
+ *
+ * What about functions passed as props?
+ * - addComent() is expected to be called upon the submisson 
+ * - and is expected to be called with correct arguments: postId, commentBody, serviceCallback
+ *
+ * Interaction!
+ * - No interactable parts.
+ *
+ * State?
+ * - No
+ *
+ * List of constraints:
+ * - If there is no post data upon the update, comment navigates back and returns false at shldCompUpd()
+ * - If there is post data, component proceedes with the regular render
+ * - If there are no post.comments component renders message instead of comments (lol).
+ * - If there are post.comments, component maps the array to CommentNodes
+ * - addComent() is expected to be called upon the submisson 
+ * - and is expected to be called with correct arguments: postId, commentBody, serviceCallback
+ */
 
 class CommentsView extends Component {
     handleDismiss = () => {
@@ -105,4 +96,11 @@ class CommentsView extends Component {
     }
 }
 
+CommentsView.propTypes = {
+  post: postType,
+  addComment: func.isRequired,
+  history: object.isRequired
+}
+
+export const _UnconnectedCommentsView = CommentsView
 export default connect(null, { addComment })(CommentsView)
