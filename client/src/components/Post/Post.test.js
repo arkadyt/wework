@@ -149,11 +149,11 @@ describe('Post', () => {
     
     it('must not be rendered if undefined, instead a placeholder image must replace it', () => {
       const props = getMockProps()
+      props.user.avatar = undefined
       const comp = shallow(<Post {...props} />)
-      
-      // placeholder image file name
-      const avatar = 'avatar_placeholder.png'
-      expect(comp.find(".Post__avatar").prop('src')).toEqual(avatar)
+
+      const defaultAvatar = 'avatar_placeholder.png'
+      expect(comp.find(".Post__avatar").prop('src')).toEqual(defaultAvatar)
     })
   })
 
@@ -301,7 +301,6 @@ describe('Post', () => {
         comp.find(".Post__buttons").childAt(0).simulate('click')
 
         expect(props.deleteLike).toHaveBeenCalledWith('some_post123_id', props.fetchUsersStats)
-
       })
     })
 

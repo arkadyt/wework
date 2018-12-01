@@ -21,7 +21,7 @@ exports[`Post must pass a snapshot test 1`] = `
     <img
       alt=""
       className="Post__avatar"
-      src="avatar_placeholder.png"
+      src="//www.gravatar.com/avatar/e13743a7f1db7f4246badd6fd6ff54ff?s=200&r=pg&d=mm"
     />
     <button
       className="Post__button--menu"
@@ -34,7 +34,7 @@ exports[`Post must pass a snapshot test 1`] = `
     >
       <field
         inline={true}
-        label="Dwayne Johnson"
+        label="John Doe"
         onClick={[Function]}
         style={
           Object {
@@ -47,13 +47,13 @@ exports[`Post must pass a snapshot test 1`] = `
     <p
       className="Post__date"
     >
-      Invalid Date
+      September 16, 2018, 11:18:16 PM
     </p>
   </div>
   <p
     className="Post__body"
   >
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Tas nisl commlor sit amet, consec!
   </p>
   <div
     className="Post__stats"
@@ -61,7 +61,7 @@ exports[`Post must pass a snapshot test 1`] = `
     <span>
       3
        likes  •  
-      3
+      2
        comments
     </span>
   </div>
