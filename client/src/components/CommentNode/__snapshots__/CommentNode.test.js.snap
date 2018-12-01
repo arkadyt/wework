@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentNode must pass a snapshot test 1`] = `
+<div
+  className="CommentNode-container"
+>
+  <p>
+    <b>
+      John Grapard
+    </b>
+     said at 
+    September 18, 2018, 10:24:07 PM
+    :
+  </p>
+  <p
+    className="CommentNode-container-Node-body"
+  >
+    Hahahahahahahaaa!
+  </p>
+  <div>
+    <field
+      inline={true}
+      label="Delete"
+      onClick={[Function]}
+      type="linkButton"
+    />
+  </div>
+</div>
+`;
