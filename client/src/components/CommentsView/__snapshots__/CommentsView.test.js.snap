@@ -77,32 +77,36 @@ exports[`CommentsView must pass a snapshot test 1`] = `
           Comments:
         </h2>
         <Connect(CommentNode)
-          _id="5ba1dd77809c892f580240ef"
-          date="2018-09-19T05:24:07.399Z"
+          comment={
+            Object {
+              "_id": "5ba1dd77809c892f580240ef",
+              "date": "2018-09-19T05:24:07.399Z",
+              "text": "Hahahahahahahaaa!",
+              "user": Object {
+                "_id": "5b75f023f1957052e52106f5",
+                "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                "name": "John Grapard",
+              },
+            }
+          }
           key="5ba1dd77809c892f580240ef"
           postId="5b9f4728bc40273febf52706"
-          text="Hahahahahahahaaa!"
-          user={
-            Object {
-              "_id": "5b75f023f1957052e52106f5",
-              "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
-              "name": "John Grapard",
-            }
-          }
         />
         <Connect(CommentNode)
-          _id="5ba1de21f0b9f73054396abf"
-          date="2018-09-19T05:26:57.632Z"
-          key="5ba1de21f0b9f73054396abf"
-          postId="5b9f4728bc40273febf52706"
-          text="Nuka proverim esli oshibka ostalas..."
-          user={
+          comment={
             Object {
-              "_id": "5b75f023f1957052e52106f5",
-              "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
-              "name": "John Grapard",
+              "_id": "5ba1de21f0b9f73054396abf",
+              "date": "2018-09-19T05:26:57.632Z",
+              "text": "Nuka proverim esli oshibka ostalas...",
+              "user": Object {
+                "_id": "5b75f023f1957052e52106f5",
+                "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                "name": "John Grapard",
+              },
             }
           }
+          key="5ba1de21f0b9f73054396abf"
+          postId="5b9f4728bc40273febf52706"
         />
       </div>
     </div>
