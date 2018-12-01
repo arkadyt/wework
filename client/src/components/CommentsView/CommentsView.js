@@ -85,7 +85,7 @@ class CommentsView extends Component {
                                     <CommentNode
                                         key={item._id}
                                         postId={_id}
-                                        {...item} />
+                                        comment={item} />
                                 ))
                                 : <p>Be the first one to leave a comment!</p>}
                         </div>
