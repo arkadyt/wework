@@ -6,24 +6,24 @@ export const userType = exact({
     avatar: string.isRequired
 })
 
+export const commentType = exact({
+    date: string.isRequired,
+    _id: string.isRequired,
+    text: string.isRequired,
+    user: userType.isRequired
+})
+
+export const likeType = exact({
+    _id: string.isRequired,
+    user: string.isRequired
+})
+
 export const postType = exact({
   _id: string.isRequired,
   text: string.isRequired,
   user: userType.isRequired,
-  likes: arrayOf(
-    exact({
-      _id: string.isRequired,
-      user: string.isRequired,
-    })
-  ).isRequired,
-  comments: arrayOf(
-    exact({
-      date: string.isRequired,
-      _id: string.isRequired,
-      text: string.isRequired,
-      user: userType.isRequired
-    })
-  ),
+  likes: arrayOf(likeType).isRequired,
+  comments: arrayOf(commentType),
   date: string.isRequired,
   __v: number
 })
