@@ -91,7 +91,7 @@ describe('CommentsView', () => {
       // only have to verify a single case to prove that all uses in this component
       // would work as expected; do not include key prop in expectedProps.
       const comment = props.post.comments[0]
-      const expectedProps = { postId: props.post._id, ...comment }
+      const expectedProps = { postId: props.post._id, comment }
       expect(commentsView().find(CommentNode).first().props()).toStrictEqual(expectedProps)
     })
 
@@ -113,11 +113,8 @@ describe('CommentsView', () => {
     // also verifies for the following constraints:
     // - if there are comments, comp should render them
     // - if there is post data, comp should render it
-    const props = getMockProps()
-    const comp = shallow(<CommentsView {...props} />)
-
     // warning: enzyme-to-json is used
-    expect(comp).toMatchSnapshot()
+    expect(commentsView()).toMatchSnapshot()
   })
 })
 
