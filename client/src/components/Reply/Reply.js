@@ -47,6 +47,7 @@ class Reply extends Component {
     }
 }
 
+export const _UnconnectedReply = Reply
 export default connect(state => ({
     authedUser: state.user,
     errors: state.err.formErrors
