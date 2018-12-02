@@ -27,3 +27,11 @@ export const postType = exact({
   date: string.isRequired,
   __v: number
 })
+
+export const discoverListNodeType = exact({
+  _id: string.isRequired,
+  name: string.isRequired,
+  avatar: string.isRequired,
+  title: string.isRequired,
+  company: string
+})
