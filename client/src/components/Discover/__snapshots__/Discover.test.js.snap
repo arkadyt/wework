@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Discover passes a snapshot test 1`] = `
+<div
+  className="Discover-container"
+>
+  <Component
+    followAPerson={[Function]}
+    list={
+      Array [
+        Object {
+          "_id": "ab109a",
+          "avatar": "//gravatar.com/12345",
+          "company": "Some Company",
+          "name": "John Doe",
+          "title": "Web Developer",
+        },
+      ]
+    }
+  />
+</div>
+`;
