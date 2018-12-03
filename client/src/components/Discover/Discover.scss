@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+@import 'variables';
 .Discover-container {
     position: sticky;
     box-shadow: $box_shadow_main;
@@ -12,32 +12,5 @@
         position: relative;
         left: 50%;
         transform: translateX(-50%);
-    }
-    .ListNode-container {
-        margin-top: 1rem;
-        display: grid;
-        grid-template-columns: 3rem auto 1.4rem;
-        grid-column-gap: .5rem;
-        align-items: center;
-        .ListNode-img {
-            width: 3rem;
-            border-radius: 3rem;
-            height: 3rem;
-        }
-        .ListNode-name {
-            p {
-                &:first-child {
-                    font-size: 1.2rem;
-                    font-weight: bold;
-                }
-            }
-        }
-    }
-    .Discover-message {
-        background-color: $color-bg-main;
-        color: $color-font-secondary;
-        padding: .3rem 1rem;
-        margin-top: .7rem;
-        border-radius: .1rem;
     }
 }
