@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreatorsList must pass a snapshot test 1`] = `
+<Component
+  followAPerson={[MockFunction]}
+  list={
+    Array [
+      Object {
+        "_id": "ab109a",
+        "avatar": "//gravatar.com/12345",
+        "company": "Some Company",
+        "name": "John Doe",
+        "title": "Web Developer",
+      },
+    ]
+  }
+/>
+`;

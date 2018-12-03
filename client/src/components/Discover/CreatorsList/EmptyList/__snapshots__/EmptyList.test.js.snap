@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`must match a snapshot 1`] = `
+<p
+  className="EmptyList__message"
+>
+  Nothing for you right now! Come back later!
+</p>
+`;

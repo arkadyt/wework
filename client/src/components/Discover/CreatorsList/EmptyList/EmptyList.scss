@@ -1,0 +1,9 @@
+@import 'variables';
+
+.EmptyList__message {
+    background-color: $color-bg-main;
+    color: $color-font-secondary;
+    padding: .3rem 1rem;
+    margin-top: .7rem;
+    border-radius: .1rem;
+}

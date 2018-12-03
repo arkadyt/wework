@@ -3,9 +3,9 @@ import ListNode from '../ListNode/ListNode'
 import { withEither, withAdded } from '../../../hocs/conditionalRendering'
 import { compose } from 'recompose'
 import FBSpinner from '../../FBSpinner/FBSpinner'
+import EmptyList from './EmptyList/EmptyList'
 import { arrayOf, func } from 'prop-types'
 import { discoverListNodeType } from '../../../types/index'
-
 
 const CreatorsList = ({
     followAPerson,
@@ -18,7 +18,7 @@ const CreatorsList = ({
                     return (
                         <ListNode
                             key={item._id}
-                            {...item}
+                            node={item}
                             followAPerson={followAPerson} />
                     )
                 })}
@@ -34,7 +34,6 @@ CreatorsList.propTypes = {
 
 const isLoadingFn = ({ list }) => !list
 const isEmptyFn = ({ list }) => list.length === 0
-const EmptyList = () => <p className="Discover-message">Nothing for you right now! Come back later!</p>
 const withCondRenderings = compose(
   withEither(isLoadingFn, FBSpinner),
   withAdded(isEmptyFn, EmptyList), 
