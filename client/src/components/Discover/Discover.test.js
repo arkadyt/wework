@@ -72,17 +72,45 @@ describe('Discover', () => {
     mountedDiscover = undefined
   })
 
-  it('local followAPerson operates as expected', () => {
-    const cb = jest.fn()
+  describe('once local followAPerson() func is invoked', () => {
     const id = 'id123'
-    // this is internal followAPerson func!
-    discoverComp().instance().followAPerson(id, cb)
+    const cb = jest.fn() // used only once!
 
-    expect(cb).toHaveBeenCalled()
-    expect(props.followAPerson).toHaveBeenCalledWith(id, expect.any(Function))
-    expect(props.fetchDiscoverContent).toHaveBeenCalledWith(5)
-    expect(props.fetchUsersStats).toHaveBeenCalled()
-    expect(props.fetchPosts).toHaveBeenCalledWith(false)
+    beforeEach(() => {
+      discoverComp().instance().followAPerson(id, cb)
+    })
+
+    it('calls followAPerson (from props)', () => {
+      expect(props.followAPerson).toHaveBeenCalled()
+    })
+
+    it('calls followAPerson (from props) with correct parms', () => {
+      expect(props.followAPerson).toHaveBeenCalledWith(id, expect.any(Function))
+    })
+
+    it('calls fetchDiscoverContent', () => {
+      expect(props.fetchDiscoverContent).toHaveBeenCalled()
+    })
+
+    it('calls fetchDiscoverContent with correct parms', () => {
+      expect(props.fetchDiscoverContent).toHaveBeenCalledWith(5)
+    })
+
+    it('calls fetchUsersStats', () => {
+      expect(props.fetchUsersStats).toHaveBeenCalled()
+    })
+
+    it('calls fetchPosts', () => {
+      expect(props.fetchPosts).toHaveBeenCalled()
+    })
+
+    it('calls fetchPosts with correct parms', () => {
+      expect(props.fetchPosts).toHaveBeenCalledWith(false)
+    })
+
+    it('calls a provided callback eventually', () => {
+      expect(cb).toHaveBeenCalled()
+    })
   })
 
   describe('side effects', () => {
