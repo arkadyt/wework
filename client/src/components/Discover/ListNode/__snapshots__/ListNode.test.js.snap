@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListNode passes a snapshot test 1`] = `
+<div
+  className="ListNode-container"
+>
+  <img
+    alt=""
+    className="ListNode-img"
+    src="//gravatar.com/12345"
+  />
+  <div
+    className="ListNode-name"
+  >
+    <field
+      inline={true}
+      label="John Doe"
+      onClick={[Function]}
+      style={
+        Object {
+          "fontSize": "1.15em",
+        }
+      }
+      type="linkButton"
+    />
+    <p>
+      Web Developer
+       at Some Company
+    </p>
+  </div>
+  <field
+    onClick={[Function]}
+    style={
+      Object {
+        "fontSize": "1.4rem",
+      }
+    }
+    type="linkButton"
+  >
+    <FaUserPlus />
+  </field>
+</div>
+`;

@@ -3,9 +3,11 @@ import { withRouter } from 'react-router-dom'
 import { FaUserPlus as IcoAdd } from 'react-icons/fa'
 import Field from '../../Field/Field'
 import { discoverListNodeType } from '../../../types/index'
+import { func, object } from 'prop-types'
+import './ListNode.scss'
 
-const ListNode = withRouter(({
-    _id, name, avatar, title, company,
+const ListNode = ({
+    node: { _id, name, avatar, title, company },
     followAPerson,
     history
 }) => (
@@ -27,11 +29,13 @@ const ListNode = withRouter(({
                 <IcoAdd />
             </Field>
         </div>
-    ))
+      )
 
 ListNode.propTypes = {
-  node: discoverListNodeType.isRequired
+  node: discoverListNodeType.isRequired,
+  followAPerson: func.isRequired,
+  history: object.isRequired
 }
 
 export const _UnconnectedListNode = ListNode
-export default ListNode
+export default withRouter(ListNode)
