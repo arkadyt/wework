@@ -49,7 +49,7 @@ describe('CreatorsList', () => {
     return cloneDeep({
       followAPerson: jest.fn(),
       list: [{ 
-        _id: 'ab109a',
+        _id: 'aaa987',
         name: 'John Doe',
         avatar: '//gravatar.com/12345',
         title: 'Web Developer',

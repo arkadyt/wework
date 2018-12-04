@@ -8,7 +8,7 @@
  *            ! Props are component's Public API. Always test the api, ensure that expected output is always produced.
  *            ! make sure to verify that funcs are all called w/ their respective parameters
  *                > verified in place (interaction section)
- *            ! also mksure to always test the opposite expectation, schas when prop isn't passed, smth shld be null
+ *            ! make sure to test the opposite expectation, if prop is undefined and not required test to see that it's passed on
  *            - avatar
  *                > if avatar is given, it's path should be found at img"Post__avatar"src
  *                > if avatar is not given, placeholderImage path must be found at img"Post__avatar"src
