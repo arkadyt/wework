@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import './UpdateProfile.scss'
-
 import Field from '../../Field/Field'
 import Overlay from '../../Overlay/Overlay'
 import { updateUsersProfile } from '../../../state/actions/profileActions'
+import { func, object } from 'prop-types'
 
 class UpdateProfile extends React.Component {
     initialState = {
@@ -180,6 +180,13 @@ class UpdateProfile extends React.Component {
     }
 }
 
+UpdateProfile.propTypes = {
+  errors: object.isRequired,
+  updateUsersProfile: func.isRequired,
+  history: object.isRequired
+}
+
+export { UpdateProfile }
 export default connect(state => ({
     errors: state.err.formErrors
 }), { updateUsersProfile })(UpdateProfile)
