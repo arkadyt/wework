@@ -1,8 +1,8 @@
 # Description [![Build Status](https://travis-ci.org/arkadyt/ww.net.svg?branch=master)](https://travis-ci.org/arkadyt/ww.net) [![Coverage Status](https://coveralls.io/repos/github/arkadyt/ww.net/badge.svg?branch=master)](https://coveralls.io/github/arkadyt/ww.net?branch=master)
 
-This is a fullstack web application built in `JavaScript`, `React` and `NodeJS`.
+This is a fullstack web application built in `JavaScript`, `React` and `NodeJS`; it uses `MongoDB` for data storage.
 
-It uses `MongoDB` for its data storaging needs, is deployed at `Heroku` and is available live at this [link](https://socnet.arkadyt.com).
+Application is deployed to `Heroku` servers and is available for viewing live at this [link](https://socnet.arkadyt.com).
 
 # Run Locally
 First set up a new local mongodb database through mongo shell:
@@ -25,7 +25,7 @@ cd ww.net
 npm install && npm run server
 
 # replace konsole w/ your terminal
-[konsole] & disown
+konsole & disown
 cd ww.net/client
 npm install && npm start
 ```
