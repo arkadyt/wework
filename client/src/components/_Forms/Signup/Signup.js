@@ -8,6 +8,7 @@ import {
 } from '../../../state/actions/userActions'
 import { fetchUsersProfile } from '../../../state/actions/profileActions'
 import { connect } from 'react-redux'
+import { func, object } from 'prop-types'
 import './Signup.scss'
 
 class Signup extends React.Component {
@@ -82,11 +83,21 @@ class Signup extends React.Component {
     }
 }
 
+Signup.propTypes = {
+  errors: object.isRequired,
+  authedUser: object.isRequired,
+  registerUser: func.isRequired,
+  fetchFollowers: func.isRequired,
+  fetchUsersProfile: func.isRequired,
+  fetchSubscriptions: func.isRequired
+}
+
 const mapStateToProps = state => ({
     errors: state.err.formErrors,
     authedUser: state.user
 })
 
+export { Signup as _UnconnectedSignup }
 export default withRouter(connect(mapStateToProps, {
     registerUser,
     fetchFollowers,
