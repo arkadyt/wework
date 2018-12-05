@@ -9,14 +9,12 @@ import {
     fetchSubscriptions,
 } from '../../../state/actions/userActions'
 import { fetchUsersProfile } from '../../../state/actions/profileActions'
+import { func, object } from 'prop-types'
 
 class Login extends React.Component {
     state = {
-        email: 'frodo@sheer.hobbit',
-        // email: 'john.doe@gmail.com',
-        // email: 'techguyinfo17@gmail.com',
-        // email: 'lika.reus@gmail.com',
-        password: '12345678'
+      email: '',
+      password: ''
     }
 
     render() {
@@ -59,6 +57,15 @@ class Login extends React.Component {
     }
 }
 
+Login.propTypes = {
+  loginUser: func.isRequired,
+  fetchFollowers: func.isRequired,
+  fetchSubscriptions: func.isRequired,
+  fetchUsersProfile: func.isRequired,
+  errors: object.isRequired
+}
+
+export const _UnconnectedLogin = Login
 export default withRouter(connect(state => ({
     errors: state.err.formErrors
 }), { loginUser, fetchFollowers, fetchSubscriptions, fetchUsersProfile })(Login))
