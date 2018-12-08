@@ -58,7 +58,7 @@ class UpdateProfile extends React.Component {
                         value={this.state.company}
                         onChange={e => this.setState({ company: e.target.value })}
                         error={errors.company}
-                        placeholder="Facebook" />
+                        placeholder="Company name" />
                     <Field
                         type="text"
                         name="website"
@@ -109,6 +109,7 @@ class UpdateProfile extends React.Component {
                         placeholder="It's okay to brag here.." />
                     <Field
                         type="button"
+                        name="toggle"
                         label="Toggle social media section"
                         onClick={e => {
                             e.preventDefault()

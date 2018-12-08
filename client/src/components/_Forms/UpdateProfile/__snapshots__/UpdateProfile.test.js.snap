@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UpdateProfile passes a snapshot test 1`] = `
+<Overlay
+  onBackdropClick={[Function]}
+>
+  <form
+    className="UpdateProfile-container"
+    onSubmit={[Function]}
+  >
+    <h1>
+      Create
+       profile
+    </h1>
+    <field
+      label="Profile handle:"
+      name="handle"
+      onChange={[Function]}
+      placeholder="someperson123"
+      type="text"
+    />
+    <field
+      label="Company:"
+      name="company"
+      onChange={[Function]}
+      placeholder="Company name"
+      type="text"
+    />
+    <field
+      label="Personal Website:"
+      name="website"
+      onChange={[Function]}
+      placeholder="http://mywebsite.com"
+      type="text"
+    />
+    <field
+      label="Location:"
+      name="location"
+      onChange={[Function]}
+      placeholder="Seattle, WA"
+      type="text"
+    />
+    <field
+      label="Job title:"
+      name="title"
+      onChange={[Function]}
+      placeholder="Marketing Analyst"
+      type="text"
+    />
+    <field
+      label="Job seeker status:"
+      list={
+        Array [
+          "Not open for Employment",
+          "Available for Employment",
+          "Actively Seeking",
+        ]
+      }
+      name="status"
+      onChange={[Function]}
+      type="list"
+    />
+    <field
+      label="Skills:"
+      list={
+        Array [
+          "Python",
+          "Java",
+          "C++",
+          "Hospitality",
+          "Whatnot else",
+        ]
+      }
+      name="skills"
+      onChange={[Function]}
+      type="multiselect"
+    />
+    <field
+      label="Bio:"
+      name="bio"
+      onChange={[Function]}
+      placeholder="It's okay to brag here.."
+      type="textarea"
+    />
+    <field
+      label="Toggle social media section"
+      name="toggle"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    >
+      <field
+        label="Youtube:"
+        name="youtube"
+        onChange={[Function]}
+        placeholder="Please enter full channel URL"
+        type="text"
+      />
+      <field
+        label="Twitter:"
+        name="twitter"
+        onChange={[Function]}
+        placeholder="Twitter profile URL"
+        type="text"
+      />
+      <field
+        label="Instagram:"
+        name="instagram"
+        onChange={[Function]}
+        placeholder="Instagram URL"
+        type="text"
+      />
+      <field
+        label="Facebook:"
+        name="facebook"
+        onChange={[Function]}
+        placeholder="Facebook profile URL"
+        type="text"
+      />
+      <field
+        label="LinkedIn:"
+        name="linkedin"
+        onChange={[Function]}
+        placeholder="LinkedIn URL"
+        type="text"
+      />
+      <field
+        label="Github:"
+        name="githubusername"
+        onChange={[Function]}
+        placeholder="Github username only"
+        type="text"
+      />
+    </div>
+    <field
+      label="Create"
+      type="submit"
+    />
+    <field
+      label="Cancel"
+      onClick={[Function]}
+      type="button"
+    />
+  </form>
+</Overlay>
+`;

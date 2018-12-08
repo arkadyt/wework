@@ -34,7 +34,7 @@ class AddExp extends React.Component {
                         error={errors.title} />
                     <Field type="text"
                         name="company"
-                        placeholder="Facebook"
+                        placeholder="Company name"
                         value={this.state.company}
                         onChange={e => this.setState({ company: e.target.value })}
                         label="Company:"
