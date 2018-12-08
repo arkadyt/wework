@@ -98,7 +98,7 @@ describe('UpdateProfile', () => {
 
   describe('props passing', () => {
     describe('handle Field', () => {
-      it('receives correct props', () => {
+      it('receives correct set of props', () => {
         const expectedKeys = [
 	  'type',
 	  'name',
@@ -116,7 +116,7 @@ describe('UpdateProfile', () => {
         expect(comp().find('[name="handle"]').prop('error')).not.toBeDefined()
       })
 
-      it('receives error message for [error] props if props.errors.handle is defined', () => {
+      it('receives error message for [error] prop if props.errors.handle is defined', () => {
         const msg = 'something happened...'
         props.errors.handle = msg
         expect(comp().find('[name="handle"]').prop('error')).toBe(msg)
@@ -151,7 +151,7 @@ describe('UpdateProfile', () => {
     })
     
     describe('company Field', () => {
-      it('receives correct props', () => {
+      it('receives correct set of props', () => {
         const expectedKeys = [
 	  'type',
 	  'name',
@@ -169,7 +169,7 @@ describe('UpdateProfile', () => {
         expect(comp().find('[name="company"]').prop('error')).not.toBeDefined()
       })
 
-      it('receives error message for [error] props if props.errors.company is defined', () => {
+      it('receives error message for [error] prop if props.errors.company is defined', () => {
         const msg = 'something happened...'
         props.errors.company = msg
         expect(comp().find('[name="company"]').prop('error')).toBe(msg)
@@ -204,7 +204,7 @@ describe('UpdateProfile', () => {
     })
 
     describe('website Field', () => {
-      it('receives correct props', () => {
+      it('receives correct set of props', () => {
         const expectedKeys = [
 	  'type',
 	  'name',
@@ -222,7 +222,7 @@ describe('UpdateProfile', () => {
         expect(comp().find('[name="website"]').prop('error')).not.toBeDefined()
       })
 
-      it('receives error message for [error] props if props.errors.website is defined', () => {
+      it('receives error message for [error] prop if props.errors.website is defined', () => {
         const msg = 'something happened...'
         props.errors.website = msg
         expect(comp().find('[name="website"]').prop('error')).toBe(msg)
@@ -257,7 +257,7 @@ describe('UpdateProfile', () => {
     })
 
     describe('location Field', () => {
-      it('receives correct props', () => {
+      it('receives correct set of props', () => {
         const expectedKeys = [
 	  'type',
 	  'name',
@@ -275,7 +275,7 @@ describe('UpdateProfile', () => {
         expect(comp().find('[name="location"]').prop('error')).not.toBeDefined()
       })
 
-      it('receives error message for [error] props if props.errors.location is defined', () => {
+      it('receives error message for [error] prop if props.errors.location is defined', () => {
         const msg = 'something happened...'
         props.errors.location = msg
         expect(comp().find('[name="location"]').prop('error')).toBe(msg)
@@ -310,7 +310,7 @@ describe('UpdateProfile', () => {
     })
 
     describe('title Field', () => {
-      it('receives correct props', () => {
+      it('receives correct set of props', () => {
         const expectedKeys = [
 	  'type',
 	  'name',
@@ -328,7 +328,7 @@ describe('UpdateProfile', () => {
         expect(comp().find('[name="title"]').prop('error')).not.toBeDefined()
       })
 
-      it('receives error message for [error] props if props.errors.title is defined', () => {
+      it('receives error message for [error] prop if props.errors.title is defined', () => {
         const msg = 'something happened...'
         props.errors.title = msg
         expect(comp().find('[name="title"]').prop('error')).toBe(msg)
@@ -363,7 +363,7 @@ describe('UpdateProfile', () => {
     })
 
     describe('status Field', () => {
-      it('receives correct props', () => {
+      it('receives correct set of props', () => {
         const expectedKeys = [
 	  'type',
 	  'name',
@@ -381,7 +381,7 @@ describe('UpdateProfile', () => {
         expect(comp().find('[name="status"]').prop('error')).not.toBeDefined()
       })
 
-      it('receives error message for [error] props if props.errors.status is defined', () => {
+      it('receives error message for [error] prop if props.errors.status is defined', () => {
         const msg = 'something happened...'
         props.errors.status = msg
         expect(comp().find('[name="status"]').prop('error')).toBe(msg)
@@ -416,7 +416,7 @@ describe('UpdateProfile', () => {
     })
 
     describe('skills Field', () => {
-      it('receives correct props', () => {
+      it('receives correct set of props', () => {
         const expectedKeys = [
 	  'type',
 	  'name',
@@ -434,7 +434,7 @@ describe('UpdateProfile', () => {
         expect(comp().find('[name="skills"]').prop('error')).not.toBeDefined()
       })
 
-      it('receives error message for [error] props if props.errors.skills is defined', () => {
+      it('receives error message for [error] prop if props.errors.skills is defined', () => {
         const msg = 'something happened...'
         props.errors.skills = msg
         expect(comp().find('[name="skills"]').prop('error')).toBe(msg)
@@ -469,7 +469,7 @@ describe('UpdateProfile', () => {
     })
 
     describe('bio Field', () => {
-      it('receives correct props', () => {
+      it('receives correct set of props', () => {
         const expectedKeys = [
 	  'type',
 	  'name',
@@ -487,7 +487,7 @@ describe('UpdateProfile', () => {
         expect(comp().find('[name="bio"]').prop('error')).not.toBeDefined()
       })
 
-      it('receives error message for [error] props if props.errors.bio is defined', () => {
+      it('receives error message for [error] prop if props.errors.bio is defined', () => {
         const msg = 'something happened...'
         props.errors.bio = msg
         expect(comp().find('[name="bio"]').prop('error')).toBe(msg)
@@ -522,7 +522,7 @@ describe('UpdateProfile', () => {
     })
 
     describe('social media section toggle button', () => {
-      it('receives correct props', () => {
+      it('receives correct set of props', () => {
         const expectedProps = [
           'type',
           'name',
@@ -542,6 +542,314 @@ describe('UpdateProfile', () => {
 
       it('receives correct [onClick] prop', () => {
         expect(comp().find('[name="toggle"]').prop('onClick')).toEqual(expect.any(Function))
+      })
+    })
+
+    describe('youtube Field', () => {
+      it('receives correct set of props', () => {
+        const expectedKeys = [
+	  'type',
+	  'name',
+	  'label',
+	  'value',
+	  'onChange',
+	  'error',
+	  'placeholder'
+        ]
+        expect(Object.keys(comp().find('[name="youtube"]').props())).toStrictEqual(expectedKeys)
+      })
+
+      it('receives undefined for [error] prop if props.errors.youtube is undefined', () => {
+        delete props.errors.youtube
+        expect(comp().find('[name="youtube"]').prop('error')).not.toBeDefined()
+      })
+
+      it('receives error message for [error] prop if props.errors.youtube is defined', () => {
+        const msg = 'something happened...'
+        props.errors.youtube = msg
+        expect(comp().find('[name="youtube"]').prop('error')).toBe(msg)
+      })	
+
+      it('receives correct [type] prop', () => {
+        expect(comp().find('[name="youtube"]').prop('type')).toBe('text')
+      })
+
+      it('receives correct [label] prop', () => {
+        expect(comp().find('[name="youtube"]').prop('label')).toBe('Youtube:')
+      })
+
+      it('receives correct [placeholder] prop', () => {
+        expect(comp().find('[name="youtube"]').prop('placeholder')).toBe('Please enter full channel URL')
+      })
+
+      it('receives undefined for [value] prop if state.youtube is undefined', () => {
+        comp().setState({ youtube: undefined })
+        expect(comp().find('[name="youtube"]').prop('value')).not.toBeDefined()
+      })
+
+      it('receives state.youtube for [value] prop if former is defined', () => {
+        const state = 'some value'
+        comp().setState({ youtube: state })
+        expect(comp().find('[name="youtube"]').prop('value')).toBe(state)
+      })
+
+      it('receives function for [onChange] prop', () => {
+        expect(comp().find('[name="youtube"]').prop('onChange')).toEqual(expect.any(Function))
+      })
+    })
+
+    describe('twitter Field', () => {
+      it('receives correct set of props', () => {
+        const expectedKeys = [
+	  'type',
+	  'name',
+	  'label',
+	  'value',
+	  'onChange',
+	  'error',
+	  'placeholder'
+        ]
+        expect(Object.keys(comp().find('[name="twitter"]').props())).toStrictEqual(expectedKeys)
+      })
+
+      it('receives undefined for [error] prop if props.errors.twitter is undefined', () => {
+        delete props.errors.twitter
+        expect(comp().find('[name="twitter"]').prop('error')).not.toBeDefined()
+      })
+
+      it('receives error message for [error] prop if props.errors.twitter is defined', () => {
+        const msg = 'something happened...'
+        props.errors.twitter = msg
+        expect(comp().find('[name="twitter"]').prop('error')).toBe(msg)
+      })	
+
+      it('receives correct [type] prop', () => {
+        expect(comp().find('[name="twitter"]').prop('type')).toBe('text')
+      })
+
+      it('receives correct [label] prop', () => {
+        expect(comp().find('[name="twitter"]').prop('label')).toBe('Twitter:')
+      })
+
+      it('receives correct [placeholder] prop', () => {
+        expect(comp().find('[name="twitter"]').prop('placeholder')).toBe('Twitter profile URL')
+      })
+
+      it('receives undefined for [value] prop if state.twitter is undefined', () => {
+        comp().setState({ twitter: undefined })
+        expect(comp().find('[name="twitter"]').prop('value')).not.toBeDefined()
+      })
+
+      it('receives state.twitter for [value] prop if former is defined', () => {
+        const state = 'some value'
+        comp().setState({ twitter: state })
+        expect(comp().find('[name="twitter"]').prop('value')).toBe(state)
+      })
+
+      it('receives function for [onChange] prop', () => {
+        expect(comp().find('[name="twitter"]').prop('onChange')).toEqual(expect.any(Function))
+      })
+    })
+
+    describe('instagram Field', () => {
+      it('receives correct set of props', () => {
+        const expectedKeys = [
+	  'type',
+	  'name',
+	  'label',
+	  'value',
+	  'onChange',
+	  'error',
+	  'placeholder'
+        ]
+        expect(Object.keys(comp().find('[name="instagram"]').props())).toStrictEqual(expectedKeys)
+      })
+
+      it('receives undefined for [error] prop if props.errors.instagram is undefined', () => {
+        delete props.errors.instagram
+        expect(comp().find('[name="instagram"]').prop('error')).not.toBeDefined()
+      })
+
+      it('receives error message for [error] prop if props.errors.instagram is defined', () => {
+        const msg = 'something happened...'
+        props.errors.instagram = msg
+        expect(comp().find('[name="instagram"]').prop('error')).toBe(msg)
+      })	
+
+      it('receives correct [type] prop', () => {
+        expect(comp().find('[name="instagram"]').prop('type')).toBe('text')
+      })
+
+      it('receives correct [label] prop', () => {
+        expect(comp().find('[name="instagram"]').prop('label')).toBe('Instagram:')
+      })
+
+      it('receives correct [placeholder] prop', () => {
+        expect(comp().find('[name="instagram"]').prop('placeholder')).toBe('Instagram URL')
+      })
+
+      it('receives undefined for [value] prop if state.instagram is undefined', () => {
+        comp().setState({ instagram: undefined })
+        expect(comp().find('[name="instagram"]').prop('value')).not.toBeDefined()
+      })
+
+      it('receives state.instagram for [value] prop if former is defined', () => {
+        const state = 'some value'
+        comp().setState({ instagram: state })
+        expect(comp().find('[name="instagram"]').prop('value')).toBe(state)
+      })
+
+      it('receives function for [onChange] prop', () => {
+        expect(comp().find('[name="instagram"]').prop('onChange')).toEqual(expect.any(Function))
+      })
+    })
+
+    describe('facebook Field', () => {
+      it('receives correct set of props', () => {
+        const expectedKeys = [
+	  'type',
+	  'name',
+	  'label',
+	  'value',
+	  'onChange',
+	  'error',
+	  'placeholder'
+        ]
+        expect(Object.keys(comp().find('[name="facebook"]').props())).toStrictEqual(expectedKeys)
+      })
+
+      it('receives undefined for [error] prop if props.errors.facebook is undefined', () => {
+        delete props.errors.facebook
+        expect(comp().find('[name="facebook"]').prop('error')).not.toBeDefined()
+      })
+
+      it('receives error message for [error] prop if props.errors.facebook is defined', () => {
+        const msg = 'something happened...'
+        props.errors.facebook = msg
+        expect(comp().find('[name="facebook"]').prop('error')).toBe(msg)
+      })	
+
+      it('receives correct [type] prop', () => {
+        expect(comp().find('[name="facebook"]').prop('type')).toBe('text')
+      })
+
+      it('receives correct [label] prop', () => {
+        expect(comp().find('[name="facebook"]').prop('label')).toBe('Facebook:')
+      })
+
+      it('receives correct [placeholder] prop', () => {
+        expect(comp().find('[name="facebook"]').prop('placeholder')).toBe('Facebook profile URL')
+      })
+
+      it('receives undefined for [value] prop if state.facebook is undefined', () => {
+        comp().setState({ facebook: undefined })
+        expect(comp().find('[name="facebook"]').prop('value')).not.toBeDefined()
+      })
+
+      it('receives state.facebook for [value] prop if former is defined', () => {
+        const state = 'some value'
+        comp().setState({ facebook: state })
+        expect(comp().find('[name="facebook"]').prop('value')).toBe(state)
+      })
+
+      it('receives function for [onChange] prop', () => {
+        expect(comp().find('[name="facebook"]').prop('onChange')).toEqual(expect.any(Function))
+      })
+    })
+
+    describe('githubusername Field', () => {
+      it('receives correct set of props', () => {
+        const expectedKeys = [
+	  'type',
+	  'name',
+	  'label',
+	  'value',
+	  'onChange',
+	  'error',
+	  'placeholder'
+        ]
+        expect(Object.keys(comp().find('[name="githubusername"]').props())).toStrictEqual(expectedKeys)
+      })
+
+      it('receives undefined for [error] prop if props.errors.githubusername is undefined', () => {
+        delete props.errors.githubusername
+        expect(comp().find('[name="githubusername"]').prop('error')).not.toBeDefined()
+      })
+
+      it('receives error message for [error] prop if props.errors.githubusername is defined', () => {
+        const msg = 'something happened...'
+        props.errors.githubusername = msg
+        expect(comp().find('[name="githubusername"]').prop('error')).toBe(msg)
+      })	
+
+      it('receives correct [type] prop', () => {
+        expect(comp().find('[name="githubusername"]').prop('type')).toBe('text')
+      })
+
+      it('receives correct [label] prop', () => {
+        expect(comp().find('[name="githubusername"]').prop('label')).toBe('Github:')
+      })
+
+      it('receives correct [placeholder] prop', () => {
+        expect(comp().find('[name="githubusername"]').prop('placeholder')).toBe('Github username only')
+      })
+
+      it('receives undefined for [value] prop if state.githubusername is undefined', () => {
+        comp().setState({ githubusername: undefined })
+        expect(comp().find('[name="githubusername"]').prop('value')).not.toBeDefined()
+      })
+
+      it('receives state.githubusername for [value] prop if former is defined', () => {
+        const state = 'some value'
+        comp().setState({ githubusername: state })
+        expect(comp().find('[name="githubusername"]').prop('value')).toBe(state)
+      })
+
+      it('receives function for [onChange] prop', () => {
+        expect(comp().find('[name="githubusername"]').prop('onChange')).toEqual(expect.any(Function))
+      })
+    })
+
+    describe('submit button', () => {
+      it('receives correct set of props', () => {
+        const expectedKeys = [
+          'type',
+          'name',
+          'label'
+        ]
+        expect(Object.keys(comp().find('[name="submit"]').props())).toStrictEqual(expectedKeys)
+      })
+
+      it('receives correct [type] prop', () => {
+        expect(comp().find('[name="submit"]').prop('type')).toBe('submit')
+      })
+
+      it('receives correct [label] prop', () => {
+        expect(['Create', 'Update']).toContain(comp().find('[name="submit"]').prop('label'))
+      })
+    })
+
+    describe('cancel button', () => {
+      it('receives correct set of props', () => {
+        const expectedKeys = [
+          'type',
+          'name',
+          'label',
+          'onClick'
+        ]
+        expect(Object.keys(comp().find('[name="cancel"]').props())).toStrictEqual(expectedKeys)
+      })
+
+      it('receives correct [type] prop', () => {
+        expect(comp().find('[name="cancel"]').prop('type')).toBe('button')
+      })
+
+      it('receives correct [label] prop', () => {
+        expect(comp().find('[name="cancel"]').prop('label')).toBe('Cancel')
+      })
+
+      it('receives correct [onClick] prop', () => {
+        expect(comp().find('[name="cancel"]').prop('onClick')).toEqual(expect.any(Function))
       })
     })
   })

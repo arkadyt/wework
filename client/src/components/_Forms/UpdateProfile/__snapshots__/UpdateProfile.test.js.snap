@@ -140,10 +140,12 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
     </div>
     <field
       label="Create"
+      name="submit"
       type="submit"
     />
     <field
       label="Cancel"
+      name="cancel"
       onClick={[Function]}
       type="button"
     />

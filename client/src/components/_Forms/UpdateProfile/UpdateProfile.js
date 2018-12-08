@@ -167,9 +167,11 @@ class UpdateProfile extends React.Component {
                     </div>
                     <Field
                         type="submit"
+                        name="submit"
                         label={this.state.creatingProfile ? 'Create' : 'Update'} />
                     <Field
                         type="button"
+                        name="cancel"
                         label="Cancel"
                         onClick={e => {
                             e.preventDefault()
