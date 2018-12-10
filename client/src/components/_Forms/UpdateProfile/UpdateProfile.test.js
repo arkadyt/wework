@@ -69,6 +69,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { UpdateProfile } from './UpdateProfile'
 import cloneDeep from 'lodash.clonedeep'
+import Overlay from '../../Overlay/Overlay'
 
 describe('UpdateProfile', () => {
   let props
@@ -850,6 +851,66 @@ describe('UpdateProfile', () => {
 
       it('receives correct [onClick] prop', () => {
         expect(comp().find('[name="cancel"]').prop('onClick')).toEqual(expect.any(Function))
+      })
+    })
+
+    describe('form element', () => {
+      it('receives correct set of props', () => {
+        const expectedKeys = [
+          'className',
+          'onSubmit',
+          'children'
+        ]
+        expect(Object.keys(comp().find('form').props())).toStrictEqual(expectedKeys)
+      })
+
+      it('receives correct [onSubmit] prop', () => {
+        expect(comp().find('form').prop('onSubmit')).toEqual(expect.any(Function))
+      })
+
+      it('receives correct [className] prop', () => {
+        expect(comp().find('form').prop('className')).toBe('UpdateProfile-container')
+      })
+    })
+
+    describe('social media fields drawer (div)', () => {
+      it('receives correct set of props', () => {
+        const expectedKeys = [
+          'style',
+          'children'
+        ]
+        expect(Object.keys(comp().find('form').find('div').props())).toStrictEqual(expectedKeys)
+      })
+
+      it('receives correct [style] prop', () => {
+        const expectedValues = [
+          { 'display': 'none' },
+          { 'display': 'block' }
+        ]
+        expect(expectedValues).toContainEqual(comp().find('form').find('div').prop('style'))
+      })
+    })
+
+    describe('Overlay component', () => {
+      it('receives correct set of props', () => {
+        const expectedKeys = [
+          'onBackdropClick',
+          'children'
+        ]
+        expect(Object.keys(comp().find(Overlay).props())).toStrictEqual(expectedKeys)
+      })
+
+      it('receives correct [onBackdropClick] prop', () => {
+        expect(comp().find(Overlay).prop('onBackdropClick')).toEqual(expect.any(Function))
+      })
+    })
+
+    describe('page header h1', () => {
+      it('receives correct set of props', () => {
+        const expectedKeys = [
+          'children'
+        ]
+        expect(Object.keys(comp().find('form').find('h1').props())).toStrictEqual(expectedKeys)
       })
     })
   })
