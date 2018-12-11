@@ -20,16 +20,17 @@
  *
  * Do props I receive affect what I render?
  * (props effects)
- * - errors object triggers error displaying
- * - if profile object isn't passed, UpdateProfile form turns into CreateProfile (h1, submit btn label)
+ * - errors object triggers error displaying (tested in (props passing) section)
+ * - if profile object isn't passed, UpdateProfile form turns into CreateProfile (through state flag)
  *
  * What do I do with functions (all of them)?
  * (functions / args passing)
+ * (mostly tested in (interaction) section)
  * - Look at:
  *   - updateUsersProfile
  *   - handleDismiss
  *   - preventDefault calls
- *   - history.push calls
+ *   - history fns calls
  *   - setState calls
  *
  * Do I hold anything in state? HOW and WHEN do I update it? Invalidation? How does state affect other components?
@@ -43,22 +44,19 @@
  * - text fields states
  *
  * Any context used?
- * - redux: 1 thunk action, errors object from state
+ * - n/a
  *
  * Public ref API?
  * - n/a
  *
  * Lifecycle hooks side effects?
- * (lifecycle hooks)
- * - constructor:
- *   > if profile is passed, destructure it into state, set creatingProfile state flag to false
- *   > else apply initial state
+ * - n/a
  *
  * User interaction?
  * (interaction)
  * - Look at:
  *   - all Fields: typing, clicking, toggling etc.
- *   - form submission (correct/incorrect)
+ *   - form submission
  *   - again, make sure preventDefault calls are present
  *   - cancel button click
  *   - backdrop click
@@ -70,6 +68,7 @@ import { shallow } from 'enzyme'
 import { UpdateProfile } from './UpdateProfile'
 import cloneDeep from 'lodash.clonedeep'
 import Overlay from '../../Overlay/Overlay'
+import Field from '../../Field/Field'
 
 describe('UpdateProfile', () => {
   let props
@@ -901,7 +900,7 @@ describe('UpdateProfile', () => {
       })
 
       it('receives correct [onBackdropClick] prop', () => {
-        expect(comp().find(Overlay).prop('onBackdropClick')).toEqual(expect.any(Function))
+        expect(comp().find(Overlay).prop('onBackdropClick')).toEqual(comp().instance().handleDismiss)
       })
     })
 
@@ -916,23 +915,242 @@ describe('UpdateProfile', () => {
   })
 
   describe('props effects', () => {
-    it('', () => {})
+    it('if props.profile object is undefined, state.creatingProfile is true', () => {
+      props.profile = undefined
+      expect(comp().state('creatingProfile')).toBe(true)
+    })
+
+    it('if props.profile object is defined, state.creatingProfile is false', () => {
+      props.profile = { name: 'John Doe' }
+      expect(comp().state('creatingProfile')).toBe(false)
+    })
   })
 
-  describe('functions use', () => {
-    it('', () => {})
+  describe('internal functions', () => {
+    describe('handleDismiss function', () => {
+      it('calls history.goBack() when called', () => {
+        const mockFn = jest.fn()
+        props.history.goBack = mockFn
+        comp().instance().handleDismiss()
+        expect(mockFn).toHaveBeenCalled()
+      })
+    })
   })
 
   describe('state', () => {
-    it('', () => {})
-  })
+    describe('showSocial flag', () => {
+      it('hides div drawer when false', () => {
+        comp().setState({ showSocial: false })
+        expect(comp().find('form').find('div').prop('style').display).toBe('none')
+      })
 
-  describe('lifecycle', () => {
-    it('', () => {})
+      it('shows div drawer when true', () => {
+        comp().setState({ showSocial: true })
+        expect(comp().find('form').find('div').prop('style').display).not.toBe('none')
+      })
+    })
+
+    describe('creatingProfile flag', () => {
+      it('changes h1 text to "Create profile" when set to true', () => {
+        comp().setState({ creatingProfile: true })
+        expect(comp().find('form').find('h1').text()).toBe('Create profile')
+      })
+
+      it('changes h1 text to "Update profile" when set to false', () => {
+        comp().setState({ creatingProfile: false })
+        expect(comp().find('form').find('h1').text()).toBe('Update profile')
+      })
+
+      it('changes submit button label to "Create" when set to true', () => {
+        comp().setState({ creatingProfile: true })
+        expect(comp().find(Field).find('[name="submit"]').prop('label')).toBe('Create')
+      })
+
+      it('changes submit button label to "Update" when set to false', () => {
+        comp().setState({ creatingProfile: false })
+        expect(comp().find(Field).find('[name="submit"]').prop('label')).toBe('Update')
+      })
+    })
   })
 
   describe('interaction', () => {
-    it('', () => {})
+    describe('form submission', () => {
+      it('invokes updateUsersProfile()', () => {
+        const mockedEvent = { preventDefault: () => {} }
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.updateUsersProfile).toHaveBeenCalled()
+      })
+
+      it('invokes updateUsersProfile() with correct args', () => {
+        const mockedEvent = { preventDefault: () => {} }
+
+        comp().setState({ someKey: 'toHaveRestPartDefined' })
+        const { showSocial, creatingProfile, ...expectedData } = comp().state()
+
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.updateUsersProfile).toHaveBeenCalledWith(expectedData, comp().instance().handleDismiss)
+      })
+
+      it('invokes e.preventDefault()', () => {
+        const mockedEvent = { preventDefault: jest.fn() }
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(mockedEvent.preventDefault).toHaveBeenCalled()
+      })
+    })
+
+    describe('handle Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="handle"]').simulate('change', mockedEvent)
+        expect(comp().state('handle')).toBe(mockedValue)
+      })
+    })
+
+    describe('company Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="company"]').simulate('change', mockedEvent)
+        expect(comp().state('company')).toBe(mockedValue)
+      })
+    })
+
+    describe('website Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="website"]').simulate('change', mockedEvent)
+        expect(comp().state('website')).toBe(mockedValue)
+      })
+    })
+
+    describe('location Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="location"]').simulate('change', mockedEvent)
+        expect(comp().state('location')).toBe(mockedValue)
+      })
+    })
+
+    describe('title Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="title"]').simulate('change', mockedEvent)
+        expect(comp().state('title')).toBe(mockedValue)
+      })
+    })
+
+    describe('status Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'status 123091821'
+        comp().find(Field).find('[name="status"]').simulate('change', mockedValue)
+        expect(comp().state('status')).toBe(mockedValue)
+      })
+    })
+
+    describe('skills Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = ['skill 1', 'skill 9000']
+        comp().find(Field).find('[name="skills"]').simulate('change', mockedValue)
+        expect(comp().state('skills')).toBe(mockedValue)
+      })
+    })
+
+    describe('bio Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="bio"]').simulate('change', mockedEvent)
+        expect(comp().state('bio')).toBe(mockedValue)
+      })
+    })
+
+    describe('toggle Field', () => {
+      it('invokes preventDefault() upon click event', () => {
+        const mockedEvent = { preventDefault: jest.fn() }
+        comp().find(Field).find('[name="toggle"]').simulate('click', mockedEvent)
+        expect(mockedEvent.preventDefault).toHaveBeenCalled()
+      })
+
+      it('correctly invokes setState() upon click event', () => {
+        const initialFlagState = comp().state('showSocial')
+        const mockedEvent = { preventDefault: () => {} }
+        comp().find(Field).find('[name="toggle"]').simulate('click', mockedEvent)
+        expect(comp().state('showSocial')).toBe(!initialFlagState)
+      })
+    })
+
+    describe('youtube Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="youtube"]').simulate('change', mockedEvent)
+        expect(comp().state('youtube')).toBe(mockedValue)
+      })
+    })
+
+    describe('twitter Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="twitter"]').simulate('change', mockedEvent)
+        expect(comp().state('twitter')).toBe(mockedValue)
+      })
+    })
+
+    describe('instagram Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="instagram"]').simulate('change', mockedEvent)
+        expect(comp().state('instagram')).toBe(mockedValue)
+      })
+    })
+
+    describe('facebook Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="facebook"]').simulate('change', mockedEvent)
+        expect(comp().state('facebook')).toBe(mockedValue)
+      })
+    })
+
+    describe('linkedin Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="linkedin"]').simulate('change', mockedEvent)
+        expect(comp().state('linkedin')).toBe(mockedValue)
+      })
+    })
+
+    describe('githubusername Field', () => {
+      it('correctly invokes setState() upon text change', () => {
+        const mockedValue = 'some value 102fy12098f'
+        const mockedEvent = { target: { value: mockedValue } }
+        comp().find(Field).find('[name="githubusername"]').simulate('change', mockedEvent)
+        expect(comp().state('githubusername')).toBe(mockedValue)
+      })
+    })
+
+    describe('cancel button', () => {
+      it('invokes preventDefault() function upon click', () => {
+        const mockedEvent = { preventDefault: jest.fn() }
+        comp().find(Field).find('[name="cancel"]').simulate('click', mockedEvent)
+        expect(mockedEvent.preventDefault).toHaveBeenCalled()
+      })
+
+      it('invokes handleDismiss() function upon click', () => {
+        comp().instance().handleDismiss = jest.fn()
+        const mockedEvent = { preventDefault: () => {} }
+        comp().find(Field).find('[name="cancel"]').simulate('click', mockedEvent)
+        expect(comp().instance().handleDismiss).toHaveBeenCalled()
+      })
+    })
   })
 
   it('passes a snapshot test', () => {

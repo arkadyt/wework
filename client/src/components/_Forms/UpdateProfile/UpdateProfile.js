@@ -36,11 +36,11 @@ class UpdateProfile extends React.Component {
         const { updateUsersProfile, errors } = this.props
 
         return (
-            <Overlay onBackdropClick={() => this.handleDismiss()}>
+            <Overlay onBackdropClick={this.handleDismiss}>
                 <form className="UpdateProfile-container" onSubmit={e => {
                     e.preventDefault()
                     const { showSocial, creatingProfile, ...data } = this.state
-                    updateUsersProfile(data, () => this.handleDismiss())
+                    updateUsersProfile(data, this.handleDismiss)
                 }}>
                     <h1>{this.state.creatingProfile ? 'Create' : 'Update'} profile</h1>
                     <Field
@@ -186,7 +186,8 @@ class UpdateProfile extends React.Component {
 UpdateProfile.propTypes = {
   errors: object.isRequired,
   updateUsersProfile: func.isRequired,
-  history: object.isRequired
+  history: object.isRequired,
+  profile: object
 }
 
 export { UpdateProfile }
