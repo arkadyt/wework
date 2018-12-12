@@ -67,7 +67,6 @@ import ReactDOM from 'react-dom'
 import { mount, shallow } from 'enzyme'
 import { _UnconnectedPost as Post } from './Post.js'
 import { mockPost } from '../../mocks/posts.js'
-import mockUser from '../../mocks/user.js'
 import cloneDeep from 'lodash.clonedeep'
 
 describe('Post', () => {
@@ -87,6 +86,9 @@ describe('Post', () => {
     const match = {
       url: ""
     }
+    const authedUser = {
+      id: "some_id98ac61abed72ee8d12"
+    }
 
     const nocomments = false
     const flat = false
@@ -94,7 +96,7 @@ describe('Post', () => {
     return cloneDeep({
       ...actions,
       ...mockPost,
-      authedUser: mockUser,
+      authedUser,
       history,
       match,
       nocomments,
