@@ -73,7 +73,6 @@ import { _UnconnectedSignup as Signup } from './Signup'
 import Field from '../../Field/Field'
 import Overlay from '../../Overlay/Overlay'
 import cloneDeep from 'lodash.clonedeep'
-import Redirect from 'react-router'
 
 describe('Signup', () => {
   let props
@@ -81,7 +80,7 @@ describe('Signup', () => {
 
   const getMockProps = () => {
     const actions = {
-      registerUser: jest.fn(),
+      registerUser: jest.fn((data, cb) => cb()),
       fetchFollowers: jest.fn(),
       fetchUsersProfile: jest.fn(),
       fetchSubscriptions: jest.fn()
@@ -89,10 +88,12 @@ describe('Signup', () => {
 
     const errors = {}
     const authedUser = { isAuthenticated: false }
+    const history = { push: jest.fn() }
 
     return cloneDeep({
       authedUser,
       errors,
+      history,
       ...actions
     })
   }
@@ -419,19 +420,122 @@ describe('Signup', () => {
   })
 
   describe('interaction', () => {
-    describe('form submission', () => {})
+    describe('form submission', () => {
+      let mockedEvent
 
-    describe('name Field', () => {})
+      beforeEach(() => {
+        mockedEvent = { preventDefault: jest.fn() }
+      })
 
-    describe('email Field', () => {})
+      it('invokes preventDefault()', () => {
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(mockedEvent.preventDefault).toHaveBeenCalled()
+      })
 
-    describe('password Field', () => {})
+      it('invokes registerUser()', () => {
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.registerUser).toHaveBeenCalled()
+      })
 
-    describe('password confirmation Field', () => {})
+      it('invokes fetchSubscriptions()', () => {
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.fetchSubscriptions).toHaveBeenCalled()
+      })
 
-    describe('submit Field', () => {})
+      it('does not invoke fetchSubscriptions() until the registerUser() invokes callback', () => {
+        props.registerUser = jest.fn()
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.fetchSubscriptions).not.toHaveBeenCalled()
+      })
 
-    describe('Link component', () => {})
+      it('invokes fetchFollowers()', () => {
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.fetchFollowers).toHaveBeenCalled()
+      })
+
+      it('does not invoke fetchFollowers() until the registerUser() invokes callback', () => {
+        props.registerUser = jest.fn()
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.fetchFollowers).not.toHaveBeenCalled()
+      })
+
+      it('invokes fetchUsersProfile()', () => {
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.fetchUsersProfile).toHaveBeenCalled()
+      })
+
+      it('does not invoke fetchUsersProfile() until the registerUser() invokes callback', () => {
+        props.registerUser = jest.fn()
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.fetchUsersProfile).not.toHaveBeenCalled()
+      })
+
+      it('invokes history.push()', () => {
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.history.push).toHaveBeenCalled()
+      })
+
+      it('invokes registerUser() with correct args', () => {
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.registerUser).toHaveBeenCalledWith(comp().state(), expect.any(Function))
+      })
+
+      it('invokes fetchSubscriptions() with correct args', () => {
+        const userId = 'some_User_id123'
+        props.registerUser = jest.fn((data, cb) => cb(userId))
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.fetchSubscriptions).toHaveBeenCalledWith(userId)
+      })
+
+      it('invokes fetchFollowers() with correct args', () => {
+        const userId = 'some_User_id123'
+        props.registerUser = jest.fn((data, cb) => cb(userId))
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.fetchFollowers).toHaveBeenCalledWith(userId)
+      })
+
+      it('invokes history.push() with correct args', () => {
+        comp().find('form').simulate('submit', mockedEvent)
+        expect(props.history.push).toHaveBeenCalledWith('/feed')
+      })
+    })
+
+    describe('Fields', () => {
+      let mockedEvent
+      let value = 'value123'
+
+      beforeEach(() => {
+        mockedEvent = { target: { value } }
+      })
+
+      describe('name', () => {
+        it('[onChange] function works as expected', () => {
+          comp().find(Field).find('[name="name"]').simulate('change', mockedEvent)
+          expect(comp().state('name')).toBe(value)
+        })
+      })
+
+      describe('email', () => {
+        it('[onChange] function works as expected', () => {
+          comp().find(Field).find('[name="email"]').simulate('change', mockedEvent)
+          expect(comp().state('email')).toBe(value)
+        })
+      })
+
+      describe('password', () => {
+        it('[onChange] function works as expected', () => {
+          comp().find(Field).find('[name="password"]').simulate('change', mockedEvent)
+          expect(comp().state('password')).toBe(value)
+        })
+      })
+
+      describe('passwordConfirm', () => {
+        it('[onChange] function works as expected', () => {
+          comp().find(Field).find('[name="passwordConfirm"]').simulate('change', mockedEvent)
+          expect(comp().state('passwordConfirm')).toBe(value)
+        })
+      })
+    })
   })
 
   it('passes a snapshot test', () => {
