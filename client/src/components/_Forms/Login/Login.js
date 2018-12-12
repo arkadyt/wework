@@ -34,20 +34,23 @@ class Login extends React.Component {
                     value={this.state.email}
                     onChange={e => this.setState({ email: e.target.value })}
                     label="Email:"
-                    error={this.props.errors.email} />
+                    error={this.props.errors.email} 
+                    placeholder="Your email" />
                 <Field
                     type="password"
                     name="password"
                     value={this.state.password}
                     onChange={e => this.setState({ password: e.target.value })}
                     label="Password:"
-                    error={this.props.errors.password} />
+                    error={this.props.errors.password} 
+                    placeholder="Your password" />
                 <div className="Login-buttons">
                     <span className="Login-options-info">
                         Don't have an account? <Link to="/signup">Sign Up</Link>
                     </span>
                     <Field
                         type="submit"
+                        name="submit"
                         inline
                         containerStyle={{ margin: 0 }}
                         label="Log In" />
@@ -65,7 +68,7 @@ Login.propTypes = {
   errors: object.isRequired
 }
 
-export const _UnconnectedLogin = Login
+export { Login as _UnconnectedLogin }
 export default withRouter(connect(state => ({
     errors: state.err.formErrors
 }), { loginUser, fetchFollowers, fetchSubscriptions, fetchUsersProfile })(Login))

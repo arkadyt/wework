@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login matches snapshot 1`] = `
+<div
+  className="Login-container"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <field
+      error="Email is wrong"
+      label="Email:"
+      name="email"
+      onChange={[Function]}
+      placeholder="Your email"
+      type="text"
+      value=""
+    />
+    <field
+      label="Password:"
+      name="password"
+      onChange={[Function]}
+      placeholder="Your password"
+      type="password"
+      value=""
+    />
+    <div
+      className="Login-buttons"
+    >
+      <span
+        className="Login-options-info"
+      >
+        Don't have an account? 
+        <Link
+          replace={false}
+          to="/signup"
+        >
+          Sign Up
+        </Link>
+      </span>
+      <field
+        containerStyle={
+          Object {
+            "margin": 0,
+          }
+        }
+        inline={true}
+        label="Log In"
+        name="submit"
+        type="submit"
+      />
+    </div>
+  </form>
+</div>
+`;
