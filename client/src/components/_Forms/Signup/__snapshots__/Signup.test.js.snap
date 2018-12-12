@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Signup passes a snapshot test 1`] = `
+<div
+  className="Signup-container"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <field
+      label="Your name:"
+      name="name"
+      onChange={[Function]}
+      placeholder="John Doe"
+      type="text"
+      value=""
+    />
+    <field
+      label="Your email:"
+      name="email"
+      onChange={[Function]}
+      placeholder="your.name@mail.com"
+      type="text"
+      value=""
+    />
+    <field
+      label="Password:"
+      name="password"
+      onChange={[Function]}
+      placeholder="Min. 6 characters"
+      type="password"
+      value=""
+    />
+    <field
+      label="Confirm password:"
+      name="passwordConfirm"
+      onChange={[Function]}
+      placeholder="Type in your password again"
+      type="password"
+      value=""
+    />
+    <br />
+    <span>
+      By creating an account, you agree to Conditions of Use and Privacy Notice of this Website
+    </span>
+    <div
+      className="Signup-buttons"
+    >
+      <span
+        className="Signup-options-info"
+      >
+        Already have an account? 
+        <Link
+          replace={false}
+          to="/login"
+        >
+          Log In
+        </Link>
+      </span>
+      <field
+        containerStyle={
+          Object {
+            "margin": 0,
+          }
+        }
+        inline={true}
+        label="Sign Up"
+        name="submit"
+        type="submit"
+      />
+    </div>
+  </form>
+</div>
+`;

@@ -74,6 +74,7 @@ class Signup extends React.Component {
                     </span>
                     <Field
                         type="submit"
+                        name="submit"
                         inline
                         containerStyle={{ margin: 0 }}
                         label="Sign Up" />
