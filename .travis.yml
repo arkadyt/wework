@@ -1,12 +1,25 @@
-language: 
-  - node_js
-node_js: 
-  - 11
-before_install: 
-  - CI=true
-  - cd ./client
-install:
-  - npm install
-script:
-  - npm run build
-  - npm test -- --coverage --coverageReporters=text-lcov | coveralls
+---
+language: node_js
+node_js: stable
+cache:
+  directories:
+    - node_modules
+
+jobs:
+  include:
+    - stage: test
+      before_install:
+        - cd ./client
+      script: >
+          npm test --
+          --coverage
+          --updateSnapshot
+          --coverageReporters=text-lcov
+          | coveralls
+          ; test ${PIPESTATUS[0]} -eq 0
+    - stage: build
+      before_install:
+        - cd ./client
+      script:
+        - npm run build
+...

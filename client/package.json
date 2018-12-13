@@ -1,5 +1,6 @@
 {
   "name": "client",
+  "repository": "https://github.com/arkadyt/ww.net",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
