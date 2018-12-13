@@ -62,6 +62,7 @@ class Login extends React.Component {
 
 Login.propTypes = {
   loginUser: func.isRequired,
+  history: object.isRequired,
   fetchFollowers: func.isRequired,
   fetchSubscriptions: func.isRequired,
   fetchUsersProfile: func.isRequired,

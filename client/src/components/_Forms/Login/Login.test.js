@@ -83,9 +83,7 @@ describe('Login', () => {
     return cloneDeep({
       ...actions,
       history,
-      errors: {
-        email: 'Email is wrong'
-      }
+      errors: {}
     })
   }
 

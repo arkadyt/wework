@@ -8,7 +8,6 @@ exports[`Login matches snapshot 1`] = `
     onSubmit={[Function]}
   >
     <field
-      error="Email is wrong"
       label="Email:"
       name="email"
       onChange={[Function]}
