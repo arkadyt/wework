@@ -70,7 +70,7 @@ class CommentsView extends Component {
         } = this.props
 
         return (
-            <Overlay onBackdropClick={() => this.handleDismiss()}>
+            <Overlay onBackdropClick={this.handleDismiss}>
                 <div className="CommentsView-container">
                     <div className="CommentsView-content">
                         <Post {...post} flat nocomments />

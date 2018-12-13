@@ -97,7 +97,7 @@ describe('CommentsView', () => {
 
     it('Overlay component receives correct props', () => {
       const expectedProps = { 
-        onBackdropClick: expect.any(Function),
+        onBackdropClick: commentsView().instance().handleDismiss,
         children: expect.anything()
       }
       expect(commentsView().find(Overlay).props()).toStrictEqual(expectedProps)
