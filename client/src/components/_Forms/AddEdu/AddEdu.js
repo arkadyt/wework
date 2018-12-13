@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './AddEdu.scss'
 import 'react-widgets/lib/scss/react-widgets.scss'
-
+import { object, func } from 'prop-types'
 import Field from '../../Field/Field'
 import Overlay from '../../Overlay/Overlay'
 import { addEducation } from '../../../state/actions/profileActions'
@@ -32,34 +32,38 @@ class AddEdu extends React.Component {
         ]
 
         return (
-            <Overlay onBackdropClick={() => this.handleDismiss()}>
+            <Overlay onBackdropClick={this.handleDismiss}>
                 <form className="AddEdu-container" onSubmit={e => {
                     e.preventDefault()
-                    addEducation(this.state, () => this.handleDismiss())
+                    addEducation(this.state, this.handleDismiss)
                 }}>
                     <h1>Add Education</h1>
-                    <Field type="text"
+                    <Field 
+                        type="text"
                         name="school"
-                        placeholder="UCLA"
                         value={this.state.school}
                         onChange={e => this.setState({ school: e.target.value })}
                         label="School:"
-                        error={errors.school} />
-                    <Field type="text"
+                        error={errors.school}
+                        placeholder="UCLA" />
+                    <Field 
+                        type="text"
                         name="fieldOfStudy"
-                        placeholder="Bioeconomics"
                         value={this.state.fieldOfStudy}
                         onChange={e => this.setState({ fieldOfStudy: e.target.value })}
                         label="Field of Study:"
-                        error={errors.fieldOfStudy} />
-                    <Field type="list"
+                        error={errors.fieldOfStudy}
+                        placeholder="Bioeconomics" />
+                    <Field 
+                        type="list"
                         name="degree"
                         value={this.state.degree}
                         onChange={value => this.setState({ degree: value })}
                         label="Degree:"
                         list={degreeTypes}
                         error={errors.degree} />
-                    <Field type="date"
+                    <Field 
+                        type="date"
                         name="from"
                         value={this.state.from}
                         onChange={value => this.setState({ from: value })}
@@ -89,9 +93,11 @@ class AddEdu extends React.Component {
                         error={errors.description} />
                     <Field
                         type="submit"
+                        name="submit"
                         label="Add" />
                     <Field
                         type="button"
+                        name="cancel"
                         label="Cancel"
                         onClick={e => {
                             e.preventDefault()
@@ -103,6 +109,13 @@ class AddEdu extends React.Component {
     }
 }
 
+AddEdu.propTypes = {
+  history: object.isRequired,
+  errors: object.isRequired,
+  addEducation: func.isRequired
+}
+
+export { AddEdu as _UnconnectedAddEdu }
 export default connect(state => ({
     errors: state.err.formErrors
 }), { addEducation })(AddEdu)

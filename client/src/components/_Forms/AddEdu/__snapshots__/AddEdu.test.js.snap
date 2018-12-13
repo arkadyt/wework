@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddEdu matches snapshot 1`] = `
+<Overlay
+  onBackdropClick={[Function]}
+>
+  <form
+    className="AddEdu-container"
+    onSubmit={[Function]}
+  >
+    <h1>
+      Add Education
+    </h1>
+    <field
+      label="School:"
+      name="school"
+      onChange={[Function]}
+      placeholder="UCLA"
+      type="text"
+    />
+    <field
+      label="Field of Study:"
+      name="fieldOfStudy"
+      onChange={[Function]}
+      placeholder="Bioeconomics"
+      type="text"
+    />
+    <field
+      label="Degree:"
+      list={
+        Array [
+          "Professional Certificate",
+          "Undergraduate Degrees",
+          "Transfer Degree",
+          "Associate Degree",
+          "Bachelor Degree",
+          "Graduate Degrees",
+          "Master Degree",
+          "Doctoral Degree",
+          "Professional Degree",
+          "Specialist Degree",
+        ]
+      }
+      name="degree"
+      onChange={[Function]}
+      type="list"
+    />
+    <field
+      label="From:"
+      name="from"
+      onChange={[Function]}
+      type="date"
+    />
+    <field
+      label="To:"
+      name="to"
+      onChange={[Function]}
+      type="date"
+    />
+    <field
+      label="Current?"
+      name="current"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <field
+      label="Description"
+      name="description"
+      onChange={[Function]}
+      rows="2"
+      type="textarea"
+    />
+    <field
+      label="Add"
+      name="submit"
+      type="submit"
+    />
+    <field
+      label="Cancel"
+      name="cancel"
+      onClick={[Function]}
+      type="button"
+    />
+  </form>
+</Overlay>
+`;
