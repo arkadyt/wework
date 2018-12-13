@@ -527,6 +527,15 @@ describe('AddExp', () => {
     })
   })
 
+  describe('functions', () => {
+    describe('handleDismiss()', () => {
+      it('calls history.goBack() when invoked', () => {
+        comp().instance().handleDismiss()
+        expect(props.history.goBack).toHaveBeenCalled()
+      })
+    })
+  })
+
   describe('interaction', () => {
     describe('form submission', () => {
       let mockedEvent
@@ -583,6 +592,13 @@ describe('AddExp', () => {
         })
       })
 
+      describe('from', () => {
+        it('[onChange] function works as expected', () => {
+          comp().find(Field).find('[name="from"]').simulate('change', value)
+          expect(comp().state('from')).toBe(value)
+        })
+      })
+
       describe('to', () => {
         it('[onChange] function works as expected', () => {
           comp().find(Field).find('[name="to"]').simulate('change', value)
@@ -590,10 +606,12 @@ describe('AddExp', () => {
         })
       })
 
-      describe('from', () => {
+      describe('current', () => {
         it('[onChange] function works as expected', () => {
-          comp().find(Field).find('[name="from"]').simulate('change', value)
-          expect(comp().state('from')).toBe(value)
+          const value = false
+          mockedEvent.target.checked = value
+          comp().find(Field).find('[name="current"]').simulate('change', mockedEvent)
+          expect(comp().state('current')).toBe(value)
         })
       })
 
