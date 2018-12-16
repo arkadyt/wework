@@ -47,7 +47,7 @@ exports[`Post must pass a snapshot test 1`] = `
     <p
       className="Post__date"
     >
-      September 16, 2018, 11:18:16 PM
+      September 17, 2018, 2:18:16 AM
     </p>
   </div>
   <p

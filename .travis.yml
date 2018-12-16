@@ -5,21 +5,29 @@ cache:
   directories:
     - node_modules
 
+before_install:
+  - cd ./client
+  - export TZ=America/New_York
+
 jobs:
   include:
-    - stage: test
-      before_install:
-        - cd ./client
+    - stage: Test
       script: >
-          npm test --
-          --coverage
-          --updateSnapshot
-          --coverageReporters=text-lcov
-          | coveralls
-          ; test ${PIPESTATUS[0]} -eq 0
-    - stage: build
-      before_install:
-        - cd ./client
+        npm test
+    - stage: Build
       script:
         - npm run build
+    - stage: Produce Coverage
+      script: >
+        npm test -- 
+        --coverage 
+        --coverageReporters=text-lcov
+        | coveralls ; test ${PIPESTATUS[0]} -eq 0
+    - stage: Deploy
+      script: skip
+      deploy:
+        provider: heroku
+        app: morning-scrubland-18259
+        api_key: $ENC_HEROKU_API_KEY
+        strategy: git
 ...
