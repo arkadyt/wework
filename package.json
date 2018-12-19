@@ -6,34 +6,19 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js",
-    "cl-inst": "npm install --prefix client",
-    "client": "npm start --prefix client",
-    "dev": "concurrently 'npm run server' 'npm run client'",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && cd ./client && npm install && npm run build"
+    "nodemon": "nodemon server.js"
   },
-  "engines": {
-    "node": "10.10.x",
-    "npm": "6.2.x"
-  },
-  "author": "",
-  "license": "ISC",
+  "author": "arkadyt",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^3.0.0",
-    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
-    "concurrently": "^3.6.1",
     "express": "^4.16.3",
     "gravatar": "^1.6.0",
     "jsonwebtoken": "^8.3.0",
-    "moment": "^2.22.2",
     "mongoose": "^5.2.5",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "react-redux": "^5.0.7",
-    "react-widgets-moment": "^4.0.20",
-    "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0",
     "validator": "^10.6.0",
     "yup": "^0.26.2"
   },
