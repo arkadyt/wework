@@ -1,2 +1,10 @@
-node_modules/
-client/
+node_modules
+.git
+client
+
+.gitignore
+.dockerignore
+package-lock.json
+Dockerfile
+README.md
+.travis.yml
