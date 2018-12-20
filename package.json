@@ -2,7 +2,7 @@
   "name": "ww.net",
   "repository": "https://github.com/arkadyt/ww.net",
   "version": "1.0.0",
-  "description": "",
+  "description": "Social network website for professionals.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

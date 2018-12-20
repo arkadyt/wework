@@ -4,8 +4,8 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN apk --no-cache add --virtual bdeps python g++ make \
-    && npm install --only=production \
-    && apk del bdeps
+ && npm install --only=production \
+ && apk del bdeps
 # RUN apk --no-cache add bash
 
 ENV NODE_ENV=production
