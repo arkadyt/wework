@@ -6,6 +6,7 @@ const passport = require('passport')
 const postsRouter = require('./routes/api/posts')
 const usersRouter = require('./routes/api/users')
 const profileRouter = require('./routes/api/profile')
+const infoRouter = require('./routes/api/info')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -15,6 +16,7 @@ require('./config/passport')(passport)
 app.use('/api/posts', postsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/profile', profileRouter)
+app.use('/api/info', infoRouter)
 
 const mongoose = require('mongoose')
 const db = require('./config/keys').mongoURI
