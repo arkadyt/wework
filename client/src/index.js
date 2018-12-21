@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import axios from 'axios'
+
+axios.defaults.baseURL = "http://35.247.94.48:19300"
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

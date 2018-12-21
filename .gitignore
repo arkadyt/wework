@@ -1,4 +1,6 @@
-/node_modules
+node_modules
+.firebase
+
 package-lock.json
-/config/keys.dev.js
+config/keys.dev.js
 .tern-port
