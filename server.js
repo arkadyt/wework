@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('./config/cors.policy.js')
 const app = express()
 const path = require('path')
 const bodyParser = require('body-parser')
@@ -7,6 +8,8 @@ const postsRouter = require('./routes/api/posts')
 const usersRouter = require('./routes/api/users')
 const profileRouter = require('./routes/api/profile')
 const infoRouter = require('./routes/api/info')
+
+app.use(cors)
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
