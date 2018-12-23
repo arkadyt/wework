@@ -1,6 +1,6 @@
 const cors = require('cors')
 
-var whitelist = ['https://socnet.arkadyt.com', 'http://socnet.arkadyt.com']
+var whitelist = ['https://socnet.arkadyt.com']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
