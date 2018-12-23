@@ -5,7 +5,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios'
 
-axios.defaults.baseURL = "http://35.247.94.48:19300"
+if (process.env.NODE_ENV === 'development') {
+  axios.defaults.baseURL = "https://localhost:5000"
+} else {
+  axios.defaults.baseURL = "https://api.arkadyt.com/wnetb"
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
