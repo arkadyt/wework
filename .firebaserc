@@ -1,5 +1,6 @@
 {
   "projects": {
-    "prod": "f1-micro-server"
+    "socnet-arkadyt-com": "socnet-arkadyt-com",
+    "default": "socnet-arkadyt-com"
   }
 }
