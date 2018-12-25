@@ -1,33 +1,59 @@
----
+# Test stage is always run
+# Deployment substages are triggered by tags
+# Coverage production happens only upon master branch pushes
+
 language: node_js
 node_js: stable
 cache:
   directories:
     - node_modules
 
-before_install:
-  - cd ./client
-  - export TZ=America/New_York
-
 jobs:
   include:
     - stage: Test
-      script: >
-        npm test
-    - stage: Build
+      name: Run backend tests
       script:
-        - npm run build
-    - stage: Produce Coverage
+        - echo "TODO: Write backend tests!"
+
+    - stage: Test
+      name: Run frontend tests
+      before_install:
+        - cd client
+        - TZ=America/New_York
+      script:
+        - npm test
+
+    - stage: Deploy
+      if: tag =~ /backend/
+      name: Build a backend app docker image and upload it to DockerHub
+      script:
+        - echo deployed backend!
+       # - docker build -t arkadyt/wnetb:latest .
+       # - docker push
+       # - trigger webhook
+      
+    - stage: Deploy
+      if: tag =~ /frontend/
+      name: Deploy frontend app to Firebase
+      script: 
+        - echo deployed frontend!
+        #- npm run build
+        #- firebase deploy
+        
+    - stage: Coverage
+      if: branch = master
+      name: Produce coverage for backend tests and upload it to coveralls.io
+      script: 
+        - echo "TODO: Again, write backend tests."
+
+    - stage: Coverage
+      if: branch = master
+      name: Produce coverage for frontend tests and upload it to coveralls.io
+      before_install:
+        - cd client
+        - TZ=America/New_York
       script: >
         npm test -- 
         --coverage 
         --coverageReporters=text-lcov
         | coveralls ; test ${PIPESTATUS[0]} -eq 0
-    - stage: Deploy
-      script: skip
-      deploy:
-        provider: heroku
-        app: morning-scrubland-18259
-        api_key: $ENC_HEROKU_API_KEY
-        strategy: git
-...
