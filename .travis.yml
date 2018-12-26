@@ -1,21 +1,25 @@
-# Test stage is always run
-# Deployment substages are triggered by tags
-# Coverage production happens only upon master branch pushes
+# Regular testing is always run except master branch pushes
+# All master branch pushes are tested with coverage production
+# Deployments are triggered by /[frontend|backend]/ tags
 
 language: node_js
 node_js: stable
+services:
+  - docker
 cache:
   directories:
     - node_modules
 
+
 jobs:
   include:
     - stage: Test
+      if: branch != master
       name: Run backend tests
       script:
-        - echo "TODO: Write backend tests!"
-
+        - echo "TODO Write backend tests!"
     - stage: Test
+      if: branch != master
       name: Run frontend tests
       before_install:
         - cd client
@@ -23,29 +27,12 @@ jobs:
       script:
         - npm test
 
-    - stage: Deploy
-      if: tag =~ /backend/
-      name: Build a backend app docker image and upload it to DockerHub
-      script:
-        - echo deployed backend!
-       # - docker build -t arkadyt/wnetb:latest .
-       # - docker push
-       # - trigger webhook
-      
-    - stage: Deploy
-      if: tag =~ /frontend/
-      name: Deploy frontend app to Firebase
-      script: 
-        - echo deployed frontend!
-        #- npm run build
-        #- firebase deploy
-        
+
     - stage: Coverage
       if: branch = master
       name: Produce coverage for backend tests and upload it to coveralls.io
       script: 
-        - echo "TODO: Again, write backend tests."
-
+        - echo "TODO Again, write backend tests"
     - stage: Coverage
       if: branch = master
       name: Produce coverage for frontend tests and upload it to coveralls.io
@@ -57,3 +44,29 @@ jobs:
         --coverage 
         --coverageReporters=text-lcov
         | coveralls ; test ${PIPESTATUS[0]} -eq 0
+
+
+    - stage: Deploy
+      if: tag =~ /backend/
+      name: Build a backend app docker image and upload it to DockerHub
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -t arkadyt/wnetb:latest .
+        - docker push arkadyt/wnetb:latest
+    - stage: Deploy
+      if: tag =~ /frontend/
+      name: Deploy frontend app to Firebase
+      before_install:
+        - cd client
+      script:
+        - npm run build
+        - cd ..
+      deploy:
+        provider: firebase
+        token:
+          secure: "$FIREBASE_TOKEN"
+        project: "socnet-arkadyt-com"
+        message: "Automated deployment"
+        skip_cleanup: true
+        on:
+          all_branches: true
