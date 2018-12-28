@@ -28,14 +28,14 @@ jobs:
         - npm test
 
 
-    - stage: Coverage
+    - stage: Test and produce coverage (uploaded to coveralls.io)
       if: branch = master
-      name: Produce coverage for backend tests and upload it to coveralls.io
+      name: For backend app
       script: 
         - echo "TODO Again, write backend tests"
     - stage: Coverage
       if: branch = master
-      name: Produce coverage for frontend tests and upload it to coveralls.io
+      name: For frontend app
       before_install:
         - cd client
         - TZ=America/New_York
