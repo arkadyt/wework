@@ -9,13 +9,16 @@
  * and outputs a ton of different views depending on that.
  *
  * Functions (+ lifecycle hooks)?
+ * momentLocalizer
  *
  * State (invalidation, effects)?
  * No
  *
  * Interaction?
+ * No
  *
  * Context?
+ * No
  *
  */
 import React from 'react'
@@ -218,7 +221,7 @@ describe('Field', () => {
     })
 
     describe('label', () => {
-      it('submit button regularly renders children instead of props.label if latter is not defined', () => {
+      it('submit button renders children instead of props.label if latter is not defined', () => {
         const children = "children"
         props.label = undefined
         props.type = "submit"
@@ -226,7 +229,7 @@ describe('Field', () => {
         expect(comp().find(".Field-container").find('button[type="submit"]').prop('children')).toBe(children)
       })
 
-      it('button regularly renders children instead of props.label if latter is not defined', () => {
+      it('button renders children instead of props.label if latter is not defined', () => {
         const children = "children"
         props.label = undefined
         props.type = "button"
@@ -234,7 +237,7 @@ describe('Field', () => {
         expect(comp().find(".Field-container").find('button').prop('children')).toBe(children)
       })
 
-      it('linkButton regularly renders children instead of props.label if latter is not defined', () => {
+      it('linkButton renders children instead of props.label if latter is not defined', () => {
         const children = "children"
         props.label = undefined
         props.type = "linkButton"

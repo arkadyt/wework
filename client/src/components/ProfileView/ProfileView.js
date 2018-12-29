@@ -15,6 +15,7 @@
 import React, { Component } from 'react'
 import './ProfileView.scss'
 import Field from '../Field/Field'
+import NodeHeader from './NodeHeader/NodeHeader'
 import { connect } from 'react-redux'
 import { deleteExperience, deleteEducation } from '../../state/actions/profileActions'
 import { followAPerson, unfollowAPerson } from '../../state/actions/userActions'
@@ -32,39 +33,6 @@ import {
     FaUserCheck as IcoFollow,
     FaUserMinus as IcoUnfollow
 } from 'react-icons/fa'
-
-/**
- * Header for experience & education nodes.
- * Outputs {company} name with {timespan} or {delButton} 
- */
-const NodeHeader = ({
-    title,
-    from,
-    to,
-    current,
-    showDelButton,
-    onDelBtnClick
-}) => {
-    // Month ##, ####
-    const dateFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
-
-    from = new Date(from).toLocaleDateString('en-US', dateFormatOptions)
-    to = current
-        ? 'Current'
-        : new Date(to).toLocaleDateString('en-US', dateFormatOptions)
-    return (
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <h3>{title}</h3>
-            {showDelButton
-                ? <Field
-                    type="linkButton"
-                    label="Delete"
-                    containerStyle={{ margin: 0, width: 'auto' }}
-                    onClick={() => onDelBtnClick()} />
-                : <span>{from} — {to}</span>}
-        </div>
-    )
-}
 
 class ProfileView extends Component {
     defaultDeletingState = {
@@ -353,6 +321,11 @@ class ProfileView extends Component {
     }
 }
 
+ProfileView.propTypes = {
+
+}
+
+export { ProfileView as _UnconnectedProfileView }
 export default connect(state => ({
     authedUser: state.user
 }), { deleteEducation, deleteExperience, followAPerson, unfollowAPerson })(ProfileView)

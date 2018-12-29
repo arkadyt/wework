@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NodeHeader passes a snapshot test rendering "Current" instead of to_date 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "justifyContent": "space-between",
+    }
+  }
+>
+  <h3>
+    Some title
+  </h3>
+  <span>
+    December 28, 2018
+     — 
+    Current
+  </span>
+</div>
+`;
+
+exports[`NodeHeader passes a snapshot test showing date-line 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "justifyContent": "space-between",
+    }
+  }
+>
+  <h3>
+    Some title
+  </h3>
+  <span>
+    December 28, 2018
+     — 
+    Invalid Date
+  </span>
+</div>
+`;
+
+exports[`NodeHeader passes a snapshot test showing delete button 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "justifyContent": "space-between",
+    }
+  }
+>
+  <h3>
+    Some title
+  </h3>
+  <field
+    containerStyle={
+      Object {
+        "margin": 0,
+        "width": "auto",
+      }
+    }
+    label="Delete"
+    onClick={[MockFunction]}
+    type="linkButton"
+  />
+</div>
+`;
