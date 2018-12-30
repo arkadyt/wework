@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import axios from 'axios'
 
 if (process.env.NODE_ENV === 'development') {
-  axios.defaults.baseURL = "https://localhost:5000"
+  axios.defaults.baseURL = "http://localhost:5000"
 } else {
   axios.defaults.baseURL = "https://api.arkadyt.com/wnetb"
 }
