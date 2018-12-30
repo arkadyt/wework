@@ -60,8 +60,9 @@ export const discoverListNodeType = exact({
   _id: string.isRequired,
   name: string.isRequired,
   avatar: string.isRequired,
-  followers: number.isRequired,
   title: string.isRequired,
+  followers: number,
+  company: string
 })
 
 export const profileType = exact({
