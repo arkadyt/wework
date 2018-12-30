@@ -2,7 +2,7 @@ import React from 'react'
 import './Navigation.scss'
 import { connect } from 'react-redux'
 import { logoutUser } from '../../state/actions/userActions'
-import { Link, withRouter } from 'react-router-dom'
+import { NavLink, Link, withRouter } from 'react-router-dom'
 
 class Navigation extends React.Component {
     state = {
@@ -26,7 +26,7 @@ class Navigation extends React.Component {
 
         const protectedLinks = this.props.authedUser.isAuthenticated ?
             <React.Fragment>
-                <Link to="/feed"><span>Feed</span></Link>
+              <NavLink to="/feed"><span>Feed</span></NavLink>
             </React.Fragment> : null
 
         const dropdown = (
