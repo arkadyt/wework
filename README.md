@@ -29,3 +29,6 @@ konsole & disown
 cd ww.net/client
 npm install && npm start
 ```
+
+# TODO
+[] Improve prop-typing of NodeHeader and Field components.
