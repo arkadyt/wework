@@ -18,7 +18,7 @@ const Modal = ({
     }
 
     return (
-        <Overlay onBackdropClick={() => handleDismiss()}>
+        <Overlay centered onBackdropClick={() => handleDismiss()}>
             <div className="Modal-container">
                 <p className="question">{question}</p>
                 <div className="buttons">
