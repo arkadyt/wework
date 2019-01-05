@@ -1,6 +1,0 @@
-/*
- * Props
- * State
- * Interaction
- * Functions
- */

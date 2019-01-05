@@ -29,6 +29,18 @@ class ProfileView extends Component {
     this.setState(this.defaultDeletingState)
   }
 
+  setExpDeleting(bool) {
+    this.setState({
+      deletingExpEntries: bool
+    })
+  }
+
+  setEduDeleting(bool) {
+    this.setState({
+      deletingEduEntries: bool
+    })
+  }
+
   render() {
     const {
       authedUser: {
@@ -64,6 +76,7 @@ class ProfileView extends Component {
       <div className="ProfileView-container">
         <Overview 
           profile={profile} 
+          quitEntryDeletingMode={this.quitEntryDeletingMode.bind(this)}
           isFollowingProfileOwner={isFollowingProfileOwner}
           unfollowAPerson={unfollowAPerson}
           followAPerson={followAPerson} 
@@ -73,10 +86,16 @@ class ProfileView extends Component {
         <Experience 
           experience={experience}
           deleteExperience={deleteExperience}
+          isDeleting={this.state.deletingExpEntries}
+          setDeleting={this.setExpDeleting.bind(this)}
+          quitEntryDeletingMode={this.quitEntryDeletingMode.bind(this)}
           {...commonProps} />
         <Education 
           education={education} 
           deleteEducation={deleteEducation}
+          isDeleting={this.state.deletingEduEntries}
+          setDeleting={this.setEduDeleting.bind(this)}
+          quitEntryDeletingMode={this.quitEntryDeletingMode.bind(this)}
           {...commonProps} />
         <DangerZone 
           quitEntryDeletingMode={this.quitEntryDeletingMode.bind(this)}
