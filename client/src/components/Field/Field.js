@@ -5,7 +5,7 @@ import Multiselect from 'react-widgets/lib/Multiselect'
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets-moment'
 import './Field.scss'
-import { node, string, func, object, bool, number, arrayOf, oneOfType } from 'prop-types'
+import { node, string, func, object, bool, number, arrayOf, oneOfType, instanceOf } from 'prop-types'
 
 Moment.locale('en')
 momentLocalizer()
@@ -123,7 +123,7 @@ const field = ({
 field.propTypes = {
   type: string,
   name: string,
-  value: oneOfType([string, arrayOf(string), bool]),
+  value: oneOfType([string, arrayOf(string), bool, instanceOf(Date)]),
   onChange: func,
   placeholder: string,
   error: string,

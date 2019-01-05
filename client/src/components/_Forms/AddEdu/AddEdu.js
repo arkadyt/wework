@@ -8,7 +8,10 @@ import Overlay from '../../Overlay/Overlay'
 import { addEducation } from '../../../state/actions/profileActions'
 
 class AddEdu extends React.Component {
-    state = {}
+    state = {
+      fieldOfStudy: '',
+      school: ''
+    }
 
     handleDismiss = () => {
         const { history } = this.props

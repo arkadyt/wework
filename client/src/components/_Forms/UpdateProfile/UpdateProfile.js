@@ -8,8 +8,19 @@ import { func, object } from 'prop-types'
 
 class UpdateProfile extends React.Component {
     initialState = {
-        showSocial: false,
-        creatingProfile: true
+      showSocial: false,
+      creatingProfile: true,
+      handle: '',
+      company: '',
+      title: '',
+      location: '',
+      website: '',
+      youtube: '',
+      twitter: '',
+      instagram: '',
+      facebook: '',
+      linkedin: '',
+      githubusername: ''
     }
 
     constructor(props) {

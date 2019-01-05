@@ -8,7 +8,11 @@ import Field from '../../Field/Field'
 import Overlay from '../../Overlay/Overlay'
 
 class AddExp extends React.Component {
-    state = {}
+    state = {
+      title: '',
+      company: '',
+      location: ''
+    }
 
     handleDismiss = () => {
         const { history } = this.props
