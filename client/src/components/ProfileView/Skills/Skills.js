@@ -1,4 +1,5 @@
 import React from 'react'
+import { arrayOf, string } from 'prop-types'
 
 const skills = ({
   skills
@@ -17,5 +18,9 @@ const skills = ({
     </div>
   </section>
 ) : null
+
+skills.propTypes = {
+  skills: arrayOf(string)
+}
 
 export default skills
