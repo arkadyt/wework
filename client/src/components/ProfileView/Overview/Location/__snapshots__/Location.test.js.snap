@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Location matches snapshot when location is defined 1`] = `
+<p>
+  <span
+    style={
+      Object {
+        "fontSize": ".7rem",
+      }
+    }
+  >
+    <FaMapMarkerAlt />
+  </span>
+   
+  Some location
+</p>
+`;
+
+exports[`Location matches snapshot when location is undefined 1`] = `""`;

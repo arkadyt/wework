@@ -1,4 +1,5 @@
 import React from 'react'
+import { profileType } from '../../../../types/index'
 import {
     FaMapMarkerAlt as IcoLocation
 } from 'react-icons/fa'
@@ -14,6 +15,10 @@ const location = ({
         &nbsp;{location}
     </p>
     : null
+}
+
+location.propTypes = {
+  profile: profileType.isRequired
 }
 
 export default location
