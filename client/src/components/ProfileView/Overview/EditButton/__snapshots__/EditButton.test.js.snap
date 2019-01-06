@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditButton matches snapshot 1`] = `
+<field
+  containerStyle={
+    Object {
+      "margin": 0,
+    }
+  }
+  onClick={[Function]}
+  type="button"
+>
+  <span
+    style={
+      Object {
+        "fontSize": ".8rem",
+      }
+    }
+  >
+    <FaPencilAlt />
+  </span>
+    Edit Profile
+</field>
+`;
