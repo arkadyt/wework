@@ -17,6 +17,7 @@ exports[`AddEdu matches snapshot 1`] = `
       onChange={[Function]}
       placeholder="UCLA"
       type="text"
+      value=""
     />
     <field
       label="Field of Study:"
@@ -24,6 +25,7 @@ exports[`AddEdu matches snapshot 1`] = `
       onChange={[Function]}
       placeholder="Bioeconomics"
       type="text"
+      value=""
     />
     <field
       label="Degree:"

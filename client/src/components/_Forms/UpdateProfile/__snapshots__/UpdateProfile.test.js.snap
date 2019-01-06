@@ -18,6 +18,7 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
       onChange={[Function]}
       placeholder="someperson123"
       type="text"
+      value=""
     />
     <field
       label="Company:"
@@ -25,6 +26,7 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
       onChange={[Function]}
       placeholder="Company name"
       type="text"
+      value=""
     />
     <field
       label="Personal Website:"
@@ -32,6 +34,7 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
       onChange={[Function]}
       placeholder="http://mywebsite.com"
       type="text"
+      value=""
     />
     <field
       label="Location:"
@@ -39,6 +42,7 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
       onChange={[Function]}
       placeholder="Seattle, WA"
       type="text"
+      value=""
     />
     <field
       label="Job title:"
@@ -46,6 +50,7 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
       onChange={[Function]}
       placeholder="Marketing Analyst"
       type="text"
+      value=""
     />
     <field
       label="Job seeker status:"
@@ -101,6 +106,7 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
         onChange={[Function]}
         placeholder="Please enter full channel URL"
         type="text"
+        value=""
       />
       <field
         label="Twitter:"
@@ -108,6 +114,7 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
         onChange={[Function]}
         placeholder="Twitter profile URL"
         type="text"
+        value=""
       />
       <field
         label="Instagram:"
@@ -115,6 +122,7 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
         onChange={[Function]}
         placeholder="Instagram URL"
         type="text"
+        value=""
       />
       <field
         label="Facebook:"
@@ -122,6 +130,7 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
         onChange={[Function]}
         placeholder="Facebook profile URL"
         type="text"
+        value=""
       />
       <field
         label="LinkedIn:"
@@ -129,6 +138,7 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
         onChange={[Function]}
         placeholder="LinkedIn URL"
         type="text"
+        value=""
       />
       <field
         label="Github:"
@@ -136,6 +146,7 @@ exports[`UpdateProfile passes a snapshot test 1`] = `
         onChange={[Function]}
         placeholder="Github username only"
         type="text"
+        value=""
       />
     </div>
     <field
