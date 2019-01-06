@@ -1,4 +1,5 @@
 import React from 'react'
+import { profileType } from '../../../../types/index'
 
 const name = ({
   profile: {
@@ -13,6 +14,10 @@ const name = ({
       <p>{title}{company ? ` at ${company}` : ''}</p>
     </React.Fragment>
   )
+}
+
+name.propTypes = {
+  profile: profileType.isRequired
 }
 
 export default name
