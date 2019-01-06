@@ -1,5 +1,6 @@
 import React from 'react'
 import NodeHeader from '../NodeHeader/NodeHeader'
+import { arrayOf, string, bool, func } from 'prop-types'
 
 const node = ({
   _id,
@@ -36,6 +37,17 @@ const node = ({
         : null}
     </div>
   )
+}
+
+node.propTypes = {
+  _id: string.isRequired,
+  headers: arrayOf(string).isRequired,
+  from: string.isRequired,
+  to: string,
+  current: bool,
+  description: string,
+  onDelBtnClick: func.isRequired,
+  isDeleting: bool.isRequired
 }
 
 export default node

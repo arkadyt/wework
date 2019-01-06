@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Node matches snapshot 1`] = `
+<div
+  className="node"
+>
+  <NodeHeader
+    from="from"
+    onDelBtnClick={[Function]}
+    showDelButton={true}
+    title="header0"
+    to="to"
+  />
+  <p
+    key="1"
+  >
+    header1
+  </p>
+  <p>
+    <b>
+      Description:
+    </b>
+     
+    desc
+  </p>
+</div>
+`;
