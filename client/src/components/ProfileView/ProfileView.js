@@ -41,6 +41,16 @@ class ProfileView extends Component {
     })
   }
 
+  navTo(where) {
+    const {
+      history,
+      match
+    } = this.props
+
+    const baseUrl = match.url || ''
+    return history.push(`${baseUrl}/${where}`)
+  }
+
   render() {
     const {
       authedUser: {
@@ -80,6 +90,7 @@ class ProfileView extends Component {
           isFollowingProfileOwner={isFollowingProfileOwner}
           unfollowAPerson={unfollowAPerson}
           followAPerson={followAPerson} 
+          navTo={this.navTo.bind(this)}
           {...commonProps} />
         <Bio bio={bio} />
         <Skills skills={skills} />

@@ -21,7 +21,7 @@ const followButton = ({
   </Field>
 )
 
-followButton = {
+followButton.propTypes = {
   followAPerson: func.isRequired,
   profileOwnerId: string.isRequired
 }

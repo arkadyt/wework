@@ -22,7 +22,7 @@ const editButton = ({
   </Field>
 )
 
-editButton = {
+editButton.propTypes = {
   navTo: func.isRequired,
   quitEntryDeletingMode: func.isRequired
 }

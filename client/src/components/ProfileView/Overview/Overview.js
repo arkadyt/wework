@@ -5,6 +5,8 @@ import Location from './Location/Location'
 import EditButton from './EditButton/EditButton'
 import FollowButton from './FollowButton/FollowButton'
 import UnfollowButton from './UnfollowButton/UnfollowButton'
+import { profileType } from '../../../types/index'
+import { bool, func } from 'prop-types'
 
 const overview = ({
   profile: {
@@ -17,14 +19,11 @@ const overview = ({
   profile,
   profileBelongsToAuthedUser,
   isFollowingProfileOwner,
-  baseUrl,
-  history,
   followAPerson,
   unfollowAPerson,
-  quitEntryDeletingMode
+  quitEntryDeletingMode,
+  navTo
 }) => {
-  const navTo = where => history.push(`${baseUrl}/${where}`)
-
   let buttons
   if (profileBelongsToAuthedUser) {
     buttons = (
@@ -66,6 +65,16 @@ const overview = ({
       </div>
     </section>
   )
+}
+
+overview.propTypes = {
+  profile: profileType.isRequired,
+  profileBelongsToAuthedUser: bool.isRequired,
+  isFollowingProfileOwner: bool.isRequired,
+  followAPerson: func.isRequired,
+  unfollowAPerson: func.isRequired,
+  quitEntryDeletingMode: func.isRequired,
+  navTo: func.isRequired
 }
 
 export default overview
