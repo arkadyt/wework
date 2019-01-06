@@ -1,9 +1,9 @@
 import React from 'react'
 import Field from '../../Field/Field'
+import { func, bool } from 'prop-types'
 
 const dangerZone = ({
-  history,
-  baseUrl,
+  navTo,
   quitEntryDeletingMode,
   profileBelongsToAuthedUser
 }) => {
@@ -22,10 +22,16 @@ const dangerZone = ({
             containerStyle={{ margin: 0 }}
             onClick={() => {
                 quitEntryDeletingMode()
-                history.push(`${baseUrl}/delete-profile`)
+                navTo('delete-profile')
             }} />
     </section>
   ) : null
+}
+
+dangerZone.propTypes = {
+  navTo: func.isRequired,
+  profileBelongsToAuthedUser: bool.isRequired,
+  quitEntryDeletingMode: func.isRequired
 }
 
 export default dangerZone

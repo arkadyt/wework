@@ -110,6 +110,7 @@ class ProfileView extends Component {
           {...commonProps} />
         <DangerZone 
           quitEntryDeletingMode={this.quitEntryDeletingMode.bind(this)}
+          navTo={this.navTo.bind(this)}
           {...commonProps} />
       </div>
     )

@@ -17,6 +17,8 @@ exports[`ActionLine matches snapshot 1`] = `
         "marginTop": ".15rem",
       }
     }
+    label="Label1"
+    onClick={[MockFunction]}
     type="linkButton"
   />
   <field
@@ -26,7 +28,7 @@ exports[`ActionLine matches snapshot 1`] = `
         "marginTop": ".15rem",
       }
     }
-    label="Delete an entry"
+    label="Cancel"
     onClick={[Function]}
     type="linkButton"
   />

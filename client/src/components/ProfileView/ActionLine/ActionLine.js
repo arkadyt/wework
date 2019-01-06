@@ -1,5 +1,7 @@
 import React from 'react'
 import Field from '../../Field/Field'
+import { arrayOf, bool, string, func, oneOfType } from 'prop-types'
+import { experienceEntryType, educationEntryType } from '../../../types/index'
 
 const actionLine = ({
   nodes,
@@ -35,6 +37,14 @@ const actionLine = ({
         : null}
     </div>
   )
+}
+
+actionLine.propTypes = {
+  nodes: arrayOf(oneOfType([ educationEntryType, experienceEntryType ])).isRequired,
+  isDeleting: bool.isRequired,
+  setDeleting: func.isRequired,
+  onAddBtnClk: func.isRequired,
+  addBtnLabel: string.isRequired
 }
 
 export default actionLine

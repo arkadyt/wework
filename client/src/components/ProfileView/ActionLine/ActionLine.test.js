@@ -3,6 +3,7 @@ import ActionLine from './ActionLine'
 import Field from '../../Field/Field'
 import { shallow } from 'enzyme'
 import cloneDeep from 'lodash.clonedeep'
+import { mockProfile as profile } from '../../../mocks/profile'
 
 describe('ActionLine', () => {
   let mountedComponent, props
@@ -10,9 +11,12 @@ describe('ActionLine', () => {
   const getMockProps = () => {
     return cloneDeep({
       nodes: [
-        { node: 1 },
-        { node: 2 }
-      ]
+        profile.education[0]
+      ],
+      isDeleting: true,
+      setDeleting: jest.fn(),
+      onAddBtnClk: jest.fn(),
+      addBtnLabel: 'Label1'
     })
   }
 
@@ -38,8 +42,7 @@ describe('ActionLine', () => {
 
         it('if has positive length higher than 0, comp renders additional buttons', () => {
           props.nodes = [
-            { node: 1 },
-            { node: 2 }
+            profile.education[0]
           ]
           expect(comp().find(Field).length).toBeGreaterThan(1)
         })
@@ -48,8 +51,7 @@ describe('ActionLine', () => {
       describe('isDeleting', () => {
         beforeEach(() => {
           props.nodes = [
-            { node: 1 },
-            { node: 2 }
+            profile.education[0]
           ]
         })
 
