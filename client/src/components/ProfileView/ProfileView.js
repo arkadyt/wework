@@ -68,29 +68,25 @@ class ProfileView extends Component {
       deleteExperience,
       deleteEducation,
       followAPerson,
-      unfollowAPerson,
-      match,
-      history
+      unfollowAPerson
     } = this.props
 
     const profileBelongsToAuthedUser = authedUserId === _id
     const isFollowingProfileOwner = !!following.find(item => item.user === _id)
 
     const commonProps = {
-      history,
-      baseUrl: match.url || '',
-      profileBelongsToAuthedUser
+      navTo: this.navTo.bind(this),
+      profileBelongsToAuthedUser,
+      quitEntryDeletingMode: this.quitEntryDeletingMode.bind(this)
     }
 
     return (
       <div className="ProfileView-container">
         <Overview 
           profile={profile} 
-          quitEntryDeletingMode={this.quitEntryDeletingMode.bind(this)}
           isFollowingProfileOwner={isFollowingProfileOwner}
           unfollowAPerson={unfollowAPerson}
           followAPerson={followAPerson} 
-          navTo={this.navTo.bind(this)}
           {...commonProps} />
         <Bio bio={bio} />
         <Skills skills={skills} />
@@ -99,18 +95,14 @@ class ProfileView extends Component {
           deleteExperience={deleteExperience}
           isDeleting={this.state.deletingExpEntries}
           setDeleting={this.setExpDeleting.bind(this)}
-          quitEntryDeletingMode={this.quitEntryDeletingMode.bind(this)}
           {...commonProps} />
         <Education 
           education={education} 
           deleteEducation={deleteEducation}
           isDeleting={this.state.deletingEduEntries}
           setDeleting={this.setEduDeleting.bind(this)}
-          quitEntryDeletingMode={this.quitEntryDeletingMode.bind(this)}
           {...commonProps} />
         <DangerZone 
-          quitEntryDeletingMode={this.quitEntryDeletingMode.bind(this)}
-          navTo={this.navTo.bind(this)}
           {...commonProps} />
       </div>
     )

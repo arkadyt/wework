@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Experience matches snapshot 1`] = `
+<section
+  className="experience"
+>
+  <p
+    className="header"
+  >
+    Experience:
+  </p>
+  <div
+    className="nodes"
+  >
+    <node
+      _id="5b7ca6cf63353349cf03756c"
+      company="Some Company"
+      current={false}
+      from="2009-03-31T23:00:00.000Z"
+      headers={
+        Array [
+          "Some Company",
+          "Software Developer",
+          undefined,
+        ]
+      }
+      isDeleting={true}
+      key="5b7ca6cf63353349cf03756c"
+      onDelBtnClick={[MockFunction]}
+      title="Software Developer"
+      to="2012-08-01T00:00:00.000Z"
+    />
+    <actionLine
+      addBtnLabel="Add Experience"
+      isDeleting={true}
+      nodes={
+        Array [
+          Object {
+            "_id": "5b7ca6cf63353349cf03756c",
+            "company": "Some Company",
+            "current": false,
+            "from": "2009-03-31T23:00:00.000Z",
+            "title": "Software Developer",
+            "to": "2012-08-01T00:00:00.000Z",
+          },
+        ]
+      }
+      onAddBtnClk={[Function]}
+      setDeleting={[MockFunction]}
+    />
+  </div>
+</section>
+`;

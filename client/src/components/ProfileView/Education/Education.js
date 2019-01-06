@@ -1,10 +1,11 @@
 import React from 'react'
 import Node from '../Node/Node'
 import ActionLine from '../ActionLine/ActionLine'
+import { arrayOf, bool, func } from 'prop-types'
+import { educationEntryType } from '../../../types/index'
 
 const education = ({
-  history,
-  baseUrl,
+  navTo,
   profileBelongsToAuthedUser,
   education,
   deleteEducation,
@@ -19,8 +20,8 @@ const education = ({
         addBtnLabel="Add Education"
         onAddBtnClk={() => {
           quitEntryDeletingMode()
-          history.push(`${baseUrl}/add-education`)}
-        }
+          navTo('add-education')
+        }}
         setDeleting={setDeleting}
         nodes={education}
         isDeleting={isDeleting} />
@@ -49,6 +50,16 @@ const education = ({
         </div>
     </section>
   )
+}
+
+education.propTypes = {
+  navTo: func.isRequired,
+  profileBelongsToAuthedUser: bool.isRequired,
+  education: arrayOf(educationEntryType).isRequired,
+  deleteEducation: func.isRequired,
+  quitEntryDeletingMode: func.isRequired,
+  isDeleting: bool.isRequired,
+  setDeleting: func.isRequired
 }
 
 export default education

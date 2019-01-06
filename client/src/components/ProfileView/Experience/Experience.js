@@ -1,10 +1,11 @@
 import React from 'react'
 import Node from '../Node/Node'
 import ActionLine from '../ActionLine/ActionLine'
+import { arrayOf, bool, func } from 'prop-types'
+import { experienceEntryType } from '../../../types/index'
 
 const experience = ({
-  history,
-  baseUrl,
+  navTo,
   profileBelongsToAuthedUser,
   experience,
   deleteExperience,
@@ -19,8 +20,8 @@ const experience = ({
         addBtnLabel="Add Experience"
         onAddBtnClk={() => {
           quitEntryDeletingMode()
-          history.push(`${baseUrl}/add-experience`)}
-        }
+          navTo('add-experience')
+        }}
         setDeleting={setDeleting}
         nodes={experience}
         isDeleting={isDeleting} />
@@ -49,6 +50,16 @@ const experience = ({
       </div>
     </section>
   )
+}
+
+experience.propTypes = {
+  navTo: func.isRequired,
+  profileBelongsToAuthedUser: bool.isRequired,
+  experience: arrayOf(experienceEntryType).isRequired,
+  deleteExperience: func.isRequired,
+  quitEntryDeletingMode: func.isRequired,
+  isDeleting: bool.isRequired,
+  setDeleting: func.isRequired
 }
 
 export default experience

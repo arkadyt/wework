@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Education matches snapshot 1`] = `
+<section
+  className="education"
+>
+  <p
+    className="header"
+  >
+    Education:
+  </p>
+  <div
+    className="nodes"
+  >
+    <node
+      _id="5b7cab633345cc4c066c0540"
+      current={true}
+      degree="Nano CS Degree"
+      fieldOfStudy="Bioengineering"
+      from="2015-08-02T00:00:00.000Z"
+      headers={
+        Array [
+          "Some Bootcamp",
+          "Bioengineering",
+          "Nano CS Degree",
+        ]
+      }
+      isDeleting={true}
+      key="5b7cab633345cc4c066c0540"
+      onDelBtnClick={[MockFunction]}
+      school="Some Bootcamp"
+    />
+    <actionLine
+      addBtnLabel="Add Education"
+      isDeleting={true}
+      nodes={
+        Array [
+          Object {
+            "_id": "5b7cab633345cc4c066c0540",
+            "current": true,
+            "degree": "Nano CS Degree",
+            "fieldOfStudy": "Bioengineering",
+            "from": "2015-08-02T00:00:00.000Z",
+            "school": "Some Bootcamp",
+          },
+        ]
+      }
+      onAddBtnClk={[Function]}
+      setDeleting={[MockFunction]}
+    />
+  </div>
+</section>
+`;
