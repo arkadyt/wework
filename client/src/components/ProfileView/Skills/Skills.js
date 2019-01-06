@@ -20,7 +20,7 @@ const skills = ({
 ) : null
 
 skills.propTypes = {
-  skills: arrayOf(string)
+  skills: arrayOf(string).isRequired
 }
 
 export default skills

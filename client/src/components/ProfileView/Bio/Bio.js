@@ -1,4 +1,5 @@
 import React from 'react'
+import { string } from 'prop-types'
 
 const bio = ({
   bio
@@ -8,5 +9,9 @@ const bio = ({
     <p>{bio}</p>
   </section>
 ) : null
+
+bio.propTypes = {
+  bio: string.isRequired
+}
 
 export default bio
