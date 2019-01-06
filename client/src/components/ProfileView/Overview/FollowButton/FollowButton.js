@@ -1,5 +1,6 @@
 import React from 'react'
 import Field from '../../../Field/Field'
+import { func, string } from 'prop-types'
 import {
     FaUserCheck as IcoFollow
 } from 'react-icons/fa'
@@ -19,5 +20,10 @@ const followButton = ({
     Follow
   </Field>
 )
+
+followButton = {
+  followAPerson: func.isRequired,
+  profileOwnerId: string.isRequired
+}
 
 export default followButton

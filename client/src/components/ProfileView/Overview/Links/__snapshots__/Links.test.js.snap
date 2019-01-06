@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Links matches snapshot 1`] = `
+<div
+  className="Profile-View-Links-container"
+>
+  <div
+    className="links"
+  >
+    <a
+      href="https://github.com/arkadyt"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <FaGithub />
+    </a>
+  </div>
+  <a
+    className="website-link"
+    href="arkadyt.com"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    arkadyt.com
+  </a>
+</div>
+`;

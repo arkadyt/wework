@@ -8,41 +8,12 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Links from './Links'
 import cloneDeep from 'lodash.clonedeep'
-import { mockProfile as profile } from '../../mocks/profile'
+import { mockProfile as profile } from '../../../../mocks/profile'
 
 let mountedComponent, props
 
 const getMockProps = () => {
-  const history = {
-    push: jest.fn()
-  }
-
-  const authedUser = {
-    id: 'authedUserId01927',
-    following: [
-      {
-        _id: "thisFollowId0",
-        user: "followedUserId0"
-      },
-      {
-        _id: "thisFollowId1",
-        user: "followedUserId1"
-      }
-    ]
-  }
-
-  const actions = {
-    deleteExperience: jest.fn(),
-    deleteEducation: jest.fn(),
-    followAPerson: jest.fn(),
-    unfollowAPerson: jest.fn()
-  }
-
   return cloneDeep({
-    history,
-    baseUrl: 'some/link',
-    ...actions,
-    authedUser,
     profile
   })
 }
@@ -164,15 +135,9 @@ describe('Links', () => {
         })
       })
     })
-
-    describe('passing', () => {
-      
-    })
   })
 
-  describe('functions', () => {})
-
-  describe('state', () => {})
-
-  describe('interaction', () => {})
+  it('matches snapshot', () => {
+    expect(comp()).toMatchSnapshot()
+  })
 })

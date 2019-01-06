@@ -1,5 +1,6 @@
 import React from 'react'
 import Field from '../../../Field/Field'
+import { func } from 'prop-types'
 import {
     FaPencilAlt as IcoEdit
 } from 'react-icons/fa'
@@ -20,5 +21,10 @@ const editButton = ({
     Edit Profile
   </Field>
 )
+
+editButton = {
+  navTo: func.isRequired,
+  quitEntryDeletingMode: func.isRequired
+}
 
 export default editButton

@@ -1,4 +1,5 @@
 import React from 'react'
+import { profileType } from '../../../../types/index'
 import {
     FaFacebook as IcoFacebook,
     FaInstagram as IcoInstagram,
@@ -34,6 +35,10 @@ const links = ({
       {website && <a href={website} target="_blank" rel="noopener noreferrer" className="website-link">{website}</a>}
     </div>
   )
+}
+
+links.propTypes = {
+  profile: profileType.isRequired
 }
 
 export default links
