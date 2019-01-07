@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileView matches snapshot 1`] = `
+<div
+  className="ProfileView-container"
+>
+  <overview
+    followAPerson={[MockFunction]}
+    isFollowingProfileOwner={false}
+    navTo={[Function]}
+    profile={
+      Object {
+        "__v": 0,
+        "_id": "5b7b42ba57a5806b896e8f0d",
+        "bio": "TEST BIO TEXT.",
+        "company": "Some Company",
+        "date": "2018-08-23T20:25:12.263Z",
+        "education": Array [
+          Object {
+            "_id": "5b7cab633345cc4c066c0540",
+            "current": true,
+            "degree": "Nano CS Degree",
+            "fieldOfStudy": "Bioengineering",
+            "from": "2015-08-02T00:00:00.000Z",
+            "school": "Some Bootcamp",
+          },
+        ],
+        "experience": Array [
+          Object {
+            "_id": "5b7ca6cf63353349cf03756c",
+            "company": "Some Company",
+            "current": false,
+            "from": "2009-03-31T23:00:00.000Z",
+            "title": "Software Developer",
+            "to": "2012-08-01T00:00:00.000Z",
+          },
+        ],
+        "githubusername": "arkadyt",
+        "handle": "john_doe",
+        "location": "Seattle, WA",
+        "skills": Array [
+          "Go",
+          "C#",
+          "C++",
+          "Whatnot else",
+        ],
+        "status": "Not available for employment",
+        "title": "Senior Developer",
+        "user": Object {
+          "_id": "5b75f023f1957052e52106f5",
+          "avatar": "gravatar://some.avatar",
+          "name": "John Doe",
+        },
+        "website": "arkadyt.com",
+      }
+    }
+    profileBelongsToAuthedUser={false}
+    quitEntryDeletingMode={[Function]}
+    unfollowAPerson={[MockFunction]}
+  />
+  <bio
+    bio="TEST BIO TEXT."
+  />
+  <skills
+    skills={
+      Array [
+        "Go",
+        "C#",
+        "C++",
+        "Whatnot else",
+      ]
+    }
+  />
+  <experience
+    deleteExperience={[MockFunction]}
+    experience={
+      Array [
+        Object {
+          "_id": "5b7ca6cf63353349cf03756c",
+          "company": "Some Company",
+          "current": false,
+          "from": "2009-03-31T23:00:00.000Z",
+          "title": "Software Developer",
+          "to": "2012-08-01T00:00:00.000Z",
+        },
+      ]
+    }
+    isDeleting={false}
+    navTo={[Function]}
+    profileBelongsToAuthedUser={false}
+    quitEntryDeletingMode={[Function]}
+    setDeleting={[Function]}
+  />
+  <education
+    deleteEducation={[MockFunction]}
+    education={
+      Array [
+        Object {
+          "_id": "5b7cab633345cc4c066c0540",
+          "current": true,
+          "degree": "Nano CS Degree",
+          "fieldOfStudy": "Bioengineering",
+          "from": "2015-08-02T00:00:00.000Z",
+          "school": "Some Bootcamp",
+        },
+      ]
+    }
+    isDeleting={false}
+    navTo={[Function]}
+    profileBelongsToAuthedUser={false}
+    quitEntryDeletingMode={[Function]}
+    setDeleting={[Function]}
+  />
+  <dangerZone
+    navTo={[Function]}
+    profileBelongsToAuthedUser={false}
+    quitEntryDeletingMode={[Function]}
+  />
+</div>
+`;

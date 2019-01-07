@@ -76,6 +76,43 @@ describe('ActionLine', () => {
         })
       })
     })
+
+    describe('passing', () => {
+      describe('Add button', () => {
+        it('receives correct thing into onClick prop', () => {
+          comp().find(`field[label="${props.addBtnLabel}"]`).simulate('click')
+          expect(props.onAddBtnClk).toHaveBeenCalled()
+        })
+      })
+
+      describe('Cancel button', () => {
+        it('receives correct thing into onClick prop', () => {
+          comp().find(`field[label="Cancel"]`).simulate('click')
+          expect(props.setDeleting).toHaveBeenCalled()
+        })
+
+        it('receives correct thing into onClick prop, and uses it correctly', () => {
+          comp().find(`field[label="Cancel"]`).simulate('click')
+          expect(props.setDeleting).toHaveBeenCalledWith(false)
+        })
+      })
+
+      describe('[Delete an entry] button', () => {
+        beforeEach(() => {
+          props.isDeleting = false
+        })
+
+        it('receives correct thing into onClick prop', () => {
+          comp().find(`field[label="Delete an entry"]`).simulate('click')
+          expect(props.setDeleting).toHaveBeenCalled()
+        })
+
+        it('receives correct thing into onClick prop, and uses it correctly', () => {
+          comp().find(`field[label="Delete an entry"]`).simulate('click')
+          expect(props.setDeleting).toHaveBeenCalledWith(true)
+        })
+      })
+    })
   })
 
   it('matches snapshot', () => {

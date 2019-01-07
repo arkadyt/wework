@@ -51,14 +51,40 @@ class ProfileView extends Component {
     return history.push(`${baseUrl}/${where}`)
   }
 
+  isFollowingProfileOwner() {
+    const { 
+      profile: {
+        user: {
+          _id
+        }
+      },
+      authedUser: {
+        following
+      }
+    } = this.props
+
+    return !!following.find(item => item.user === _id)
+  }
+
+  // what a bad naming! wheres your <is>???
+  profileBelongsToAuthedUser() {
+    const { 
+      profile: {
+        user: {
+          _id
+        }
+      },
+      authedUser: {
+        id: authedUserId
+      }
+    } = this.props
+
+    return authedUserId === _id
+  }
+
   render() {
     const {
-      authedUser: {
-        id: authedUserId,
-        following
-      },
       profile: {
-        user: { _id },
         bio,
         skills,
         experience,
@@ -71,12 +97,9 @@ class ProfileView extends Component {
       unfollowAPerson
     } = this.props
 
-    const profileBelongsToAuthedUser = authedUserId === _id
-    const isFollowingProfileOwner = !!following.find(item => item.user === _id)
-
     const commonProps = {
       navTo: this.navTo.bind(this),
-      profileBelongsToAuthedUser,
+      profileBelongsToAuthedUser: this.profileBelongsToAuthedUser(),
       quitEntryDeletingMode: this.quitEntryDeletingMode.bind(this)
     }
 
@@ -84,7 +107,7 @@ class ProfileView extends Component {
       <div className="ProfileView-container">
         <Overview 
           profile={profile} 
-          isFollowingProfileOwner={isFollowingProfileOwner}
+          isFollowingProfileOwner={this.isFollowingProfileOwner()}
           unfollowAPerson={unfollowAPerson}
           followAPerson={followAPerson} 
           {...commonProps} />
