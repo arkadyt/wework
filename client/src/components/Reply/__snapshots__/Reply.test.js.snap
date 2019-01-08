@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reply matches snapshot 1`] = `
+<form
+  className="Reply-container"
+  onSubmit={[Function]}
+  style={
+    Object {
+      "borderRadius": "unset",
+      "boxShadow": "unset",
+      "marginTop": "unset",
+    }
+  }
+>
+  <p
+    className="Reply-header"
+  >
+    Post as 
+    <b>
+      Name
+      :
+    </b>
+  </p>
+  <field
+    onChange={[Function]}
+    rows={5}
+    style={
+      Object {
+        "fontSize": "1.3rem",
+      }
+    }
+    type="textarea"
+  />
+  <field
+    containerStyle={
+      Object {
+        "marginTop": ".5rem",
+      }
+    }
+    label="Submit"
+    type="submit"
+  />
+</form>
+`;
