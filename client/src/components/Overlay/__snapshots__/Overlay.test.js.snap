@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Overlay matches snapshot 1`] = `
+<div
+  className="Overlay-container"
+  id="Overlay-container-backdrop"
+  onClick={[Function]}
+>
+  <div
+    className="Overlay-content Overlay-content-centered"
+  >
+    children
+  </div>
+</div>
+`;

@@ -10,19 +10,24 @@ class Overlay extends React.Component {
     document.body.style = null
   }
 
+  handleSubmit(e) {
+    const { 
+      onBackdropClick 
+    } = this.props
+
+    if (e.target.id === 'Overlay-container-backdrop') {
+      onBackdropClick()
+    }
+  }
+
   render() {
     const { 
       children, 
-      onBackdropClick,
       centered
     } = this.props
 
     return (
-      <div id="Overlay-container-backdrop"
-        className="Overlay-container" onClick={function (e) {
-          if (e.target.id === 'Overlay-container-backdrop')
-            onBackdropClick()
-        }}>
+      <div id="Overlay-container-backdrop" className="Overlay-container" onClick={this.handleSubmit}>
         <div className={["Overlay-content", centered ? "Overlay-content-centered" : null].join(' ')}>
           {children}
         </div>
