@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation matches snapshot 1`] = `
+<div
+  className="Navigation-container"
+>
+  <div
+    className="Navigation-logo"
+  >
+    <span>
+      We
+    </span>
+    <span>
+      Work
+    </span>
+  </div>
+  <nav>
+    <a
+      className="Navigation-semi-transparent"
+      href="https://arkadyt.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      App Author
+    </a>
+    <protectedLinks
+      isAuthenticated={true}
+    />
+    <profileButton
+      isAuthenticated={true}
+      toggleDropdown={[Function]}
+    />
+    <dropdown
+      history={
+        Object {
+          "push": [MockFunction],
+        }
+      }
+      logoutUser={[MockFunction]}
+      showDropdown={false}
+      toggleDropdown={[Function]}
+    />
+  </nav>
+</div>
+`;
