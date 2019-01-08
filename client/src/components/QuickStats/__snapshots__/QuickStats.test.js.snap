@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuickStats matches snapshot 1`] = `
+<div
+  className="QuickStats-container"
+>
+  <Component
+    authedUser={
+      Object {
+        "avatar": undefined,
+        "name": "Mike",
+      }
+    }
+    history={
+      Object {
+        "push": [MockFunction],
+      }
+    }
+    stats={
+      Object {
+        "followers": 1038,
+        "following": 1270,
+        "postCount": 20,
+        "totalComments": 121,
+        "totalLikes": 503,
+      }
+    }
+    usersProfile={
+      Object {
+        "company": "Construction Workers United",
+        "status": "Not Open For Employment",
+        "title": "Construction Worker",
+      }
+    }
+  />
+</div>
+`;

@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatsChart matches snapshot 1`] = `
+<Fragment>
+  <section
+    className="QuickStats-name"
+  >
+    <img
+      alt=""
+    />
+    <h2>
+      Mike
+    </h2>
+    <p>
+      Construction Worker
+       at Construction Workers United
+    </p>
+    <p>
+      Not Open For Employment
+    </p>
+  </section>
+  <section
+    className="QuickStats-rows"
+  >
+    <h3>
+      Your stats:
+    </h3>
+    <div>
+      <span>
+        Following:
+      </span>
+      <div />
+      <span>
+        1270
+      </span>
+    </div>
+    <div>
+      <span>
+        Your followers:
+      </span>
+      <div />
+      <span>
+        1038
+      </span>
+    </div>
+    <div>
+      <span>
+        Total posts:
+      </span>
+      <div />
+      <span>
+        20
+      </span>
+    </div>
+  </section>
+  <section
+    className="QuickStats-likes-comments"
+  >
+    <h3>
+      Total likes and comments on your posts:
+    </h3>
+    <div>
+      <p>
+        <FaThumbsUp />
+         
+        503
+      </p>
+      <p>
+        <FaComments />
+         
+        121
+      </p>
+    </div>
+  </section>
+</Fragment>
+`;
