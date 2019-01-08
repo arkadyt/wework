@@ -14,6 +14,7 @@ exports[`ProfileButton matches snapshot with isAuthenticated set to false 1`] = 
 exports[`ProfileButton matches snapshot with isAuthenticated set to true 1`] = `
 <button
   className="Navigation-button"
+  onClick={[MockFunction]}
 >
   <span>
     Account

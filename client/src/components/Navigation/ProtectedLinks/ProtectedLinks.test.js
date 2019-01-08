@@ -1,25 +1,24 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import ProfileButton from './ProfileButton'
+import ProtectedLinks from './ProtectedLinks'
 import cloneDeep from 'lodash.clonedeep'
 
 let mountedComponent, props
 
 const getMockProps = () => {
   return cloneDeep({
-    isAuthenticated: true,
-    toggleDropdown: jest.fn()
+    isAuthenticated: true
   })
 }
 
 const comp = () => {
   if (!mountedComponent) {
-    mountedComponent = shallow(<ProfileButton {...props} />)
+    mountedComponent = shallow(<ProtectedLinks {...props} />)
   }
   return mountedComponent
 }
 
-describe('ProfileButton', () => {
+describe('ProtectedLinks', () => {
   beforeEach(() => {
     mountedComponent = undefined
     props = getMockProps()
@@ -28,22 +27,14 @@ describe('ProfileButton', () => {
   describe('props', () => {
     describe('effects', () => {
       describe('isAuthenticated', () => {
-        it('if true, Account button is rendered', () => {
+        it('if true, everything is rendered', () => {
           props.isAuthenticated = true
-          expect(comp().find('button[className="Navigation-button"]').exists()).toBe(true)
+          expect(comp().type()).not.toBe(null)
         })
 
-        it('if false, Link component is rendered', () => {
+        it('if false, nothing is rendered', () => {
           props.isAuthenticated = false
-          expect(comp().find('Link').exists()).toBe(true)
-        })
-      })
-    })
-
-    describe('passing', () => {
-      describe('Account button', () => {
-        it('receives correct thing into onClick', () => {
-          expect(comp().find('button.Navigation-button').prop('onClick')).toBe(props.toggleDropdown)
+          expect(comp().type()).toBe(null)
         })
       })
     })
@@ -59,4 +50,5 @@ describe('ProfileButton', () => {
     expect(comp()).toMatchSnapshot()
   })
 })
+
 
