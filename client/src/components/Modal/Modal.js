@@ -9,16 +9,15 @@ const Modal = ({
     onDismiss,
     actionColor
 }) => {
-    const handleDismiss = () => {
-        onDismiss()
-    }
-
-    const handleConfirm = () => {
-        onConfirm()
-    }
+    const actionButtonStyle = actionColor ? {
+        backgroundColor: actionColor,
+        borderColor: actionColor,
+        color: 'white',
+        width: '100%'
+    } : null
 
     return (
-        <Overlay centered onBackdropClick={() => handleDismiss()}>
+        <Overlay centered onBackdropClick={onDismiss}>
             <div className="Modal-container">
                 <p className="question">{question}</p>
                 <div className="buttons">
@@ -26,19 +25,12 @@ const Modal = ({
                         type="button"
                         label="No"
                         style={{ width: '100%' }}
-                        onClick={() => handleDismiss()} />
+                        onClick={onDismiss} />
                     <Field
                         type="button"
                         label="Yes"
-                        style={actionColor
-                            ? {
-                                backgroundColor: actionColor,
-                                borderColor: actionColor,
-                                color: 'white',
-                                width: '100%'
-                            }
-                            : null}
-                        onClick={() => handleConfirm()} />
+                        style={actionButtonStyle}
+                        onClick={onConfirm} />
                 </div>
             </div>
         </Overlay>
