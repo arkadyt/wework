@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown matches snapshot 1`] = `
+<Fragment>
+  <ul
+    className="account-menu account-menu-open"
+    onClick={[Function]}
+  >
+    <li>
+      <Link
+        replace={false}
+        to="/profile"
+      >
+        <span>
+          My Profile
+        </span>
+      </Link>
+    </li>
+    <li>
+      <button
+        className="Navigation-menu-button"
+        onClick={[Function]}
+      >
+        <span>
+          Logout
+        </span>
+      </button>
+    </li>
+  </ul>
+  <div
+    className="backdrop"
+    onClick={[Function]}
+  />
+</Fragment>
+`;
