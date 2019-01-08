@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileButton matches snapshot with isAuthenticated set to false 1`] = `
+<Link
+  replace={false}
+  to="/login"
+>
+  <span>
+    Log In
+  </span>
+</Link>
+`;
+
+exports[`ProfileButton matches snapshot with isAuthenticated set to true 1`] = `
+<button
+  className="Navigation-button"
+>
+  <span>
+    Account
+  </span>
+</button>
+`;
