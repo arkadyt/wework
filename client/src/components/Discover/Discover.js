@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { arrayOf, func } from 'prop-types'
-
 import './Discover.scss'
 import { followAPerson, fetchUsersStats, fetchDiscoverContent } from '../../state/actions/userActions'
 import { fetchPosts } from '../../state/actions/postsActions'
@@ -49,9 +48,10 @@ Discover.propTypes = {
   fetchPosts: func.isRequired
 }
 
+export const mapStateToProps = state => ({ list: state.user.discoverList })
 
 export const _UnconnectedDiscover = Discover
-export default connect(state => ({ list: state.user.discoverList }), {
+export default connect(mapStateToProps, {
     followAPerson,
     fetchUsersStats,
     fetchPosts,
