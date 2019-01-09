@@ -1,5 +1,5 @@
 import React from 'react'
-import { _UnconnectedAddEdu as AddEdu } from './AddEdu'
+import { _UnconnectedAddEdu as AddEdu, mapStateToProps } from './AddEdu'
 import Field from '../../Field/Field'
 import { shallow } from 'enzyme'
 import Overlay from '../../Overlay/Overlay'
@@ -577,6 +577,24 @@ describe('AddEdu', () => {
           })
         })
       })
+    })
+  })
+
+  describe('mapStateToProps', () => {
+    it('returns expected object', () => {
+      const state = {
+        err: { 
+          formErrors: {
+            email: 'Email is wrong' 
+          }
+        }
+      }
+
+      const expectedObject = {
+        errors: state.err.formErrors
+      }
+
+      expect(mapStateToProps(state)).toEqual(expectedObject)
     })
   })
 
