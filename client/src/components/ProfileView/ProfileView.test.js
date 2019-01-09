@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { _UnconnectedProfileView as ProfileView } from './ProfileView'
+import { _UnconnectedProfileView as ProfileView, mapStateToProps } from './ProfileView'
 import cloneDeep from 'lodash.clonedeep'
 import { mockProfile as profile } from '../../mocks/profile'
 
@@ -221,6 +221,17 @@ describe('ProfileView', () => {
           // makes sense and you get numbers.
         })
       })
+    })
+  })
+
+  describe('mapStateToProps', () => {
+    it('returns expected object', () => {
+      const state = {
+        user: {
+          name: 'John'
+        }
+      }
+      expect(mapStateToProps(state)).toEqual({ authedUser: state.user })
     })
   })
 

@@ -150,7 +150,14 @@ ProfileView.propTypes = {
   profile: profileType.isRequired             
 }
 
-export { ProfileView as _UnconnectedProfileView }
-export default connect(state => ({
+export const mapStateToProps = state => ({
   authedUser: state.user
-}), { deleteEducation, deleteExperience, followAPerson, unfollowAPerson })(ProfileView)
+})
+
+export { ProfileView as _UnconnectedProfileView }
+export default connect(mapStateToProps, { 
+  deleteEducation, 
+  deleteExperience, 
+  followAPerson, 
+  unfollowAPerson 
+})(ProfileView)
