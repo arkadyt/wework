@@ -53,10 +53,12 @@ class QuickStats extends Component {
   }
 }
 
-export { QuickStats as _UnconnectedQuickStats }
-export default withRouter(connect(state => ({
+export const mapStateToProps = state => ({
   authedUser: state.user,
   usersProfile: state.profile,
   stats: state.user.stats,
   errors: state.err
-})), { fetchUsersStats })(QuickStats)
+})
+
+export { QuickStats as _UnconnectedQuickStats }
+export default withRouter(connect(mapStateToProps, { fetchUsersStats }))(QuickStats)

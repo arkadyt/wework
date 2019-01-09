@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { _UnconnectedQuickStats as QuickStats } from './QuickStats'
+import { _UnconnectedQuickStats as QuickStats, mapStateToProps } from './QuickStats'
 import cloneDeep from 'lodash.clonedeep'
 
 jest.mock('../../hocs/conditionalRendering')
@@ -107,6 +107,34 @@ describe('QuickStats', () => {
       it('returns false if errors.noProfile is undefined', () => {
         expect(comp().instance().hasNoProfile({ errors: {} })).toBe(false)
       })
+    })
+  })
+
+  describe('mapStateToProps', () => {
+    it('returns expected object', () => {
+      const state = {
+        user: { 
+          name: 'John Doe', 
+          stats: { 
+            height: 200 
+          } 
+        },
+        profile: { 
+          age: 30 
+        },
+        err: { 
+          email: 'Email is wrong' 
+        }
+      }
+
+      const expectedObject = {
+        authedUser: state.user,
+        usersProfile: state.profile,
+        stats: state.user.stats,
+        errors: state.err
+      }
+
+      expect(mapStateToProps(state)).toEqual(expectedObject)
     })
   })
 
