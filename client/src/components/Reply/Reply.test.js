@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { _UnconnectedReply as Reply } from './Reply'
+import { _UnconnectedReply as Reply, mapStateToProps } from './Reply'
 import cloneDeep from 'lodash.clonedeep'
 
 let mountedComponent, props
@@ -115,6 +115,31 @@ describe('Reply', () => {
         comp().instance().handleSubmit()
         expect(props.fetchUsersStats).toHaveBeenCalled()
       })
+    })
+  })
+
+  describe('mapStateToProps', () => {
+    it('returns expected object', () => {
+      const state = {
+        user: { 
+          name: 'John Doe', 
+          stats: { 
+            height: 200 
+          } 
+        },
+        err: { 
+          formErrors: {
+            email: 'Email is wrong' 
+          }
+        }
+      }
+
+      const expectedObject = {
+        authedUser: state.user,
+        errors: state.err.formErrors
+      }
+
+      expect(mapStateToProps(state)).toEqual(expectedObject)
     })
   })
 

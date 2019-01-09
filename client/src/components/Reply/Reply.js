@@ -47,8 +47,10 @@ class Reply extends Component {
     }
 }
 
-export const _UnconnectedReply = Reply
-export default connect(state => ({
+export const mapStateToProps = state => ({
     authedUser: state.user,
     errors: state.err.formErrors
-}), { fetchUsersStats })(Reply)
+})
+
+export const _UnconnectedReply = Reply
+export default connect(mapStateToProps, { fetchUsersStats })(Reply)
