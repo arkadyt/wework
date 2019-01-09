@@ -93,7 +93,7 @@ Signup.propTypes = {
   fetchSubscriptions: func.isRequired
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
     errors: state.err.formErrors,
     authedUser: state.user
 })

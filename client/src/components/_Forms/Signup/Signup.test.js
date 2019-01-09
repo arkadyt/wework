@@ -69,7 +69,7 @@
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import { _UnconnectedSignup as Signup } from './Signup'
+import { _UnconnectedSignup as Signup, mapStateToProps } from './Signup'
 import Field from '../../Field/Field'
 import Overlay from '../../Overlay/Overlay'
 import cloneDeep from 'lodash.clonedeep'
@@ -535,6 +535,28 @@ describe('Signup', () => {
           expect(comp().state('passwordConfirm')).toBe(value)
         })
       })
+    })
+  })
+
+  describe('mapStateToProps', () => {
+    it('returns expected object', () => {
+      const state = {
+        err: {
+          formErrors: {
+            email: 'Wrong!'
+          }
+        },
+        user: {
+          name: 'John'
+        }
+      }
+
+      const expectedObject = {
+        errors: state.err.formErrors,
+        authedUser: state.user
+      }
+
+      expect(mapStateToProps(state)).toEqual(expectedObject)
     })
   })
 
