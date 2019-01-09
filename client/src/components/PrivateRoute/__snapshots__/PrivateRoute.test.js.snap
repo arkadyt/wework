@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrivateRoute matches snapshot when isAuthenticated is false 1`] = `
+<StaticRouter
+  basename=""
+  context={
+    Object {
+      "action": "REPLACE",
+      "location": Object {
+        "hash": "",
+        "pathname": "/login",
+        "search": "",
+        "state": undefined,
+      },
+      "url": "/login",
+    }
+  }
+  location="/"
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <privateRoute
+      authedUser={
+        Object {
+          "isAuthenticated": false,
+        }
+      }
+      component={[Function]}
+      exact={true}
+    >
+      <Route
+        exact={true}
+        render={[Function]}
+      >
+        <Redirect
+          push={false}
+          to="/login"
+        />
+      </Route>
+    </privateRoute>
+  </Router>
+</StaticRouter>
+`;
+
+exports[`PrivateRoute matches snapshot when isAuthenticated is true 1`] = `
+<StaticRouter
+  basename=""
+  context={Object {}}
+  location="/"
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <privateRoute
+      authedUser={
+        Object {
+          "isAuthenticated": true,
+        }
+      }
+      component={[Function]}
+      exact={true}
+    >
+      <Route
+        exact={true}
+        render={[Function]}
+      >
+        <component
+          history={
+            Object {
+              "action": "POP",
+              "block": [Function],
+              "createHref": [Function],
+              "go": [Function],
+              "goBack": [Function],
+              "goForward": [Function],
+              "listen": [Function],
+              "location": Object {
+                "hash": "",
+                "pathname": "/",
+                "search": "",
+                "state": undefined,
+              },
+              "push": [Function],
+              "replace": [Function],
+            }
+          }
+          location={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            }
+          }
+          match={
+            Object {
+              "isExact": true,
+              "params": Object {},
+              "path": "/",
+              "url": "/",
+            }
+          }
+          staticContext={Object {}}
+        >
+          <h1>
+            Hello!
+          </h1>
+        </component>
+      </Route>
+    </privateRoute>
+  </Router>
+</StaticRouter>
+`;

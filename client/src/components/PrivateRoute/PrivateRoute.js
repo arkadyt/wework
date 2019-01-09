@@ -25,7 +25,9 @@ privateRoute.propTypes = {
   }).isRequired
 }
 
-export { privateRoute as _UnconnectedPrivateRoute }
-export default withRouter(connect(state => ({
+export const mapStateToProps = state => ({
     authedUser: state.user
-}))(privateRoute))
+})
+
+export { privateRoute as _UnconnectedPrivateRoute }
+export default withRouter(connect(mapStateToProps)(privateRoute))
