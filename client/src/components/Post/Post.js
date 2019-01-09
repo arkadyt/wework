@@ -158,14 +158,16 @@ class Post extends Component {
     }
 }
 
-export const _UnconnectedPost = Post;
-export default withRouter(connect(state => ({
+export const mapStateToProps = state => ({
     authedUser: state.user
-}), {
-        likePost,
-        deleteLike,
-        deletePost,
-        unfollowAPerson,
-        fetchDiscoverContent,
-        fetchUsersStats
-    })(Post))
+})
+
+export const _UnconnectedPost = Post;
+export default withRouter(connect(mapStateToProps, {
+  likePost,
+  deleteLike,
+  deletePost,
+  unfollowAPerson,
+  fetchDiscoverContent,
+  fetchUsersStats
+})(Post))
