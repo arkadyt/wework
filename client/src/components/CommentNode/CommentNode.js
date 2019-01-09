@@ -61,7 +61,9 @@ CommentNode.propTypes = {
   authedUserId: string.isRequired
 }
 
-export const _UnconnectedCommentNode = CommentNode
-export default connect(state => ({
+export const mapStateToProps = state => ({
     authedUserId: state.user.id
-}), { deleteComment, fetchUsersStats })(CommentNode)
+})
+
+export const _UnconnectedCommentNode = CommentNode
+export default connect(mapStateToProps, { deleteComment, fetchUsersStats })(CommentNode)
