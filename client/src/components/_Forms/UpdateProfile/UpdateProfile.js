@@ -201,7 +201,9 @@ UpdateProfile.propTypes = {
   profile: object
 }
 
-export { UpdateProfile }
-export default connect(state => ({
+export const mapStateToProps = state => ({
     errors: state.err.formErrors
-}), { updateUsersProfile })(UpdateProfile)
+})
+
+export { UpdateProfile }
+export default connect(mapStateToProps, { updateUsersProfile })(UpdateProfile)
