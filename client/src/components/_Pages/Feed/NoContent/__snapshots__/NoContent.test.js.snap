@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoContent matches snapshot 1`] = `
+<p
+  className="Feed-message"
+  style={
+    Object {
+      "marginBottom": 0,
+    }
+  }
+>
+  We've got no posts for you yet!
+</p>
+`;
