@@ -4,7 +4,19 @@ import { QuickStats, mapStateToProps } from './QuickStats'
 import cloneDeep from 'lodash.clonedeep'
 
 jest.mock('../../hocs/conditionalRendering')
+jest.mock('recompose')
+
 const { withEither } = require('../../hocs/conditionalRendering')
+const { compose } = require('recompose')
+
+// mocks become fully functional
+// this removes need for manual unmocking per every test
+withEither.mockImplementation(
+  require.requireActual('../../hocs/conditionalRendering').withEither
+)
+compose.mockImplementation(
+  require.requireActual('recompose').compose
+)
 
 let mountedComponent, props
 
@@ -35,7 +47,6 @@ const getMockProps = () => {
 
 const comp = () => {
   if (!mountedComponent) {
-    console.log(QuickStats)
     mountedComponent = shallow(<QuickStats {...props} />)
   }
   return mountedComponent
@@ -70,10 +81,11 @@ describe('QuickStats', () => {
         expect(withEither).toHaveBeenCalledTimes(2)
       })
 
-      // TODO: test compose call
-      // either call jest.unmock('recompose') in every test suite using recompose package
-      // or try something else like jest.disableAutomock()
-      // (which is unusable by the time of writing)
+      it('calls compose', () => {
+        compose.mockClear()
+        comp()
+        expect(compose).toHaveBeenCalledTimes(1)
+      })
     })
 
     describe('isLoadingFn', () => {

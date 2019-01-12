@@ -10,27 +10,29 @@ import { fetchUsersStats } from '../../state/actions/userActions'
 import './QuickStats.scss'
 
 class QuickStats extends Component {
+  isLoadingFn({
+    stats,
+    authedUser,
+    usersProfile,
+  }) {
+    return !stats || !usersProfile || !authedUser
+  } 
+
+  hasNoProfile({
+    errors: { noProfile }
+  }) {
+    return !!noProfile
+  }
+
+  withCondRendering(comp) {
+    return compose(
+        withEither(this.hasNoProfile, NoProfileMessage),
+        withEither(this.isLoadingFn, FBSpinner)
+      )(comp)
+  }
+
   render() {
-    function isLoadingFn({
-      stats,
-      authedUser,
-      usersProfile,
-    }) {
-      return !stats || !usersProfile || !authedUser
-    } 
-
-    function hasNoProfile({
-      errors: { noProfile }
-    }) {
-     return !!noProfile
-    }
-
-    const withCondRendering = compose(
-      withEither(hasNoProfile, NoProfileMessage),
-      withEither(isLoadingFn, FBSpinner)
-    )
-    const StatsWithCondRendering = withCondRendering(StatsChart)
-
+    const StatsWithCondRendering = this.withCondRendering(StatsChart)
     const { authedUser, usersProfile, stats, errors, history } = this.props
 
     return (
@@ -59,4 +61,4 @@ export const mapStateToProps = state => ({
 })
 
 export { QuickStats }
-export default withRouter(connect(mapStateToProps, { fetchUsersStats }))(QuickStats)
+export default withRouter(connect(mapStateToProps, { fetchUsersStats })(QuickStats))
