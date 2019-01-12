@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feed matches snapshot 1`] = `
+<div
+  className="Feed-container"
+>
+  <div
+    className="Feed-lft-column"
+  >
+    <Connect(QuickStats) />
+  </div>
+  <div
+    className="Feed-mid-column"
+    id="Feed-mid-column"
+  >
+    <Connect(Reply)
+      onSubmit={[Function]}
+    />
+    <Component
+      baseUrl=""
+      isLoading={false}
+    />
+  </div>
+  <div
+    className="Feed-rgt-column"
+  >
+    <Connect(Discover) />
+  </div>
+</div>
+`;

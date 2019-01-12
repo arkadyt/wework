@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { _UnconnectedQuickStats as QuickStats, mapStateToProps } from './QuickStats'
+import { QuickStats, mapStateToProps } from './QuickStats'
 import cloneDeep from 'lodash.clonedeep'
 
 jest.mock('../../hocs/conditionalRendering')
@@ -35,6 +35,7 @@ const getMockProps = () => {
 
 const comp = () => {
   if (!mountedComponent) {
+    console.log(QuickStats)
     mountedComponent = shallow(<QuickStats {...props} />)
   }
   return mountedComponent
