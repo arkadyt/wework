@@ -11,6 +11,7 @@ const { compose } = require('recompose')
 
 // mocks become fully functional
 // this removes need for manual unmocking per every test
+// UPDATE: actually I think I could have just used jest.spyOn?
 withEither.mockImplementation(
   require.requireActual('../../hocs/conditionalRendering').withEither
 )

@@ -47,27 +47,34 @@ class Feed extends Component {
     }
   }
 
+  afterFetch() {
+    this.setState({ isLoading: false })
+  }
+
   componentDidUpdate() {
     if (this.state.loadMore) {
       this.setState({ loadMore: false, isLoading: true })
 
       const { posts, fetchPosts } = this.props
 
-      const afterFetch = () => this.setState({ isLoading: false })
-      fetchPosts(posts[posts.length - 1].date, afterFetch, afterFetch)
+      fetchPosts(
+        posts[posts.length - 1].date,
+        this.afterFetch.bind(this),
+        this.afterFetch.bind(this)
+      )
     }
   }
 
   componentDidMount() {
     const { fetchPosts } = this.props
-    document.addEventListener('scroll', this.onScroll)
+    document.addEventListener('scroll', this.onScroll.bind(this))
 
     window.scrollTo(0, 0)
     fetchPosts(false)
   }
 
   componentWillUnmount() {
-    document.removeEventListener('scroll', this.onScroll)
+    document.removeEventListener('scroll', this.onScroll.bind(this))
   }
 
   render() {
