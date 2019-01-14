@@ -43,7 +43,7 @@ describe('Overlay', () => {
 
     describe('passing', () => {
       it('outer div receives correct function into onClick', () => {
-        expect(comp().find('.Overlay-container').prop('onClick')).toBe(comp().instance().handleSubmit)
+        expect(comp().find('.Overlay-container').prop('onClick').name).toContain('handleSubmit')
       })
     })
   })

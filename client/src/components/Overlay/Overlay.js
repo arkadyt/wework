@@ -27,7 +27,7 @@ class Overlay extends React.Component {
     } = this.props
 
     return (
-      <div id="Overlay-container-backdrop" className="Overlay-container" onClick={this.handleSubmit}>
+      <div id="Overlay-container-backdrop" className="Overlay-container" onClick={this.handleSubmit.bind(this)}>
         <div className={["Overlay-content", centered ? "Overlay-content-centered" : null].join(' ')}>
           {children}
         </div>
