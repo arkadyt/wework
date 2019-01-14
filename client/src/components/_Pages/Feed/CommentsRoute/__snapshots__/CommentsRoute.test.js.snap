@@ -1,0 +1,940 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentsRoute matches snapshot 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <StaticRouter
+    basename=""
+    context={Object {}}
+    location="/view-comments/5b9f4728bc40273febf52706"
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/view-comments/5b9f4728bc40273febf52706",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <commentsRoute
+        baseUrl=""
+        location="/view-comments/5b9f4728bc40273febf52706"
+        posts={
+          Array [
+            Object {
+              "__v": 0,
+              "_id": "5b9f4728bc40273febf52706",
+              "comments": Array [
+                Object {
+                  "_id": "5ba1dd77809c892f580240ef",
+                  "date": "2018-09-19T05:24:07.399Z",
+                  "text": "Hahahahahahahaaa!",
+                  "user": Object {
+                    "_id": "5b75f023f1957052e52106f5",
+                    "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                    "name": "John Grapard",
+                  },
+                },
+                Object {
+                  "_id": "5ba1de21f0b9f73054396abf",
+                  "date": "2018-09-19T05:26:57.632Z",
+                  "text": "Nuka proverim esli oshibka ostalas...",
+                  "user": Object {
+                    "_id": "5b75f023f1957052e52106f5",
+                    "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                    "name": "John Grapard",
+                  },
+                },
+              ],
+              "date": "2018-09-17T06:18:16.992Z",
+              "likes": Array [
+                Object {
+                  "_id": "5ba1dd61809c892f580240ed",
+                  "user": "5b75f023f1957052e52106f5",
+                },
+                Object {
+                  "_id": "5ba80533058247301e362bf9",
+                  "user": "5ba1acfc13b542138b29af68",
+                },
+                Object {
+                  "_id": "5ba847153c823e00161763b5",
+                  "user": "5ba83562ed730446b54def34",
+                },
+              ],
+              "text": "Tas nisl commlor sit amet, consec!",
+              "user": Object {
+                "_id": "5b9eedd621194c102c5280e8",
+                "avatar": "//www.gravatar.com/avatar/e13743a7f1db7f4246badd6fd6ff54ff?s=200&r=pg&d=mm",
+                "name": "John Doe",
+              },
+            },
+          ]
+        }
+      >
+        <Route
+          path="/view-comments/:postId"
+          render={[Function]}
+        >
+          <Connect(CommentsView)
+            history={
+              Object {
+                "action": "POP",
+                "block": [Function],
+                "createHref": [Function],
+                "go": [Function],
+                "goBack": [Function],
+                "goForward": [Function],
+                "listen": [Function],
+                "location": Object {
+                  "hash": "",
+                  "pathname": "/view-comments/5b9f4728bc40273febf52706",
+                  "search": "",
+                  "state": undefined,
+                },
+                "push": [Function],
+                "replace": [Function],
+              }
+            }
+            location={
+              Object {
+                "hash": "",
+                "pathname": "/view-comments/5b9f4728bc40273febf52706",
+                "search": "",
+                "state": undefined,
+              }
+            }
+            match={
+              Object {
+                "isExact": true,
+                "params": Object {
+                  "postId": "5b9f4728bc40273febf52706",
+                },
+                "path": "/view-comments/:postId",
+                "url": "/view-comments/5b9f4728bc40273febf52706",
+              }
+            }
+            post={
+              Object {
+                "__v": 0,
+                "_id": "5b9f4728bc40273febf52706",
+                "comments": Array [
+                  Object {
+                    "_id": "5ba1dd77809c892f580240ef",
+                    "date": "2018-09-19T05:24:07.399Z",
+                    "text": "Hahahahahahahaaa!",
+                    "user": Object {
+                      "_id": "5b75f023f1957052e52106f5",
+                      "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                      "name": "John Grapard",
+                    },
+                  },
+                  Object {
+                    "_id": "5ba1de21f0b9f73054396abf",
+                    "date": "2018-09-19T05:26:57.632Z",
+                    "text": "Nuka proverim esli oshibka ostalas...",
+                    "user": Object {
+                      "_id": "5b75f023f1957052e52106f5",
+                      "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                      "name": "John Grapard",
+                    },
+                  },
+                ],
+                "date": "2018-09-17T06:18:16.992Z",
+                "likes": Array [
+                  Object {
+                    "_id": "5ba1dd61809c892f580240ed",
+                    "user": "5b75f023f1957052e52106f5",
+                  },
+                  Object {
+                    "_id": "5ba80533058247301e362bf9",
+                    "user": "5ba1acfc13b542138b29af68",
+                  },
+                  Object {
+                    "_id": "5ba847153c823e00161763b5",
+                    "user": "5ba83562ed730446b54def34",
+                  },
+                ],
+                "text": "Tas nisl commlor sit amet, consec!",
+                "user": Object {
+                  "_id": "5b9eedd621194c102c5280e8",
+                  "avatar": "//www.gravatar.com/avatar/e13743a7f1db7f4246badd6fd6ff54ff?s=200&r=pg&d=mm",
+                  "name": "John Doe",
+                },
+              }
+            }
+            staticContext={Object {}}
+          >
+            <CommentsView
+              addComment={[Function]}
+              history={
+                Object {
+                  "action": "POP",
+                  "block": [Function],
+                  "createHref": [Function],
+                  "go": [Function],
+                  "goBack": [Function],
+                  "goForward": [Function],
+                  "listen": [Function],
+                  "location": Object {
+                    "hash": "",
+                    "pathname": "/view-comments/5b9f4728bc40273febf52706",
+                    "search": "",
+                    "state": undefined,
+                  },
+                  "push": [Function],
+                  "replace": [Function],
+                }
+              }
+              location={
+                Object {
+                  "hash": "",
+                  "pathname": "/view-comments/5b9f4728bc40273febf52706",
+                  "search": "",
+                  "state": undefined,
+                }
+              }
+              match={
+                Object {
+                  "isExact": true,
+                  "params": Object {
+                    "postId": "5b9f4728bc40273febf52706",
+                  },
+                  "path": "/view-comments/:postId",
+                  "url": "/view-comments/5b9f4728bc40273febf52706",
+                }
+              }
+              post={
+                Object {
+                  "__v": 0,
+                  "_id": "5b9f4728bc40273febf52706",
+                  "comments": Array [
+                    Object {
+                      "_id": "5ba1dd77809c892f580240ef",
+                      "date": "2018-09-19T05:24:07.399Z",
+                      "text": "Hahahahahahahaaa!",
+                      "user": Object {
+                        "_id": "5b75f023f1957052e52106f5",
+                        "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                        "name": "John Grapard",
+                      },
+                    },
+                    Object {
+                      "_id": "5ba1de21f0b9f73054396abf",
+                      "date": "2018-09-19T05:26:57.632Z",
+                      "text": "Nuka proverim esli oshibka ostalas...",
+                      "user": Object {
+                        "_id": "5b75f023f1957052e52106f5",
+                        "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                        "name": "John Grapard",
+                      },
+                    },
+                  ],
+                  "date": "2018-09-17T06:18:16.992Z",
+                  "likes": Array [
+                    Object {
+                      "_id": "5ba1dd61809c892f580240ed",
+                      "user": "5b75f023f1957052e52106f5",
+                    },
+                    Object {
+                      "_id": "5ba80533058247301e362bf9",
+                      "user": "5ba1acfc13b542138b29af68",
+                    },
+                    Object {
+                      "_id": "5ba847153c823e00161763b5",
+                      "user": "5ba83562ed730446b54def34",
+                    },
+                  ],
+                  "text": "Tas nisl commlor sit amet, consec!",
+                  "user": Object {
+                    "_id": "5b9eedd621194c102c5280e8",
+                    "avatar": "//www.gravatar.com/avatar/e13743a7f1db7f4246badd6fd6ff54ff?s=200&r=pg&d=mm",
+                    "name": "John Doe",
+                  },
+                }
+              }
+              staticContext={Object {}}
+            >
+              <Overlay
+                onBackdropClick={[Function]}
+              >
+                <div
+                  className="Overlay-container"
+                  id="Overlay-container-backdrop"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="Overlay-content "
+                  >
+                    <div
+                      className="CommentsView-container"
+                    >
+                      <div
+                        className="CommentsView-content"
+                      >
+                        <withRouter(Connect(Post))
+                          __v={0}
+                          _id="5b9f4728bc40273febf52706"
+                          comments={
+                            Array [
+                              Object {
+                                "_id": "5ba1dd77809c892f580240ef",
+                                "date": "2018-09-19T05:24:07.399Z",
+                                "text": "Hahahahahahahaaa!",
+                                "user": Object {
+                                  "_id": "5b75f023f1957052e52106f5",
+                                  "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                                  "name": "John Grapard",
+                                },
+                              },
+                              Object {
+                                "_id": "5ba1de21f0b9f73054396abf",
+                                "date": "2018-09-19T05:26:57.632Z",
+                                "text": "Nuka proverim esli oshibka ostalas...",
+                                "user": Object {
+                                  "_id": "5b75f023f1957052e52106f5",
+                                  "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                                  "name": "John Grapard",
+                                },
+                              },
+                            ]
+                          }
+                          date="2018-09-17T06:18:16.992Z"
+                          flat={true}
+                          likes={
+                            Array [
+                              Object {
+                                "_id": "5ba1dd61809c892f580240ed",
+                                "user": "5b75f023f1957052e52106f5",
+                              },
+                              Object {
+                                "_id": "5ba80533058247301e362bf9",
+                                "user": "5ba1acfc13b542138b29af68",
+                              },
+                              Object {
+                                "_id": "5ba847153c823e00161763b5",
+                                "user": "5ba83562ed730446b54def34",
+                              },
+                            ]
+                          }
+                          nocomments={true}
+                          text="Tas nisl commlor sit amet, consec!"
+                          user={
+                            Object {
+                              "_id": "5b9eedd621194c102c5280e8",
+                              "avatar": "//www.gravatar.com/avatar/e13743a7f1db7f4246badd6fd6ff54ff?s=200&r=pg&d=mm",
+                              "name": "John Doe",
+                            }
+                          }
+                        >
+                          <Route>
+                            <Connect(Post)
+                              __v={0}
+                              _id="5b9f4728bc40273febf52706"
+                              comments={
+                                Array [
+                                  Object {
+                                    "_id": "5ba1dd77809c892f580240ef",
+                                    "date": "2018-09-19T05:24:07.399Z",
+                                    "text": "Hahahahahahahaaa!",
+                                    "user": Object {
+                                      "_id": "5b75f023f1957052e52106f5",
+                                      "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                                      "name": "John Grapard",
+                                    },
+                                  },
+                                  Object {
+                                    "_id": "5ba1de21f0b9f73054396abf",
+                                    "date": "2018-09-19T05:26:57.632Z",
+                                    "text": "Nuka proverim esli oshibka ostalas...",
+                                    "user": Object {
+                                      "_id": "5b75f023f1957052e52106f5",
+                                      "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                                      "name": "John Grapard",
+                                    },
+                                  },
+                                ]
+                              }
+                              date="2018-09-17T06:18:16.992Z"
+                              flat={true}
+                              history={
+                                Object {
+                                  "action": "POP",
+                                  "block": [Function],
+                                  "createHref": [Function],
+                                  "go": [Function],
+                                  "goBack": [Function],
+                                  "goForward": [Function],
+                                  "listen": [Function],
+                                  "location": Object {
+                                    "hash": "",
+                                    "pathname": "/view-comments/5b9f4728bc40273febf52706",
+                                    "search": "",
+                                    "state": undefined,
+                                  },
+                                  "push": [Function],
+                                  "replace": [Function],
+                                }
+                              }
+                              likes={
+                                Array [
+                                  Object {
+                                    "_id": "5ba1dd61809c892f580240ed",
+                                    "user": "5b75f023f1957052e52106f5",
+                                  },
+                                  Object {
+                                    "_id": "5ba80533058247301e362bf9",
+                                    "user": "5ba1acfc13b542138b29af68",
+                                  },
+                                  Object {
+                                    "_id": "5ba847153c823e00161763b5",
+                                    "user": "5ba83562ed730446b54def34",
+                                  },
+                                ]
+                              }
+                              location={
+                                Object {
+                                  "hash": "",
+                                  "pathname": "/view-comments/5b9f4728bc40273febf52706",
+                                  "search": "",
+                                  "state": undefined,
+                                }
+                              }
+                              match={
+                                Object {
+                                  "isExact": true,
+                                  "params": Object {
+                                    "postId": "5b9f4728bc40273febf52706",
+                                  },
+                                  "path": "/view-comments/:postId",
+                                  "url": "/view-comments/5b9f4728bc40273febf52706",
+                                }
+                              }
+                              nocomments={true}
+                              staticContext={Object {}}
+                              text="Tas nisl commlor sit amet, consec!"
+                              user={
+                                Object {
+                                  "_id": "5b9eedd621194c102c5280e8",
+                                  "avatar": "//www.gravatar.com/avatar/e13743a7f1db7f4246badd6fd6ff54ff?s=200&r=pg&d=mm",
+                                  "name": "John Doe",
+                                }
+                              }
+                            >
+                              <Post
+                                __v={0}
+                                _id="5b9f4728bc40273febf52706"
+                                authedUser={
+                                  Object {
+                                    "id": "123",
+                                  }
+                                }
+                                comments={
+                                  Array [
+                                    Object {
+                                      "_id": "5ba1dd77809c892f580240ef",
+                                      "date": "2018-09-19T05:24:07.399Z",
+                                      "text": "Hahahahahahahaaa!",
+                                      "user": Object {
+                                        "_id": "5b75f023f1957052e52106f5",
+                                        "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                                        "name": "John Grapard",
+                                      },
+                                    },
+                                    Object {
+                                      "_id": "5ba1de21f0b9f73054396abf",
+                                      "date": "2018-09-19T05:26:57.632Z",
+                                      "text": "Nuka proverim esli oshibka ostalas...",
+                                      "user": Object {
+                                        "_id": "5b75f023f1957052e52106f5",
+                                        "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                                        "name": "John Grapard",
+                                      },
+                                    },
+                                  ]
+                                }
+                                date="2018-09-17T06:18:16.992Z"
+                                deleteLike={[Function]}
+                                deletePost={[Function]}
+                                fetchDiscoverContent={[Function]}
+                                fetchUsersStats={[Function]}
+                                flat={true}
+                                history={
+                                  Object {
+                                    "action": "POP",
+                                    "block": [Function],
+                                    "createHref": [Function],
+                                    "go": [Function],
+                                    "goBack": [Function],
+                                    "goForward": [Function],
+                                    "listen": [Function],
+                                    "location": Object {
+                                      "hash": "",
+                                      "pathname": "/view-comments/5b9f4728bc40273febf52706",
+                                      "search": "",
+                                      "state": undefined,
+                                    },
+                                    "push": [Function],
+                                    "replace": [Function],
+                                  }
+                                }
+                                likePost={[Function]}
+                                likes={
+                                  Array [
+                                    Object {
+                                      "_id": "5ba1dd61809c892f580240ed",
+                                      "user": "5b75f023f1957052e52106f5",
+                                    },
+                                    Object {
+                                      "_id": "5ba80533058247301e362bf9",
+                                      "user": "5ba1acfc13b542138b29af68",
+                                    },
+                                    Object {
+                                      "_id": "5ba847153c823e00161763b5",
+                                      "user": "5ba83562ed730446b54def34",
+                                    },
+                                  ]
+                                }
+                                location={
+                                  Object {
+                                    "hash": "",
+                                    "pathname": "/view-comments/5b9f4728bc40273febf52706",
+                                    "search": "",
+                                    "state": undefined,
+                                  }
+                                }
+                                match={
+                                  Object {
+                                    "isExact": true,
+                                    "params": Object {
+                                      "postId": "5b9f4728bc40273febf52706",
+                                    },
+                                    "path": "/view-comments/:postId",
+                                    "url": "/view-comments/5b9f4728bc40273febf52706",
+                                  }
+                                }
+                                nocomments={true}
+                                staticContext={Object {}}
+                                text="Tas nisl commlor sit amet, consec!"
+                                unfollowAPerson={[Function]}
+                                user={
+                                  Object {
+                                    "_id": "5b9eedd621194c102c5280e8",
+                                    "avatar": "//www.gravatar.com/avatar/e13743a7f1db7f4246badd6fd6ff54ff?s=200&r=pg&d=mm",
+                                    "name": "John Doe",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="Post__container"
+                                  style={
+                                    Object {
+                                      "borderRadius": "unset",
+                                      "boxShadow": "unset",
+                                      "marginTop": "unset",
+                                    }
+                                  }
+                                >
+                                  <div
+                                    className="Post__menu "
+                                  >
+                                    <button
+                                      className="Post__menu-item"
+                                      onClick={[Function]}
+                                    >
+                                      Unfollow user
+                                    </button>
+                                  </div>
+                                  <div
+                                    className="Post__header"
+                                  >
+                                    <img
+                                      alt=""
+                                      className="Post__avatar"
+                                      src="//www.gravatar.com/avatar/e13743a7f1db7f4246badd6fd6ff54ff?s=200&r=pg&d=mm"
+                                    />
+                                    <button
+                                      className="Post__button--menu"
+                                      onClick={[Function]}
+                                    >
+                                      <FaEllipsisV>
+                                        <IconBase
+                                          attr={
+                                            Object {
+                                              "viewBox": "0 0 192 512",
+                                            }
+                                          }
+                                        >
+                                          <svg
+                                            fill="currentColor"
+                                            height="1em"
+                                            stroke="currentColor"
+                                            strokeWidth="0"
+                                            style={
+                                              Object {
+                                                "color": undefined,
+                                              }
+                                            }
+                                            viewBox="0 0 192 512"
+                                            width="1em"
+                                          >
+                                            <path
+                                              d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"
+                                              key="0"
+                                            />
+                                          </svg>
+                                        </IconBase>
+                                      </FaEllipsisV>
+                                    </button>
+                                    <div
+                                      className="Post__name"
+                                    >
+                                      <field
+                                        inline={true}
+                                        label="John Doe"
+                                        onClick={[Function]}
+                                        style={
+                                          Object {
+                                            "fontSize": "1.25rem",
+                                          }
+                                        }
+                                        type="linkButton"
+                                      >
+                                        <div
+                                          className="Field-container inline"
+                                        >
+                                          <button
+                                            className="link-button"
+                                            onClick={[Function]}
+                                            style={
+                                              Object {
+                                                "fontSize": "1.25rem",
+                                              }
+                                            }
+                                          >
+                                            John Doe
+                                          </button>
+                                        </div>
+                                      </field>
+                                    </div>
+                                    <p
+                                      className="Post__date"
+                                    >
+                                      September 17, 2018, 2:18:16 AM
+                                    </p>
+                                  </div>
+                                  <p
+                                    className="Post__body"
+                                  >
+                                    Tas nisl commlor sit amet, consec!
+                                  </p>
+                                  <div
+                                    className="Post__stats"
+                                  >
+                                    <span>
+                                      3
+                                       likes  •  
+                                      2
+                                       comments
+                                    </span>
+                                  </div>
+                                  <div
+                                    className="Post__buttons"
+                                  >
+                                    <field
+                                      inline={true}
+                                      onClick={[Function]}
+                                      style={null}
+                                      type="linkButton"
+                                    >
+                                      <div
+                                        className="Field-container inline"
+                                      >
+                                        <button
+                                          className="link-button"
+                                          onClick={[Function]}
+                                          style={null}
+                                        >
+                                          <span
+                                            className="Post__buttons-icon"
+                                          >
+                                            <FaThumbsUp>
+                                              <IconBase
+                                                attr={
+                                                  Object {
+                                                    "viewBox": "0 0 512 512",
+                                                  }
+                                                }
+                                              >
+                                                <svg
+                                                  fill="currentColor"
+                                                  height="1em"
+                                                  stroke="currentColor"
+                                                  strokeWidth="0"
+                                                  style={
+                                                    Object {
+                                                      "color": undefined,
+                                                    }
+                                                  }
+                                                  viewBox="0 0 512 512"
+                                                  width="1em"
+                                                >
+                                                  <path
+                                                    d="M104 224H24c-13.255 0-24 10.745-24 24v240c0 13.255 10.745 24 24 24h80c13.255 0 24-10.745 24-24V248c0-13.255-10.745-24-24-24zM64 472c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zM384 81.452c0 42.416-25.97 66.208-33.277 94.548h101.723c33.397 0 59.397 27.746 59.553 58.098.084 17.938-7.546 37.249-19.439 49.197l-.11.11c9.836 23.337 8.237 56.037-9.308 79.469 8.681 25.895-.069 57.704-16.382 74.757 4.298 17.598 2.244 32.575-6.148 44.632C440.202 511.587 389.616 512 346.839 512l-2.845-.001c-48.287-.017-87.806-17.598-119.56-31.725-15.957-7.099-36.821-15.887-52.651-16.178-6.54-.12-11.783-5.457-11.783-11.998v-213.77c0-3.2 1.282-6.271 3.558-8.521 39.614-39.144 56.648-80.587 89.117-113.111 14.804-14.832 20.188-37.236 25.393-58.902C282.515 39.293 291.817 0 312 0c24 0 72 8 72 81.452z"
+                                                    key="0"
+                                                  />
+                                                </svg>
+                                              </IconBase>
+                                            </FaThumbsUp>
+                                          </span>
+                                           Like
+                                        </button>
+                                      </div>
+                                    </field>
+                                  </div>
+                                </div>
+                              </Post>
+                            </Connect(Post)>
+                          </Route>
+                        </withRouter(Connect(Post))>
+                        <Connect(Reply)
+                          flat={true}
+                          onSubmit={[Function]}
+                          rows="3"
+                        >
+                          <Reply
+                            authedUser={
+                              Object {
+                                "id": "123",
+                              }
+                            }
+                            errors={Object {}}
+                            fetchUsersStats={[Function]}
+                            flat={true}
+                            onSubmit={[Function]}
+                            rows="3"
+                          >
+                            <form
+                              className="Reply-container"
+                              onSubmit={[Function]}
+                              style={
+                                Object {
+                                  "borderRadius": "unset",
+                                  "boxShadow": "unset",
+                                  "marginTop": "unset",
+                                }
+                              }
+                            >
+                              <p
+                                className="Reply-header"
+                              >
+                                Post as 
+                                <b>
+                                  :
+                                </b>
+                              </p>
+                              <field
+                                onChange={[Function]}
+                                rows="3"
+                                style={
+                                  Object {
+                                    "fontSize": "1.3rem",
+                                  }
+                                }
+                                type="textarea"
+                              >
+                                <div
+                                  className="Field-container "
+                                >
+                                  <textarea
+                                    className="rw-widget-container rw-widget-input"
+                                    onChange={[Function]}
+                                    placeholder="Say something..."
+                                    rows="3"
+                                    style={
+                                      Object {
+                                        "fontSize": "1.3rem",
+                                        "padding": ".5rem",
+                                        "resize": "none",
+                                        "width": "100%",
+                                      }
+                                    }
+                                  />
+                                </div>
+                              </field>
+                              <field
+                                containerStyle={
+                                  Object {
+                                    "marginTop": ".5rem",
+                                  }
+                                }
+                                label="Submit"
+                                type="submit"
+                              >
+                                <div
+                                  className="Field-container "
+                                  style={
+                                    Object {
+                                      "marginTop": ".5rem",
+                                    }
+                                  }
+                                >
+                                  <button
+                                    className="button-action"
+                                    type="submit"
+                                  >
+                                    Submit
+                                  </button>
+                                </div>
+                              </field>
+                            </form>
+                          </Reply>
+                        </Connect(Reply)>
+                        <div
+                          className="CommentsView-comments"
+                        >
+                          <h2>
+                            Comments:
+                          </h2>
+                          <Connect(CommentNode)
+                            comment={
+                              Object {
+                                "_id": "5ba1dd77809c892f580240ef",
+                                "date": "2018-09-19T05:24:07.399Z",
+                                "text": "Hahahahahahahaaa!",
+                                "user": Object {
+                                  "_id": "5b75f023f1957052e52106f5",
+                                  "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                                  "name": "John Grapard",
+                                },
+                              }
+                            }
+                            key="5ba1dd77809c892f580240ef"
+                            postId="5b9f4728bc40273febf52706"
+                          >
+                            <CommentNode
+                              authedUserId="123"
+                              comment={
+                                Object {
+                                  "_id": "5ba1dd77809c892f580240ef",
+                                  "date": "2018-09-19T05:24:07.399Z",
+                                  "text": "Hahahahahahahaaa!",
+                                  "user": Object {
+                                    "_id": "5b75f023f1957052e52106f5",
+                                    "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                                    "name": "John Grapard",
+                                  },
+                                }
+                              }
+                              deleteComment={[Function]}
+                              fetchUsersStats={[Function]}
+                              postId="5b9f4728bc40273febf52706"
+                            >
+                              <div
+                                className="CommentNode-container"
+                              >
+                                <p>
+                                  <b>
+                                    John Grapard
+                                  </b>
+                                   said at 
+                                  September 19, 2018, 1:24:07 AM
+                                  :
+                                </p>
+                                <p
+                                  className="CommentNode-container-Node-body"
+                                >
+                                  Hahahahahahahaaa!
+                                </p>
+                              </div>
+                            </CommentNode>
+                          </Connect(CommentNode)>
+                          <Connect(CommentNode)
+                            comment={
+                              Object {
+                                "_id": "5ba1de21f0b9f73054396abf",
+                                "date": "2018-09-19T05:26:57.632Z",
+                                "text": "Nuka proverim esli oshibka ostalas...",
+                                "user": Object {
+                                  "_id": "5b75f023f1957052e52106f5",
+                                  "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                                  "name": "John Grapard",
+                                },
+                              }
+                            }
+                            key="5ba1de21f0b9f73054396abf"
+                            postId="5b9f4728bc40273febf52706"
+                          >
+                            <CommentNode
+                              authedUserId="123"
+                              comment={
+                                Object {
+                                  "_id": "5ba1de21f0b9f73054396abf",
+                                  "date": "2018-09-19T05:26:57.632Z",
+                                  "text": "Nuka proverim esli oshibka ostalas...",
+                                  "user": Object {
+                                    "_id": "5b75f023f1957052e52106f5",
+                                    "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                                    "name": "John Grapard",
+                                  },
+                                }
+                              }
+                              deleteComment={[Function]}
+                              fetchUsersStats={[Function]}
+                              postId="5b9f4728bc40273febf52706"
+                            >
+                              <div
+                                className="CommentNode-container"
+                              >
+                                <p>
+                                  <b>
+                                    John Grapard
+                                  </b>
+                                   said at 
+                                  September 19, 2018, 1:26:57 AM
+                                  :
+                                </p>
+                                <p
+                                  className="CommentNode-container-Node-body"
+                                >
+                                  Nuka proverim esli oshibka ostalas...
+                                </p>
+                              </div>
+                            </CommentNode>
+                          </Connect(CommentNode)>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Overlay>
+            </CommentsView>
+          </Connect(CommentsView)>
+        </Route>
+      </commentsRoute>
+    </Router>
+  </StaticRouter>
+</Provider>
+`;
