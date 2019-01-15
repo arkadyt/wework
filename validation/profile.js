@@ -73,6 +73,7 @@ module.exports = (obj, options = {
                 .min(3, 'Please enter at least ${min} skills')
                 .max(40, 'Skills limit of ${max} has been reached')
                 .required('Please specify your skills'),
+            website: Yup.string().url('Please enter a valid URL address'),
             youtube: Yup.string().url('Please enter a valid URL address'),
             twitter: Yup.string().url('Please enter a valid URL address'),
             facebook: Yup.string().url('Please enter a valid URL address'),
