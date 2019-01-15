@@ -11,7 +11,7 @@ const bio = ({
 ) : null
 
 bio.propTypes = {
-  bio: string.isRequired
+  bio: string
 }
 
 export default bio

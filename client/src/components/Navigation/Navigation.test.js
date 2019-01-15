@@ -30,7 +30,7 @@ describe('Navigation', () => {
     describe('passing', () => {
       describe('ProfileButton', () => {
         it('receives correct toggleDropdown prop', () => {
-          expect(comp().find('profileButton').prop('toggleDropdown')).toBe(comp().instance().toggleDropdown)
+          expect(comp().find('profileButton').prop('toggleDropdown').name).toContain('toggleDropdown')
         })
       })
 
@@ -46,7 +46,7 @@ describe('Navigation', () => {
         })
 
         it('receives correct function into toggleDropdown prop', () => {
-          expect(comp().find('dropdown').prop('toggleDropdown')).toBe(comp().instance().toggleDropdown)
+          expect(comp().find('dropdown').prop('toggleDropdown').name).toContain('toggleDropdown')
         })
       })
     })
