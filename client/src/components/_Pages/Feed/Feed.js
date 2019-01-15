@@ -32,7 +32,7 @@ class Feed extends Component {
   }
 
   isBottom(el) {
-    return el.getBoundingClientRect().bottom <= window.innerHeight
+    return Math.floor(el.getBoundingClientRect().bottom) <= window.innerHeight
   }
 
   onScroll() {
@@ -46,6 +46,8 @@ class Feed extends Component {
       }
     }
   }
+
+  boundOnScroll = this.onScroll.bind(this)
 
   afterFetch() {
     this.setState({ isLoading: false })
@@ -67,14 +69,14 @@ class Feed extends Component {
 
   componentDidMount() {
     const { fetchPosts } = this.props
-    document.addEventListener('scroll', this.onScroll.bind(this))
+    document.addEventListener('scroll', this.boundOnScroll)
 
     window.scrollTo(0, 0)
     fetchPosts(false)
   }
 
   componentWillUnmount() {
-    document.removeEventListener('scroll', this.onScroll.bind(this))
+    document.removeEventListener('scroll', this.boundOnScroll)
   }
 
   render() {
