@@ -56,6 +56,9 @@ $state-bg-select:               $color-accent-main;
 $multiselect-tag-bg:            $color-bg-secondary;
 $multiselect-tag-border:        $color-bg-secondary;
 
+$input-bg-disabled:             lighten($color-field-background, 10%);
+$input-border-disabled:         $color-field-border;
+
 // use node_modules here bc @import directive will be handled by 
 // SASS compiler first who knows nothing about webpack's [~]
 @import 'node_modules/react-widgets/lib/scss/react-widgets';
