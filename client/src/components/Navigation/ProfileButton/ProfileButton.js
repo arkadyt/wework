@@ -7,7 +7,7 @@ const profileButton = ({
 }) => (
   isAuthenticated
     ? <button className="Navigation-button" onClick={toggleDropdown}>
-        <span>Account</span>
+        <span>Menu</span>
       </button> 
     : <Link to="/login">
         <span>Log In</span>
