@@ -39,11 +39,11 @@ class Navigation extends React.Component {
         <ProtectedLinks 
           isAuthenticated={authedUser.isAuthenticated} />
         <ProfileButton 
-          toggleDropdown={this.toggleDropdown} 
+          toggleDropdown={this.toggleDropdown.bind(this)}
           isAuthenticated={authedUser.isAuthenticated} />
         <Dropdown 
           showDropdown={this.state.showDropdown}
-          toggleDropdown={this.toggleDropdown} 
+          toggleDropdown={this.toggleDropdown.bind(this)}
           history={history}
           logoutUser={logoutUser} />
       </nav>
