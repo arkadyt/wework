@@ -43,16 +43,19 @@ class UpdateProfile extends React.Component {
         history.goBack()
     }
 
+    handleSubmit = e => {
+        const { history, updateUsersProfile } = this.props
+        const { showSocial, creatingProfile, ...data } = this.state
+        e.preventDefault()
+        updateUsersProfile(data, () => history.replace('/profile'))
+    }
+
     render() {
-        const { updateUsersProfile, errors } = this.props
+        const { errors } = this.props
 
         return (
             <Overlay onBackdropClick={this.handleDismiss}>
-                <form className="UpdateProfile-container" onSubmit={e => {
-                    e.preventDefault()
-                    const { showSocial, creatingProfile, ...data } = this.state
-                    updateUsersProfile(data, this.handleDismiss)
-                }}>
+                <form className="UpdateProfile-container" onSubmit={this.handleSubmit}>
                     <h1>{this.state.creatingProfile ? 'Create' : 'Update'} profile</h1>
                     <Field
                         type="text"

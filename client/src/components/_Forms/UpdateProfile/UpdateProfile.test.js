@@ -988,7 +988,7 @@ describe('UpdateProfile', () => {
         const { showSocial, creatingProfile, ...expectedData } = comp().state()
 
         comp().find('form').simulate('submit', mockedEvent)
-        expect(props.updateUsersProfile).toHaveBeenCalledWith(expectedData, comp().instance().handleDismiss)
+        expect(props.updateUsersProfile).toHaveBeenCalledWith(expectedData, expect.any(Function))
       })
 
       it('invokes e.preventDefault()', () => {
