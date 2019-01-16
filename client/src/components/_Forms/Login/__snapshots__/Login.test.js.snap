@@ -13,7 +13,7 @@ exports[`Login matches snapshot 1`] = `
       onChange={[Function]}
       placeholder="Your email"
       type="text"
-      value=""
+      value="frodo@sheer.hobbit"
     />
     <field
       label="Password:"
@@ -21,7 +21,7 @@ exports[`Login matches snapshot 1`] = `
       onChange={[Function]}
       placeholder="Your password"
       type="password"
-      value=""
+      value="12345678"
     />
     <div
       className="Login-buttons"
