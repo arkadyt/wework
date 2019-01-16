@@ -1,15 +1,9 @@
 import React, { Component } from 'react'
 import './Feed.scss'
 import { connect } from 'react-redux'
-import { compose } from 'recompose'
-
 import Reply from '../../Reply/Reply'
 import { fetchPosts, addPost } from '../../../state/actions/postsActions'
-import { withEither, withAdded } from '../../../hocs/conditionalRendering'
-import FBSpinner from '../../FBSpinner/FBSpinner'
-import NoContent from './NoContent/NoContent'
 import FeedContent from './FeedContent/FeedContent'
-import EndOfFeedMessage from './EndOfFeedMessage/EndOfFeedMessage'
 import QuickStats from '../../QuickStats/QuickStats'
 import Discover from '../../Discover/Discover'
 
@@ -17,18 +11,6 @@ class Feed extends Component {
   state = {
     loadMore: false,
     isLoading: false
-  }
-
-  isEmptyFn({ endOfFeed, posts }) {
-    return posts.length === 0 && !!endOfFeed
-  }
-
-  isLoadingFn({ endOfFeed, posts, isLoading }) {
-    return isLoading || (!endOfFeed && posts.length === 0)
-  }
-
-  isEndOfFeedFn({ endOfFeed, isLoading }) {
-    return !!endOfFeed && !isLoading
   }
 
   isBottom(el) {
@@ -88,14 +70,6 @@ class Feed extends Component {
       match
     } = this.props
 
-    const withCondRendering = compose(
-      withEither(this.isEmptyFn, NoContent),
-      withAdded(this.isLoadingFn, FBSpinner),
-      withAdded(this.isEndOfFeedFn, EndOfFeedMessage)
-    )
-
-    const FeedContentWithCondRendering = withCondRendering(FeedContent)
-
     const baseUrl = match.url || ''
 
     return (
@@ -105,7 +79,7 @@ class Feed extends Component {
         </div>
         <div id="Feed-mid-column" className="Feed-mid-column">
           <Reply onSubmit={(data, callback) => addPost(data, callback)} />
-          <FeedContentWithCondRendering
+          <FeedContent
             isLoading={this.state.isLoading}
             endOfFeed={endOfFeed}
             posts={posts}

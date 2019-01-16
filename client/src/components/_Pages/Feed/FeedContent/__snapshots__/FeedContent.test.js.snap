@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FeedContent Route render-out matches snapshot 1`] = `
+exports[`FeedContent snapshots Route render-out matches snapshot 1`] = `
 <Connect(CommentsView)
   history={
     Object {
@@ -89,8 +89,12 @@ exports[`FeedContent Route render-out matches snapshot 1`] = `
 />
 `;
 
-exports[`FeedContent matches snapshot 1`] = `
+exports[`FeedContent snapshots matches snapshot 1`] = `
 <Fragment>
+  <Route
+    path="/view-comments/:postId"
+    render={[Function]}
+  />
   <div
     className="Feed-body"
   >
@@ -149,9 +153,5 @@ exports[`FeedContent matches snapshot 1`] = `
       }
     />
   </div>
-  <Route
-    path="/view-comments/:postId"
-    render={[Function]}
-  />
 </Fragment>
 `;
