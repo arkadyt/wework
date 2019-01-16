@@ -1,30 +1,11 @@
-[DONE] create (a separate?) db with fake profiles and posts data
-
-[DONE] rethink logic of Profile.js regarding overwriting the noProfile error
-[DONE] Rethink error overwriting
-[DONE] Update stats on every Feed event
-[DONE] Refetch discover content upon the unfollow event
-[DONE] Show newly followed people's posts
-[DONE] QuickStats: say create profile now to see your stats! (+ Add component header)
-[DONE] fix overscrolling at /profile
-[DONE] add GitHub repo link (-50% gray) (Author, not See on Github. Ppl wanna know WHO IS HE? They know what it is.)
-[DONE] loading indicator at Profile
-
-[SKIP?] show (viewed) user's posts under profile view
-[SKIP] smooth transition from loading for QuickStats & Discover
-[SKIP] Server Polling for updates on loaded content, for widgets etc.
+[SKIP] Server polling for updates on feed content, stats, etc.
 [SKIP] mark mandatory fields with asterisks
-[SKIP] loading screen (alike reddit one: page filled with shapes)
-[SKIP] Buttons together at the AddEdu & AddExp forms!
-
-// Overriding scss vars of side packages in a CRA setup
-// follow conventions
-// what are they??????????
-// override variables, then import source variables sheet
-// but where?
-// why would it be used? how do overriden variables get connected?
-
-// SOLUTIONS:
-// - fork a package, figure out how to build it, learn publishing on npm, and use it
-// - use different package
-// - figure out how to override fucken styles
+[SKIP] loading screen (reddit style: page filled with shapes of text fields)
+[SKIP] Buttons together at the AddEdu & AddExp forms?
+ 
+Known bugs and bad things to be fixed:
+- Removing subscriptions and own posts from personal feed causes loading indicator to be shown and stuck.
+  No request is sent to api server, endOfFeed stays undefined and isEmptyFn() returns false at Feed.js.
+- Form errors persist between different forms and are not cleaned up properly.
+- No server-side rendering, harmed (or almost absent) SEO as a result.
+- Use of HashRouter.

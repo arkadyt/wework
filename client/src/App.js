@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { HashRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './state/store'
 import Layout from './components/Layout'
@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <div className="App-container">
         <Provider store={store}>
-          <Router>
+          <Router basename="/">
             <React.Fragment>
               <Layout />
               <Navigation />

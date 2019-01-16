@@ -13,8 +13,8 @@ import { func, object } from 'prop-types'
 
 class Login extends React.Component {
     state = {
-      email: '',
-      password: ''
+      email: 'frodo@sheer.hobbit',
+      password: '12345678' // my bank password
     }
 
     render() {
@@ -71,5 +71,5 @@ Login.propTypes = {
 
 export { Login as _UnconnectedLogin }
 export default withRouter(connect(state => ({
-    errors: state.err.formErrors
+  errors: state.err.formErrors
 }), { loginUser, fetchFollowers, fetchSubscriptions, fetchUsersProfile })(Login))
