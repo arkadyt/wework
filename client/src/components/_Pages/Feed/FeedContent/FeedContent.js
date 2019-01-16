@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import Post from '../../../Post/Post'
-import CommentsRoute from '../CommentsRoute/CommentsRoute'
+import CommentsView from '../../../CommentsView/CommentsView'
+import { Route } from 'react-router-dom'
 import { arrayOf, string } from 'prop-types'
 import { postType } from '../../../../types/index'
 
@@ -14,9 +15,15 @@ const feedContent = ({
         <Post key={item._id} {...item} />)
       )}
     </div>
-    <CommentsRoute 
-      posts={posts}
-      baseUrl={baseUrl} />
+    <Route 
+      path={`${baseUrl}/view-comments/:postId`} 
+      render={props => (
+        <CommentsView 
+          post={posts.find(
+            item => item._id === props.match.params.postId
+          )}
+          {...props} />
+      )} />
   </Fragment>
 )
 
