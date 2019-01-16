@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Skills matches snapshot 1`] = `
+<section
+  className="skills"
+>
+  <p
+    className="header"
+  >
+    Skill Set:
+  </p>
+  <div
+    className="skills-list"
+  >
+    <span
+      className="tag"
+      key="skill-0"
+    >
+      Skill1
+    </span>
+    <span
+      className="tag"
+      key="skill-1"
+    >
+      Skill2
+    </span>
+  </div>
+</section>
+`;

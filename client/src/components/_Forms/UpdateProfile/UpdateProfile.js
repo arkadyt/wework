@@ -8,8 +8,19 @@ import { func, object } from 'prop-types'
 
 class UpdateProfile extends React.Component {
     initialState = {
-        showSocial: false,
-        creatingProfile: true
+      showSocial: false,
+      creatingProfile: true,
+      handle: '',
+      company: '',
+      title: '',
+      location: '',
+      website: '',
+      youtube: '',
+      twitter: '',
+      instagram: '',
+      facebook: '',
+      linkedin: '',
+      githubusername: ''
     }
 
     constructor(props) {
@@ -32,16 +43,19 @@ class UpdateProfile extends React.Component {
         history.goBack()
     }
 
+    handleSubmit = e => {
+        const { history, updateUsersProfile } = this.props
+        const { showSocial, creatingProfile, ...data } = this.state
+        e.preventDefault()
+        updateUsersProfile(data, () => history.replace('/profile'))
+    }
+
     render() {
-        const { updateUsersProfile, errors } = this.props
+        const { errors } = this.props
 
         return (
             <Overlay onBackdropClick={this.handleDismiss}>
-                <form className="UpdateProfile-container" onSubmit={e => {
-                    e.preventDefault()
-                    const { showSocial, creatingProfile, ...data } = this.state
-                    updateUsersProfile(data, this.handleDismiss)
-                }}>
+                <form className="UpdateProfile-container" onSubmit={this.handleSubmit}>
                     <h1>{this.state.creatingProfile ? 'Create' : 'Update'} profile</h1>
                     <Field
                         type="text"
@@ -190,7 +204,9 @@ UpdateProfile.propTypes = {
   profile: object
 }
 
-export { UpdateProfile }
-export default connect(state => ({
+export const mapStateToProps = state => ({
     errors: state.err.formErrors
-}), { updateUsersProfile })(UpdateProfile)
+})
+
+export { UpdateProfile }
+export default connect(mapStateToProps, { updateUsersProfile })(UpdateProfile)

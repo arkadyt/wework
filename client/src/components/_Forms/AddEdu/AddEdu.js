@@ -8,7 +8,10 @@ import Overlay from '../../Overlay/Overlay'
 import { addEducation } from '../../../state/actions/profileActions'
 
 class AddEdu extends React.Component {
-    state = {}
+    state = {
+      fieldOfStudy: '',
+      school: ''
+    }
 
     handleDismiss = () => {
         const { history } = this.props
@@ -115,7 +118,9 @@ AddEdu.propTypes = {
   addEducation: func.isRequired
 }
 
-export { AddEdu as _UnconnectedAddEdu }
-export default connect(state => ({
+export const mapStateToProps = state => ({
     errors: state.err.formErrors
-}), { addEducation })(AddEdu)
+})
+
+export { AddEdu as _UnconnectedAddEdu }
+export default connect(mapStateToProps, { addEducation })(AddEdu)

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal matches snapshot 1`] = `
+<Overlay
+  centered={true}
+  onBackdropClick={[MockFunction]}
+>
+  <div
+    className="Modal-container"
+  >
+    <p
+      className="question"
+    >
+      Whatsup?
+    </p>
+    <div
+      className="buttons"
+    >
+      <field
+        label="No"
+        onClick={[MockFunction]}
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+        type="button"
+      />
+      <field
+        label="Yes"
+        onClick={[MockFunction]}
+        style={
+          Object {
+            "backgroundColor": "green",
+            "borderColor": "green",
+            "color": "white",
+            "width": "100%",
+          }
+        }
+        type="button"
+      />
+    </div>
+  </div>
+</Overlay>
+`;

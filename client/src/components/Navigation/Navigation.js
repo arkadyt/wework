@@ -2,73 +2,56 @@ import React from 'react'
 import './Navigation.scss'
 import { connect } from 'react-redux'
 import { logoutUser } from '../../state/actions/userActions'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import Dropdown from './Dropdown/Dropdown'
+import ProtectedLinks from './ProtectedLinks/ProtectedLinks'
+import ProfileButton from './ProfileButton/ProfileButton'
 
 class Navigation extends React.Component {
-    state = {
-        showDropdown: false
-    }
+  state = {
+    showDropdown: false
+  }
 
-    toggleDropdown = (e, state) => {
-        this.setState(prevState => {
-            return { showDropdown: state || !prevState.showDropdown }
-        })
-    }
+  toggleDropdown(e, state) {
+    this.setState(prevState => ({ 
+      showDropdown: state || !prevState.showDropdown
+    }))
+  }
 
-    render() {
-        const profileButton = this.props.authedUser.isAuthenticated ?
-            <button className="Navigation-button" onClick={this.toggleDropdown}>
-                <span>Account</span>
-            </button> :
-            <Link to="/login">
-                <span>Log In</span>
-            </Link>
+  render() {
+    const { 
+      history, 
+      logoutUser,
+      authedUser
+    } = this.props
 
-        const protectedLinks = this.props.authedUser.isAuthenticated ?
-            <React.Fragment>
-                <Link to="/feed"><span>Feed</span></Link>
-            </React.Fragment> : null
-
-        const dropdown = (
-            <React.Fragment>
-                <ul onClick={() => this.toggleDropdown(false)}
-                    className={["account-menu",
-                        this.state.showDropdown && "account-menu-open"].join(' ')}>
-                    <li><Link to="/profile"><span>My Profile</span></Link></li>
-                    <li>
-                        <button className="Navigation-menu-button"
-                            onClick={() => this.props.logoutUser(() => {
-                                this.props.history.push('/login')
-                            })}>
-                            <span>Logout</span>
-                        </button>
-                    </li>
-                </ul>
-                {this.state.showDropdown &&
-                    <div className="backdrop" onClick={() => this.toggleDropdown(false)} />}
-            </React.Fragment>
-        )
-
-        return <div className="Navigation-container">
-            <div className="Navigation-logo">
-                <span>We</span><span>Work</span>
-            </div>
-            <nav>
-                <a href="https://arkadyt.com"
-                    className="Navigation-semi-transparent"
-                    target="_blank" rel="noopener noreferrer">
-                    App Author
-                </a>
-                {protectedLinks}
-                {profileButton}
-                {dropdown}
-            </nav>
-        </div>
-    }
+    return <div className="Navigation-container">
+      <div className="Navigation-logo">
+        <span>We</span><span>Work</span>
+      </div>
+      <nav>
+        <a 
+          href="https://arkadyt.com"
+          className="Navigation-semi-transparent"
+          target="_blank" rel="noopener noreferrer">
+          App Author
+        </a>
+        <ProtectedLinks 
+          isAuthenticated={authedUser.isAuthenticated} />
+        <ProfileButton 
+          toggleDropdown={this.toggleDropdown.bind(this)}
+          isAuthenticated={authedUser.isAuthenticated} />
+        <Dropdown 
+          showDropdown={this.state.showDropdown}
+          toggleDropdown={this.toggleDropdown.bind(this)}
+          history={history}
+          logoutUser={logoutUser} />
+      </nav>
+    </div>
+  }
 }
 
-const mapStateToProps = state => ({
-    authedUser: state.user
-})
-
-export default withRouter(connect(mapStateToProps, { logoutUser })(Navigation))
+export { Navigation as _UnconnectedNavigation }
+export default withRouter(connect(state => ({
+  authedUser: state.user
+}), { logoutUser  })(Navigation))

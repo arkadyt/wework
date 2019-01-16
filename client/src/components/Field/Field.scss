@@ -61,6 +61,10 @@
         padding: .6rem;
         width: 100%;
     }
+    input::placeholder,
+    textarea::placeholder {
+        color: $color-field-placeholder;
+    }
     input {
         background: $color-field-background;
         color: $color-field-font;

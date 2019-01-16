@@ -8,7 +8,11 @@ import Field from '../../Field/Field'
 import Overlay from '../../Overlay/Overlay'
 
 class AddExp extends React.Component {
-    state = {}
+    state = {
+      title: '',
+      company: '',
+      location: ''
+    }
 
     handleDismiss = () => {
         const { history } = this.props
@@ -102,7 +106,9 @@ AddExp.propTypes = {
   history: object.isRequired
 }
 
-export { AddExp as _UnconnectedAddExp }
-export default connect(state => ({
+export const mapStateToProps = state => ({
     errors: state.err.formErrors
-}), { addExperience })(AddExp)
+})
+
+export { AddExp as _UnconnectedAddExp }
+export default connect(mapStateToProps, { addExperience })(AddExp)

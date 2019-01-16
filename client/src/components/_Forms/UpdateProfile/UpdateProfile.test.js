@@ -65,7 +65,7 @@
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import { UpdateProfile } from './UpdateProfile'
+import { UpdateProfile, mapStateToProps } from './UpdateProfile'
 import cloneDeep from 'lodash.clonedeep'
 import Overlay from '../../Overlay/Overlay'
 import Field from '../../Field/Field'
@@ -988,7 +988,7 @@ describe('UpdateProfile', () => {
         const { showSocial, creatingProfile, ...expectedData } = comp().state()
 
         comp().find('form').simulate('submit', mockedEvent)
-        expect(props.updateUsersProfile).toHaveBeenCalledWith(expectedData, comp().instance().handleDismiss)
+        expect(props.updateUsersProfile).toHaveBeenCalledWith(expectedData, expect.any(Function))
       })
 
       it('invokes e.preventDefault()', () => {
@@ -1150,6 +1150,24 @@ describe('UpdateProfile', () => {
         comp().find(Field).find('[name="cancel"]').simulate('click', mockedEvent)
         expect(comp().instance().handleDismiss).toHaveBeenCalled()
       })
+    })
+  })
+
+  describe('mapStateToProps', () => {
+    it('returns expected object', () => {
+      const state = {
+        err: { 
+          formErrors: {
+            email: 'Email is wrong' 
+          }
+        }
+      }
+
+      const expectedObject = {
+        errors: state.err.formErrors
+      }
+
+      expect(mapStateToProps(state)).toEqual(expectedObject)
     })
   })
 

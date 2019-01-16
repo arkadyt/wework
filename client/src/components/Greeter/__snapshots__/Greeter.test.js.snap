@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Greeter matches snapshot 1`] = `
+<div
+  className="Greeter__container"
+>
+  <div
+    className="Greeter__logo-screen false"
+  >
+    <div
+      className="Greeter__logo"
+    >
+      <span>
+        We
+      </span>
+      <span>
+        Work
+      </span>
+    </div>
+    <span
+      className="Greeter__headline false"
+    >
+      Social network website for professionals
+    </span>
+    <span
+      className="Greeter__headline_warning false"
+    >
+      Support for the tall screens is already
+      <br />
+      on the way!
+      <br />
+      <br />
+      <span
+        style={
+          Object {
+            "fontSize": 80,
+          }
+        }
+      >
+        <FaShippingFast />
+      </span>
+      <br />
+      <br />
+      Until then you can visit the website
+      <br />
+      on desktop or switch your
+      <br />
+      device into the landscape mode.
+      <br />
+      <br />
+      To checkout my skills in building the
+      <br />
+      responsive layouts visit 
+      <a
+        href="https://arkadyt.com"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <b>
+          https://arkadyt.com
+        </b>
+      </a>
+      !
+      <br />
+    </span>
+  </div>
+  <div
+    className="Greeter__white-screen false"
+  />
+</div>
+`;

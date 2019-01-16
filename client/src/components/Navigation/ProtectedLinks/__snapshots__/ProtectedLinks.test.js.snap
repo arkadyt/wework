@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProtectedLinks matches snapshot with isAuthenticated set to false 1`] = `""`;
+
+exports[`ProtectedLinks matches snapshot with isAuthenticated set to true 1`] = `
+<Fragment>
+  <NavLink
+    activeClassName="active"
+    aria-current="page"
+    to="/feed"
+  >
+    <span>
+      Feed
+    </span>
+  </NavLink>
+</Fragment>
+`;

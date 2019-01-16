@@ -100,7 +100,7 @@ router.post('/login', (req, res) => {
             bcrypt.compare(req.body.password, user.password)
                 .then(isMatch => {
                     if (!isMatch) {
-                        res.status(400).json({ error: 'Incorrect username or password' })
+                        res.status(400).json({ password: 'Incorrect password' })
                     } else {
                         // Create JWT Payload
                         const payload = {

@@ -1,5 +1,4 @@
 $navigation-height: 3rem;
-
 $box-shadow-main: 0px 3px 13px 0px rgba(0, 0, 0, 0.3);
 
 $color-bg-main:      #35383b;
@@ -11,9 +10,10 @@ $color-font-error:   rgb(255, 160, 160);
 
 $color-accent-main:    cornflowerblue;
 
-$color-field-background: darken($color-bg-main, 3%);
-$color-field-border:     lighten(#35383b, 20%);
-$color-field-font:       $color-font-main;
+$color-field-background:   darken($color-bg-main, 3%);
+$color-field-border:       lighten(#35383b, 20%);
+$color-field-font:         $color-font-main;
+$color-field-placeholder:  darken($color-font-main, 65%);
 
 $color-nav:         darken($color-bg-main, 5%);
 $color-nav-border:  darken($color-bg-main, 10%);
@@ -31,3 +31,34 @@ $color-button-active-font:      $color-font-secondary;
 $color-button-hover-backround:  $color-element-secondary;
 $color-button-hover-border:     $color-element-secondary;
 $color-button-hover-font:       $color-font-main;
+
+
+
+/*                       */
+/* jquense/react-widgets */
+/*                       */
+
+$font-path: '~react-widgets/lib/fonts';
+$img-path: '~react-widgets/lib/img';
+
+$widget-border:                 $color-field-border;
+$widget-bg:                     $color-field-background;
+
+$font-size:                     1rem;
+$input-color-placeholder:       $color-field-placeholder;
+$input-color:                   $color-field-font;
+$text-color:                    $color-field-font;
+
+$input-border-focus:            $color-accent-main;
+$state-bg-hover:                $color-accent-main;
+$state-bg-select:               $color-accent-main;
+
+$multiselect-tag-bg:            $color-bg-secondary;
+$multiselect-tag-border:        $color-bg-secondary;
+
+$input-bg-disabled:             lighten($color-field-background, 10%);
+$input-border-disabled:         $color-field-border;
+
+// use node_modules here bc @import directive will be handled by 
+// SASS compiler first who knows nothing about webpack's [~]
+@import 'node_modules/react-widgets/lib/scss/react-widgets';

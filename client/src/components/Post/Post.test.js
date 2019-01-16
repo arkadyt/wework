@@ -65,7 +65,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { mount, shallow } from 'enzyme'
-import { _UnconnectedPost as Post } from './Post.js'
+import { _UnconnectedPost as Post, mapStateToProps } from './Post.js'
 import { mockPost } from '../../mocks/posts.js'
 import cloneDeep from 'lodash.clonedeep'
 
@@ -498,6 +498,18 @@ describe('Post', () => {
 
         expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(false)
       })
+    })
+  })
+
+  describe('mapStateToProps', () => {
+    it('returns expected object', () => {
+      const state = {
+        user: {
+          name: 'John Doe'
+        }
+      }
+
+      expect(mapStateToProps(state)).toEqual({ authedUser: state.user })
     })
   })
 

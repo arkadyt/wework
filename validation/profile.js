@@ -38,7 +38,7 @@ module.exports = (obj, options = {
             from: Yup.string().required("Please specify the start date"),
             to: Yup.string().when('current', {
                 is: undefined,
-                then: Yup.string().required("Do you still work here?"),
+                then: Yup.string().required("Please enter the end date or tick the 'Current?' checkbox"),
                 otherwise: Yup.string().notRequired()
             }),
             current: Yup.bool(),
@@ -52,7 +52,7 @@ module.exports = (obj, options = {
             from: Yup.string().required("Please enter the start date"),
             to: Yup.string().when('current', {
                 is: undefined,
-                then: Yup.string().required("Do you still study here?"),
+                then: Yup.string().required("Please enter the end date or tick the 'Current?' checkbox"),
                 otherwise: Yup.string().notRequired()
             }),
             current: Yup.bool(),
@@ -73,6 +73,7 @@ module.exports = (obj, options = {
                 .min(3, 'Please enter at least ${min} skills')
                 .max(40, 'Skills limit of ${max} has been reached')
                 .required('Please specify your skills'),
+            website: Yup.string().url('Please enter a valid URL address'),
             youtube: Yup.string().url('Please enter a valid URL address'),
             twitter: Yup.string().url('Please enter a valid URL address'),
             facebook: Yup.string().url('Please enter a valid URL address'),

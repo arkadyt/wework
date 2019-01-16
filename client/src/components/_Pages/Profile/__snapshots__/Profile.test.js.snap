@@ -1,0 +1,462 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile snapshots Routes rendered when authed user is at /profile, and has no profile yet /create-profile 1`] = `
+<Connect(UpdateProfile)
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "pathname": "/profile/create-profile",
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {},
+      "path": "/profile/create-profile",
+      "url": "/profile/create-profile",
+    }
+  }
+/>
+`;
+
+exports[`Profile snapshots Routes rendered when authed user is at /profile, and has no profile yet bare baseUrl 1`] = `
+<Modal
+  actionColor="green"
+  onConfirm={[Function]}
+  onDismiss={[Function]}
+  question="You don't yet have a profile. Would you like to create one now?"
+/>
+`;
+
+exports[`Profile snapshots Routes rendered when authed user is at /profile, and he/she already have a profile /add-education 1`] = `
+<Connect(AddEdu)
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "pathname": "/profile/add-education",
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {},
+      "path": "/profile/add-education",
+      "url": "/profile/add-education",
+    }
+  }
+/>
+`;
+
+exports[`Profile snapshots Routes rendered when authed user is at /profile, and he/she already have a profile /add-experience 1`] = `
+<Connect(AddExp)
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "pathname": "/profile/add-experience",
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {},
+      "path": "/profile/add-experience",
+      "url": "/profile/add-experience",
+    }
+  }
+/>
+`;
+
+exports[`Profile snapshots Routes rendered when authed user is at /profile, and he/she already have a profile /delete-profile 1`] = `
+<Modal
+  actionColor="red"
+  onConfirm={[Function]}
+  onDismiss={[Function]}
+  question="Are you sure you want to delete your profile?"
+/>
+`;
+
+exports[`Profile snapshots Routes rendered when authed user is at /profile, and he/she already have a profile /update-profile 1`] = `
+<Connect(UpdateProfile)
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "pathname": "/profile/update-profile",
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {},
+      "path": "/profile/update-profile",
+      "url": "/profile/update-profile",
+    }
+  }
+  profile={
+    Object {
+      "__v": 0,
+      "_id": "5b7b42ba57a5806b896e8f0d",
+      "bio": "TEST BIO TEXT.",
+      "company": "Some Company",
+      "date": "2018-08-23T20:25:12.263Z",
+      "education": Array [
+        Object {
+          "_id": "5b7cab633345cc4c066c0540",
+          "current": true,
+          "degree": "Nano CS Degree",
+          "fieldOfStudy": "Bioengineering",
+          "from": "2015-08-02T00:00:00.000Z",
+          "school": "Some Bootcamp",
+        },
+      ],
+      "experience": Array [
+        Object {
+          "_id": "5b7ca6cf63353349cf03756c",
+          "company": "Some Company",
+          "current": false,
+          "from": "2009-03-31T23:00:00.000Z",
+          "title": "Software Developer",
+          "to": "2012-08-01T00:00:00.000Z",
+        },
+      ],
+      "githubusername": "arkadyt",
+      "handle": "john_doe",
+      "location": "Seattle, WA",
+      "skills": Array [
+        "Go",
+        "C#",
+        "C++",
+        "Whatnot else",
+      ],
+      "status": "Not available for employment",
+      "title": "Senior Developer",
+      "user": Object {
+        "_id": "5b75f023f1957052e52106f5",
+        "avatar": "gravatar://some.avatar",
+        "name": "John Doe",
+      },
+      "website": "arkadyt.com",
+    }
+  }
+/>
+`;
+
+exports[`Profile snapshots Routes rendered when authed user is at /profile, and he/she already have a profile bare baseUrl 1`] = `
+<Connect(ProfileView)
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "pathname": "/profile",
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {},
+      "path": "/profile",
+      "url": "/profile",
+    }
+  }
+  profile={
+    Object {
+      "__v": 0,
+      "_id": "5b7b42ba57a5806b896e8f0d",
+      "bio": "TEST BIO TEXT.",
+      "company": "Some Company",
+      "date": "2018-08-23T20:25:12.263Z",
+      "education": Array [
+        Object {
+          "_id": "5b7cab633345cc4c066c0540",
+          "current": true,
+          "degree": "Nano CS Degree",
+          "fieldOfStudy": "Bioengineering",
+          "from": "2015-08-02T00:00:00.000Z",
+          "school": "Some Bootcamp",
+        },
+      ],
+      "experience": Array [
+        Object {
+          "_id": "5b7ca6cf63353349cf03756c",
+          "company": "Some Company",
+          "current": false,
+          "from": "2009-03-31T23:00:00.000Z",
+          "title": "Software Developer",
+          "to": "2012-08-01T00:00:00.000Z",
+        },
+      ],
+      "githubusername": "arkadyt",
+      "handle": "john_doe",
+      "location": "Seattle, WA",
+      "skills": Array [
+        "Go",
+        "C#",
+        "C++",
+        "Whatnot else",
+      ],
+      "status": "Not available for employment",
+      "title": "Senior Developer",
+      "user": Object {
+        "_id": "5b75f023f1957052e52106f5",
+        "avatar": "gravatar://some.avatar",
+        "name": "John Doe",
+      },
+      "website": "arkadyt.com",
+    }
+  }
+/>
+`;
+
+exports[`Profile snapshots Routes rendered when authed user is at /profile/id, and viewed user has a profile the only one and always rendered route 1`] = `
+<Connect(ProfileView)
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "pathname": "/profile/id/5b75f023f1957052e52106f5",
+    }
+  }
+  match={Object {}}
+  profile={
+    Object {
+      "__v": 0,
+      "_id": "5b7b42ba57a5806b896e8f0d",
+      "bio": "TEST BIO TEXT.",
+      "company": "Some Company",
+      "date": "2018-08-23T20:25:12.263Z",
+      "education": Array [
+        Object {
+          "_id": "5b7cab633345cc4c066c0540",
+          "current": true,
+          "degree": "Nano CS Degree",
+          "fieldOfStudy": "Bioengineering",
+          "from": "2015-08-02T00:00:00.000Z",
+          "school": "Some Bootcamp",
+        },
+      ],
+      "experience": Array [
+        Object {
+          "_id": "5b7ca6cf63353349cf03756c",
+          "company": "Some Company",
+          "current": false,
+          "from": "2009-03-31T23:00:00.000Z",
+          "title": "Software Developer",
+          "to": "2012-08-01T00:00:00.000Z",
+        },
+      ],
+      "githubusername": "arkadyt",
+      "handle": "john_doe",
+      "location": "Seattle, WA",
+      "skills": Array [
+        "Go",
+        "C#",
+        "C++",
+        "Whatnot else",
+      ],
+      "status": "Not available for employment",
+      "title": "Senior Developer",
+      "user": Object {
+        "_id": "5b75f023f1957052e52106f5",
+        "avatar": "gravatar://some.avatar",
+        "name": "John Doe",
+      },
+      "website": "arkadyt.com",
+    }
+  }
+/>
+`;
+
+exports[`Profile snapshots conditional rendering outputs when match.url does not contain /id/ renders five routes if props.profile is defined 1`] = `
+<div
+  className="Profile-container"
+>
+  <div
+    className="Profile-content"
+  >
+    <Route
+      path="/profile"
+      render={[Function]}
+    />
+    <Route
+      path="/profile/update-profile"
+      render={[Function]}
+    />
+    <Route
+      path="/profile/add-experience"
+      render={[Function]}
+    />
+    <Route
+      path="/profile/add-education"
+      render={[Function]}
+    />
+    <Route
+      path="/profile/delete-profile"
+      render={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`Profile snapshots conditional rendering outputs when match.url does not contain /id/ renders two routes if props.errors.noProfile is defined 1`] = `
+<div
+  className="Profile-container"
+>
+  <div
+    className="Profile-content"
+  >
+    <Route
+      exact={true}
+      path="/profile"
+      render={[Function]}
+    />
+    <Route
+      path="/profile/create-profile"
+      render={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`Profile snapshots conditional rendering outputs when match.url includes /id/ renders message that viewed user has no profile 1`] = `
+<div
+  className="Profile-container"
+>
+  <p
+    className="Profile-message"
+  >
+    User does not appear to have a profile :C
+    <br />
+    <Link
+      replace={false}
+      to="/feed"
+    >
+      ..:: Go Back ::..
+    </Link>
+  </p>
+</div>
+`;
+
+exports[`Profile snapshots conditional rendering outputs when match.url includes /id/ renders viewed users profile 1`] = `
+<div
+  className="Profile-container"
+>
+  <div
+    className="Profile-content"
+  >
+    <Route
+      render={[Function]}
+    />
+  </div>
+</div>
+`;

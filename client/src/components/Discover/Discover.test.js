@@ -29,8 +29,8 @@
 
 
 import React from 'react'
-import {shallow} from 'enzyme'
-import { _UnconnectedDiscover as Discover } from './Discover'
+import { shallow } from 'enzyme'
+import { _UnconnectedDiscover as Discover, mapStateToProps } from './Discover'
 import cloneDeep from 'lodash.clonedeep'
 import CreatorsList from './CreatorsList/CreatorsList'
 
@@ -127,6 +127,13 @@ describe('Discover', () => {
         followAPerson: discoverComp().instance().followAPerson
       }
       expect(discoverComp().find(CreatorsList).props()).toStrictEqual(expectedProps)
+    })
+  })
+
+  describe('mapStateToProps', () => {
+    it('returns expected object', () => {
+      const state = { user: { discoverList: [ 'item' ] } }
+      expect(mapStateToProps(state)).toEqual({ list: [ 'item' ] })
     })
   })
 

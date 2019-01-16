@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoProfileMessage matches snapshot 1`] = `
+<Fragment>
+  <h2>
+    You don't yet have a profile, create one now!
+  </h2>
+  <field
+    label="Create"
+    onClick={[Function]}
+    type="button"
+  />
+</Fragment>
+`;

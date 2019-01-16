@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feed matches snapshot 1`] = `
+<div
+  className="Feed-container"
+>
+  <div
+    className="Feed-lft-column"
+  >
+    <withRouter(Connect(QuickStats)) />
+  </div>
+  <div
+    className="Feed-mid-column"
+    id="Feed-mid-column"
+  >
+    <Connect(Reply)
+      onSubmit={[Function]}
+    />
+    <feedContent
+      baseUrl=""
+      isLoading={false}
+      posts={
+        Array [
+          Object {
+            "__v": 0,
+            "_id": "5b9f4728bc40273febf52706",
+            "comments": Array [
+              Object {
+                "_id": "5ba1dd77809c892f580240ef",
+                "date": "2018-09-19T05:24:07.399Z",
+                "text": "Hahahahahahahaaa!",
+                "user": Object {
+                  "_id": "5b75f023f1957052e52106f5",
+                  "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                  "name": "John Grapard",
+                },
+              },
+              Object {
+                "_id": "5ba1de21f0b9f73054396abf",
+                "date": "2018-09-19T05:26:57.632Z",
+                "text": "Nuka proverim esli oshibka ostalas...",
+                "user": Object {
+                  "_id": "5b75f023f1957052e52106f5",
+                  "avatar": "//www.gravatar.com/avatar/254dbff8aa12a023b9f1052ad80b1831?s=200&r=pg&d=mm",
+                  "name": "John Grapard",
+                },
+              },
+            ],
+            "date": "2018-09-17T06:18:16.992Z",
+            "likes": Array [
+              Object {
+                "_id": "5ba1dd61809c892f580240ed",
+                "user": "5b75f023f1957052e52106f5",
+              },
+              Object {
+                "_id": "5ba80533058247301e362bf9",
+                "user": "5ba1acfc13b542138b29af68",
+              },
+              Object {
+                "_id": "5ba847153c823e00161763b5",
+                "user": "5ba83562ed730446b54def34",
+              },
+            ],
+            "text": "Tas nisl commlor sit amet, consec!",
+            "user": Object {
+              "_id": "5b9eedd621194c102c5280e8",
+              "avatar": "//www.gravatar.com/avatar/e13743a7f1db7f4246badd6fd6ff54ff?s=200&r=pg&d=mm",
+              "name": "John Doe",
+            },
+          },
+        ]
+      }
+    />
+  </div>
+  <div
+    className="Feed-rgt-column"
+  >
+    <Connect(Discover) />
+  </div>
+</div>
+`;

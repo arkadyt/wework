@@ -17,6 +17,7 @@ exports[`AddExp matches snapshot 1`] = `
       onChange={[Function]}
       placeholder="Software Developer"
       type="text"
+      value=""
     />
     <field
       label="Company:"
@@ -24,6 +25,7 @@ exports[`AddExp matches snapshot 1`] = `
       onChange={[Function]}
       placeholder="Company name"
       type="text"
+      value=""
     />
     <field
       label="Location:"
@@ -31,6 +33,7 @@ exports[`AddExp matches snapshot 1`] = `
       onChange={[Function]}
       placeholder="San Francisco, CA"
       type="text"
+      value=""
     />
     <field
       label="From:"

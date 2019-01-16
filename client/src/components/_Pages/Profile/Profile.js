@@ -105,8 +105,11 @@ class Profile extends Component {
     }
 }
 
-export default connect(state => ({
+export const mapStateToProps = state => ({
     profile: state.profile,
     errors: state.err,
     viewedProfile: state.viewedProfile
-}), { fetchUsersProfile, deleteProfile, fetchAProfile })(Profile)
+})
+
+export { Profile }
+export default connect(mapStateToProps, { fetchUsersProfile, deleteProfile, fetchAProfile })(Profile)

@@ -1,7 +1,14 @@
 const cors = require('cors')
 
-var whitelist = ['https://socnet.arkadyt.com']
-var corsOptions = {
+let whitelist
+
+if (process.env.NODE_ENV === 'development') {
+  whitelist = ['http://localhost:3000']
+} else {
+  whitelist = ['https://socnet.arkadyt.com']
+}
+
+const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)

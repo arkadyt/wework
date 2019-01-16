@@ -11,7 +11,7 @@ class Reply extends Component {
         this.state = {}
     }
 
-    handleSubmit = () => {
+  handleSubmit = () => {
         this.setState({ text: '' })
         this.props.fetchUsersStats()
     }
@@ -29,7 +29,7 @@ class Reply extends Component {
             style={flat ? flatStyle : null}
             onSubmit={e => {
                 e.preventDefault()
-                onSubmit(this.state, () => this.handleSubmit())
+                onSubmit(this.state, this.handleSubmit)
             }}>
             <p className="Reply-header">Post as <b>{authedUser.name}:</b></p>
             <Field
@@ -47,8 +47,10 @@ class Reply extends Component {
     }
 }
 
-export const _UnconnectedReply = Reply
-export default connect(state => ({
+export const mapStateToProps = state => ({
     authedUser: state.user,
     errors: state.err.formErrors
-}), { fetchUsersStats })(Reply)
+})
+
+export const _UnconnectedReply = Reply
+export default connect(mapStateToProps, { fetchUsersStats })(Reply)

@@ -39,7 +39,7 @@
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import { _UnconnectedCommentNode as CommentNode } from './CommentNode'
+import { _UnconnectedCommentNode as CommentNode, mapStateToProps } from './CommentNode'
 import cloneDeep from 'lodash.clonedeep'
 import { mockPost } from '../../mocks/posts.js'
 import moment from 'moment'
@@ -144,6 +144,13 @@ describe('CommentNode', () => {
       props.deleteButton = jest.fn()
       commentNode().find({ type: 'linkButton', label: 'Delete' }).simulate('click')
       expect(props.deleteComment).toHaveBeenCalledWith(postId, commentId, props.fetchUsersStats)
+    })
+  })
+
+  describe('mapStateToProps', () => {
+    it('returns expected object', () => {
+      const state = { user: { id: 'id123' } }
+      expect(mapStateToProps(state)).toEqual({ authedUserId: 'id123' })
     })
   })
 

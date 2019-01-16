@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DangerZone matches snapshot 1`] = `
+<section>
+  <div />
+  <field
+    containerStyle={
+      Object {
+        "margin": 0,
+      }
+    }
+    inline={true}
+    label="Delete Profile"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundColor": "red",
+        "borderColor": "red",
+        "color": "white",
+      }
+    }
+    type="button"
+  />
+</section>
+`;

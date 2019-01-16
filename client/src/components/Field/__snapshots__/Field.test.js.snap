@@ -1,0 +1,296 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Field snapshot testing passes a snapshot test (custom type) 1`] = `
+<div
+  className="Field-container "
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <label
+    htmlFor="viewName"
+  >
+    label!
+  </label>
+  <input
+    className="rw-widget-container rw-widget-input"
+    id="viewName"
+    name="viewName"
+    onChange={[MockFunction]}
+    placeholder="some pl"
+    type="custom98410"
+    value="testval"
+  />
+  <span
+    className="error"
+  >
+    error!
+  </span>
+</div>
+`;
+
+exports[`Field snapshot testing passes a snapshot test (type = "button") 1`] = `
+<div
+  className="Field-container "
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <button
+    className="button"
+    onClick={[MockFunction]}
+    style={
+      Object {
+        "backfaceVisibility": "none",
+      }
+    }
+  >
+    label!
+  </button>
+</div>
+`;
+
+exports[`Field snapshot testing passes a snapshot test (type = "checkbox") 1`] = `
+<div
+  className="Field-container "
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <label
+    htmlFor="viewName"
+  >
+    <input
+      id="viewName"
+      name="viewName"
+      onChange={[MockFunction]}
+      type="checkbox"
+      value="testval"
+    />
+      
+    label!
+  </label>
+</div>
+`;
+
+exports[`Field snapshot testing passes a snapshot test (type = "date") 1`] = `
+<div
+  className="Field-container "
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <label
+    htmlFor="viewName"
+  >
+    label!
+  </label>
+  <Uncontrolled(DateTimePicker)
+    disabled={false}
+    editFormat="M/DD/YYYY"
+    format="MMM DD, YYYY"
+    id="viewName"
+    name="viewName"
+    onChange={[MockFunction]}
+    placeholder="some pl"
+    time={false}
+    value="testval"
+  />
+  <span
+    className="error"
+  >
+    error!
+  </span>
+</div>
+`;
+
+exports[`Field snapshot testing passes a snapshot test (type = "linkButton") 1`] = `
+<div
+  className="Field-container "
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <button
+    className="link-button"
+    onClick={[MockFunction]}
+    style={
+      Object {
+        "backfaceVisibility": "none",
+      }
+    }
+  >
+    label!
+  </button>
+</div>
+`;
+
+exports[`Field snapshot testing passes a snapshot test (type = "list") 1`] = `
+<div
+  className="Field-container "
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <label
+    htmlFor="viewName"
+  >
+    label!
+  </label>
+  <Uncontrolled(DropdownList)
+    data={
+      Array [
+        "item",
+        "item2",
+        "item3",
+      ]
+    }
+    id="viewName"
+    name="viewName"
+    onChange={[MockFunction]}
+    placeholder="some pl"
+    value="testval"
+  />
+  <span
+    className="error"
+  >
+    error!
+  </span>
+</div>
+`;
+
+exports[`Field snapshot testing passes a snapshot test (type = "multiselect") 1`] = `
+<div
+  className="Field-container "
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <label
+    htmlFor="viewName"
+  >
+    label!
+  </label>
+  <Uncontrolled(Multiselect)
+    data={
+      Array [
+        "item",
+        "item2",
+        "item3",
+      ]
+    }
+    id="viewName"
+    name="viewName"
+    onChange={[MockFunction]}
+    placeholder="some pl"
+    value="testval"
+  />
+  <span
+    className="error"
+  >
+    error!
+  </span>
+</div>
+`;
+
+exports[`Field snapshot testing passes a snapshot test (type = "submit") 1`] = `
+<div
+  className="Field-container "
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <button
+    className="button-action"
+    type="submit"
+  >
+    label!
+  </button>
+</div>
+`;
+
+exports[`Field snapshot testing passes a snapshot test (type = "textarea") 1`] = `
+<div
+  className="Field-container "
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <label
+    htmlFor="viewName"
+  >
+    label!
+  </label>
+  <textarea
+    className="rw-widget-container rw-widget-input"
+    id="viewName"
+    name="viewName"
+    onChange={[MockFunction]}
+    placeholder="some pl"
+    rows={5}
+    style={
+      Object {
+        "backfaceVisibility": "none",
+        "fontSize": "1rem",
+        "padding": ".5rem",
+        "resize": "none",
+        "width": "100%",
+      }
+    }
+    value="testval"
+  />
+  <span
+    className="error"
+  >
+    error!
+  </span>
+</div>
+`;
+
+exports[`Field snapshot testing passes a snapshot test (undefined type) 1`] = `
+<div
+  className="Field-container "
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <label
+    htmlFor="viewName"
+  >
+    label!
+  </label>
+  <input
+    className="rw-widget-container rw-widget-input"
+    id="viewName"
+    name="viewName"
+    onChange={[MockFunction]}
+    placeholder="some pl"
+    value="testval"
+  />
+  <span
+    className="error"
+  >
+    error!
+  </span>
+</div>
+`;
