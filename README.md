@@ -24,11 +24,12 @@ use newdb
 db.createUser({ user: "username", pwd: "password", roles: ["userAdmin"] })
 ```
 
-Modify mongoURI in config/keys.dev.js:
+Set up config/keys.dev.js:
 ```
-...
+module.exports = {
   mongoURI: 'mongodb://username:password@localhost:27017/newdb',
-...
+  secretOrKey: '12345678'
+}
 ```
 
 Run the app:
