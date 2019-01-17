@@ -2,11 +2,11 @@
 
 This is a fullstack web application built in `JavaScript`, `React` and `Node.js`; it uses `MongoDB` for data storage.
 
-Backend app is hosted at my own compute instance at [GCP](https://cloud.google.com).
+Backend app and database are hosted at my own compute instance at [GCP](https://cloud.google.com).
 
-Frontend is served from Firebase.
+Frontend is served from [Firebase](http://firebase.google.com).
 
-~~[Site link](https://socnet.arkadyt.com).~~ (currently under maintenance)
+[Site link](https://socnet.arkadyt.com).
 
 # Run Locally
 Clone the repository, install dependencies and build:
@@ -20,19 +20,24 @@ cd ./client && npm install
 Set up a new local mongodb database through mongo shell:
 ```
 mongo
-use newdb
-db.createUser({ user: "username", pwd: "password", roles: ["userAdmin"] })
+use <dbname>
+db.createUser({ user: "<username>", pwd: "<password>", roles: ["userAdmin"] })
 ```
 
 Set up config/keys.dev.js:
 ```
 module.exports = {
-  mongoURI: 'mongodb://username:password@localhost:27017/newdb',
+  mongoURI: 'mongodb://<username>:<password>@localhost:27017/<dbname>',
   secretOrKey: '12345678'
 }
 ```
 
 Run the app:
 ```
-npm start && cd ./client && npm start
+# cd into repo root, then
+konsole & disown
+cd ./client && npm start
+
+# in the previous terminal window
+npm start
 ```
