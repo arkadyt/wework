@@ -1,4 +1,4 @@
-# Description [![Build Status](https://travis-ci.org/arkadyt/ww.net.svg?branch=master)](https://travis-ci.org/arkadyt/ww.net)
+# Description [![Build Status](https://travis-ci.org/arkadyt/ww.net.svg?branch=master)](https://travis-ci.org/arkadyt/ww.net) ![](https://img.shields.io/coveralls/github/arkadyt/ww.net.svg)
 
 This is a fullstack web application built in `JavaScript`, `React` and `Node.js`; it uses `MongoDB` for data storage.
 
