@@ -1,12 +1,12 @@
 # Description [![Build Status](https://travis-ci.org/arkadyt/ww.net.svg?branch=master)](https://travis-ci.org/arkadyt/ww.net)
 
-This is a fullstack web application built in `JavaScript`, `React` and `Node.js`; it uses `MongoDB` for data storage ([mlab.com](https://mlab.com)).
+This is a fullstack web application built in `JavaScript`, `React` and `Node.js`; it uses `MongoDB` for data storage.
 
 Backend app is hosted at my own compute instance at [GCP](https://cloud.google.com).
 
 Frontend is served from Firebase.
 
-[Site link](https://socnet.arkadyt.com).
+~~[Site link](https://socnet.arkadyt.com).~~ (currently under maintenance)
 
 # Run Locally
 Clone the repository, install dependencies and build:
