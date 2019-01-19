@@ -22,11 +22,21 @@ app.use('/api/profile', profileRouter)
 app.use('/api/info', infoRouter)
 
 const mongoose = require('mongoose')
-const db = require('./config/keys').mongoURI
-mongoose
-    .connect(db, { useNewUrlParser: true })
-    .then(() => console.log('Connected to database.'))
-    .catch((err) => console.log('Could not connect to database.\n' + err))
+const mongoURI = require('./config/keys').mongoURI
+const db = mongoose.connection
+db.on('connecting', () => console.log('Connecting to database...'))
+db.on('open', () => console.log('Connected to database.'))
+db.on('error', err => {
+  console.log('Error in database connection:\n\t' + err)
+  mongoose.disconnect()
+  console.log('Attempting to reconnect in 5 seconds...')
+})
+db.on('disconnected', () => {
+  new Promise(resolve => setTimeout(resolve, 5000)).then(() => {
+    mongoose.connect(mongoURI, { useNewUrlParser: true })
+  })
+})
+mongoose.connect(mongoURI, { useNewUrlParser: true })
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log('Application listening on port: ' + PORT))
