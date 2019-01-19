@@ -1,5 +1,4 @@
 /node_modules
-/coverage
-/build
+/config/keys.dev.js
 
 package-lock.json
