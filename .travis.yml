@@ -1,5 +1,5 @@
 # Regular testing is always run except master branch pushes
-# All master branch pushes are tested with coverage production
+# All master branch tests are followed by coverage production
 # Deployments are triggered by /[frontend|backend]/ tags
 
 language: node_js
@@ -16,6 +16,8 @@ jobs:
     - stage: Test
       if: branch != master
       name: Run backend tests
+      before_install:
+        - cd server
       script:
         - echo "TODO Write backend tests!"
     - stage: Test
@@ -31,6 +33,8 @@ jobs:
     - stage: Test and produce coverage (uploaded to coveralls.io)
       if: branch = master
       name: For backend app
+      before_install:
+        - cd server
       script: 
         - echo "TODO Again, write backend tests"
     - stage: Coverage
@@ -50,6 +54,7 @@ jobs:
       if: tag =~ /backend/
       name: Build a backend app docker image and upload it to DockerHub
       script:
+        - cd server
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -t arkadyt/wnetb:latest .
         - docker push arkadyt/wnetb:latest
