@@ -20,8 +20,7 @@ jobs:
         - cd server
       script:
         - echo "TODO Write backend tests!"
-    - stage: Test
-      if: branch != master
+    - if: branch != master
       name: Run frontend tests
       before_install:
         - cd client
@@ -37,8 +36,7 @@ jobs:
         - cd server
       script: 
         - echo "TODO Again, write backend tests"
-    - stage: Coverage
-      if: branch = master
+    - if: branch = master
       name: For frontend app
       before_install:
         - cd client
@@ -58,8 +56,7 @@ jobs:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -t arkadyt/wnetb:latest .
         - docker push arkadyt/wnetb:latest
-    - stage: Deploy
-      if: tag =~ /frontend/
+    - if: tag =~ /frontend/
       name: Deploy frontend app to Firebase
       before_install:
         - cd client
