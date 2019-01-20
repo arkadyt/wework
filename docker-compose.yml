@@ -4,7 +4,7 @@ services:
   backend:
     image: "arkadyt/wnetb:latest"
     env_file:
-      - ./wnetb.env
+      - "/home/arkadyt/code/private/env/wnetb.env"
     ports: 
       - "5001:5000"
     depends_on:
