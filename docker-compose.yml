@@ -9,6 +9,7 @@ services:
       - "5001:5000"
     depends_on:
       - db
+    restart: always
 
   db:
     image: "mongo:4.0.5-xenial"
