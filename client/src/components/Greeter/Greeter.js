@@ -51,15 +51,15 @@ class Greeter extends React.Component {
 
                         <span style={{fontSize: 80}}><IcoTruck /></span><br /><br />
 
-                        Until then you can visit the website<br />
+                        Until then you can visit website<br />
                         on desktop or switch your<br />
                         device into the landscape mode.<br /><br />
 
-                        To checkout my skills in building the<br />
+                        To assess my skills in building<br />
                         responsive layouts visit&nbsp;
                         <a href="https://arkadyt.com" target="_blank" rel="noopener noreferrer">
                             <b>https://arkadyt.com</b>
-                        </a>!<br />
+                        </a>.<br />
                     </span>
                 </div>
                 <div className={whiteScreenClasses} />
