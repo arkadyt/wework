@@ -25,9 +25,9 @@ exports[`Greeter matches snapshot 1`] = `
     <span
       className="Greeter__headline_warning false"
     >
-      Support for the tall screens is already
+      Support for tall screens is
       <br />
-      on the way!
+      already on the way!
       <br />
       <br />
       <span
@@ -45,12 +45,13 @@ exports[`Greeter matches snapshot 1`] = `
       <br />
       on desktop or switch your
       <br />
-      device into the landscape mode.
+      device into landscape mode.
       <br />
       <br />
       To assess my skills in building
       <br />
-      responsive layouts visit 
+      responsive layouts visit:
+      <br />
       <a
         href="https://arkadyt.com"
         rel="noopener noreferrer"
@@ -60,8 +61,6 @@ exports[`Greeter matches snapshot 1`] = `
           https://arkadyt.com
         </b>
       </a>
-      .
-      <br />
     </span>
   </div>
   <div
