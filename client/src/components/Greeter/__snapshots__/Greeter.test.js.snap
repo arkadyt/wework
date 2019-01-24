@@ -33,13 +33,12 @@ exports[`Greeter matches snapshot 1`] = `
       <span
         style={
           Object {
-            "fontSize": 80,
+            "fontSize": "7rem",
           }
         }
       >
         <FaShippingFast />
       </span>
-      <br />
       <br />
       Until then, you can visit website
       <br />
