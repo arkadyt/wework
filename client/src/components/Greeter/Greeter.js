@@ -56,10 +56,10 @@ class Greeter extends React.Component {
                         device into landscape mode.<br /><br />
 
                         To assess my skills in building<br />
-                        responsive layouts visit&nbsp;
+                        responsive layouts visit:<br />
                         <a href="https://arkadyt.com" target="_blank" rel="noopener noreferrer">
                             <b>https://arkadyt.com</b>
-                        </a>!<br />
+                        </a>
                     </span>
                 </div>
                 <div className={whiteScreenClasses} />
