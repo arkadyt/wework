@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { HashRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './state/store'
@@ -12,10 +12,10 @@ class App extends Component {
       <div className="App-container">
         <Provider store={store}>
           <Router basename="/">
-            <React.Fragment>
+            <Fragment>
               <Layout />
               <Navigation />
-            </React.Fragment>
+            </Fragment>
           </Router>
         </Provider>
         <Greeter />
