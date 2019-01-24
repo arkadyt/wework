@@ -49,7 +49,7 @@ class Greeter extends React.Component {
                         Support for tall screens is<br />
                         already on the way!<br /><br />
 
-                        <span style={{fontSize: 80}}><IcoTruck /></span><br /><br />
+                        <span style={{fontSize: '7rem'}}><IcoTruck /></span><br />
 
                         Until then, you can visit website<br />
                         on desktop or switch your<br />
