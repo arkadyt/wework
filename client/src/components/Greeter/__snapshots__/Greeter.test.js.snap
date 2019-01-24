@@ -41,14 +41,14 @@ exports[`Greeter matches snapshot 1`] = `
       </span>
       <br />
       <br />
-      Until then you can visit the website
+      Until then, you can visit website
       <br />
       on desktop or switch your
       <br />
       device into the landscape mode.
       <br />
       <br />
-      To checkout my skills in building the
+      To assess my skills in building
       <br />
       responsive layouts visit 
       <a
@@ -60,7 +60,7 @@ exports[`Greeter matches snapshot 1`] = `
           https://arkadyt.com
         </b>
       </a>
-      !
+      .
       <br />
     </span>
   </div>
