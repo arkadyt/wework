@@ -51,7 +51,7 @@ class Greeter extends React.Component {
 
                         <span style={{fontSize: 80}}><IcoTruck /></span><br /><br />
 
-                        Until then you can visit website<br />
+                        Until then, you can visit website<br />
                         on desktop or switch your<br />
                         device into the landscape mode.<br /><br />
 
