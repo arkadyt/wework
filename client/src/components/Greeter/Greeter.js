@@ -46,20 +46,20 @@ class Greeter extends React.Component {
                         Social network website for professionals
                     </span>
                     <span className={headlineWarningClasses}>
-                        Support for the tall screens is already<br />
-                        on the way!<br /><br />
+                        Support for tall screens is<br />
+                        already on the way!<br /><br />
 
                         <span style={{fontSize: 80}}><IcoTruck /></span><br /><br />
 
                         Until then, you can visit website<br />
                         on desktop or switch your<br />
-                        device into the landscape mode.<br /><br />
+                        device into landscape mode.<br /><br />
 
                         To assess my skills in building<br />
                         responsive layouts visit&nbsp;
                         <a href="https://arkadyt.com" target="_blank" rel="noopener noreferrer">
                             <b>https://arkadyt.com</b>
-                        </a>.<br />
+                        </a>!<br />
                     </span>
                 </div>
                 <div className={whiteScreenClasses} />
