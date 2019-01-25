@@ -37,8 +37,26 @@ class UpdateProfile extends React.Component {
             this.state = this.initialState
         }
     }
+  
+    isDropdownHidden = dd => {
+        if (!dd.classList) 
+            // we don't know what that is, allow to navigate back.
+            return true
+        else 
+            return dd.classList.contains("rw-popup-transition-exited")
+    }
 
     handleDismiss = () => {
+        const dropdowns = document.querySelector(".rw-popup-container")
+
+        if (Array.isArray(dropdowns)) {
+            for (let dd in dropdowns) {
+                if (!this.isDropdownHidden(dd)) return
+            }
+        } else if (dropdowns) {
+            if (!this.isDropdownHidden(dropdowns)) return
+        }
+
         const { history } = this.props
         history.goBack()
     }
