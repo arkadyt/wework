@@ -7,6 +7,8 @@ import FeedContent from './FeedContent/FeedContent'
 import QuickStats from '../../QuickStats/QuickStats'
 import Discover from '../../Discover/Discover'
 
+const FeedContext = React.createContext()
+
 class Feed extends Component {
   state = {
     loadMore: false,
@@ -31,6 +33,10 @@ class Feed extends Component {
 
   boundOnScroll = this.onScroll.bind(this)
 
+  triggerFeedLoad() {
+    this.setState({ loadMore: true })
+  }
+
   afterFetch() {
     this.setState({ isLoading: false })
   }
@@ -42,7 +48,7 @@ class Feed extends Component {
       const { posts, fetchPosts } = this.props
 
       fetchPosts(
-        posts[posts.length - 1].date,
+        posts.length === 0 ? false : posts[posts.length - 1].date,
         this.afterFetch.bind(this),
         this.afterFetch.bind(this)
       )
@@ -60,6 +66,10 @@ class Feed extends Component {
   componentWillUnmount() {
     document.removeEventListener('scroll', this.boundOnScroll)
   }
+  
+  feedContext = {
+    triggerFeedLoad: this.triggerFeedLoad.bind(this)
+  }
 
   render() {
     const {
@@ -73,22 +83,25 @@ class Feed extends Component {
     const baseUrl = match.url || ''
 
     return (
-      <div className="Feed-container">
-        <div className="Feed-lft-column">
-          <QuickStats />
+      <FeedContext.Provider value={this.feedContext}>
+        <div className="Feed-container">
+          <div className="Feed-lft-column">
+            <QuickStats />
+          </div>
+          <div id="Feed-mid-column" className="Feed-mid-column">
+            <Reply onSubmit={(data, callback) => addPost(data, callback)} />
+            <FeedContent
+              isLoading={this.state.isLoading}
+              triggerFeedLoad={this.triggerFeedLoad.bind(this)}
+              endOfFeed={endOfFeed}
+              posts={posts}
+              baseUrl={baseUrl} />
+          </div>
+          <div className="Feed-rgt-column">
+            <Discover />
+          </div>
         </div>
-        <div id="Feed-mid-column" className="Feed-mid-column">
-          <Reply onSubmit={(data, callback) => addPost(data, callback)} />
-          <FeedContent
-            isLoading={this.state.isLoading}
-            endOfFeed={endOfFeed}
-            posts={posts}
-            baseUrl={baseUrl} />
-        </div>
-        <div className="Feed-rgt-column">
-          <Discover />
-        </div>
-      </div>
+      </FeedContext.Provider>
     )
   }
 }
@@ -98,5 +111,5 @@ export const mapStateToProps = state => ({
   errors: state.err
 })
 
-export { Feed }
+export { Feed, FeedContext }
 export default connect(mapStateToProps, { fetchPosts, addPost })(Feed)
