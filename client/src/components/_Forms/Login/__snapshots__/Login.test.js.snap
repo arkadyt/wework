@@ -13,7 +13,7 @@ exports[`Login matches snapshot 1`] = `
       onChange={[Function]}
       placeholder="Your email"
       type="text"
-      value="frodo@sheer.hobbit"
+      value="test.account@gmail.com"
     />
     <field
       label="Password:"
