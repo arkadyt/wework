@@ -64,6 +64,7 @@
  */
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { FeedContext } from '../_Pages/Feed/Feed'
 import { mount, shallow } from 'enzyme'
 import { _UnconnectedPost as Post, mapStateToProps } from './Post.js'
 import { mockPost } from '../../mocks/posts.js'
@@ -345,7 +346,7 @@ describe('Post', () => {
           const comp = shallow(<Post {...props} />)
 
           comp.setState({ showMenu: true })
-          comp.instance().dismissMenu({ target: { className: 'Post__button--menu' } })
+          comp.instance().onMenuDismiss({ target: { className: 'Post__button--menu' } })
           expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(true)
         })
       })
@@ -359,7 +360,7 @@ describe('Post', () => {
         const event = { target: { className: 'Some__page__element' } }
 
         comp.setState({ showMenu: true })
-        comp.instance().dismissMenu(event)
+        comp.instance().onMenuDismiss(event)
         expect(comp.find(".Post__menu").hasClass("Post__menu--shown")).toBe(false)
       })
 
@@ -369,7 +370,15 @@ describe('Post', () => {
           props.authedUser.id = 'some_user_id123'
           props.user._id = props.authedUser.id
 
-          const comp = shallow(<Post {...props} />)
+          const context = {
+            triggerFeedLoad: jest.fn()
+          }
+
+          const comp = mount(
+            <FeedContext.Provider value={context}>
+              <Post {...props} />
+            </FeedContext.Provider>
+          )
           comp.find(".Post__button--menu").simulate('click')
 
           const menuButtons = comp.find(".Post__menu").children()
@@ -381,7 +390,15 @@ describe('Post', () => {
           props.authedUser.id = 'some_user_id123'
           props.user._id = props.authedUser.id
 
-          const comp = shallow(<Post {...props} />)
+          const context = {
+            triggerFeedLoad: jest.fn()
+          }
+
+          const comp = mount(
+            <FeedContext.Provider value={context}>
+              <Post {...props} />
+            </FeedContext.Provider>
+          )
           comp.find(".Post__button--menu").simulate('click')
 
           const menuButtons = comp.find(".Post__menu").children()
@@ -393,7 +410,15 @@ describe('Post', () => {
           props.authedUser.id = 'some_user_id123'
           props.user._id = 'some_different_id987'
 
-          const comp = shallow(<Post {...props} />)
+          const context = {
+            triggerFeedLoad: jest.fn()
+          }
+
+          const comp = mount(
+            <FeedContext.Provider value={context}>
+              <Post {...props} />
+            </FeedContext.Provider>
+          )
           comp.find(".Post__button--menu").simulate('click')
 
           const menuButtons = comp.find(".Post__menu").children()
@@ -405,7 +430,15 @@ describe('Post', () => {
           props.authedUser.id = 'some_user_id123'
           props.user._id = 'some_different_id987'
 
-          const comp = shallow(<Post {...props} />)
+          const context = {
+            triggerFeedLoad: jest.fn()
+          }
+
+          const comp = mount(
+            <FeedContext.Provider value={context}>
+              <Post {...props} />
+            </FeedContext.Provider>
+          )
           comp.find(".Post__button--menu").simulate('click')
 
           const menuButtons = comp.find(".Post__menu").children()
@@ -418,7 +451,15 @@ describe('Post', () => {
         props.authedUser.id = 'some_user_id123'
         props.user._id = props.authedUser.id
 
-        const comp = shallow(<Post {...props} />)
+        const context = {
+          triggerFeedLoad: jest.fn()
+        }
+
+        const comp = mount(
+          <FeedContext.Provider value={context}>
+            <Post {...props} />
+          </FeedContext.Provider>
+        )
         comp.find(".Post__button--menu").simulate('click')
 
         const menuButtons = comp.find(".Post__menu").children()
@@ -432,7 +473,15 @@ describe('Post', () => {
         props.authedUser.id = 'some_user_id123'
         props.user._id = 'some_different_id987'
 
-        const comp = shallow(<Post {...props} />)
+        const context = {
+          triggerFeedLoad: jest.fn()
+        }
+
+        const comp = mount(
+          <FeedContext.Provider value={context}>
+            <Post {...props} />
+          </FeedContext.Provider>
+        )
         comp.find(".Post__button--menu").simulate('click')
 
         const menuButtons = comp.find(".Post__menu").children()
@@ -449,7 +498,15 @@ describe('Post', () => {
         const postId = 'some_post123_id'
         props._id = postId
 
-        const comp = shallow(<Post {...props} />)
+        const context = {
+          triggerFeedLoad: jest.fn()
+        }
+
+        const comp = mount(
+          <FeedContext.Provider value={context}>
+            <Post {...props} />
+          </FeedContext.Provider>
+        )
         comp.find(".Post__button--menu").simulate('click')
 
         comp.find(".Post__menu")
@@ -468,7 +525,16 @@ describe('Post', () => {
         const authorId = 'some_different_id987'
         props.user._id = authorId
 
-        const comp = shallow(<Post {...props} />)
+        const context = {
+          triggerFeedLoad: jest.fn()
+        }
+
+        const comp = mount(
+          <FeedContext.Provider value={context}>
+            <Post {...props} />
+          </FeedContext.Provider>
+        )
+
         comp.find(".Post__button--menu").simulate('click')
 
         comp.find(".Post__menu")
@@ -479,6 +545,7 @@ describe('Post', () => {
         expect(props.unfollowAPerson).toHaveBeenCalledWith(authorId, expect.any(Function))
         expect(props.fetchUsersStats).toHaveBeenCalled()
         expect(props.fetchDiscoverContent).toHaveBeenCalledWith(5)
+        expect(context.triggerFeedLoad).toHaveBeenCalled()
       })
     })
   })

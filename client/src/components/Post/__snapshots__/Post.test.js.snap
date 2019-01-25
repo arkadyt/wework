@@ -8,12 +8,9 @@ exports[`Post must pass a snapshot test 1`] = `
   <div
     className="Post__menu "
   >
-    <button
-      className="Post__menu-item"
-      onClick={[Function]}
-    >
-      Unfollow user
-    </button>
+    <ContextConsumer>
+      <Component />
+    </ContextConsumer>
   </div>
   <div
     className="Post__header"
