@@ -13,7 +13,7 @@ import { func, object } from 'prop-types'
 
 class Login extends React.Component {
     state = {
-      email: 'frodo@sheer.hobbit',
+      email: 'test.account@gmail.com',
       password: '12345678' // my bank password
     }
 
