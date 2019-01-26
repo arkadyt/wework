@@ -13,7 +13,7 @@ class AddEdu extends React.Component {
       school: ''
     }
 
-    isDropdownHidden = dd => {
+    isDropdownHidden(dd) {
         if (!dd.classList) 
             // we don't know what that is, allow to navigate back.
             return true
@@ -25,11 +25,15 @@ class AddEdu extends React.Component {
         const dropdowns = document.querySelector(".rw-popup-container")
 
         if (Array.isArray(dropdowns)) {
-            for (let dd in dropdowns) {
-                if (!this.isDropdownHidden(dd)) return
+            for (let dd of dropdowns) {
+                if (!this.isDropdownHidden(dd)) {
+                    return
+                }
             }
         } else if (dropdowns) {
-            if (!this.isDropdownHidden(dropdowns)) return
+            if (!this.isDropdownHidden(dropdowns)) {
+                return
+            }
         }
 
         const { history } = this.props
