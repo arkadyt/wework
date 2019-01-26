@@ -182,8 +182,29 @@ describe('FeedContent', () => {
     })
   })
 
-  it('must generate expected amount of Posts', () => {
-    expect(comp().find('withRouter(Connect(Post))')).toHaveLength(props.posts.length)
+  describe('rendering', () => {
+    it('must generate expected amount of Posts', () => {
+      expect(comp().find('withRouter(Connect(Post))')).toHaveLength(props.posts.length)
+    })
+
+    it('renders NoContent comp at the bottom when isEmptyFn returns true', () => {
+      props.endOfFeed = 'some msg'
+      props.posts = []
+      expect(comp().find('noContent').exists()).toBe(true)
+    })
+
+    it('renders FBSpinner comp at the bottom when isLoadingFn returns true', () => {
+      delete props.endOfFeed
+      props.posts = []
+      props.isLoading = true
+      expect(comp().find('fBSpinner').exists()).toBe(true)
+    })
+
+    it('renders EndOfFeedMessage comp at the bottom when isEndOfFeedFn returns true', () => {
+      props.endOfFeed = 'some msg'
+      props.isLoading = false
+      expect(comp().find('endOfFeedMessage').exists()).toBe(true)
+    })
   })
 
   describe('snapshots', () => {

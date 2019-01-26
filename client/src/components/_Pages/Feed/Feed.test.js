@@ -218,6 +218,14 @@ describe('Feed', () => {
         expect(comp().instance().isBottom(el)).toBe(false)
       })
     })
+
+    describe('triggerFeedLoad', () => {
+      it('calls setState with correct parms once invoked', () => {
+        const spy = jest.spyOn(Feed.prototype, 'setState')
+        comp().instance().triggerFeedLoad()
+        expect(spy).toHaveBeenCalledWith({ loadMore: true })
+      })
+    })
   })
 
   describe('mapStateToProps', () => {

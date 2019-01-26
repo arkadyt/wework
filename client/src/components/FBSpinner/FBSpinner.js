@@ -1,7 +1,7 @@
 import React from 'react'
 import './FBSpinner.scss'
 
-export default () => (
+const fBSpinner = () => (
     <div className="lds-facebook">
         <div>
         </div>
@@ -11,3 +11,5 @@ export default () => (
         </div>
     </div>
 )
+
+export default fBSpinner
