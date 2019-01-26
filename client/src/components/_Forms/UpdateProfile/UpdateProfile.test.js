@@ -927,12 +927,120 @@ describe('UpdateProfile', () => {
   })
 
   describe('internal functions', () => {
-    describe('handleDismiss function', () => {
-      it('calls history.goBack() when called', () => {
-        const mockFn = jest.fn()
-        props.history.goBack = mockFn
+    describe('handleDismiss()', () => {
+      afterEach(() => {
+        jest.restoreAllMocks()
+      })
+
+      it('calls querySelector() when invoked', () => {
+        global.window.document.querySelector = jest.fn(
+          selector => []
+        )
         comp().instance().handleDismiss()
-        expect(mockFn).toHaveBeenCalled()
+        expect(global.window.document.querySelector).toHaveBeenCalled()
+      })
+
+      describe('when querySelector() returns array of nodes', () => {
+        it('calls isDropdownHidden() many times', () => {
+          global.document.querySelector = jest.fn().mockImplementationOnce(
+            selector => [ {}, {}, {} ]
+          )
+          const mockFn = jest.spyOn(UpdateProfile.prototype, "isDropdownHidden")
+          comp().instance().handleDismiss()
+          expect(mockFn).toHaveBeenCalledTimes(3)
+        })
+
+        it('returns if at least one of the dropdowns is not hidden', () => {
+          global.document.querySelector = jest.fn(
+            selector => [ 
+              { state: 'not hidden' }, 
+              { state: 'hidden' }, 
+              { state: 'hidden' }, 
+            ]
+          )
+          comp().instance().isDropdownHidden = jest.fn(
+            dd => dd.state === "hidden"
+          )
+          comp().instance().handleDismiss()
+          expect(props.history.goBack).not.toHaveBeenCalled()
+        })
+
+        it('calls history.goBack() if all dropdowns are hidden', () => {
+          global.document.querySelector = jest.fn(
+            selector => [ 
+              { state: 'hidden' }, 
+              { state: 'hidden' }, 
+              { state: 'hidden' }, 
+            ]
+          )
+          comp().instance().isDropdownHidden = jest.fn(
+            dd => dd.state === 'hidden'
+          )
+          comp().instance().handleDismiss()
+          expect(props.history.goBack).toHaveBeenCalled()
+        })
+      })
+
+      describe('when querySelector() returns single node', () => {
+        it('calls isDropdownHidden() once', () => {
+          global.document.querySelector = jest.fn(
+            selector => ({})
+          )
+          const mockFn = jest.spyOn(UpdateProfile.prototype, "isDropdownHidden")
+          comp().instance().handleDismiss()
+          expect(mockFn).toHaveBeenCalledTimes(1)
+        })
+
+        it('returns if dropdown is not hidden', () => {
+          global.document.querySelector = jest.fn(
+            selector => ({ state: 'not hidden' })
+          )
+          comp().instance().isDropdownHidden = jest.fn(
+            dd => dd.state === "hidden"
+          )
+          comp().instance().handleDismiss()
+          expect(props.history.goBack).not.toHaveBeenCalled()
+        })
+
+        it('calls history.goBack() if dropdown is hidden', () => {
+          global.document.querySelector = jest.fn(
+            selector => ({ state: 'hidden' }) 
+          )
+          comp().instance().isDropdownHidden = jest.fn(
+            dd => dd.state === "hidden"
+          )
+          comp().instance().handleDismiss()
+          expect(props.history.goBack).toHaveBeenCalled()
+        })
+      })
+    })
+
+    describe('isDropdownHidden', () => {
+      it('returns true if classList prop is not present on the object', () => {
+        const dd = {}
+        expect(comp().instance().isDropdownHidden(dd)).toBe(true)
+      })
+
+      it('returns true if classList arr contains correct className', () => {
+        const dd = { 
+          classList: {
+            classNames: [ "rw-popup-transition-exited" ],
+          }
+        }
+        dd.classList.contains = name => !!dd.classList.classNames.find(item => item === name)
+
+        expect(comp().instance().isDropdownHidden(dd)).toBe(true)
+      })
+
+      it('returns false if classList arr does not contain correct className', () => {
+        const dd = { 
+          classList: {
+            classNames: [ "" ],
+          }
+        }
+        dd.classList.contains = name => !!dd.classList.classNames.find(item => item === name)
+
+        expect(comp().instance().isDropdownHidden(dd)).toBe(false)
       })
     })
   })
