@@ -15,6 +15,6 @@ services:
     image: mongo:4.0.5-xenial
     restart: always
     ports:
-      - 27017:27017
+      - 27019:27017
     volumes:
       - /home/arkadyt/volumes/mongodb:/data/db
