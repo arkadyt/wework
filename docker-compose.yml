@@ -1,11 +1,11 @@
 version: "3.1"
 services:
 
-  backend:
+  api:
     image: arkadyt/wnetb:latest
     restart: always
     env_file:
-      - /home/arkadyt/code/private/env/wnetb.env
+      - /home/arkadyt/code/private/env/wwnet/api.env
     ports: 
       - 5001:5000
     depends_on:
@@ -14,6 +14,8 @@ services:
   db:
     image: mongo:4.0.5-xenial
     restart: always
+    env_file:
+      - /home/arkadyt/code/private/env/wwnet/db.env
     ports:
       - 27019:27017
     volumes:
