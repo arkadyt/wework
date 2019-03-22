@@ -14,9 +14,7 @@ services:
   db:
     image: mongo:4.0.5-xenial
     restart: always
-    env_file:
-      - /home/arkadyt/code/private/env/wwnet/db.env
     ports:
       - 27019:27017
     volumes:
-      - /home/arkadyt/volumes/mongodb:/data/db
+      - /home/arkadyt/volumes/mongodb_wwnet:/data/db
