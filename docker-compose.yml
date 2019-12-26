@@ -5,7 +5,7 @@ services:
     image: arkadyt/wnetb:latest
     restart: always
     env_file:
-      - /home/arkadyt/code/private/env/wwnet/api.env
+      - /home/ubuntu/code/private/env/wwnet/api.env
     ports: 
       - 5001:5000
     depends_on:
@@ -17,4 +17,4 @@ services:
     ports:
       - 27019:27017
     volumes:
-      - /home/arkadyt/volumes/mongodb_wwnet:/data/db
+      - /home/ubuntu/volumes/mongodb_wwnet:/data/db

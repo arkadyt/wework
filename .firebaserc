@@ -1,6 +1,5 @@
 {
   "projects": {
-    "socnet-arkadyt-com": "socnet-arkadyt-com",
-    "default": "socnet-arkadyt-com"
+    "default": "wwnet-arkadyt-com"
   }
 }
