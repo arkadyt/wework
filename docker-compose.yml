@@ -2,7 +2,7 @@ version: "3.1"
 services:
 
   api:
-    image: arkadyt/wnetb:latest
+    image: arkadyt/wework:latest
     restart: always
     env_file:
       - ./.env
