@@ -12,5 +12,7 @@ services:
       - db
 
   db:
-    image: mongo:4.0.5-xenial
+    build: db
     restart: always
+    env_file:
+      - .env
