@@ -1,3 +1,4 @@
+const env = require('dotenv').config()
 const express = require('express')
 const cors = require('./config/cors.policy.js')
 const app = express()
@@ -38,5 +39,5 @@ db.on('disconnected', () => {
 })
 mongoose.connect(mongoURI, { useNewUrlParser: true })
 
-const PORT = process.env.PORT || 5000
+const PORT = 5000
 app.listen(PORT, () => console.log('Application listening on port: ' + PORT))

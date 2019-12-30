@@ -1,7 +1,7 @@
 # Container would expect an --env-file with:
 # - NODE_ENV 
 # - MONGO_URI
-# - SECRET_OR_KEY
+# - SECRET
 
 FROM node:11.4-alpine
 
