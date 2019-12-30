@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import Field from '../../Field/Field'
 import { Link, withRouter } from 'react-router-dom'
@@ -14,14 +14,22 @@ import { func, object } from 'prop-types'
 class Login extends React.Component {
     state = {
       email: 'test.account@gmail.com',
-      password: '12345678' // my bank password
+      password: '12345678', // my bank password
+      reqSent: false
     }
 
     render() {
+        const { reqSent } = this.state;
+
         return <div className="Login-container">
             <form onSubmit={e => {
                 e.preventDefault()
-                this.props.loginUser(this.state, userId => {
+                const payload = { 
+                  email: this.state.email,
+                  password: this.state.password
+                };
+                this.setState({ reqSent: true });
+                this.props.loginUser(payload, userId => {
                     this.props.fetchSubscriptions(userId)
                     this.props.fetchFollowers(userId)
                     this.props.fetchUsersProfile()
@@ -35,7 +43,8 @@ class Login extends React.Component {
                     onChange={e => this.setState({ email: e.target.value })}
                     label="Email:"
                     error={this.props.errors.email} 
-                    placeholder="Your email" />
+                    placeholder="Your email"
+                />
                 <Field
                     type="password"
                     name="password"
@@ -43,17 +52,25 @@ class Login extends React.Component {
                     onChange={e => this.setState({ password: e.target.value })}
                     label="Password:"
                     error={this.props.errors.password} 
-                    placeholder="Your password" />
+                    placeholder="Your password"
+                />
                 <div className="Login-buttons">
                     <span className="Login-options-info">
-                        Don't have an account? <Link to="/signup">Sign Up</Link>
+                        {reqSent ? "Loading..." : (
+                            <Fragment>Don't have an account? <Link to="/signup">Sign Up</Link></Fragment>
+                        )}
                     </span>
                     <Field
                         type="submit"
                         name="submit"
                         inline
-                        containerStyle={{ margin: 0 }}
-                        label="Log In" />
+                        containerStyle={{ 
+                            margin: 0,
+                            pointerEvents: reqSent ? 'none' : 'unset',
+                            cursor: reqSent ? 'wait' : 'unset'
+                        }}
+                        label="Log In"
+                    />
                 </div>
             </form>
         </div>
