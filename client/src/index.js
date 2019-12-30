@@ -8,7 +8,7 @@ import axios from 'axios'
 if (process.env.NODE_ENV === 'development') {
   axios.defaults.baseURL = "http://localhost:5000"
 } else {
-  axios.defaults.baseURL = "https://api.arkadyt.com/wework"
+  axios.defaults.baseURL = "https://apis.arkadyt.com/wework"
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
