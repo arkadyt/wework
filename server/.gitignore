@@ -1,4 +1,6 @@
 /node_modules
-/config/keys.dev.js
 
+/config/keys.dev.js
+.env
 package-lock.json
+npm-debug*

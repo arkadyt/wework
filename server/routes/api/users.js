@@ -5,7 +5,7 @@ const Post = require('../../models/Post')
 const gravatar = require('gravatar')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const keys = require('../../config/keys')
+const SECRET = process.env.SECRET
 const passport = require('passport')
 const mongoose = require('mongoose')
 
@@ -65,7 +65,7 @@ router.post('/register', (req, res) => {
                                 // Sign Token
                                 jwt.sign(
                                     payload,
-                                    keys.secretOrKey,
+                                    SECRET,
                                     { expiresIn: 3600 * 24 * 7 },
                                     (err, token) => {
                                         if (err) throw err
@@ -112,7 +112,7 @@ router.post('/login', (req, res) => {
                         // Sign Token
                         jwt.sign(
                             payload,
-                            keys.secretOrKey,
+                            SECRET,
                             { expiresIn: 3600 * 24 * 7 },
                             (err, token) => {
                                 if (err) throw err

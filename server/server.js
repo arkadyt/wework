@@ -22,7 +22,7 @@ app.use('/api/profile', profileRouter)
 app.use('/api/info', infoRouter)
 
 const mongoose = require('mongoose')
-const mongoURI = require('./config/keys').mongoURI
+const mongoURI = process.env.MONGO_URI
 const db = mongoose.connection
 db.on('connecting', () => console.log('Connecting to database...'))
 db.on('open', () => console.log('Connected to database.'))
