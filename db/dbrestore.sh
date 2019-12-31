@@ -1,6 +1,10 @@
 #!/bin/bash
 
-DIRPATH=$0
+DIRPATH=$(pwd)
+
+# load credentials
+source $DIRPATH/../.env
+export $MONGO_INITDB_ROOT_USERNAME $MONGO_INITDB_ROOT_PASSWORD
 
 # restore db
 echo ::: restoring wework database from backup... :::
