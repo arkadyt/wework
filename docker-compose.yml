@@ -12,7 +12,9 @@ services:
       - db
 
   db:
-    build: db
+    image: mongo:4.0.5-xenial
     restart: always
     env_file:
       - .env
+    ports: 
+      - 27017:27017

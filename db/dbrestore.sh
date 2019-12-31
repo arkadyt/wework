@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIRPATH=/usr/src/db
+DIRPATH=$0
 
 # restore db
 echo ::: restoring wework database from backup... :::
@@ -10,7 +10,7 @@ mongorestore \
   --restoreDbUsersAndRoles \
   --authenticationDatabase=admin \
   --db=wework \
-  --host=127.0.0.1:27017 \
+  --host=localhost:27017 \
   --username=$MONGO_INITDB_ROOT_USERNAME \
   --password=$MONGO_INITDB_ROOT_PASSWORD \
   $DIRPATH/wework
