@@ -10,4 +10,4 @@ mongorestore \
   --restoreDbUsersAndRoles \
   --db=wework \
   --host=localhost:27017 \
-  $DIRPATH/wework
+  $DIRPATH/db/wework
