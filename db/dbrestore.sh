@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIRPATH=$(pwd)
+DIRPATH=/home/ubuntu/apps/wework
 
 # restore db
 echo ::: restoring wework database from backup... :::
