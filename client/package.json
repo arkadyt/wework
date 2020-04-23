@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "wework",
   "repository": "https://github.com/arkadyt/ww.net",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && firebase deploy"
+    "predeploy": "yarn build",
+    "deploy": "sh ./deploy.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
