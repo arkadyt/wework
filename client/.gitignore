@@ -4,5 +4,5 @@
 /.firebase
 
 package-lock.json
-.env
+.env.deploy
 .tern-port

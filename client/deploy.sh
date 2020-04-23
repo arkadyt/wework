@@ -3,7 +3,7 @@
 #
 
 # import aws key variables from .env file
-export $(xargs < ./.env)
+export $(xargs < ./.env.deploy)
 
 deploy-aws-s3-cloudfront \
   --acl private \
