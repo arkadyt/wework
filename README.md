@@ -8,7 +8,7 @@ This is an open-source social networking platform project. It's built on MERN st
 
 You are more than welcome to fork this project and build something of your own on top of it! Following sections of this readme explain how to launch the application locally, deploy it and run tests.
 
-<img src="readme-media/main.png" alt="">
+<img src="readme-media/main.jpg" alt="">
 
 ## Run locally
 
