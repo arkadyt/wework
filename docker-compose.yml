@@ -15,4 +15,4 @@ services:
     image: mongo:4.0.5-xenial
     restart: always
     ports: 
-      - 27017:27017
+      - ${DB_PORT}:27017

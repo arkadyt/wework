@@ -1,6 +1,5 @@
-# Regular testing is always run except master branch pushes
-# All master branch tests are followed by coverage production
-# Deployments are triggered by /[frontend|backend]/ tags
+# Tests are run on every commit except master branch updates
+# where tests are also complimented by coverage analysis (coveralls)!
 
 language: node_js
 node_js: stable
@@ -48,30 +47,3 @@ jobs:
         --coverage 
         --coverageReporters=text-lcov
         | coveralls ; test ${PIPESTATUS[0]} -eq 0
-
-
-    - stage: Deploy
-      if: tag =~ /backend/
-      name: Build a backend app docker image and upload it to DockerHub
-      script:
-        - cd server
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build -t arkadyt/wnetb:latest .
-        - docker push arkadyt/wnetb:latest
-    - stage: Deploy
-      if: tag =~ /frontend/
-      name: Deploy frontend app to Firebase
-      before_install:
-        - cd client
-      script:
-        - npm run build
-        - cd ..
-      deploy:
-        provider: firebase
-        token:
-          secure: "$FIREBASE_TOKEN"
-        project: "socnet-arkadyt-com"
-        message: "Automated deployment"
-        skip_cleanup: true
-        on:
-          all_branches: true

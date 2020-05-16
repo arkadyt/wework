@@ -43,7 +43,7 @@ class Greeter extends React.Component {
                         <span>We</span><span>Work</span>
                     </div>
                     <span className={headlineClasses}>
-                        Social network website for professionals
+                        Social networking platform for professionals
                     </span>
                     <span className={headlineWarningClasses}>
                         Support for tall screens is<br />

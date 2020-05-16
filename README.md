@@ -1,43 +1,30 @@
-# Description [![Build Status](https://travis-ci.org/arkadyt/ww.net.svg?branch=master)](https://travis-ci.org/arkadyt/ww.net) [![Coverage](https://img.shields.io/coveralls/github/arkadyt/ww.net.svg)](https://coveralls.io/github/arkadyt/ww.net)
+## Web address [![Build Status](https://travis-ci.org/arkadyt/ww.net.svg?branch=master)](https://travis-ci.org/arkadyt/ww.net) [![Coverage](https://img.shields.io/coveralls/github/arkadyt/ww.net.svg)](https://coveralls.io/github/arkadyt/ww.net)
 
-This is a fullstack web application built in `JavaScript`, `React.js`, `Node.js` and others; it uses `MongoDB` for data storage.
+App is hosted at [wework.arkadyt.dev](wework.arkadyt.dev).
 
-Backend app and database are hosted on my [GCP](https://cloud.google.com) compute instance.
+## Run locally
 
-Frontend is served from [Firebase](http://firebase.google.com).
-
-[Site link](https://socnet.arkadyt.com).
-
-# Run Locally
-Clone the repository and install dependencies:
+Clone the repository:
 ```
-git clone https://github.com/arkadyt/ww.net.git
-
-cd ww.net/server && npm install
-cd ../client && npm install
+git clone git@github.com:arkadyt/wework.git && cd wework
 ```
 
-Set up a new local mongodb database through mongo shell:
+Add an .env file to the repo root:
 ```
-mongo
-use <dbname>
-db.createUser({ user: "<username>", pwd: "<password>", roles: ["userAdmin"] })
+PORT=5050
+DB_PORT=27950
+
+TZ=America/New_York
+NODE_ENV=development
+
+# intentionally not configuring db auth
+MONGO_URI='mongodb://db:27017/wework'
+SECRET=yoursecretkey12345
 ```
 
-Set up config/keys.dev.js:
+Run and view the app:
 ```
-module.exports = {
-  mongoURI: 'mongodb://<username>:<password>@localhost:27017/<dbname>',
-  secretOrKey: 'i_am_the_number_one_lol'
-}
-```
-
-Run the app:
-```
-# cd into repo root, then
-konsole & disown
-cd ./client && npm start
-
-# in the previous terminal window
-cd ./server && npm start
+# second half sets up db with test data; requires mongorestore binary installed
+docker-compose up -d && ./db/dbrestore.sh ./
+cd ./client && yarn && yarn start
 ```

@@ -1,13 +1,16 @@
 #!/bin/bash
 
-DIRPATH=/home/ubuntu/apps/wework
+# default values
+DF_PATH=/home/ubuntu/apps/wework
+DF_PORT=27950
+
+DIRPATH=${1:-$DF_PATH}
+DB_PORT=${2:-$DF_PORT}
 
 # restore db
 echo ::: restoring wework database from backup... :::
 mongorestore \
   --drop \
-  --preserveUUID \
-  --restoreDbUsersAndRoles \
   --db=wework \
-  --host=localhost:27017 \
+  --host=localhost:$DB_PORT \
   $DIRPATH/db/wework
