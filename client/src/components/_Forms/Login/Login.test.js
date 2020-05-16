@@ -242,7 +242,9 @@ describe('Login', () => {
 
       it('receives correct [containerStyle] prop', () => {
         const expectedStyle = {
-          margin: 0
+          cursor: "unset",
+          margin: 0,
+          pointerEvents: "unset"
         }
         expect(comp().find(Field).find('[name="submit"]').prop('containerStyle')).toStrictEqual(expectedStyle)
       })
@@ -326,7 +328,8 @@ describe('Login', () => {
       
       it('invokes loginUser() with correct parms', () => {
         comp().find('form').simulate('submit', mockedEvent)
-        expect(props.loginUser).toHaveBeenCalledWith(comp().state(), expect.any(Function))
+        const { reqSent, ...expectedPayload } = comp().state();
+        expect(props.loginUser).toHaveBeenCalledWith(expectedPayload, expect.any(Function))
       })
 
       it('invokes fetchSubscriptions() with correct parms', () => {

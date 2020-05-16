@@ -31,14 +31,14 @@ jobs:
 
     - stage: Test and produce coverage (uploaded to coveralls.io)
       if: branch = master
-      name: For backend app
+      name: Calculate test coverage of the frontend app
       before_install:
         - cd server
       script: 
         - echo "TODO Again, write backend tests"
     - stage: Test and produce coverage (uploaded to coveralls.io)
       if: branch = master
-      name: For frontend app
+      name: Calculate test coverage of the backend app
       before_install:
         - cd client
         - TZ=America/New_York

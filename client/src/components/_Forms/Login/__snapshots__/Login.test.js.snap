@@ -40,7 +40,9 @@ exports[`Login matches snapshot 1`] = `
       <field
         containerStyle={
           Object {
+            "cursor": "unset",
             "margin": 0,
+            "pointerEvents": "unset",
           }
         }
         inline={true}
