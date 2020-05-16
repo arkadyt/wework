@@ -1,3 +1,5 @@
+<img src="readme-media/main.jpg" alt="">
+
 ## Web address [![Build Status](https://travis-ci.org/arkadyt/wework.svg?branch=master)](https://travis-ci.org/arkadyt/wework) [![Coverage](https://img.shields.io/coveralls/github/arkadyt/wework.svg)](https://coveralls.io/github/arkadyt/wework)
 
 Example app is hosted at [wework.arkadyt.dev](https://wework.arkadyt.dev).
@@ -7,8 +9,6 @@ Example app is hosted at [wework.arkadyt.dev](https://wework.arkadyt.dev).
 This is an open-source social networking platform project. It's built on MERN stack (MongoDB, Express, React and Node.js). It combines elements of a few famous social media websites that we all know: Twitter and LinkedIn.
 
 You are more than welcome to fork this project and build something of your own on top of it! Following sections of this readme explain how to launch the application locally, deploy it and run tests.
-
-<img src="readme-media/main.jpg" alt="">
 
 ## Run locally
 
