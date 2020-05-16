@@ -10,7 +10,7 @@ This is an open-source social networking platform project. It's built on MERN st
 
 You are more than welcome to fork this project and build something of your own on top of it! Following sections of this readme explain how to launch the application locally, deploy it and run tests.
 
-## Run locally
+## Running locally
 
 Clone the repository:
 ```
@@ -37,7 +37,7 @@ docker-compose up -d && ./db/dbrestore.sh ./
 cd ./client && yarn && yarn start
 ```
 
-## Run tests
+## Running tests
 
 ```
 # to run client-side tests
@@ -51,7 +51,9 @@ cd ./server && yarn test
 
 To deploy the frontend bundle to S3 refer to the `./client/deploy.sh` deployment script.
 
-Deploying the backend application depends on your preferences. The example deployment which I referenced in `Web Address` section of this README file is deployed onto an EC2 instance with a bootstrap script. You can find the script here: https://github.com/arkadyt/dotfiles/blob/master/cloud/api-servers/foss-other/aws-ec2-build.sh. This type of deployment is obviously NOT suitable for production, but gives you an idea of what's needed to successfully deploy this application.
+Deploying the backend application depends on your preferences. The example deployment which I referenced in `Web Address` section of this README file is deployed onto an EC2 instance with a bootstrap script. [You can find the script here](https://github.com/arkadyt/dotfiles/blob/master/cloud/api-servers/foss-other/aws-ec2-build.sh. ).
+
+This type of deployment is obviously NOT suitable for production workloads, but gives you an idea of what's required to successfully deploy this application.
 
 ## License
 
