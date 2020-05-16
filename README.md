@@ -1,4 +1,4 @@
-## Web address [![Build Status](https://travis-ci.org/arkadyt/ww.net.svg?branch=master)](https://travis-ci.org/arkadyt/ww.net) [![Coverage](https://img.shields.io/coveralls/github/arkadyt/ww.net.svg)](https://coveralls.io/github/arkadyt/ww.net)
+## Web address [![Build Status](https://travis-ci.org/arkadyt/wework.svg?branch=master)](https://travis-ci.org/arkadyt/wework) [![Coverage](https://img.shields.io/coveralls/github/arkadyt/wework.svg)](https://coveralls.io/github/arkadyt/wework)
 
 App is hosted at [wework.arkadyt.dev](wework.arkadyt.dev).
 
@@ -19,7 +19,7 @@ NODE_ENV=development
 
 # intentionally not configuring db auth
 MONGO_URI='mongodb://db:27017/wework'
-SECRET=yoursecretkey12345
+SECRET=yoursecretkey123456
 ```
 
 Run and view the app:
