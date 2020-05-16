@@ -1,6 +1,6 @@
 ## Web address [![Build Status](https://travis-ci.org/arkadyt/wework.svg?branch=master)](https://travis-ci.org/arkadyt/wework) [![Coverage](https://img.shields.io/coveralls/github/arkadyt/wework.svg)](https://coveralls.io/github/arkadyt/wework)
 
-Example app is hosted at [wework.arkadyt.dev](wework.arkadyt.dev).
+Example app is hosted at [wework.arkadyt.dev](https://wework.arkadyt.dev).
 
 ## Description
 
