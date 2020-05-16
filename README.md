@@ -26,7 +26,7 @@ TZ=America/New_York
 NODE_ENV=development
 
 # intentionally not configuring db auth
-MONGO_URI='mongodb://db:27017/wework'
+MONGO_URI=mongodb://db:27017/wework
 SECRET=yoursecretkey123456
 ```
 
