@@ -41,11 +41,13 @@
             }
         }
         .Greeter__headline_warning {
+            width: 18rem;
+            margin-top: 2.5rem;
             @media (orientation: landscape) {
                 display: none;
             }
             a {
-                color: white;                
+                color: white;
             }
         }
         .Greeter__headline {

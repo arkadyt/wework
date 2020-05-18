@@ -1,7 +1,4 @@
 import React from 'react'
-import {
-    FaShippingFast as IcoTruck
-} from 'react-icons/fa'
 import './Greeter.scss'
 
 class Greeter extends React.Component {
@@ -31,7 +28,7 @@ class Greeter extends React.Component {
             startAnimations && "animate"
         ].join(' ')
 
-        const headlineWarningClasses = [
+        const msgClasses = [
             "Greeter__headline_warning",
             startAnimations && "animate"
         ].join(' ')
@@ -45,22 +42,19 @@ class Greeter extends React.Component {
                     <span className={headlineClasses}>
                         Social networking platform for professionals
                     </span>
-                    <span className={headlineWarningClasses}>
-                        Support for tall screens is<br />
-                        already on the way!<br /><br />
-
-                        <span style={{fontSize: '7rem'}}><IcoTruck /></span><br />
-
-                        Until then, you can visit website<br />
-                        on desktop or switch your<br />
-                        device into landscape mode.<br /><br />
-
-                        To assess my skills in building<br />
-                        responsive layouts visit:<br />
-                        <a href="https://arkadyt.com" target="_blank" rel="noopener noreferrer">
-                            <b>https://arkadyt.com</b>
-                        </a>
-                    </span>
+                    <p className={msgClasses}>
+                        Support for vertical layouts has not been
+                        implemented yet!
+                    </p>
+                    <p className={msgClasses}>
+                        If you would like to contribute, please open
+                        a Pull Request at github.com/arkadyt/wework!
+                    </p>
+                    <p className={msgClasses}>
+                        In the meanwhile you can try reloading this
+                        page in landscape mode or visiting it from
+                        a desktop computer!
+                    </p>
                 </div>
                 <div className={whiteScreenClasses} />
             </div>
