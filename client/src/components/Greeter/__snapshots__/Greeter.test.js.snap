@@ -22,45 +22,21 @@ exports[`Greeter matches snapshot 1`] = `
     >
       Social networking platform for professionals
     </span>
-    <span
+    <p
       className="Greeter__headline_warning false"
     >
-      Support for tall screens is
-      <br />
-      already on the way!
-      <br />
-      <br />
-      <span
-        style={
-          Object {
-            "fontSize": "7rem",
-          }
-        }
-      >
-        <FaShippingFast />
-      </span>
-      <br />
-      Until then, you can visit website
-      <br />
-      on desktop or switch your
-      <br />
-      device into landscape mode.
-      <br />
-      <br />
-      To assess my skills in building
-      <br />
-      responsive layouts visit:
-      <br />
-      <a
-        href="https://arkadyt.com"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <b>
-          https://arkadyt.com
-        </b>
-      </a>
-    </span>
+      Support for vertical layouts has not been implemented yet!
+    </p>
+    <p
+      className="Greeter__headline_warning false"
+    >
+      If you would like to contribute, please open a Pull Request at github.com/arkadyt/wework!
+    </p>
+    <p
+      className="Greeter__headline_warning false"
+    >
+      In the meanwhile you can try reloading this page in landscape mode or visiting it from a desktop computer!
+    </p>
   </div>
   <div
     className="Greeter__white-screen false"

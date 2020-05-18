@@ -57,12 +57,12 @@ describe('Greeter', () => {
 
       it('if true, headlineWarningClasses gets additional className', () => {
         comp().setState({ startAnimations: true })
-        expect(comp().find('.Greeter__headline_warning').hasClass('animate')).toBe(true)
+        expect(comp().find('.Greeter__headline_warning.animate').length).toBe(3)
       })
 
       it('if false, headlineWarningClasses does not get additional classNames', () => {
         comp().setState({ startAnimations: false })
-        expect(comp().find('.Greeter__headline_warning').hasClass('animate')).toBe(false)
+        expect(comp().find('.Greeter__headline_warning.animate').length).toBe(0)
       })
     })
   })
